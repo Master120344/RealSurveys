@@ -4,22 +4,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RealSurveys</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #ff6600;
+            flex-grow: 1;
+        }
+
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            background-color: #ff6600;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        header nav ul li a:hover {
+            background-color: #e65c00;
+        }
+
+        header .btn-toggle {
+            margin-left: 20px;
+        }
+
+        body.dark-mode header {
+            background-color: #1a1a1a;
+        }
+
+        .hero {
+            background: url('hero-bg.jpg') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .hero .btn {
+            background-color: #ff6600;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .hero .btn:hover {
+            background-color: #e65c00;
+        }
+
+        body.dark-mode .hero {
+            background-color: #1a1a1a;
+        }
+
+        .features {
+            background-color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .features .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            width: 100%;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        body.dark-mode .features {
+            background-color: #1a1a1a;
+        }
+
+        .feature {
+            flex: 1;
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .feature {
+            background-color: #2a2a2a;
+        }
+
+        .feature i {
+            font-size: 40px;
+            color: #ff6600;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        body.dark-mode .feature p {
+            color: #f4f4f4;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        footer .social a:hover {
+            color: #ff6600;
+        }
+
+        body.dark-mode footer {
+            background-color: #1a1a1a;
+        }
+
+        .btn-toggle {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-toggle:hover {
+            background-color: #e65c00;
+        }
+    </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
 </head>
 <body>
     <header>
         <div class="container">
             <h1><a href="index.html">RealSurveys</a></h1>
             <nav>
-                <ul>
+                <ul class="nav-left">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="giveaways.html">Giveaways</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
+                <ul class="nav-right">
+                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                    <li><a href="leading-platform.html">Leading Platform</a></li>
+                    <li><a href="no-sale-of-data.html">No Sale of Data</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="transparency.html">Transparency</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
             </nav>
+            <button id="theme-toggle" class="btn-toggle">Dark Mode</button>
         </div>
     </header>
 
@@ -64,6 +296,33 @@
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Document loaded and script running');
+
+            // Dark mode toggle
+            const toggleButton = document.getElementById('theme-toggle');
+            toggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    toggleButton.textContent = 'Light Mode';
+                } else {
+                    toggleButton.textContent = 'Dark Mode';
+                }
+            });
+
+            // Disable copy, cut, and paste
+            document.addEventListener('copy', (e) => {
+                e.preventDefault();
+            });
+            document.addEventListener('cut', (e) => {
+                e.preventDefault();
+            });
+            document.addEventListener('paste', (e) => {
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>
+
