@@ -118,13 +118,13 @@
             align-items: center;
             padding: 10px;
             border-bottom: 1px solid #ccc;
+            animation: slideIn 0.5s ease-out;
         }
 
         .survey-item img {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: auto;
             margin-right: 20px;
-            animation: float 2s infinite;
         }
 
         .survey-item button {
@@ -160,6 +160,17 @@
             }
             100% {
                 box-shadow: 0 0 20px #ff6600;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
 
@@ -292,9 +303,9 @@
                 topic: "Fast Food Preferences",
                 duration: 5,
                 reward: 5,
-                spotsLeft: 10000,
+                spotsLeft: Math.floor(Math.random() * 10000),
                 totalSpots: 50000,
-                imageUrl: "https://via.placeholder.com/50" // Replace with McDonald's image URL
+                imageUrl: "https://via.placeholder.com/100?text=McDonald's" // Placeholder
             },
             {
                 id: 'subway',
@@ -302,9 +313,9 @@
                 topic: "Sandwich Customization",
                 duration: 4,
                 reward: 4,
-                spotsLeft: 2000,
+                spotsLeft: Math.floor(Math.random() * 2000),
                 totalSpots: 20000,
-                imageUrl: "https://via.placeholder.com/50" // Replace with Subway image URL
+                imageUrl: "https://via.placeholder.com/100?text=Subway" // Placeholder
             }
         ];
 
@@ -318,7 +329,7 @@
                 <div>
                     <strong>${survey.title}</strong>
                     <p>Topic: ${survey.topic} - Duration: ${survey.duration} mins - Reward: $${survey.reward}</p>
-                    <p>${survey.totalSpots - survey.spotsLeft}/${survey.totalSpots} spots left</p>
+                    <p><strong>${survey.spotsLeft}</strong> spots left out of ${survey.totalSpots}</p>
                     <button onclick="reserveSpot('${survey.id}')">Reserve Spot</button>
                 </div>
             `;
