@@ -83,48 +83,43 @@
             color: #ff6600;
         }
 
-        .surveys {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .surveys h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .surveys p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .surveys ul {
+        .survey-list {
             list-style: none;
             padding: 0;
         }
 
-        .surveys ul li {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
         .survey-item {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            animation: slideIn 0.5s ease-out;
+            justify-content: space-between;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .survey-item img {
-            width: 100px;
-            height: auto;
+            max-height: 50px;
             margin-right: 20px;
+        }
+
+        .survey-item div {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .survey-item h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .survey-item p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #666;
         }
 
         .survey-item button {
@@ -135,41 +130,17 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            animation: glow 1.5s infinite alternate;
         }
 
         .survey-item button:hover {
             background-color: #e65c00;
         }
 
-        @keyframes float {
-            0% {
-                transform: translatey(0px);
-            }
-            50% {
-                transform: translatey(-10px);
-            }
-            100% {
-                transform: translatey(0px);
-            }
-        }
-
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 5px #ff6600;
-            }
-            100% {
-                box-shadow: 0 0 20px #ff6600;
-            }
-        }
-
-        @keyframes slideIn {
+        @keyframes fadeIn {
             from {
-                transform: translateX(-100%);
                 opacity: 0;
             }
             to {
-                transform: translateX(0);
                 opacity: 1;
             }
         }
@@ -229,29 +200,24 @@
                 font-size: 28px;
             }
 
-            .surveys h3 {
-                font-size: 20px;
+            .survey-item img {
+                max-height: 40px;
+                margin-right: 10px;
             }
 
-            .surveys p {
-                font-size: 16px;
+            .survey-item h3 {
+                font-size: 18px;
             }
 
-            .surveys ul li {
+            .survey-item p {
                 font-size: 14px;
             }
 
-            .survey-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .survey-item img {
-                margin-bottom: 10px;
+            .survey-item button {
+                padding: 8px 16px;
             }
         }
     </style>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -273,13 +239,9 @@
 
     <div class="content">
         <h2>Available Surveys</h2>
-        <div class="surveys">
-            <h3>Latest Surveys</h3>
-            <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below! You cannot take the same survey more than once:</p>
-            <ul id="survey-list">
-                <!-- Surveys will be dynamically inserted here -->
-            </ul>
-        </div>
+        <ul class="survey-list" id="survey-list">
+            <!-- Surveys will be dynamically inserted here -->
+        </ul>
     </div>
 
     <footer>
@@ -295,27 +257,25 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             const surveys = [
                 {
                     id: 'mcdonalds',
+                    image: 'assets/McDonalds.png',
                     title: "McDonald's Survey",
                     topic: "Fast Food Preferences",
-                    duration: 5,
-                    reward: 5,
-                    spotsLeft: Math.floor(Math.random() * 10000),
-                    totalSpots: 50000,
-                    imageUrl: "assets/McDonalds.png"
+                    duration: "5 mins",
+                    reward: "$5",
+                    spots: Math.floor(Math.random() * 10000) + 1000
                 },
                 {
                     id: 'subway',
+                    image: 'assets/Subway.png',
                     title: "Subway Survey",
                     topic: "Sandwich Customization",
-                    duration: 4,
-                    reward: 4,
-                    spotsLeft: Math.floor(Math.random() * 2000),
-                    totalSpots: 20000,
-                    imageUrl: "assets/Subway.png"
+                    duration: "4 mins",
+                    reward: "$4",
+                    spots: Math.floor(Math.random() * 5000) + 500
                 }
             ];
 
@@ -325,24 +285,22 @@
                 const li = document.createElement('li');
                 li.className = 'survey-item';
                 li.innerHTML = `
-                    <img src="${survey.imageUrl}" alt="${survey.title}">
+                    <img src="${survey.image}" alt="${survey.title}">
                     <div>
-                        <strong>${survey.title}</strong>
-                        <p>Topic: ${survey.topic} - Duration: ${survey.duration} mins - Reward: $${survey.reward}</p>
-                        <p><strong>${survey.spotsLeft}</strong> spots left out of ${survey.totalSpots}</p>
+                        <h3>${survey.title}</h3>
+                        <p>ID: ${survey.id} - Topic: ${survey.topic} - Duration: ${survey.duration} - Reward: ${survey.reward}</p>
+                        <p>Spots left: ${survey.spots}</p>
                         <button onclick="reserveSpot('${survey.id}')">Reserve Spot</button>
                     </div>
                 `;
                 surveyList.appendChild(li);
             });
-
-            function reserveSpot(surveyId) {
-                localStorage.setItem('currentSurvey', surveyId);
-                window.location.href = 'survey.html';
-            }
-
-            console.log('Script loaded and surveys inserted.');
         });
+
+        function reserveSpot(surveyId) {
+            localStorage.setItem('currentSurvey', surveyId);
+            window.location.href = 'survey.html';
+        }
     </script>
 </body>
 </html>
