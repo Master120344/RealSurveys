@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Surveys - RealSurveys</title>
     <style>
+        /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
@@ -112,34 +113,6 @@
             margin-bottom: 10px;
         }
 
-        .survey-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .survey-item img {
-            width: 50px;
-            height: 50px;
-            margin-right: 20px;
-        }
-
-        .survey-item button {
-            background-color: #ff6600;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .survey-item button:hover {
-            background-color: #e65c00;
-        }
-
         footer {
             background-color: #333;
             color: #fff;
@@ -206,15 +179,6 @@
             .surveys ul li {
                 font-size: 14px;
             }
-
-            .survey-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .survey-item img {
-                margin-bottom: 10px;
-            }
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -244,22 +208,10 @@
             <h3>Latest Surveys</h3>
             <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
             <ul>
-                <li class="survey-item">
-                    <img src="https://via.placeholder.com/50" alt="McDonald's">
-                    <div>
-                        <strong>McDonald's Survey</strong>
-                        <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
-                        <button onclick="startSurvey('mcdonalds')">Take Survey</button>
-                    </div>
-                </li>
-                <li class="survey-item">
-                    <img src="https://via.placeholder.com/50" alt="Subway">
-                    <div>
-                        <strong>Subway Survey</strong>
-                        <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
-                        <button onclick="startSurvey('subway')">Take Survey</button>
-                    </div>
-                </li>
+                <li>Survey 1: Topic - Duration - Reward</li>
+                <li>Survey 2: Topic - Duration - Reward</li>
+                <li>Survey 3: Topic - Duration - Reward</li>
+                <!-- Add more surveys as needed -->
             </ul>
         </div>
     </div>
@@ -277,10 +229,20 @@
     </footer>
 
     <script>
-        function startSurvey(survey) {
-            localStorage.setItem('currentSurvey', survey);
-            window.location.href = 'survey.html';
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Document loaded and script running');
+
+            // Disable copy, cut, and paste
+            document.addEventListener('copy', (e) => {
+                e.preventDefault();
+            });
+            document.addEventListener('cut', (e) => {
+                e.preventDefault();
+            });
+            document.addEventListener('paste', (e) => {
+                e.preventDefault();
+            });
+        });
     </script>
 </body>
 </html>
