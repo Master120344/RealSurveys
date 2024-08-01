@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey</title>
+    <title>Subway Survey</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -28,7 +28,7 @@
 
     <section class="survey">
         <div class="container">
-            <h2>Survey</h2>
+            <h2>Subway Survey</h2>
             <div class="survey-question">
                 <p id="question"></p>
                 <div id="options"></div>
@@ -49,20 +49,20 @@
     <script>
         const questions = [
             {
-                question: "What is your favorite fast food restaurant?",
-                options: ["McDonald's", "Burger King", "Subway", "KFC"]
-            },
-            {
-                question: "How often do you eat fast food?",
+                question: "How often do you eat at Subway?",
                 options: ["Daily", "Weekly", "Monthly", "Rarely"]
             },
             {
-                question: "What is your favorite fast food item?",
-                options: ["Burger", "Pizza", "Sandwich", "Fried Chicken"]
+                question: "What is your favorite item on the Subway menu?",
+                options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"]
             },
             {
-                question: "How much do you spend on fast food monthly?",
-                options: ["<$50", "$50-$100", "$100-$200", ">$200"]
+                question: "How would you rate the freshness of ingredients at Subway?",
+                options: ["Excellent", "Good", "Average", "Poor"]
+            },
+            {
+                question: "How do you usually order at Subway?",
+                options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
             }
         ];
 
@@ -110,7 +110,7 @@
         }
 
         function showReward() {
-            document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $5</p>';
+            document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $4</p>';
             document.querySelector('.survey-navigation').style.display = 'none';
             
             // Add confetti effect
