@@ -48,6 +48,11 @@
         .center-text {
             text-align: center;
         }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -82,7 +87,11 @@
                 <input type="radio" id="q1d" name="question1" value="Rarely">
                 <label for="q1d">Rarely</label>
             </div>
-            <button onclick="nextQuestion()">Next</button>
+            <div class="buttons">
+                <button onclick="prevQuestion()">Back</button>
+                <button onclick="nextQuestion()">Next</button>
+            </div>
+            <p>Complete this survey to claim $3!</p>
         </div>
         <div class="survey-container hidden center-text" id="completion-container">
             <h3>Survey Complete</h3>
@@ -106,15 +115,15 @@
     <script>
         const questions = [
             { question: "How often do you visit Subway?", answers: ["Daily", "Weekly", "Monthly", "Rarely"] },
-            { question: "What is your favorite item on the Subway menu?", answers: ["Italian B.M.T.", "Turkey Breast", "Veggie Delight", "Chicken Teriyaki"] },
+            { question: "What is your favorite item on the Subway menu?", answers: ["Footlong", "Six-inch Sub", "Salad", "Wrap"] },
             { question: "How satisfied are you with the service at Subway?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
             { question: "How likely are you to recommend Subway to a friend?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
             { question: "What is your preferred time of day to visit Subway?", answers: ["Morning", "Afternoon", "Evening", "Night"] },
-            { question: "How do you usually place your order at Subway?", answers: ["In-store", "Online", "Delivery", "Drive-thru"] },
+            { question: "How do you usually place your order at Subway?", answers: ["In-store", "Online", "Delivery"] },
             { question: "How would you rate the cleanliness of Subway locations?", answers: ["Very clean", "Clean", "Neutral", "Dirty"] },
             { question: "How do you feel about the pricing at Subway?", answers: ["Very affordable", "Affordable", "Neutral", "Expensive"] },
             { question: "How satisfied are you with the variety of menu items at Subway?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
-            { question: "How likely are you to participate in Subway's promotions and offers?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
+            { question: "How likely are you to participate in Subway promotions and offers?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
         ];
 
         let currentQuestionIndex = 0;
@@ -127,6 +136,13 @@
             } else {
                 questionContainer.classList.add("hidden");
                 document.getElementById("completion-container").classList.remove("hidden");
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                updateQuestion();
             }
         }
 
