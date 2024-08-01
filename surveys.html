@@ -124,6 +124,7 @@
             width: 50px;
             height: 50px;
             margin-right: 20px;
+            animation: float 2s infinite;
         }
 
         .survey-item button {
@@ -134,10 +135,32 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            animation: glow 1.5s infinite alternate;
         }
 
         .survey-item button:hover {
             background-color: #e65c00;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+            50% {
+                transform: translatey(-10px);
+            }
+            100% {
+                transform: translatey(0px);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #ff6600;
+            }
+            100% {
+                box-shadow: 0 0 20px #ff6600;
+            }
         }
 
         footer {
@@ -243,23 +266,8 @@
         <div class="surveys">
             <h3>Latest Surveys</h3>
             <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
-            <ul>
-                <li class="survey-item">
-                    <img src="https://via.placeholder.com/50" alt="McDonald's">
-                    <div>
-                        <strong>McDonald's Survey</strong>
-                        <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
-                        <button onclick="startSurvey('mcdonalds')">Take Survey</button>
-                    </div>
-                </li>
-                <li class="survey-item">
-                    <img src="https://via.placeholder.com/50" alt="Subway">
-                    <div>
-                        <strong>Subway Survey</strong>
-                        <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
-                        <button onclick="startSurvey('subway')">Take Survey</button>
-                    </div>
-                </li>
+            <ul id="survey-list">
+                <!-- Surveys will be dynamically inserted here -->
             </ul>
         </div>
     </div>
@@ -277,8 +285,48 @@
     </footer>
 
     <script>
-        function startSurvey(survey) {
-            localStorage.setItem('currentSurvey', survey);
+        const surveys = [
+            {
+                id: 'mcdonalds',
+                title: "McDonald's Survey",
+                topic: "Fast Food Preferences",
+                duration: 5,
+                reward: 5,
+                spotsLeft: 10000,
+                totalSpots: 50000,
+                imageUrl: "https://via.placeholder.com/50" // Replace with McDonald's image URL
+            },
+            {
+                id: 'subway',
+                title: "Subway Survey",
+                topic: "Sandwich Customization",
+                duration: 4,
+                reward: 4,
+                spotsLeft: 2000,
+                totalSpots: 20000,
+                imageUrl: "https://via.placeholder.com/50" // Replace with Subway image URL
+            }
+        ];
+
+        const surveyList = document.getElementById('survey-list');
+
+        surveys.forEach(survey => {
+            const li = document.createElement('li');
+            li.className = 'survey-item';
+            li.innerHTML = `
+                <img src="${survey.imageUrl}" alt="${survey.title}">
+                <div>
+                    <strong>${survey.title}</strong>
+                    <p>Topic: ${survey.topic} - Duration: ${survey.duration} mins - Reward: $${survey.reward}</p>
+                    <p>${survey.totalSpots - survey.spotsLeft}/${survey.totalSpots} spots left</p>
+                    <button onclick="reserveSpot('${survey.id}')">Reserve Spot</button>
+                </div>
+            `;
+            surveyList.appendChild(li);
+        });
+
+        function reserveSpot(surveyId) {
+            localStorage.setItem('currentSurvey', surveyId);
             window.location.href = 'survey.html';
         }
     </script>
