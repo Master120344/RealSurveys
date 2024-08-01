@@ -4,139 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome - RealSurveys</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Base Styles */
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0; /* Light background color for better contrast */
-            color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #ff6600;
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        header h1 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end; /* Align items to the right */
-        }
-
-        header nav ul li {
-            margin: 0 10px; /* Adjusted margin for better spacing */
-        }
-
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            background-color: #ff6600;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        header nav ul li a:hover {
-            background-color: #e65c00;
-        }
-
-        .content {
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #ff6600;
-        }
-
-        .content p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .content .logout-btn {
+        .content .survey-btn {
             background-color: #ff6600;
             color: #fff;
             border: none;
             padding: 15px 30px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            position: fixed;
-            top: 15px;
-            right: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
         }
 
-        .content .logout-btn:hover {
+        .content .survey-btn:hover {
             background-color: #e65c00;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        footer .social {
-            margin-top: 10px;
-        }
-
-        footer .social a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 18px;
-            text-decoration: none.
-        }
-
-        footer .social a:hover {
-            color: #ff6600;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -153,7 +36,6 @@
                     <li><a href="leading-platform.html">Leading Platform</a></li>
                     <li><a href="referral-program.html">Referral Program</a></li>
                     <li><a href="register.html">Register</a></li>
-                    <li><a href="surveys.html">Surveys</a></li>
                 </ul>
             </nav>
         </div>
@@ -162,6 +44,7 @@
     <div class="content">
         <h2>Welcome, <span id="username"></span>!</h2>
         <p>Thank you for registering with RealSurveys.</p>
+        <button class="survey-btn" onclick="navigateToSurveys()">Go to Surveys</button>
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
@@ -181,21 +64,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             var username = localStorage.getItem('username');
             if (!username) {
-                // If no username is found, redirect to the registration page
                 window.location.href = 'register.html';
             } else {
-                // Display the username
                 document.getElementById('username').innerText = username;
             }
         });
 
         function logout() {
-            // Clear the local storage
             localStorage.removeItem('username');
             localStorage.removeItem('email');
-
-            // Redirect to the registration page
             window.location.href = 'register.html';
+        }
+
+        function navigateToSurveys() {
+            window.location.href = 'surveys.html';
         }
     </script>
 </body>
