@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
+            <h1>Survey</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -28,13 +27,10 @@
 
     <section class="survey">
         <div class="container">
-            <h2>Survey</h2>
-            <div class="survey-question">
-                <p id="question"></p>
-                <div id="options"></div>
-            </div>
-            <div class="survey-navigation">
-                <button id="back" onclick="prevQuestion()">Back</button>
+            <h2 id="question">Survey Question</h2>
+            <div id="options"></div>
+            <div class="survey-nav">
+                <button id="prev" onclick="prevQuestion()">Back</button>
                 <button id="next" onclick="nextQuestion()">Next</button>
             </div>
         </div>
@@ -52,7 +48,9 @@
                 questions: [
                     { question: "How often do you eat at McDonald's?", options: ["Daily", "Weekly", "Monthly", "Rarely", "Never"] },
                     { question: "What is your favorite item on the menu?", options: ["Big Mac", "McChicken", "Fries", "McFlurry"] },
-                    // Add more questions here
+                    { question: "How do you rate the service?", options: ["Excellent", "Good", "Average", "Poor"] },
+                    { question: "Would you recommend McDonald's to a friend?", options: ["Yes", "No"] },
+                    { question: "How satisfied are you with the cleanliness?", options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied"] }
                 ],
                 reward: 5
             },
@@ -60,7 +58,9 @@
                 questions: [
                     { question: "How often do you eat at Subway?", options: ["Daily", "Weekly", "Monthly", "Rarely", "Never"] },
                     { question: "What is your favorite sandwich?", options: ["Italian BMT", "Chicken Teriyaki", "Veggie Delight", "Tuna"] },
-                    // Add more questions here
+                    { question: "How do you rate the freshness of ingredients?", options: ["Excellent", "Good", "Average", "Poor"] },
+                    { question: "Would you recommend Subway to a friend?", options: ["Yes", "No"] },
+                    { question: "How satisfied are you with the customer service?", options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied"] }
                 ],
                 reward: 4
             }
