@@ -113,6 +113,20 @@
             margin-bottom: 10px;
         }
 
+        .survey-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .survey-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+
         footer {
             background-color: #333;
             color: #fff;
@@ -179,6 +193,15 @@
             .surveys ul li {
                 font-size: 14px;
             }
+
+            .survey-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .survey-item img {
+                margin-bottom: 10px;
+            }
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -208,9 +231,27 @@
             <h3>Latest Surveys</h3>
             <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
             <ul>
-                <li>Survey 1: Topic - Duration - Reward</li>
-                <li>Survey 2: Topic - Duration - Reward</li>
-                <li>Survey 3: Topic - Duration - Reward</li>
+                <li class="survey-item">
+                    <img src="https://via.placeholder.com/50" alt="McDonald's">
+                    <div>
+                        <strong>McDonald's Survey</strong>
+                        <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
+                    </div>
+                </li>
+                <li class="survey-item">
+                    <img src="https://via.placeholder.com/50" alt="Subway">
+                    <div>
+                        <strong>Subway Survey</strong>
+                        <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
+                    </div>
+                </li>
+                <li class="survey-item">
+                    <img src="https://via.placeholder.com/50" alt="Starbucks">
+                    <div>
+                        <strong>Starbucks Survey</strong>
+                        <p>Topic: Coffee Preferences - Duration: 6 mins - Reward: $6</p>
+                    </div>
+                </li>
                 <!-- Add more surveys as needed -->
             </ul>
         </div>
