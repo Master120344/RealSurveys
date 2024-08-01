@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Surveys - RealSurveys</title>
+    <title>Welcome to RealSurveys</title>
     <style>
         /* Base Styles */
         body {
@@ -88,6 +88,22 @@
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 20px;
+        }
+
+        .content a.btn {
+            display: inline-block;
+            background-color: #ff6600;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-bottom: 40px;
+        }
+
+        .content a.btn:hover {
+            background-color: #e65c00;
         }
 
         .surveys {
@@ -178,6 +194,11 @@
                 font-size: 16px;
             }
 
+            .content a.btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
             .surveys h3 {
                 font-size: 20px;
             }
@@ -213,9 +234,11 @@
     </header>
 
     <div class="content">
-        <h2>Available Surveys</h2>
-        <div class="surveys">
-            <h3>Latest Surveys</h3>
+        <h2>Welcome to RealSurveys</h2>
+        <p>At RealSurveys, your time and opinions are valuable. We strive to provide a platform where you can share your insights and earn rewards. Join us today and be part of a community that values your input.</p>
+        <a href="#surveys" class="btn">Go to Surveys</a>
+        <div id="surveys" class="surveys">
+            <h3>Available Surveys</h3>
             <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
             <ul>
                 <li>Survey 1: Topic - Duration - Reward</li>
