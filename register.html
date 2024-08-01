@@ -72,7 +72,7 @@
 
         .content {
             padding: 60px 20px;
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
@@ -83,41 +83,45 @@
             color: #ff6600;
         }
 
-        .content p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .content form {
+        .form-container {
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
 
-        .content form input[type="text"],
-        .content form input[type="email"],
-        .content form input[type="password"] {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        .content form button {
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
             background-color: #ff6600;
             color: #fff;
-            padding: 15px 30px;
-            border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 18px;
             transition: background-color 0.3s;
         }
 
-        .content form button:hover {
+        .form-group button:hover {
             background-color: #e65c00;
         }
 
@@ -175,14 +179,8 @@
             .content h2 {
                 font-size: 28px;
             }
-
-            .content p {
-                font-size: 16px;
-            }
         }
     </style>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
 </head>
 <body>
     <header>
@@ -203,13 +201,26 @@
     </header>
 
     <div class="content">
-        <h2>Register for RealSurveys</h2>
-        <form id="registrationForm">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
+        <h2>Register</h2>
+        <div class="form-container">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <footer>
@@ -225,26 +236,19 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Document loaded and script running');
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
 
-            // Disable copy, cut, and paste
-            document.addEventListener('copy', (e) => {
-                e.preventDefault();
-            });
-            document.addEventListener('cut', (e) => {
-                e.preventDefault();
-            });
-            document.addEventListener('paste', (e) => {
-                e.preventDefault();
-            });
+            // Store the registration info in localStorage (for demo purposes)
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
 
-            // Handle form submission
-            const form = document.getElementById('registrationForm');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                window.location.href = 'surveys.html';
-            });
+            // Redirect to the welcome page
+            window.location.href = 'welcome.html';
         });
     </script>
 </body>
