@@ -48,6 +48,11 @@
         .center-text {
             text-align: center;
         }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -82,7 +87,11 @@
                 <input type="radio" id="q1d" name="question1" value="Rarely">
                 <label for="q1d">Rarely</label>
             </div>
-            <button onclick="nextQuestion()">Next</button>
+            <div class="buttons">
+                <button onclick="prevQuestion()">Back</button>
+                <button onclick="nextQuestion()">Next</button>
+            </div>
+            <p>Complete this survey to claim $5!</p>
         </div>
         <div class="survey-container hidden center-text" id="completion-container">
             <h3>Survey Complete</h3>
@@ -106,11 +115,11 @@
     <script>
         const questions = [
             { question: "How often do you visit McDonald's?", answers: ["Daily", "Weekly", "Monthly", "Rarely"] },
-            { question: "What is your favorite item on the McDonald's menu?", answers: ["Big Mac", "Fries", "McFlurry", "Chicken Nuggets"] },
+            { question: "What is your favorite item on the McDonald's menu?", answers: ["Big Mac", "Quarter Pounder", "McChicken", "French Fries"] },
             { question: "How satisfied are you with the service at McDonald's?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
             { question: "How likely are you to recommend McDonald's to a friend?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
             { question: "What is your preferred time of day to visit McDonald's?", answers: ["Morning", "Afternoon", "Evening", "Night"] },
-            { question: "How do you usually place your order at McDonald's?", answers: ["Drive-thru", "Dine-in", "Mobile app", "Delivery"] },
+            { question: "How do you usually place your order at McDonald's?", answers: ["In-store", "Online", "Delivery", "Drive-thru"] },
             { question: "How would you rate the cleanliness of McDonald's locations?", answers: ["Very clean", "Clean", "Neutral", "Dirty"] },
             { question: "How do you feel about the pricing at McDonald's?", answers: ["Very affordable", "Affordable", "Neutral", "Expensive"] },
             { question: "How satisfied are you with the variety of menu items at McDonald's?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
@@ -127,6 +136,13 @@
             } else {
                 questionContainer.classList.add("hidden");
                 document.getElementById("completion-container").classList.remove("hidden");
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                updateQuestion();
             }
         }
 
