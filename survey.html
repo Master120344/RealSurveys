@@ -88,6 +88,7 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
         }
 
         .survey h3 {
@@ -102,21 +103,7 @@
             color: #333;
         }
 
-        .survey-question {
-            display: none;
-        }
-
-        .survey-question.active {
-            display: block;
-        }
-
-        .survey-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .survey-navigation button {
+        .survey button {
             background-color: #ff6600;
             color: #fff;
             border: none;
@@ -126,8 +113,17 @@
             transition: background-color 0.3s;
         }
 
-        .survey-navigation button:hover {
+        .survey button:hover {
             background-color: #e65c00;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         footer {
@@ -195,7 +191,6 @@
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
 </head>
 <body>
     <header>
@@ -218,14 +213,10 @@
     <div class="content">
         <h2>Survey</h2>
         <div class="survey">
-            <h3 id="survey-title"></h3>
-            <div id="survey-questions">
-                <!-- Questions will be dynamically inserted here -->
-            </div>
-            <div class="survey-navigation">
-                <button id="back-btn" onclick="navigate(-1)">Back</button>
-                <button id="next-btn" onclick="navigate(1)">Next</button>
-            </div>
+            <h3>Question <span id="question-number">1</span></h3>
+            <p id="question-text">Loading...</p>
+            <button id="back-button" onclick="goBack()" disabled>Back</button>
+            <button id="next-button" onclick="goNext()">Next</button>
         </div>
     </div>
 
@@ -242,85 +233,64 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const surveys = {
-                mcdonalds: {
-                    title: "McDonald's Survey",
-                    questions: [
-                        "How often do you eat at McDonald's?",
-                        "What's your favorite item on the menu?",
-                        "How would you rate the quality of the food?",
-                        "Do you think McDonald's provides good value for money?",
-                        "How would you rate the cleanliness of the restaurant?",
-                        "How friendly is the staff at McDonald's?",
-                        "How long do you usually wait for your order?",
-                        "Do you use the McDonald's app?",
-                        "How would you rate the nutritional information provided?",
-                        "Would you recommend McDonald's to others?"
-                    ],
-                    reward: "$5"
-                },
-                subway: {
-                    title: "Subway Survey",
-                    questions: [
-                        "How often do you eat at Subway?",
-                        "What's your favorite sandwich?",
-                        "How would you rate the quality of the ingredients?",
-                        "Do you think Subway provides good value for money?",
-                        "How would you rate the cleanliness of the restaurant?",
-                        "How friendly is the staff at Subway?",
-                        "How long do you usually wait for your order?",
-                        "Do you use the Subway app?",
-                        "How would you rate the nutritional information provided?",
-                        "Would you recommend Subway to others?"
-                    ],
-                    reward: "$4"
-                }
-            };
+        const surveys = {
+            mcdonalds: [
+                "How often do you visit McDonald's?",
+                "What's your favorite item on the menu?",
+                "How satisfied are you with the service?",
+                "How clean is the McDonald's location you visit?",
+                "How likely are you to recommend McDonald's to a friend?",
+                "What's your preferred time of day to visit McDonald's?",
+                "How do you usually place your order?",
+                "What's your favorite McDonald's promotion?",
+                "How satisfied are you with the price of the items?",
+                "What would you like to see improved at McDonald's?"
+            ],
+            subway: [
+                "How often do you visit Subway?",
+                "What's your favorite sandwich at Subway?",
+                "How satisfied are you with the freshness of the ingredients?",
+                "How clean is the Subway location you visit?",
+                "How likely are you to recommend Subway to a friend?",
+                "What's your preferred time of day to visit Subway?",
+                "How do you usually place your order?",
+                "What's your favorite Subway promotion?",
+                "How satisfied are you with the price of the items?",
+                "What would you like to see improved at Subway?"
+            ]
+        };
 
-            const currentSurvey = localStorage.getItem('currentSurvey');
-            if (!currentSurvey || !surveys[currentSurvey]) {
+        let currentSurvey = localStorage.getItem('currentSurvey') || 'mcdonalds';
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const questionText = document.getElementById('question-text');
+            const questionNumber = document.getElementById('question-number');
+            questionText.textContent = surveys[currentSurvey][currentQuestion];
+            questionNumber.textContent = currentQuestion + 1;
+
+            document.getElementById('back-button').disabled = currentQuestion === 0;
+            document.getElementById('next-button').textContent = currentQuestion === surveys[currentSurvey].length - 1 ? 'Finish' : 'Next';
+        }
+
+        function goNext() {
+            if (currentQuestion < surveys[currentSurvey].length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                alert('Survey completed!');
                 window.location.href = 'surveys.html';
-                return;
             }
+        }
 
-            const surveyData = surveys[currentSurvey];
-            document.getElementById('survey-title').textContent = surveyData.title;
-
-            const surveyQuestions = document.getElementById('survey-questions');
-            surveyData.questions.forEach((question, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'survey-question';
-                if (index === 0) questionDiv.classList.add('active');
-
-                questionDiv.innerHTML = `
-                    <p>${question}</p>
-                    <input type="text" placeholder="Your answer">
-                `;
-                surveyQuestions.appendChild(questionDiv);
-            });
-
-            let currentQuestionIndex = 0;
-
-            function navigate(direction) {
-                const questions = document.querySelectorAll('.survey-question');
-                questions[currentQuestionIndex].classList.remove('active');
-
-                currentQuestionIndex += direction;
-
-                if (currentQuestionIndex < 0) currentQuestionIndex = 0;
-                if (currentQuestionIndex >= questions.length) {
-                    alert(`Survey completed! You have earned ${surveyData.reward}.`);
-                    window.location.href = 'surveys.html';
-                    return;
-                }
-
-                questions[currentQuestionIndex].classList.add('active');
+        function goBack() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
             }
+        }
 
-            document.getElementById('back-btn').addEventListener('click', () => navigate(-1));
-            document.getElementById('next-btn').addEventListener('click', () => navigate(1));
-        });
+        document.addEventListener('DOMContentLoaded', loadQuestion);
     </script>
 </body>
 </html>
