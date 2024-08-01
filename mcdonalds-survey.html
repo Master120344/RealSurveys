@@ -3,64 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McDonald's Survey - RealSurveys</title>
+    <title>McDonald's Survey</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .survey-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .survey-container h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .survey-container p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .survey-container button {
-            background-color: #ff6600;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 10px;
-        }
-
-        .survey-container button:hover {
-            background-color: #e65c00;
-            transform: scale(1.05);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .center-text {
-            text-align: center;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
         <div class="container">
             <h1><a href="index.html">RealSurveys</a></h1>
             <nav>
-                <ul class="nav">
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -73,97 +26,104 @@
         </div>
     </header>
 
-    <div class="content">
-        <h2>McDonald's Survey</h2>
-        <div class="survey-container" id="question-container">
-            <h3 id="question">Question 1: How often do you visit McDonald's?</h3>
-            <div>
-                <input type="radio" id="q1a" name="question1" value="Daily">
-                <label for="q1a">Daily</label><br>
-                <input type="radio" id="q1b" name="question1" value="Weekly">
-                <label for="q1b">Weekly</label><br>
-                <input type="radio" id="q1c" name="question1" value="Monthly">
-                <label for="q1c">Monthly</label><br>
-                <input type="radio" id="q1d" name="question1" value="Rarely">
-                <label for="q1d">Rarely</label>
+    <section class="survey">
+        <div class="container">
+            <h2>McDonald's Survey</h2>
+            <div class="survey-question">
+                <p id="question"></p>
+                <div id="options"></div>
             </div>
-            <div class="buttons">
-                <button onclick="prevQuestion()">Back</button>
-                <button onclick="nextQuestion()">Next</button>
+            <div class="survey-navigation">
+                <button id="back" onclick="prevQuestion()">Back</button>
+                <button id="next" onclick="nextQuestion()">Next</button>
             </div>
-            <p>Complete this survey to claim $5!</p>
         </div>
-        <div class="survey-container hidden center-text" id="completion-container">
-            <h3>Survey Complete</h3>
-            <p>Thank you for completing the survey!</p>
-            <button onclick="claimReward()">Claim $5</button>
-        </div>
-    </div>
+    </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
         </div>
     </footer>
 
     <script>
         const questions = [
-            { question: "How often do you visit McDonald's?", answers: ["Daily", "Weekly", "Monthly", "Rarely"] },
-            { question: "What is your favorite item on the McDonald's menu?", answers: ["Big Mac", "Quarter Pounder", "McChicken", "French Fries"] },
-            { question: "How satisfied are you with the service at McDonald's?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
-            { question: "How likely are you to recommend McDonald's to a friend?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
-            { question: "What is your preferred time of day to visit McDonald's?", answers: ["Morning", "Afternoon", "Evening", "Night"] },
-            { question: "How do you usually place your order at McDonald's?", answers: ["In-store", "Online", "Delivery", "Drive-thru"] },
-            { question: "How would you rate the cleanliness of McDonald's locations?", answers: ["Very clean", "Clean", "Neutral", "Dirty"] },
-            { question: "How do you feel about the pricing at McDonald's?", answers: ["Very affordable", "Affordable", "Neutral", "Expensive"] },
-            { question: "How satisfied are you with the variety of menu items at McDonald's?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
-            { question: "How likely are you to participate in McDonald's promotions and offers?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
+            {
+                question: "How often do you eat at McDonald's?",
+                options: ["Daily", "Weekly", "Monthly", "Rarely"]
+            },
+            {
+                question: "What is your favorite item on the McDonald's menu?",
+                options: ["Big Mac", "McNuggets", "Fries", "Salad"]
+            },
+            {
+                question: "How would you rate the customer service at McDonald's?",
+                options: ["Excellent", "Good", "Average", "Poor"]
+            },
+            {
+                question: "How do you usually order at McDonald's?",
+                options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
+            }
         ];
 
-        let currentQuestionIndex = 0;
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            const questionElem = document.getElementById('question');
+            const optionsElem = document.getElementById('options');
+
+            questionElem.innerText = questions[index].question;
+            optionsElem.innerHTML = '';
+
+            questions[index].options.forEach(option => {
+                const optionElem = document.createElement('div');
+                optionElem.classList.add('option');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'option';
+                input.value = option;
+                const label = document.createElement('label');
+                label.innerText = option;
+                optionElem.appendChild(input);
+                optionElem.appendChild(label);
+                optionsElem.appendChild(optionElem);
+            });
+
+            document.getElementById('back').style.display = index === 0 ? 'none' : 'inline-block';
+            document.getElementById('next').innerText = index === questions.length - 1 ? 'Finish' : 'Next';
+        }
 
         function nextQuestion() {
-            const questionContainer = document.getElementById("question-container");
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                updateQuestion();
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
             } else {
-                questionContainer.classList.add("hidden");
-                document.getElementById("completion-container").classList.remove("hidden");
+                showReward();
             }
         }
 
         function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                updateQuestion();
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
             }
         }
 
-        function updateQuestion() {
-            const question = questions[currentQuestionIndex];
-            document.getElementById("question").textContent = `Question ${currentQuestionIndex + 1}: ${question.question}`;
-            const answers = document.querySelectorAll(`#question-container div input`);
-            const labels = document.querySelectorAll(`#question-container div label`);
-            question.answers.forEach((answer, index) => {
-                answers[index].value = answer;
-                labels[index].textContent = answer;
-                labels[index].setAttribute("for", `q${currentQuestionIndex + 1}${String.fromCharCode(97 + index)}`);
-                answers[index].setAttribute("id", `q${currentQuestionIndex + 1}${String.fromCharCode(97 + index)}`);
-                answers[index].checked = false;
+        function showReward() {
+            document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $5</p>';
+            document.querySelector('.survey-navigation').style.display = 'none';
+            
+            // Add confetti effect
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
             });
         }
 
-        function claimReward() {
-            alert("Congratulations! You have claimed $5.");
-            // Add additional logic for reward claim
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            showQuestion(currentQuestion);
+        });
     </script>
 </body>
 </html>
