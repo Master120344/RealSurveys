@@ -22,11 +22,16 @@
                     <li><a href="register.html">Register</a></li>
                 </ul>
             </nav>
+            <div class="user-info">
+                <p id="username"></p>
+                <p id="balance"></p>
+            </div>
         </div>
     </header>
 
     <section class="survey">
         <div class="container">
+            <h2 id="question-number">Survey Question</h2>
             <h2 id="question">Survey Question</h2>
             <div id="options"></div>
             <div class="survey-nav">
@@ -72,6 +77,7 @@
         function showQuestion(index) {
             const survey = surveys[currentSurveyId];
             const questionData = survey.questions[index];
+            document.getElementById('question-number').innerText = `Question ${index + 1}/${survey.questions.length}`;
             document.getElementById('question').innerText = questionData.question;
             const optionsContainer = document.getElementById('options');
             optionsContainer.innerHTML = '';
@@ -118,6 +124,9 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             showQuestion(currentQuestionIndex);
+            const user = JSON.parse(localStorage.getItem('user'));
+            document.getElementById('username').innerText = `Username: ${user.username}`;
+            document.getElementById('balance').innerText = `Balance: $${user.balance}`;
         });
     </script>
 </body>
