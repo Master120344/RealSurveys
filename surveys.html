@@ -296,50 +296,54 @@
     </footer>
 
     <script>
-        const surveys = [
-            {
-                id: 'mcdonalds',
-                title: "McDonald's Survey",
-                topic: "Fast Food Preferences",
-                duration: 5,
-                reward: 5,
-                spotsLeft: Math.floor(Math.random() * 10000),
-                totalSpots: 50000,
-                imageUrl: "https://via.placeholder.com/100?text=McDonald's" // Placeholder
-            },
-            {
-                id: 'subway',
-                title: "Subway Survey",
-                topic: "Sandwich Customization",
-                duration: 4,
-                reward: 4,
-                spotsLeft: Math.floor(Math.random() * 2000),
-                totalSpots: 20000,
-                imageUrl: "https://via.placeholder.com/100?text=Subway" // Placeholder
+        document.addEventListener('DOMContentLoaded', function() {
+            const surveys = [
+                {
+                    id: 'mcdonalds',
+                    title: "McDonald's Survey",
+                    topic: "Fast Food Preferences",
+                    duration: 5,
+                    reward: 5,
+                    spotsLeft: Math.floor(Math.random() * 10000),
+                    totalSpots: 50000,
+                    imageUrl: "https://raw.githubusercontent.com/Master120344/RealSurveys/main/assets/mcdonalds.png"
+                },
+                {
+                    id: 'subway',
+                    title: "Subway Survey",
+                    topic: "Sandwich Customization",
+                    duration: 4,
+                    reward: 4,
+                    spotsLeft: Math.floor(Math.random() * 2000),
+                    totalSpots: 20000,
+                    imageUrl: "https://raw.githubusercontent.com/Master120344/RealSurveys/main/assets/subway.png"
+                }
+            ];
+
+            const surveyList = document.getElementById('survey-list');
+
+            surveys.forEach(survey => {
+                const li = document.createElement('li');
+                li.className = 'survey-item';
+                li.innerHTML = `
+                    <img src="${survey.imageUrl}" alt="${survey.title}">
+                    <div>
+                        <strong>${survey.title}</strong>
+                        <p>Topic: ${survey.topic} - Duration: ${survey.duration} mins - Reward: $${survey.reward}</p>
+                        <p><strong>${survey.spotsLeft}</strong> spots left out of ${survey.totalSpots}</p>
+                        <button onclick="reserveSpot('${survey.id}')">Reserve Spot</button>
+                    </div>
+                `;
+                surveyList.appendChild(li);
+            });
+
+            function reserveSpot(surveyId) {
+                localStorage.setItem('currentSurvey', surveyId);
+                window.location.href = 'survey.html';
             }
-        ];
 
-        const surveyList = document.getElementById('survey-list');
-
-        surveys.forEach(survey => {
-            const li = document.createElement('li');
-            li.className = 'survey-item';
-            li.innerHTML = `
-                <img src="${survey.imageUrl}" alt="${survey.title}">
-                <div>
-                    <strong>${survey.title}</strong>
-                    <p>Topic: ${survey.topic} - Duration: ${survey.duration} mins - Reward: $${survey.reward}</p>
-                    <p><strong>${survey.spotsLeft}</strong> spots left out of ${survey.totalSpots}</p>
-                    <button onclick="reserveSpot('${survey.id}')">Reserve Spot</button>
-                </div>
-            `;
-            surveyList.appendChild(li);
+            console.log('Script loaded and surveys inserted.');
         });
-
-        function reserveSpot(surveyId) {
-            localStorage.setItem('currentSurvey', surveyId);
-            window.location.href = 'survey.html';
-        }
     </script>
 </body>
 </html>
