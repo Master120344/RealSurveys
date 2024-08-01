@@ -23,24 +23,28 @@
             </nav>
         </div>
     </header>
-    
+
     <section class="surveys">
         <div class="container">
             <h2>Available Surveys</h2>
             <div class="survey-list">
-                <div class="survey-item">
+                <div class="survey-item" id="survey1">
                     <img src="assets/McDonalds.png" alt="McDonald's">
-                    <h3>McDonald's Survey</h3>
-                    <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
-                    <p>Available Spots: 10,000 - Total Reward: $50,000</p>
-                    <button onclick="window.location.href='mcdonalds-survey.html'">Reserve Spot</button>
+                    <div>
+                        <h3>McDonald's Survey</h3>
+                        <p>ID: 1</p>
+                        <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
+                        <button onclick="reserveSpot(1)">Reserve Spot</button>
+                    </div>
                 </div>
-                <div class="survey-item">
+                <div class="survey-item" id="survey2">
                     <img src="assets/Subway.png" alt="Subway">
-                    <h3>Subway Survey</h3>
-                    <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
-                    <p>Available Spots: 2,000 - Total Reward: $20,000</p>
-                    <button onclick="window.location.href='subway-survey.html'">Reserve Spot</button>
+                    <div>
+                        <h3>Subway Survey</h3>
+                        <p>ID: 2</p>
+                        <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
+                        <button onclick="reserveSpot(2)">Reserve Spot</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,5 +55,12 @@
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function reserveSpot(surveyId) {
+            localStorage.setItem('currentSurvey', surveyId);
+            window.location.href = 'survey.html';
+        }
+    </script>
 </body>
 </html>
