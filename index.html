@@ -9,19 +9,14 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0; /* Light background color for better contrast */
             color: #333;
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: #f4f4f4;
         }
 
         header {
             background-color: #333;
             color: #fff;
-            padding: 10px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -41,6 +36,7 @@
             font-size: 28px;
             color: #ff6600;
             flex-grow: 1;
+            text-align: left;
         }
 
         header h1 a {
@@ -54,10 +50,11 @@
             padding: 0;
             display: flex;
             flex-wrap: wrap;
+            justify-content: flex-end; /* Align items to the right */
         }
 
         header nav ul li {
-            margin: 0 10px;
+            margin: 0 10px; /* Adjusted margin for better spacing */
         }
 
         header nav ul li a {
@@ -65,24 +62,17 @@
             text-decoration: none;
             font-size: 14px;
             background-color: #ff6600;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
         header nav ul li a:hover {
             background-color: #e65c00;
         }
 
-        header .btn-toggle {
-            margin-left: 20px;
-        }
-
-        body.dark-mode header {
-            background-color: #1a1a1a;
-        }
-
         .hero {
-            background: url('hero-bg.jpg') no-repeat center center/cover;
+            background: linear-gradient(to right, #ff6600, #ff9900);
             color: #fff;
             text-align: center;
             padding: 100px 20px;
@@ -104,20 +94,17 @@
         }
 
         .hero .btn {
-            background-color: #ff6600;
+            background-color: #333;
             color: #fff;
             padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
         .hero .btn:hover {
-            background-color: #e65c00;
-        }
-
-        body.dark-mode .hero {
-            background-color: #1a1a1a;
+            background-color: #555;
         }
 
         .features {
@@ -140,10 +127,6 @@
             margin-bottom: 40px;
         }
 
-        body.dark-mode .features {
-            background-color: #1a1a1a;
-        }
-
         .feature {
             flex: 1;
             max-width: 300px;
@@ -152,10 +135,11 @@
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        body.dark-mode .feature {
-            background-color: #2a2a2a;
+        .feature:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         .feature i {
@@ -172,10 +156,6 @@
         .feature p {
             font-size: 16px;
             color: #333;
-        }
-
-        body.dark-mode .feature p {
-            color: #f4f4f4;
         }
 
         footer {
@@ -209,23 +189,6 @@
         footer .social a:hover {
             color: #ff6600;
         }
-
-        body.dark-mode footer {
-            background-color: #1a1a1a;
-        }
-
-        .btn-toggle {
-            background-color: #ff6600;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .btn-toggle:hover {
-            background-color: #e65c00;
-        }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
@@ -235,23 +198,16 @@
         <div class="container">
             <h1><a href="index.html">RealSurveys</a></h1>
             <nav>
-                <ul class="nav-left">
+                <ul class="nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <ul class="nav-right">
                     <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
                     <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="no-sale-of-data.html">No Sale of Data</a></li>
                     <li><a href="referral-program.html">Referral Program</a></li>
-                    <li><a href="transparency.html">Transparency</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
                 </ul>
             </nav>
-            <button id="theme-toggle" class="btn-toggle">Dark Mode</button>
         </div>
     </header>
 
@@ -300,17 +256,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Document loaded and script running');
 
-            // Dark mode toggle
-            const toggleButton = document.getElementById('theme-toggle');
-            toggleButton.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    toggleButton.textContent = 'Light Mode';
-                } else {
-                    toggleButton.textContent = 'Dark Mode';
-                }
-            });
-
             // Disable copy, cut, and paste
             document.addEventListener('copy', (e) => {
                 e.preventDefault();
@@ -325,4 +270,3 @@
     </script>
 </body>
 </html>
-
