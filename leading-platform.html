@@ -120,6 +120,36 @@
         footer .social a:hover {
             color: #ff6600;
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+                text-align: center;
+            }
+
+            .content p {
+                font-size: 16px;
+                text-align: center;
+            }
+        }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
