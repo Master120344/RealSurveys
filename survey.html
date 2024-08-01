@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey - RealSurveys</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #ff6600;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            background-color: #ff6600;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #e65c00;
+        }
+
+        .content {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6600;
+        }
+
+        .survey {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .survey h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .survey p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .survey-question {
+            display: none;
+        }
+
+        .survey-question.active {
+            display: block;
+        }
+
+        .survey-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .survey-navigation button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .survey-navigation button:hover {
+            background-color: #e65c00;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        footer .social a:hover {
+            color: #ff6600;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .survey h3 {
+                font-size: 20px;
+            }
+
+            .survey p {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                    <li><a href="leading-platform.html">Leading Platform</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Survey</h2>
+        <div class="survey">
+            <h3 id="survey-title"></h3>
+            <div id="survey-questions">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-navigation">
+                <button id="back-btn" onclick="navigate(-1)">Back</button>
+                <button id="next-btn" onclick="navigate(1)">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const surveys = {
+                mcdonalds: {
+                    title: "McDonald's Survey",
+                    questions: [
+                        "How often do you eat at McDonald's?",
+                        "What's your favorite item on the menu?",
+                        "How would you rate the quality of the food?",
+                        "Do you think McDonald's provides good value for money?",
+                        "How would you rate the cleanliness of the restaurant?",
+                        "How friendly is the staff at McDonald's?",
+                        "How long do you usually wait for your order?",
+                        "Do you use the McDonald's app?",
+                        "How would you rate the nutritional information provided?",
+                        "Would you recommend McDonald's to others?"
+                    ],
+                    reward: "$5"
+                },
+                subway: {
+                    title: "Subway Survey",
+                    questions: [
+                        "How often do you eat at Subway?",
+                        "What's your favorite sandwich?",
+                        "How would you rate the quality of the ingredients?",
+                        "Do you think Subway provides good value for money?",
+                        "How would you rate the cleanliness of the restaurant?",
+                        "How friendly is the staff at Subway?",
+                        "How long do you usually wait for your order?",
+                        "Do you use the Subway app?",
+                        "How would you rate the nutritional information provided?",
+                        "Would you recommend Subway to others?"
+                    ],
+                    reward: "$4"
+                }
+            };
+
+            const currentSurvey = localStorage.getItem('currentSurvey');
+            if (!currentSurvey || !surveys[currentSurvey]) {
+                window.location.href = 'surveys.html';
+                return;
+            }
+
+            const surveyData = surveys[currentSurvey];
+            document.getElementById('survey-title').textContent = surveyData.title;
+
+            const surveyQuestions = document.getElementById('survey-questions');
+            surveyData.questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'survey-question';
+                if (index === 0) questionDiv.classList.add('active');
+
+                questionDiv.innerHTML = `
+                    <p>${question}</p>
+                    <input type="text" placeholder="Your answer">
+                `;
+                surveyQuestions.appendChild(questionDiv);
+            });
+
+            let currentQuestionIndex = 0;
+
+            function navigate(direction) {
+                const questions = document.querySelectorAll('.survey-question');
+                questions[currentQuestionIndex].classList.remove('active');
+
+                currentQuestionIndex += direction;
+
+                if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+                if (currentQuestionIndex >= questions.length) {
+                    alert(`Survey completed! You have earned ${surveyData.reward}.`);
+                    window.location.href = 'surveys.html';
+                    return;
+                }
+
+                questions[currentQuestionIndex].classList.add('active');
+            }
+
+            document.getElementById('back-btn').addEventListener('click', () => navigate(-1));
+            document.getElementById('next-btn').addEventListener('click', () => navigate(1));
+        });
+    </script>
+</body>
+</html>
