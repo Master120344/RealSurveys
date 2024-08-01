@@ -6,6 +6,7 @@
     <title>Survey</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
@@ -111,7 +112,13 @@
         function showReward() {
             document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $5</p>';
             document.querySelector('.survey-navigation').style.display = 'none';
-            // Add confetti effect here if needed
+            
+            // Add confetti effect
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
