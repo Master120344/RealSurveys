@@ -39,35 +39,27 @@ header nav ul li a {
     text-decoration: none;
 }
 
-section.surveys {
+section.survey {
     padding: 20px 0;
 }
 
-section.surveys .container {
+section.survey .container {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.survey-list {
+.survey-question {
+    margin-bottom: 20px;
+}
+
+.survey-navigation {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
 }
 
-.survey-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.survey-item img {
-    width: 100px;
-    height: auto;
-}
-
-.survey-item button {
+.survey-navigation button {
     background-color: #ff6600;
     color: #fff;
     border: none;
