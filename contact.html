@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - RealSurveys</title>
+    <title>Contact Us - RealSurveys</title>
     <style>
         /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0; /* Light background color for better contrast */
+            background-color: #f0f0f0;
             color: #333;
         }
 
@@ -20,6 +20,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            width: 100%;
         }
 
         header .container {
@@ -35,7 +36,6 @@
             margin: 0;
             font-size: 28px;
             color: #ff6600;
-            flex-grow: 1;
             text-align: left;
         }
 
@@ -50,11 +50,11 @@
             padding: 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-end; /* Align items to the right */
+            justify-content: flex-end;
         }
 
         header nav ul li {
-            margin: 0 10px; /* Adjusted margin for better spacing */
+            margin: 0 10px;
         }
 
         header nav ul li a {
@@ -89,40 +89,26 @@
             margin-bottom: 20px;
         }
 
-        .contact-form {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 10px;
+        .contact-method {
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
 
-        .contact-form button {
-            background-color: #ff6600;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .contact-method h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
         }
 
-        .contact-form button:hover {
-            background-color: #e65c00;
+        .contact-method p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .contact-method a {
+            font-size: 18px;
+            color: #ff6600;
+            text-decoration: none;
         }
 
         footer {
@@ -150,11 +136,58 @@
             color: #fff;
             margin: 0 10px;
             font-size: 18px;
-            text-decoration: none.
+            text-decoration: none;
         }
 
         footer .social a:hover {
             color: #ff6600;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                align-items: flex-start;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            header h1 {
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+
+            .contact-method h3 {
+                font-size: 22px;
+            }
+
+            .contact-method p,
+            .contact-method a {
+                font-size: 16px;
+            }
+
+            footer .container {
+                padding: 0 20px;
+            }
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -180,26 +213,12 @@
 
     <div class="content">
         <h2>Contact Us</h2>
-        <p>We are here to assist you 24/7/365, including holidays. Reach out to us through any of the following methods:</p>
-        <div class="contact-form">
-            <form action="#" method="POST">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-        <div>
-            <p><strong>Call us:</strong> +1 (555) 123-4567</p>
-            <p><strong>Send us a text:</strong> +1 (555) 765-4321</p>
-            <p><strong>Send us an email:</strong> support@realsurveys.com</p>
-            <p><strong>Live chat:</strong> Available 24/7</p>
+        <div class="contact-method">
+            <h3>Available 24/7/365 including holidays</h3>
+            <p>Call us: <a href="tel:+1234567890">+1 234 567 890</a></p>
+            <p>Send us a text: <a href="sms:+1234567890">+1 234 567 890</a></p>
+            <p>Send us an email: <a href="mailto:info@realsurveys.com">info@realsurveys.com</a></p>
+            <p>Live chat: <a href="#">Chat with us</a></p>
         </div>
     </div>
 
