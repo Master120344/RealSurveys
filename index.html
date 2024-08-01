@@ -105,6 +105,7 @@
             display: flex;
             justify-content: space-around;
             margin: 60px 0;
+            flex-wrap: wrap; /* Added for mobile responsiveness */
         }
 
         .features .feature {
@@ -114,11 +115,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 30%;
-        }
-
-        .features .feature h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Added for spacing on mobile */
         }
 
         footer {
@@ -151,6 +148,48 @@
 
         footer .social a:hover {
             color: #ff6600;
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header nav ul {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            header h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .hero {
+                padding: 50px 20px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features .feature {
+                width: 100%;
+            }
+
+            footer .container {
+                padding: 0 20px;
+            }
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
