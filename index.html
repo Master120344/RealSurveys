@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealSurveys</title>
+    <title>Welcome to RealSurveys</title>
     <style>
         /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0; /* Light background color for better contrast */
+            background-color: #f0f0f0;
             color: #333;
         }
 
@@ -50,11 +50,11 @@
             padding: 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-end; /* Align items to the right */
+            justify-content: flex-end;
         }
 
         header nav ul li {
-            margin: 0 10px; /* Adjusted margin for better spacing */
+            margin: 0 10px;
         }
 
         header nav ul li a {
@@ -71,51 +71,68 @@
             background-color: #e65c00;
         }
 
-        .hero {
-            background: linear-gradient(to right, #ff6600, #ff9900);
-            color: #fff;
+        .content {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            padding: 100px 20px;
         }
 
-        .hero h2 {
-            font-size: 48px;
+        .content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6600;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        .hero p {
-            font-size: 24px;
-            margin-bottom: 40px;
-        }
-
-        .hero a.btn {
-            background-color: #333;
+        .content a.btn {
+            display: inline-block;
+            background-color: #ff6600;
             color: #fff;
             padding: 15px 30px;
             text-decoration: none;
+            font-size: 18px;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin-bottom: 40px;
         }
 
-        .hero a.btn:hover {
-            background-color: #555;
+        .content a.btn:hover {
+            background-color: #e65c00;
         }
 
-        .features {
-            display: flex;
-            justify-content: space-around;
-            margin: 60px 0;
-            flex-wrap: wrap; /* Added for mobile responsiveness */
-        }
-
-        .features .feature {
+        .surveys {
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 30%;
-            margin-bottom: 20px; /* Added for spacing on mobile */
+        }
+
+        .surveys h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .surveys p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .surveys ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .surveys ul li {
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
         footer {
@@ -143,52 +160,55 @@
             color: #fff;
             margin: 0 10px;
             font-size: 18px;
-            text-decoration: none.
+            text-decoration: none;
         }
 
         footer .social a:hover {
             color: #ff6600;
         }
 
-        /* Media Queries for Mobile Responsiveness */
+        /* Mobile Styles */
         @media (max-width: 768px) {
             header .container {
                 flex-direction: column;
-                align-items: flex-start;
             }
 
             header nav ul {
-                justify-content: flex-start;
+                justify-content: center;
                 flex-wrap: wrap;
             }
 
             header nav ul li {
-                margin: 5px 0;
+                margin: 5px;
             }
 
-            header h1 {
-                font-size: 24px;
-                margin-bottom: 10px;
+            .content {
+                padding: 20px;
             }
 
-            .hero {
-                padding: 50px 20px;
+            .content h2 {
+                font-size: 28px;
             }
 
-            .hero h2 {
-                font-size: 32px;
+            .content p {
+                font-size: 16px;
             }
 
-            .hero p {
-                font-size: 18px;
+            .content a.btn {
+                font-size: 16px;
+                padding: 10px 20px;
             }
 
-            .features .feature {
-                width: 100%;
+            .surveys h3 {
+                font-size: 20px;
             }
 
-            footer .container {
-                padding: 0 20px;
+            .surveys p {
+                font-size: 16px;
+            }
+
+            .surveys ul li {
+                font-size: 14px;
             }
         }
     </style>
@@ -213,33 +233,21 @@
         </div>
     </header>
 
-    <div class="hero">
-        <div class="container">
-            <h2>Welcome to RealSurveys</h2>
-            <p>Your time and opinions are valuable. Join us and earn rewards for sharing your insights.</p>
-            <a href="signup.html" class="btn">Get Started</a>
+    <div class="content">
+        <h2>Welcome to RealSurveys</h2>
+        <p>At RealSurveys, your time and opinions are valuable. We strive to provide a platform where you can share your insights and earn rewards. Join us today and be part of a community that values your input.</p>
+        <a href="#surveys" class="btn">Go to Surveys</a>
+        <div id="surveys" class="surveys">
+            <h3>Available Surveys</h3>
+            <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
+            <ul>
+                <li>Survey 1: Topic - Duration - Reward</li>
+                <li>Survey 2: Topic - Duration - Reward</li>
+                <li>Survey 3: Topic - Duration - Reward</li>
+                <!-- Add more surveys as needed -->
+            </ul>
         </div>
     </div>
-
-    <section class="features">
-        <div class="container">
-            <div class="feature">
-                <i class="fas fa-dollar-sign"></i>
-                <h3>Fair Compensation</h3>
-                <p>Earn a minimum of $1 per survey. Your time is valuable, and we ensure you are fairly rewarded.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-lock"></i>
-                <h3>Data Privacy</h3>
-                <p>Your data is yours. We never sell your information to third parties or engage in cross-ad tracking.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-gift"></i>
-                <h3>Exciting Giveaways</h3>
-                <p>Participate in our regular giveaways for a chance to win fantastic prizes. Watch live drawings and see if you’re a winner!</p>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="container">
