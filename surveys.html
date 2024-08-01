@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Surveys - RealSurveys</title>
+    <title>Survey - RealSurveys</title>
     <style>
-        /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
@@ -84,47 +83,51 @@
             color: #ff6600;
         }
 
-        .surveys {
+        .survey {
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .surveys h3 {
+        .survey h3 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #333;
         }
 
-        .surveys p {
+        .survey p {
             font-size: 18px;
             margin-bottom: 20px;
             color: #333;
         }
 
-        .surveys ul {
-            list-style: none;
-            padding: 0;
+        .survey-question {
+            display: none;
         }
 
-        .surveys ul li {
-            font-size: 16px;
-            margin-bottom: 10px;
+        .survey-question.active {
+            display: block;
         }
 
-        .survey-item {
+        .survey-navigation {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
+            margin-top: 20px;
         }
 
-        .survey-item img {
-            width: 50px;
-            height: 50px;
-            margin-right: 20px;
+        .survey-navigation button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .survey-navigation button:hover {
+            background-color: #e65c00;
         }
 
         footer {
@@ -182,25 +185,12 @@
                 font-size: 28px;
             }
 
-            .surveys h3 {
+            .survey h3 {
                 font-size: 20px;
             }
 
-            .surveys p {
+            .survey p {
                 font-size: 16px;
-            }
-
-            .surveys ul li {
-                font-size: 14px;
-            }
-
-            .survey-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .survey-item img {
-                margin-bottom: 10px;
             }
         }
     </style>
@@ -226,27 +216,16 @@
     </header>
 
     <div class="content">
-        <h2>Available Surveys</h2>
-        <div class="surveys">
-            <h3>Latest Surveys</h3>
-            <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
-            <ul>
-                <li class="survey-item">
-                    <img src="https://via.placeholder.com/50" alt="McDonald's">
-                    <div>
-                        <strong>McDonald's Survey</strong>
-                        <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
-                    </div>
-                </li>
-                <li class="survey-item">
-                    <img src="https://via.placeholder.com/50" alt="Subway">
-                    <div>
-                        <strong>Subway Survey</strong>
-                        <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
-                    </div>
-                </li>
-                <!-- Add more surveys as needed -->
-            </ul>
+        <h2>Survey</h2>
+        <div class="survey">
+            <h3 id="survey-title"></h3>
+            <div id="survey-questions">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-navigation">
+                <button id="back-btn" onclick="navigate(-1)">Back</button>
+                <button id="next-btn" onclick="navigate(1)">Next</button>
+            </div>
         </div>
     </div>
 
@@ -264,18 +243,83 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('Document loaded and script running');
+            const surveys = {
+                mcdonalds: {
+                    title: "McDonald's Survey",
+                    questions: [
+                        "How often do you eat at McDonald's?",
+                        "What's your favorite item on the menu?",
+                        "How would you rate the quality of the food?",
+                        "Do you think McDonald's provides good value for money?",
+                        "How would you rate the cleanliness of the restaurant?",
+                        "How friendly is the staff at McDonald's?",
+                        "How long do you usually wait for your order?",
+                        "Do you use the McDonald's app?",
+                        "How would you rate the nutritional information provided?",
+                        "Would you recommend McDonald's to others?"
+                    ],
+                    reward: "$5"
+                },
+                subway: {
+                    title: "Subway Survey",
+                    questions: [
+                        "How often do you eat at Subway?",
+                        "What's your favorite sandwich?",
+                        "How would you rate the quality of the ingredients?",
+                        "Do you think Subway provides good value for money?",
+                        "How would you rate the cleanliness of the restaurant?",
+                        "How friendly is the staff at Subway?",
+                        "How long do you usually wait for your order?",
+                        "Do you use the Subway app?",
+                        "How would you rate the nutritional information provided?",
+                        "Would you recommend Subway to others?"
+                    ],
+                    reward: "$4"
+                }
+            };
 
-            // Disable copy, cut, and paste
-            document.addEventListener('copy', (e) => {
-                e.preventDefault();
+            const currentSurvey = localStorage.getItem('currentSurvey');
+            if (!currentSurvey || !surveys[currentSurvey]) {
+                window.location.href = 'surveys.html';
+                return;
+            }
+
+            const surveyData = surveys[currentSurvey];
+            document.getElementById('survey-title').textContent = surveyData.title;
+
+            const surveyQuestions = document.getElementById('survey-questions');
+            surveyData.questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'survey-question';
+                if (index === 0) questionDiv.classList.add('active');
+
+                questionDiv.innerHTML = `
+                    <p>${question}</p>
+                    <input type="text" placeholder="Your answer">
+                `;
+                surveyQuestions.appendChild(questionDiv);
             });
-            document.addEventListener('cut', (e) => {
-                e.preventDefault();
-            });
-            document.addEventListener('paste', (e) => {
-                e.preventDefault();
-            });
+
+            let currentQuestionIndex = 0;
+
+            function navigate(direction) {
+                const questions = document.querySelectorAll('.survey-question');
+                questions[currentQuestionIndex].classList.remove('active');
+
+                currentQuestionIndex += direction;
+
+                if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+                if (currentQuestionIndex >= questions.length) {
+                    alert(`Survey completed! You have earned ${surveyData.reward}.`);
+                    window.location.href = 'surveys.html';
+                    return;
+                }
+
+                questions[currentQuestionIndex].classList.add('active');
+            }
+
+            document.getElementById('back-btn').addEventListener('click', () => navigate(-1));
+            document.getElementById('next-btn').addEventListener('click', () => navigate(1));
         });
     </script>
 </body>
