@@ -3,228 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Surveys - RealSurveys</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #ff6600;
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        header h1 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        header nav ul li {
-            margin: 0 10px;
-        }
-
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            background-color: #ff6600;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        header nav ul li a:hover {
-            background-color: #e65c00;
-        }
-
-        .content {
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #ff6600;
-        }
-
-        .survey-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .survey-item {
-            background-color: #fff;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .survey-item img {
-            max-height: 50px;
-            margin-right: 20px;
-        }
-
-        .survey-item div {
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .survey-item h3 {
-            margin: 0;
-            font-size: 20px;
-            color: #333;
-        }
-
-        .survey-item p {
-            margin: 5px 0;
-            font-size: 16px;
-            color: #666;
-        }
-
-        .survey-item button {
-            background-color: #ff6600;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .survey-item button:hover {
-            background-color: #e65c00;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        footer .social {
-            margin-top: 10px;
-        }
-
-        footer .social a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 18px;
-            text-decoration: none;
-        }
-
-        footer .social a:hover {
-            color: #ff6600;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-            }
-
-            header nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            header nav ul li {
-                margin: 5px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .content h2 {
-                font-size: 28px;
-            }
-
-            .survey-item img {
-                max-height: 40px;
-                margin-right: 10px;
-            }
-
-            .survey-item h3 {
-                font-size: 18px;
-            }
-
-            .survey-item p {
-                font-size: 14px;
-            }
-
-            .survey-item button {
-                padding: 8px 16px;
-            }
-        }
-    </style>
+    <title>Available Surveys</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
             <h1><a href="index.html">RealSurveys</a></h1>
             <nav>
-                <ul class="nav">
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -236,71 +23,33 @@
             </nav>
         </div>
     </header>
-
-    <div class="content">
-        <h2>Available Surveys</h2>
-        <ul class="survey-list" id="survey-list">
-            <!-- Surveys will be dynamically inserted here -->
-        </ul>
-    </div>
+    
+    <section class="surveys">
+        <div class="container">
+            <h2>Available Surveys</h2>
+            <div class="survey-list">
+                <div class="survey-item">
+                    <img src="assets/McDonalds.png" alt="McDonald's">
+                    <h3>McDonald's Survey</h3>
+                    <p>Topic: Fast Food Preferences - Duration: 5 mins - Reward: $5</p>
+                    <p>Available Spots: 10,000 - Total Reward: $50,000</p>
+                    <button onclick="window.location.href='mcdonalds-survey.html'">Reserve Spot</button>
+                </div>
+                <div class="survey-item">
+                    <img src="assets/Subway.png" alt="Subway">
+                    <h3>Subway Survey</h3>
+                    <p>Topic: Sandwich Customization - Duration: 4 mins - Reward: $4</p>
+                    <p>Available Spots: 2,000 - Total Reward: $20,000</p>
+                    <button onclick="window.location.href='subway-survey.html'">Reserve Spot</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const surveys = [
-                {
-                    id: 'mcdonalds',
-                    image: 'assets/McDonalds.png',
-                    title: "McDonald's Survey",
-                    topic: "Fast Food Preferences",
-                    duration: "5 mins",
-                    reward: "$5",
-                    spots: Math.floor(Math.random() * 10000) + 1000
-                },
-                {
-                    id: 'subway',
-                    image: 'assets/Subway.png',
-                    title: "Subway Survey",
-                    topic: "Sandwich Customization",
-                    duration: "4 mins",
-                    reward: "$4",
-                    spots: Math.floor(Math.random() * 5000) + 500
-                }
-            ];
-
-            const surveyList = document.getElementById('survey-list');
-
-            surveys.forEach(survey => {
-                const li = document.createElement('li');
-                li.className = 'survey-item';
-                li.innerHTML = `
-                    <img src="${survey.image}" alt="${survey.title}">
-                    <div>
-                        <h3>${survey.title}</h3>
-                        <p>ID: ${survey.id} - Topic: ${survey.topic} - Duration: ${survey.duration} - Reward: ${survey.reward}</p>
-                        <p>Spots left: ${survey.spots}</p>
-                        <button onclick="reserveSpot('${survey.id}')">Reserve Spot</button>
-                    </div>
-                `;
-                surveyList.appendChild(li);
-            });
-        });
-
-        function reserveSpot(surveyId) {
-            localStorage.setItem('currentSurvey', surveyId);
-            window.location.href = 'survey.html';
-        }
-    </script>
 </body>
 </html>
