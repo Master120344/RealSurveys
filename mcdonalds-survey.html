@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's Survey - RealSurveys</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .survey-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .survey-container h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .survey-container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .survey-container button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 10px;
+        }
+
+        .survey-container button:hover {
+            background-color: #e65c00;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                    <li><a href="leading-platform.html">Leading Platform</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>McDonald's Survey</h2>
+        <div class="survey-container" id="question-container">
+            <h3 id="question">Question 1: How often do you visit McDonald's?</h3>
+            <div>
+                <input type="radio" id="q1a" name="question1" value="Daily">
+                <label for="q1a">Daily</label><br>
+                <input type="radio" id="q1b" name="question1" value="Weekly">
+                <label for="q1b">Weekly</label><br>
+                <input type="radio" id="q1c" name="question1" value="Monthly">
+                <label for="q1c">Monthly</label><br>
+                <input type="radio" id="q1d" name="question1" value="Rarely">
+                <label for="q1d">Rarely</label>
+            </div>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+        <div class="survey-container hidden center-text" id="completion-container">
+            <h3>Survey Complete</h3>
+            <p>Thank you for completing the survey!</p>
+            <button onclick="claimReward()">Claim $5</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            { question: "How often do you visit McDonald's?", answers: ["Daily", "Weekly", "Monthly", "Rarely"] },
+            { question: "What is your favorite item on the McDonald's menu?", answers: ["Big Mac", "Fries", "McFlurry", "Chicken Nuggets"] },
+            { question: "How satisfied are you with the service at McDonald's?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
+            { question: "How likely are you to recommend McDonald's to a friend?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
+            { question: "What is your preferred time of day to visit McDonald's?", answers: ["Morning", "Afternoon", "Evening", "Night"] },
+            { question: "How do you usually place your order at McDonald's?", answers: ["Drive-thru", "Dine-in", "Mobile app", "Delivery"] },
+            { question: "How would you rate the cleanliness of McDonald's locations?", answers: ["Very clean", "Clean", "Neutral", "Dirty"] },
+            { question: "How do you feel about the pricing at McDonald's?", answers: ["Very affordable", "Affordable", "Neutral", "Expensive"] },
+            { question: "How satisfied are you with the variety of menu items at McDonald's?", answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"] },
+            { question: "How likely are you to participate in McDonald's promotions and offers?", answers: ["Very likely", "Likely", "Neutral", "Unlikely"] },
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function nextQuestion() {
+            const questionContainer = document.getElementById("question-container");
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                updateQuestion();
+            } else {
+                questionContainer.classList.add("hidden");
+                document.getElementById("completion-container").classList.remove("hidden");
+            }
+        }
+
+        function updateQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById("question").textContent = `Question ${currentQuestionIndex + 1}: ${question.question}`;
+            const answers = document.querySelectorAll(`#question-container div input`);
+            const labels = document.querySelectorAll(`#question-container div label`);
+            question.answers.forEach((answer, index) => {
+                answers[index].value = answer;
+                labels[index].textContent = answer;
+                labels[index].setAttribute("for", `q${currentQuestionIndex + 1}${String.fromCharCode(97 + index)}`);
+                answers[index].setAttribute("id", `q${currentQuestionIndex + 1}${String.fromCharCode(97 + index)}`);
+                answers[index].checked = false;
+            });
+        }
+
+        function claimReward() {
+            alert("Congratulations! You have claimed $5.");
+            // Add additional logic for reward claim
+        }
+    </script>
+</body>
+</html>
