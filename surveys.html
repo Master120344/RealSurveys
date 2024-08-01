@@ -75,7 +75,6 @@
             padding: 60px 20px;
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .content h2 {
@@ -90,27 +89,12 @@
             margin-bottom: 20px;
         }
 
-        .content a.btn {
-            display: inline-block;
-            background-color: #ff6600;
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            margin-bottom: 40px;
-        }
-
-        .content a.btn:hover {
-            background-color: #e65c00;
-        }
-
         .surveys {
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         .surveys h3 {
@@ -123,16 +107,6 @@
             font-size: 18px;
             margin-bottom: 20px;
             color: #333;
-        }
-
-        .surveys ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .surveys ul li {
-            font-size: 16px;
-            margin-bottom: 10px;
         }
 
         footer {
@@ -188,15 +162,12 @@
 
             .content h2 {
                 font-size: 28px;
+                text-align: center;
             }
 
             .content p {
                 font-size: 16px;
-            }
-
-            .content a.btn {
-                font-size: 16px;
-                padding: 10px 20px;
+                text-align: center;
             }
 
             .surveys h3 {
@@ -205,10 +176,6 @@
 
             .surveys p {
                 font-size: 16px;
-            }
-
-            .surveys ul li {
-                font-size: 14px;
             }
         }
     </style>
@@ -236,8 +203,7 @@
     <div class="content">
         <h2>Welcome to RealSurveys</h2>
         <p>At RealSurveys, your time and opinions are valuable. We strive to provide a platform where you can share your insights and earn rewards. Join us today and be part of a community that values your input.</p>
-        <a href="#surveys" class="btn">Go to Surveys</a>
-        <div id="surveys" class="surveys">
+        <div class="surveys">
             <h3>Available Surveys</h3>
             <p>We offer a variety of surveys that you can participate in and earn rewards. Check out the latest surveys below:</p>
             <ul>
