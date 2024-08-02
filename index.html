@@ -20,6 +20,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -64,11 +65,12 @@
             background-color: #ff6600;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
             background-color: #e65c00;
+            transform: scale(1.05);
         }
 
         .content {
@@ -76,6 +78,10 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 30px;
         }
 
         .content h2 {
@@ -98,12 +104,13 @@
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             margin-bottom: 40px;
         }
 
         .content a.btn:hover {
             background-color: #e65c00;
+            transform: scale(1.05);
         }
 
         footer {
@@ -132,6 +139,7 @@
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         footer .social a:hover {
@@ -190,6 +198,7 @@
     <div class="content">
         <h2>Welcome to RealSurveys</h2>
         <p>At RealSurveys, your time and opinions are valuable. We strive to provide a platform where you can share your insights and earn rewards. Join us today and be part of a community that values your input.</p>
+        <a href="register.html" class="btn">Get Started</a>
     </div>
 
     <footer>
