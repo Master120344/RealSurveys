@@ -1,137 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - RealSurveys</title>
-    <style>
-        body {
-            background-color: #1c1c1c;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        header {
-            background-color: #1c1c1c;
-            padding: 20px 0;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header h1 {
-            float: left;
-            color: orange;
-            text-transform: uppercase;
-        }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        header nav ul li {
-            display: inline;
-            margin-left: 5px;
-        }
-        header nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 5px 20px;
-            border-radius: 4px;
-        }
-        header nav ul li a:hover {
-            background-color: orange;
-            color: black;
-        }
-        .register {
-            padding: 20px 0;
-            text-align: center;
-        }
-        .register form {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-        .register label {
-            display: block;
-            text-align: left;
-            margin: 10px 0 5px;
-        }
-        .register input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
-        .register button {
-            padding: 10px 20px;
-            background: orange;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .register button:hover {
-            background: darkorange;
-        }
-        .redirecting {
-            display: none;
-            color: green;
-            margin-top: 20px;
-        }
-        footer {
-            background-color: #1c1c1c;
-            padding: 20px 0;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1><a href="index.html" style="color: orange;">RealSurveys</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="referral-program.html">Referral Program</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="register">
-        <div class="container">
-            <h2>Register</h2>
-            <form id="registerForm" onsubmit="registerUser(event)">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                <button type="submit">Register</button>
-            </form>
-            <p class="redirecting">Redirecting...</p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="register.js"></script>
-</body>
-</html>
+function registerUser(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const user = {
+        username,
+        password,
+        email,
+        balance: 0
+    };
+    localStorage.setItem('user', JSON.stringify(user));
+    document.querySelector('.redirecting').style.display = 'block';
+    setTimeout(() => {
+        window.location.href = 'welcome.html';
+    }, 2000);
+}
