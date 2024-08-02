@@ -272,6 +272,10 @@
                 });
                 setTimeout(() => {
                     alert(`Survey completed! You have earned $${rewardAmount}.`);
+                    // Here you can add logic to reward the user, e.g., update the user's balance in localStorage
+                    let user = JSON.parse(localStorage.getItem('user')) || {};
+                    user.balance = (user.balance || 0) + rewardAmount;
+                    localStorage.setItem('user', JSON.stringify(user));
                     surveyForm.submit();
                 }, 3000);
             });
