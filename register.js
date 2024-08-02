@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('user', JSON.stringify(user));
         document.getElementById('confirmationMessage').style.display = 'block';
         setTimeout(() => {
-            window.location.href = 'welcome.html';
+            window.location.href = 'https://master120344.github.io/RealSurveys/welcome.html';
         }, 2000);
     });
 });
