@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Survey</h1>
+            <h1>RealSurveys</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -31,11 +31,14 @@
 
     <section class="survey">
         <div class="container">
-            <h2 id="question-number">Survey Question</h2>
-            <h2 id="question">Survey Question</h2>
-            <div id="options"></div>
+            <h2 id="survey-title">Survey</h2>
+            <div id="question-container">
+                <h3 id="question-number">Question 1</h3>
+                <p id="question">Loading question...</p>
+                <div id="options"></div>
+            </div>
             <div class="survey-nav">
-                <button id="prev" onclick="prevQuestion()">Back</button>
+                <button id="prev" onclick="prevQuestion()" disabled>Back</button>
                 <button id="next" onclick="nextQuestion()">Next</button>
             </div>
         </div>
