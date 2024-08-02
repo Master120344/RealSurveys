@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const surveys = {
         1: {
             id: 1,
+            title: "McDonald's Survey",
             questions: [
                 { question: "How often do you eat at McDonald's?", options: ["Daily", "Weekly", "Monthly", "Rarely", "Never"] },
                 { question: "What is your favorite item on the menu?", options: ["Big Mac", "McChicken", "Fries", "McFlurry"] },
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         2: {
             id: 2,
+            title: "Subway Survey",
             questions: [
                 { question: "How often do you eat at Subway?", options: ["Daily", "Weekly", "Monthly", "Rarely", "Never"] },
                 { question: "What is your favorite sandwich?", options: ["Italian BMT", "Chicken Teriyaki", "Veggie Delight", "Tuna"] },
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    let currentSurveyId = 1; // Set the survey ID dynamically
+    let currentSurveyId = 1; // This should be set dynamically based on user selection
     let currentQuestionIndex = 0;
 
     function showQuestion(index) {
@@ -36,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         optionsContainer.innerHTML = '';
         questionData.options.forEach(option => {
             const optionElement = document.createElement('div');
-            optionElement.innerHTML = `<input type="radio" name="option" value="${option}"> ${option}`;
+            optionElement.classList.add('option');
+            optionElement.innerHTML = `<input type="radio" name="option" value="${option}"> <label>${option}</label>`;
             optionsContainer.appendChild(optionElement);
         });
     }
@@ -59,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function completeSurvey() {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user = JSON.parse(localStorage.getItem('user')) || { username: 'Guest', balance: 0 };
         user.balance += surveys[currentSurveyId].reward;
         localStorage.setItem('user', JSON.stringify(user));
         confetti();
