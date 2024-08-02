@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Surveys - RealSurveys</title>
+    <title>Register - RealSurveys</title>
     <style>
         /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f7f9fc;
+            background-color: #f0f2f5;
             color: #333;
         }
 
@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff8c00;
+            color: #ff0000; /* Changed to red */
             text-align: left;
         }
 
@@ -67,88 +67,95 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff8c00;
+            background-color: #ff0000; /* Changed to red */
             transform: scale(1.05);
         }
 
-        .surveys {
+        .hero {
+            background-color: #ff0000; /* Changed to red */
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h2 {
+            position: relative;
+            font-size: 36px;
+            margin: 0;
+            z-index: 1;
+        }
+
+        .register {
             padding: 60px 20px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
-        }
-
-        .surveys h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
-            color: #ff8c00;
-        }
-
-        .survey-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .survey-item {
             background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 4px solid #ff0000; /* Changed to red */
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .register h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff0000; /* Changed to red */
+        }
+
+        .register form {
+            background: #333;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: calc(50% - 20px);
+            display: inline-block;
             text-align: left;
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
         }
 
-        .survey-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .survey-item img {
-            max-width: 100px;
-            margin-bottom: 10px;
+        .register label {
             display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #ff0000; /* Changed to red */
         }
 
-        .survey-item h3 {
-            margin: 0 0 10px;
-            font-size: 24px;
-            color: #333;
+        .register input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
 
-        .survey-item p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
-        .survey-item .spots-left {
-            font-weight: bold;
-            color: #ff8c00;
+        .register button {
+            padding: 10px 20px;
+            background: #ff0000; /* Changed to red */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
             margin-top: 10px;
         }
 
-        .survey-item button {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #ff8c00, #e65c00);
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.3s;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .register button:hover {
+            background: darkred; /* Changed to dark red */
         }
 
-        .survey-item button:hover {
-            background: linear-gradient(45deg, #e65c00, #ff8c00);
-            transform: scale(1.05);
+        .confirmation-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
         }
 
         footer {
@@ -181,7 +188,7 @@
         }
 
         footer .social a:hover {
-            color: #ff8c00;
+            color: #ff0000; /* Changed to red */
         }
 
         /* Mobile Styles */
@@ -199,8 +206,22 @@
                 margin: 5px;
             }
 
-            .survey-item {
-                width: calc(100% - 20px);
+            .register {
+                padding: 20px;
+            }
+
+            .register h2 {
+                font-size: 28px;
+            }
+
+            .register form {
+                padding: 20px;
+            }
+
+            .register label,
+            .register input,
+            .register button {
+                font-size: 16px;
             }
 
             footer .container {
@@ -229,33 +250,24 @@
         </div>
     </header>
 
-    <section class="surveys">
+    <div class="hero">
+        <h2>Register</h2>
+    </div>
+
+    <section class="register">
         <div class="container">
-            <h2>Available Surveys</h2>
-            <div class="survey-list">
-                <div class="survey-item" id="survey1">
-                    <img src="assets/McDonalds.png" alt="McDonald's">
-                    <div>
-                        <h3>McDonald's Survey</h3>
-                        <p>ID: 1</p>
-                        <p>Topic: Fast Food Preferences</p>
-                        <p>Duration: 5 mins - Reward: $5</p>
-                        <p class="spots-left">Spots Left: 4,500/5,000</p>
-                        <button onclick="reserveSpot(1)">Reserve Spot</button>
-                    </div>
-                </div>
-                <div class="survey-item" id="survey2">
-                    <img src="assets/Subway.png" alt="Subway">
-                    <div>
-                        <h3>Subway Survey</h3>
-                        <p>ID: 2</p>
-                        <p>Topic: Sandwich Customization</p>
-                        <p>Duration: 4 mins - Reward: $4</p>
-                        <p class="spots-left">Spots Left: 3,800/4,000</p>
-                        <button onclick="reserveSpot(2)">Reserve Spot</button>
-                    </div>
-                </div>
-                <!-- Add more surveys here -->
+            <h2>Register</h2>
+            <form id="registerForm" onsubmit="registerUser(event)">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Register</button>
+            </form>
+            <div class="confirmation-message" id="confirmationMessage">
+                Registration successful! Redirecting to the welcome page...
             </div>
         </div>
     </section>
@@ -273,10 +285,16 @@
     </footer>
 
     <script>
-        function reserveSpot(surveyId) {
-            localStorage.setItem('currentSurvey', surveyId);
-            window.location.href = 'survey.html';
-        }
-    </script>
-</body>
-</html>
+        function registerUser(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const user = {
+                username,
+                password,
+                email,
+                balance: 0
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+            document.getElementById('confirmationMessage').style.display
