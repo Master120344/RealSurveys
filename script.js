@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showQuestion(index) {
         const survey = surveys[currentSurveyId];
         const questionData = survey.questions[index];
+        document.getElementById('survey-title').innerText = survey.title;
         document.getElementById('question-number').innerText = `Question ${index + 1}/${survey.questions.length}`;
         document.getElementById('question').innerText = questionData.question;
         const optionsContainer = document.getElementById('options');
