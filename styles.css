@@ -66,6 +66,7 @@ section.survey .container {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .survey-question {
@@ -88,6 +89,7 @@ section.survey .container {
 .survey-nav {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .survey-nav button {
