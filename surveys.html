@@ -80,30 +80,37 @@
 
         .surveys h2 {
             font-size: 36px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             color: #ff8c00;
         }
 
         .survey-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between;
+            gap: 20px;
         }
 
         .survey-item {
             background-color: #fff;
             padding: 20px;
-            margin: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: calc(50% - 40px);
+            width: calc(50% - 20px);
             text-align: left;
             position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .survey-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
         .survey-item img {
             max-width: 100px;
             margin-bottom: 10px;
+            display: block;
         }
 
         .survey-item h3 {
@@ -120,23 +127,27 @@
         .survey-item .spots-left {
             font-weight: bold;
             color: #ff8c00;
+            margin-top: 10px;
         }
 
         .survey-item button {
             padding: 10px 20px;
-            background: #ff8c00;
+            background: linear-gradient(45deg, #ff8c00, #e65c00);
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
             color: #fff;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
             position: absolute;
             bottom: 20px;
             right: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .survey-item button:hover {
-            background: darkorange;
+            background: linear-gradient(45deg, #e65c00, #ff8c00);
             transform: scale(1.05);
         }
 
@@ -189,7 +200,7 @@
             }
 
             .survey-item {
-                width: calc(100% - 40px);
+                width: calc(100% - 20px);
             }
 
             footer .container {
@@ -244,6 +255,7 @@
                         <button onclick="reserveSpot(2)">Reserve Spot</button>
                     </div>
                 </div>
+                <!-- Add more surveys here -->
             </div>
         </div>
     </section>
