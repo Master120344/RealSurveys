@@ -8,6 +8,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const user = {
             username: username,
             password: password,
-            email: email,
-            balance: 0
-        };
+            email: email
