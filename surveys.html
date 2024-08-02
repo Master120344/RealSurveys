@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff0000; /* Changed to red */
+            color: #ff0000; /* Red */
             text-align: left;
         }
 
@@ -67,12 +67,12 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff0000; /* Changed to red */
+            background-color: #ff0000; /* Red */
             transform: scale(1.05);
         }
 
         .hero {
-            background-color: #ff0000; /* Changed to red */
+            background-color: #ff0000; /* Red */
             height: 200px;
             display: flex;
             justify-content: center;
@@ -97,7 +97,7 @@
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            border: 4px solid #ff0000; /* Changed to red */
+            border: 4px solid #ff0000; /* Red */
             margin-top: -50px;
             position: relative;
             z-index: 2;
@@ -106,7 +106,7 @@
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #ff0000; /* Changed to red */
+            color: #ff0000; /* Red */
         }
 
         .content p {
@@ -126,17 +126,31 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .survey-list li a {
             text-decoration: none;
-            color: #ff0000; /* Changed to red */
+            color: #ff0000; /* Red */
             font-weight: bold;
             font-size: 18px;
         }
 
         .survey-list li a:hover {
             text-decoration: underline;
+        }
+
+        .survey-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .survey-info span {
+            font-size: 16px;
+            color: #555;
         }
 
         footer {
@@ -169,7 +183,7 @@
         }
 
         footer .social a:hover {
-            color: #ff0000; /* Changed to red */
+            color: #ff0000; /* Red */
         }
 
         /* Mobile Styles */
@@ -197,6 +211,20 @@
 
             .content p {
                 font-size: 16px;
+            }
+
+            .survey-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .survey-info {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+
+            .survey-info span {
+                font-size: 14px;
             }
 
             footer .container {
@@ -234,24 +262,52 @@
             <h2>Available Surveys</h2>
             <p>Complete surveys to earn rewards. Your opinions matter!</p>
             <ul class="survey-list">
-                <li><a href="#">Survey 1: Customer Satisfaction</a></li>
-                <li><a href="#">Survey 2: Product Feedback</a></li>
-                <li><a href="#">Survey 3: Market Research</a></li>
-                <!-- Add more surveys as needed -->
-            </ul>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+                <li>
+                    <a href="#">McDonald's Survey</a>
+                    <div class="survey-info">
+                        <span>Reward: $5</span>
+                        <span>Spots Left: 50</span>
+                        <span>Survey ID: 101</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Burger King Survey</a>
+                    <div class="survey-info">
+                        <span>Reward: $4</span>
+                        <span>Spots Left: 30</span>
+                        <span>Survey ID: 102</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Subway Survey</a>
+                    <div class="survey-info">
+                        <span>Reward: $3.50</span>
+                        <span>Spots Left: 20</span>
+                        <span>Survey ID: 103</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Taco Bell Survey</a>
+                    <div class="survey-info">
+                        <span>Reward: $4.50</span>
+                        <span>Spots Left: 40</span>
+                        <span>Survey ID: 104</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Starbucks Survey</a>
+                    <div class="survey-info">
+                        <span>Reward: $5</span>
+                        <span>Spots Left: 60</span>
+                        <span>Survey ID: 105</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Walmart Survey</a>
+                    <div class="survey-info">
+                        <span>Reward: $6</span>
+                        <span>Spots Left: 80</span>
+                        <span>Survey ID: 106</span>
+                    </div>
+                </li>
+                <li>
