@@ -229,6 +229,7 @@
             }
         }
     </style>
+    <script src="register.js" defer></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
 </head>
@@ -257,7 +258,7 @@
     <section class="register">
         <div class="container">
             <h2>Register</h2>
-            <form id="registerForm" onsubmit="registerUser(event)">
+            <form id="registerForm">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password</label>
@@ -273,29 +274,3 @@
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function registerUser(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const email = document.getElementById('email').value;
-            const user = {
-                username,
-                password,
-                email,
-                balance: 0
-            };
-            console.log("User:", user); // Debugging
-            localStorage.setItem('user', JSON.stringify(user));
-            document.getElementById('confirmationMessage').style.display =
