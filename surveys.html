@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff0000; /* Red */
+            color: #ff0000;
             text-align: left;
         }
 
@@ -67,12 +67,12 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff0000; /* Red */
+            background-color: #ff0000;
             transform: scale(1.05);
         }
 
         .hero {
-            background-color: #ff0000; /* Red */
+            background-color: #ff0000;
             height: 200px;
             display: flex;
             justify-content: center;
@@ -97,7 +97,7 @@
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            border: 4px solid #ff0000; /* Red */
+            border: 4px solid #ff0000;
             margin-top: -50px;
             position: relative;
             z-index: 2;
@@ -106,7 +106,7 @@
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #ff0000; /* Red */
+            color: #ff0000;
         }
 
         .content p {
@@ -120,37 +120,49 @@
             padding: 0;
         }
 
-        .survey-list li {
+        .survey-item {
             background: #f9f9f9;
             margin: 10px 0;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .survey-list li a {
+        .survey-item h3 {
+            margin: 0 0 10px 0;
+            color: #ff0000;
+        }
+
+        .survey-item p {
+            margin: 5px 0;
+        }
+
+        .survey-item .details {
+            flex: 1;
+        }
+
+        .survey-item .actions {
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #fff;
             text-decoration: none;
-            color: #ff0000; /* Red */
-            font-weight: bold;
-            font-size: 18px;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        .survey-list li a:hover {
-            text-decoration: underline;
-        }
-
-        .survey-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .survey-info span {
-            font-size: 16px;
-            color: #555;
+        .btn:hover {
+            background-color: darkred;
+            transform: scale(1.05);
         }
 
         footer {
@@ -183,7 +195,7 @@
         }
 
         footer .social a:hover {
-            color: #ff0000; /* Red */
+            color: #ff0000;
         }
 
         /* Mobile Styles */
@@ -213,18 +225,14 @@
                 font-size: 16px;
             }
 
-            .survey-list li {
+            .survey-item {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .survey-info {
-                align-items: flex-start;
+            .survey-item .actions {
+                text-align: left;
                 margin-top: 10px;
-            }
-
-            .survey-info span {
-                font-size: 14px;
             }
 
             footer .container {
@@ -262,52 +270,33 @@
             <h2>Available Surveys</h2>
             <p>Complete surveys to earn rewards. Your opinions matter!</p>
             <ul class="survey-list">
-                <li>
-                    <a href="#">McDonald's Survey</a>
-                    <div class="survey-info">
-                        <span>Reward: $5</span>
-                        <span>Spots Left: 50</span>
-                        <span>Survey ID: 101</span>
+                <li class="survey-item">
+                    <div class="details">
+                        <h3>McDonald's Customer Satisfaction</h3>
+                        <p>Reward: $5</p>
+                        <p>Available Spots: 100</p>
+                        <p>Survey ID: 001</p>
+                    </div>
+                    <div class="actions">
+                        <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
+                        <a href="#" class="btn">Reserve Spot</a>
                     </div>
                 </li>
-                <li>
-                    <a href="#">Burger King Survey</a>
-                    <div class="survey-info">
-                        <span>Reward: $4</span>
-                        <span>Spots Left: 30</span>
-                        <span>Survey ID: 102</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">Subway Survey</a>
-                    <div class="survey-info">
-                        <span>Reward: $3.50</span>
-                        <span>Spots Left: 20</span>
-                        <span>Survey ID: 103</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">Taco Bell Survey</a>
-                    <div class="survey-info">
-                        <span>Reward: $4.50</span>
-                        <span>Spots Left: 40</span>
-                        <span>Survey ID: 104</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">Starbucks Survey</a>
-                    <div class="survey-info">
-                        <span>Reward: $5</span>
-                        <span>Spots Left: 60</span>
-                        <span>Survey ID: 105</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">Walmart Survey</a>
-                    <div class="survey-info">
-                        <span>Reward: $6</span>
-                        <span>Spots Left: 80</span>
-                        <span>Survey ID: 106</span>
-                    </div>
-                </li>
-                <li>
+                <!-- Add more surveys in the same format as needed -->
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
