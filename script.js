@@ -42,10 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
             optionElement.innerHTML = `<input type="radio" name="option" value="${option}"> <label>${option}</label>`;
             optionsContainer.appendChild(optionElement);
         });
+        document.getElementById('prev').disabled = currentQuestionIndex === 0;
+        document.getElementById('next').innerText = currentQuestionIndex === survey.questions.length - 1 ? 'Finish' : 'Next';
     }
 
     function nextQuestion() {
         const survey = surveys[currentSurveyId];
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (!selectedOption) {
+            alert('Please select an option to proceed.');
+            return;
+        }
         if (currentQuestionIndex < survey.questions.length - 1) {
             currentQuestionIndex++;
             showQuestion(currentQuestionIndex);
