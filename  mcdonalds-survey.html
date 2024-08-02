@@ -1,0 +1,58 @@
+document.addEventListener('DOMContentLoaded', () => {
+            loadQuestion();
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('username').innerText = `Username: ${user.username}`;
+                document.getElementById('balance').innerText = `Balance: $${user.balance}`;
+            }
+        });
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}`;
+            document.getElementById('question').innerText = question.question;
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.innerHTML = `
+                    <input type="radio" name="option" id="option${index}" value="${option}">
+                    <label for="option${index}">${option}</label>
+                `;
+                optionsContainer.appendChild(optionElement);
+            });
+
+            document.getElementById('prev').disabled = currentQuestionIndex === 0;
+            document.getElementById('next').style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'inline-block';
+            document.getElementById('submit').style.display = currentQuestionIndex === questions.length - 1 ? 'inline-block' : 'none';
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function submitSurvey() {
+            alert('Survey submitted successfully!');
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            setTimeout(() => {
+                window.location.href = 'thank-you.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
