@@ -148,6 +148,16 @@
             background: darkorange;
         }
 
+        .confirmation-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
         footer {
             background-color: #1a1a1a;
             color: #fff;
@@ -256,6 +266,9 @@
                 <input type="email" id="email" name="email" required>
                 <button type="submit">Register</button>
             </form>
+            <div class="confirmation-message" id="confirmationMessage">
+                Registration successful! Redirecting to the welcome page...
+            </div>
         </div>
     </section>
 
@@ -284,7 +297,10 @@
                 balance: 0
             };
             localStorage.setItem('user', JSON.stringify(user));
-            window.location.href = 'welcome.html';
+            document.getElementById('confirmationMessage').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'welcome.html';
+            }, 2000);
         }
     </script>
 </body>
