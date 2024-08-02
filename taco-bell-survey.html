@@ -114,38 +114,32 @@
             margin-bottom: 20px;
         }
 
-        .survey-list {
-            list-style: none;
-            padding: 0;
+        .survey-question {
+            margin-bottom: 20px;
+            text-align: left;
         }
 
-        .survey-item {
-            background: #f9f9f9;
-            margin: 10px 0;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: left;
+        .survey-question label {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .survey-question .options {
+            margin-top: 10px;
+        }
+
+        .survey-question .options input {
+            margin-right: 10px;
+        }
+
+        .survey-question .options label {
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        .survey-nav {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-
-        .survey-item h3 {
-            margin: 0 0 10px 0;
-            color: #ff0000;
-        }
-
-        .survey-item p {
-            margin: 5px 0;
-        }
-
-        .survey-item .details {
-            flex: 1;
-        }
-
-        .survey-item .actions {
-            text-align: right;
         }
 
         .btn {
@@ -155,7 +149,6 @@
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
-            margin: 5px 0;
             transition: background-color 0.3s, transform 0.3s;
         }
 
@@ -224,23 +217,12 @@
                 font-size: 16px;
             }
 
-            .survey-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .survey-item .actions {
-                text-align: left;
-                margin-top: 10px;
-            }
-
             footer .container {
                 padding: 0 20px;
             }
         }
     </style>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
@@ -271,34 +253,35 @@
             <form id="tacoBellSurveyForm">
                 <div class="survey-question">
                     <label for="q1">How often do you eat at Taco Bell?</label>
-                    <select id="q1" name="q1">
-                        <option value="Daily">Daily</option>
-                        <option value="Weekly">Weekly</option>
-                        <option value="Monthly">Monthly</option>
-                        <option value="Rarely">Rarely</option>
-                    </select>
+                    <div class="options">
+                        <input type="radio" id="q1_daily" name="q1" value="Daily">
+                        <label for="q1_daily">Daily</label>
+                        <input type="radio" id="q1_weekly" name="q1" value="Weekly">
+                        <label for="q1_weekly">Weekly</label>
+                        <input type="radio" id="q1_monthly" name="q1" value="Monthly">
+                        <label for="q1_monthly">Monthly</label>
+                        <input type="radio" id="q1_rarely" name="q1" value="Rarely">
+                        <label for="q1_rarely">Rarely</label>
+                    </div>
                 </div>
                 <div class="survey-question">
                     <label for="q2">What is your favorite item on the Taco Bell menu?</label>
-                    <select id="q2" name="q2">
-                        <option value="Tacos">Tacos</option>
-                        <option value="Burritos">Burritos</option>
-                        <option value="Quesadillas">Quesadillas</option>
-                        <option value="Nachos">Nachos</option>
-                    </select>
+                    <div class="options">
+                        <input type="radio" id="q2_tacos" name="q2" value="Tacos">
+                        <label for="q2_tacos">Tacos</label>
+                        <input type="radio" id="q2_burritos" name="q2" value="Burritos">
+                        <label for="q2_burritos">Burritos</label>
+                        <input type="radio" id="q2_quesadillas" name="q2" value="Quesadillas">
+                        <label for="q2_quesadillas">Quesadillas</label>
+                        <input type="radio" id="q2_nachos" name="q2" value="Nachos">
+                        <label for="q2_nachos">Nachos</label>
+                    </div>
                 </div>
                 <div class="survey-question">
                     <label for="q3">How would you rate the customer service at Taco Bell?</label>
-                    <select id="q3" name="q3">
-                        <option value="Excellent">Excellent</option>
-                        <option value="Good">Good</option>
-                        <option value="Average">Average</option>
-                        <option value="Poor">Poor</option>
-                    </select>
-                </div>
-                <div class="survey-question">
-                    <label for="q4">How do you usually order at Taco Bell?</label>
-                    <select id="q4" name="q4">
-                        <option value="In-store">In-store</option>
-                        <option value="Drive-thru">Drive-thru</option>
-                        <option
+                    <div class="options">
+                        <input type="radio" id="q3_excellent" name="q3" value="Excellent">
+                        <label for="q3_excellent">Excellent</label>
+                        <input type="radio" id="q3_good" name="q3" value="Good">
+                        <label for="q3_good">Good</label>
+                        <input type
