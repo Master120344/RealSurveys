@@ -75,6 +75,7 @@
             background-color: #8B0000; /* Changed background color to dark red */
             height: 400px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -83,21 +84,18 @@
         }
 
         .hero h2 {
-            position: relative;
             font-size: 48px;
             margin: 0;
             z-index: 1;
         }
 
         .hero p {
-            position: relative;
             font-size: 24px;
             margin: 10px 0 20px;
             z-index: 1;
         }
 
         .hero a.btn {
-            position: relative;
             display: inline-block;
             background: linear-gradient(45deg, #8B0000, #A52A2A);
             color: #fff;
@@ -114,6 +112,10 @@
             background: linear-gradient(45deg, #A52A2A, #8B0000);
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero a.btn:active {
+            transform: scale(0.95);
         }
 
         .content {
@@ -236,7 +238,8 @@
     <div class="hero">
         <div>
             <h2>Welcome to RealSurveys</h2>
-            <p>Your opinions matter. Get rewarded for your insights.</p>
+            <p>Your opinions matter.</p>
+            <p>Get rewarded for your insights.</p>
             <a href="register.html" class="btn">Get Started</a>
         </div>
     </div>
