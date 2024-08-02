@@ -1,5 +1,3 @@
-Ohhh omg God I'm so dumb I'm sorry here's the register.js code sorry 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
