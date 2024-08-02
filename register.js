@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const email = document.getElementById('email').value;
-        
         const user = {
             username: username,
             password: password,
-            email:
+            email: email,
+            balance: 0
+        };
