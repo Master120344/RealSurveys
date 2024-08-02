@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const user = {
             username: username,
             uniqueCode: uniqueCode,
-            balance: 0
+            balance: 1
         };
         localStorage.setItem('user', JSON.stringify(user));
         document.getElementById('confirmationMessage').style.display = 'block';
