@@ -9,18 +9,18 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f7f9fc;
             color: #333;
         }
 
         header {
-            background-color: #333;
+            background-color: #1a1a1a;
             color: #fff;
-            padding: 15px 0;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff6600;
+            color: #ff8c00;
             text-align: left;
         }
 
@@ -61,26 +61,52 @@
             color: #fff;
             text-decoration: none;
             font-size: 14px;
-            background-color: #ff6600;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #e65c00;
+            background-color: #ff8c00;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            background-color: #ff8c00; /* Keeping the orange background */
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h2 {
+            position: relative;
+            font-size: 36px;
+            margin: 0;
+            z-index: 1;
         }
 
         .content {
             padding: 60px 20px;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 4px solid #ff8c00; /* Keeping the orange border */
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
         }
 
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #ff6600;
+            color: #ff8c00;
         }
 
         .content p {
@@ -107,12 +133,12 @@
 
         .contact-method a {
             font-size: 18px;
-            color: #ff6600;
+            color: #ff8c00;
             text-decoration: none;
         }
 
         footer {
-            background-color: #333;
+            background-color: #1a1a1a;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -137,10 +163,11 @@
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         footer .social a:hover {
-            color: #ff6600;
+            color: #ff8c00;
         }
 
         @media (max-width: 768px) {
@@ -211,10 +238,15 @@
         </div>
     </header>
 
-    <div class="content">
+    <div class="hero">
         <h2>Contact Us</h2>
+    </div>
+
+    <div class="content">
+        <h2>We're Here to Help</h2>
+        <p>If you have any questions, feedback, or need assistance, please don't hesitate to reach out to us. We're available 24/7/365, including holidays, to ensure you have the best experience possible.</p>
         <div class="contact-method">
-            <h3>Available 24/7/365 including holidays</h3>
+            <h3>Contact Methods</h3>
             <p>Call us: <a href="tel:+1234567890">+1 234 567 890</a></p>
             <p>Send us a text: <a href="sms:+1234567890">+1 234 567 890</a></p>
             <p>Send us an email: <a href="mailto:info@realsurveys.com">info@realsurveys.com</a></p>
