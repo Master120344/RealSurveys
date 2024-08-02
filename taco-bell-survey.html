@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McDonald's Survey - RealSurveys</title>
+    <title>Taco Bell Survey - RealSurveys</title>
     <style>
         body {
             margin: 0;
@@ -237,6 +237,8 @@
             const prevButton = document.getElementById("prevButton");
             const nextButton = document.getElementById("nextButton");
             const submitButton = document.getElementById("submitButton");
+            const surveyForm = document.getElementById("tacoBellSurveyForm");
+            const rewardAmount = 5; // Example reward amount
 
             function showQuestion(index) {
                 questions.forEach((q, i) => {
@@ -269,7 +271,8 @@
                     origin: { y: 0.6 }
                 });
                 setTimeout(() => {
-                    document.getElementById("mcdonaldsSurveyForm").submit();
+                    alert(`Survey completed! You have earned $${rewardAmount}.`);
+                    surveyForm.submit();
                 }, 3000);
             });
 
@@ -296,18 +299,17 @@
     </header>
 
     <div class="hero">
-        <h2>McDonald's Survey</h2>
+        <h2>Taco Bell Survey</h2>
     </div>
 
     <section class="content">
         <div class="container">
-            <h2>McDonald's Customer Satisfaction Survey</h2>
+            <h2>Taco Bell Customer Satisfaction Survey</h2>
             <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
-            <form id="mcdonaldsSurveyForm">
+            <form id="tacoBellSurveyForm">
                 <div class="survey-question active" data-question="1">
-                    <label for="q1">How often do you eat at McDonald's?</label>
+                    <label for="q1">How often do you eat at Taco Bell?</label>
                     <div class="options">
                         <input type="radio" id="q1_daily" name="q1" value="Daily">
                         <label for="q1_daily">Daily</label>
-                        <input type="radio" id="q1_weekly" name="q1" value="Weekly">
-                        <label for="q1
+                        <input type="radio" id="
