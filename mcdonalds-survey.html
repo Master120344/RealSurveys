@@ -90,7 +90,7 @@
 
         .content {
             padding: 60px 20px;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
             background-color: #fff;
@@ -103,7 +103,7 @@
         }
 
         .content h2 {
-            font-size: 36px;
+            font-size: 28px;
             margin-bottom: 20px;
             color: #ff0000;
         }
@@ -115,8 +115,13 @@
         }
 
         .survey-question {
+            display: none;
             margin-bottom: 20px;
             text-align: left;
+        }
+
+        .survey-question.active {
+            display: block;
         }
 
         .survey-question label {
@@ -211,7 +216,7 @@
             }
 
             .content h2 {
-                font-size: 28px;
+                font-size: 24px;
             }
 
             .content p {
@@ -252,7 +257,7 @@
             <h2>McDonald's Customer Satisfaction Survey</h2>
             <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
             <form id="mcdonaldsSurveyForm">
-                <div class="survey-question">
+                <div class="survey-question active" data-question="1">
                     <label for="q1">How often do you eat at McDonald's?</label>
                     <div class="options">
                         <input type="radio" id="q1_daily" name="q1" value="Daily">
@@ -265,7 +270,7 @@
                         <label for="q1_rarely">Rarely</label>
                     </div>
                 </div>
-                <div class="survey-question">
+                <div class="survey-question" data-question="2">
                     <label for="q2">What is your favorite item on the McDonald's menu?</label>
                     <div class="options">
                         <input type="radio" id="q2_bigmac" name="q2" value="Big Mac">
@@ -278,11 +283,8 @@
                         <label for="q2_salad">Salad</label>
                     </div>
                 </div>
-                <div class="survey-question">
+                <div class="survey-question" data-question="3">
                     <label for="q3">How would you rate the customer service at McDonald's?</label>
                     <div class="options">
                         <input type="radio" id="q3_excellent" name="q3" value="Excellent">
-                        <label for="q3_excellent">Excellent</label>
-                        <input type="radio" id="q3_good" name="q3" value="Good">
-                        <label for="q3_good">Good</label>
-                        <
+                        <label
