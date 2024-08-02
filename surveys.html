@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - RealSurveys</title>
+    <title>Surveys - RealSurveys</title>
     <style>
         /* Base Styles */
         body {
@@ -89,7 +89,7 @@
             z-index: 1;
         }
 
-        .register {
+        .content {
             padding: 60px 20px;
             max-width: 1000px;
             margin: 0 auto;
@@ -103,59 +103,40 @@
             z-index: 2;
         }
 
-        .register h2 {
+        .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
             color: #ff0000; /* Changed to red */
         }
 
-        .register form {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            text-align: left;
-            width: 100%;
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        .register label {
-            display: block;
-            text-align: left;
-            margin: 10px 0 5px;
-            color: #ff0000; /* Changed to red */
+        .survey-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .register input {
-            width: calc(100% - 20px);
-            padding: 10px;
+        .survey-list li {
+            background: #f9f9f9;
             margin: 10px 0;
-            border: none;
+            padding: 20px;
             border-radius: 5px;
-            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .register button {
-            padding: 10px 20px;
-            background: #ff0000; /* Changed to red */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
+        .survey-list li a {
+            text-decoration: none;
+            color: #ff0000; /* Changed to red */
+            font-weight: bold;
+            font-size: 18px;
         }
 
-        .register button:hover {
-            background: darkred; /* Changed to dark red */
-        }
-
-        .confirmation-message {
-            display: none;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+        .survey-list li a:hover {
+            text-decoration: underline;
         }
 
         footer {
@@ -206,21 +187,15 @@
                 margin: 5px;
             }
 
-            .register {
+            .content {
                 padding: 20px;
             }
 
-            .register h2 {
+            .content h2 {
                 font-size: 28px;
             }
 
-            .register form {
-                padding: 20px;
-            }
-
-            .register label,
-            .register input,
-            .register button {
+            .content p {
                 font-size: 16px;
             }
 
@@ -251,24 +226,19 @@
     </header>
 
     <div class="hero">
-        <h2>Register</h2>
+        <h2>Surveys</h2>
     </div>
 
-    <section class="register">
+    <section class="content">
         <div class="container">
-            <h2>Register</h2>
-            <form id="registerForm" onsubmit="registerUser(event)">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                <button type="submit">Register</button>
-            </form>
-            <div class="confirmation-message" id="confirmationMessage">
-                Registration successful! Redirecting to the welcome page...
-            </div>
+            <h2>Available Surveys</h2>
+            <p>Complete surveys to earn rewards. Your opinions matter!</p>
+            <ul class="survey-list">
+                <li><a href="#">Survey 1: Customer Satisfaction</a></li>
+                <li><a href="#">Survey 2: Product Feedback</a></li>
+                <li><a href="#">Survey 3: Market Research</a></li>
+                <!-- Add more surveys as needed -->
+            </ul>
         </div>
     </section>
 
@@ -283,18 +253,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        function registerUser(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const email = document.getElementById('email').value;
-            const user = {
-                username,
-                password,
-                email,
-                balance: 0
-            };
-            localStorage.setItem('user', JSON.stringify(user));
-            document.getElementById('confirmationMessage').style.display
+</body>
+</html>
