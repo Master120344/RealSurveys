@@ -20,9 +20,7 @@ header .container {
     padding: 0 20px;
 }
 
-header h1 a {
-    color: #ff6600;
-    text-decoration: none;
+header h1 {
     font-size: 24px;
 }
 
@@ -40,6 +38,21 @@ header nav ul li {
 header nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-size: 16px;
+    background-color: #ff6600;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a:hover {
+    background-color: #e65c00;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 section.survey {
@@ -72,18 +85,23 @@ section.survey .container {
     margin-left: 10px;
 }
 
-.survey-navigation {
+.survey-nav {
     display: flex;
     justify-content: space-between;
 }
 
-.survey-navigation button {
+.survey-nav button {
     background-color: #ff6600;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.survey-nav button:hover {
+    background-color: #e65c00;
 }
 
 footer {
