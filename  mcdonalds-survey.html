@@ -171,8 +171,7 @@
             background-color: darkred;
             transform: scale(1.05);
         }
-
-        footer {
+footer {
             background-color: #1a1a1a;
             color: #fff;
             padding: 20px 0;
@@ -271,7 +270,8 @@
                     showQuestion(currentQuestion);
                 }
             });
-submitButton.addEventListener("click", (event) => {
+
+            submitButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 canvasConfetti({
                     particleCount: 100,
@@ -310,8 +310,7 @@ submitButton.addEventListener("click", (event) => {
             </nav>
         </div>
     </header>
-
-    <div class="hero">
+<div class="hero">
         <h2>McDonald's Survey</h2>
     </div>
 
@@ -402,3 +401,17 @@ submitButton.addEventListener("click", (event) => {
             </form>
         </div>
     </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
