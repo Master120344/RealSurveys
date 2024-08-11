@@ -97,7 +97,7 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             border: 4px solid #ff0000;
@@ -311,8 +311,8 @@
     </header>
 
     <div class="hero">
-        <h2>McDonald's Survey</
-</div>
+        <h2>McDonald's Survey</h2>
+    </div>
 
     <section class="content">
         <div class="container">
@@ -321,68 +321,76 @@
             <form id="mcdonaldsSurveyForm">
                 <div class="survey-question active" data-question="1">
                     <p>Question 1/5</p>
-                    <label for="q1">Do you use your rewards app?</label>
+                    <label for="q1">How often do you eat at McDonald's?</label>
                     <div class="options">
-                        <input type="radio" id="q1_yes" name="q1" value="Yes">
-                        <label for="q1_yes">Yes</label>
-                        <input type="radio" id="q1_no" name="q1" value="No">
-                        <label for="q1_no">No</label>
+                        <input type="radio" id="q1_daily" name="q1" value="Daily">
+                        <label for="q1_daily">Daily</label>
+                        <input type="radio" id="q1_weekly" name="q1" value="Weekly">
+                        <label for="q1_weekly">Weekly</label>
+                        <input type="radio" id="q1_monthly" name="q1" value="Monthly">
+                        <label for="q1_monthly">Monthly</label>
+                        <input type="radio" id="q1_rarely" name="q1" value="Rarely">
+                        <label for="q1_rarely">Rarely</label>
                     </div>
                 </div>
                 <div class="survey-question" data-question="2">
                     <p>Question 2/5</p>
-                    <label for="q2">Do you like to order the same meal all the time?</label>
+                    <label for="q2">What is your favorite item on the McDonald's menu?</label>
                     <div class="options">
-                        <input type="radio" id="q2_yes" name="q2" value="Yes">
-                        <label for="q2_yes">Yes</label>
-                        <input type="radio" id="q2_no" name="q2" value="No">
-                        <label for="q2_no">No</label>
-                        <input type="radio" id="q2_sometimes" name="q2" value="Sometimes">
-                        <label for="q2_sometimes">Sometimes</label>
+                        <input type="radio" id="q2_bigmac" name="q2" value="Big Mac">
+                        <label for="q2_bigmac">Big Mac</label>
+                        <input type="radio" id="q2_mcnuggets" name="q2" value="McNuggets">
+                        <label for="q2_mcnuggets">McNuggets</label>
+                        <input type="radio" id="q2_fries" name="q2" value="Fries">
+                        <label for="q2_fries">Fries</label>
+                        <input type="radio" id="q2_salad" name="q2" value="Salad">
+                        <label for="q2_salad">Salad</label>
                     </div>
                 </div>
                 <div class="survey-question" data-question="3">
                     <p>Question 3/5</p>
-                    <label for="q3">How satisfied are you with the cleanliness of McDonald's?</label>
+                    <label for="q3">How would you rate the customer service at McDonald's?</label>
                     <div class="options">
-                        <input type="radio" id="q3_very" name="q3" value="Very Satisfied">
-                        <label for="q3_very">Very Satisfied</label>
-                        <input type="radio" id="q3_satisfied" name="q3" value="Satisfied">
-                        <label for="q3_satisfied">Satisfied</label>
-                        <input type="radio" id="q3_neutral" name="q3" value="Neutral">
-                        <label for="q3_neutral">Neutral</label>
-                        <input type="radio" id="q3_depends" name="q3" value="Depends">
-                        <label for="q3_depends">Depends</label>
+                        <input type="radio" id="q3_excellent" name="q3" value="Excellent">
+                        <label for="q3_excellent">Excellent</label>
+                        <input type="radio" id="q3_good" name="q3" value="Good">
+                        <label for="q3_good">Good</label>
+                        <input type="radio" id="q3_average" name="q3" value="Average">
+                        <label for="q3_average">Average</label>
+                        <input type="radio" id="q3_poor" name="q3" value="Poor">
+                        <label for="q3_poor">Poor</label>
                     </div>
                 </div>
                 <div class="survey-question" data-question="4">
                     <p>Question 4/5</p>
-                    <label for="q4">How often does your order get messed up?</label>
+                    <label for="q4">How satisfied are you with the cleanliness of McDonald's?</label>
                     <div class="options">
-                        <input type="radio" id="q4_often" name="q4" value="Often">
-                        <label for="q4_often">Often</label>
-                        <input type="radio" id="q4_not_often" name="q4" value="Not Often">
-                        <label for="q4_not_often">Not Often</label>
-                        <input type="radio" id="q4_sometimes" name="q4" value="Sometimes">
-                        <label for="q4_sometimes">Sometimes</label>
-                        <input type="radio" id="q4_never" name="q4" value="Never">
-                        <label for="q4_never">Never</label>
+                        <input type="radio" id="q4_very_satisfied" name="q4" value="Very Satisfied">
+                        <label for="q4_very_satisfied">Very Satisfied</label>
+                        <input type="radio" id="q4_satisfied" name="q4" value="Satisfied">
+                        <label for="q4_satisfied">Satisfied</label>
+                        <input type="radio" id="q4_neutral" name="q4" value="Neutral">
+                        <label for="q4_neutral">Neutral</label>
+                        <input type="radio" id="q4_dissatisfied" name="q4" value="Dissatisfied">
+                        <label for="q4_dissatisfied">Dissatisfied</label>
+                        <input type="radio" id="q4_very_dissatisfied" name="q4" value="Very Dissatisfied">
+                        <label for="q4_very_dissatisfied">Very Dissatisfied</label>
                     </div>
                 </div>
                 <div class="survey-question" data-question="5">
                     <p>Question 5/5</p>
-                    <label for="q5">Rate your experience at McDonald's (5 being the best, 1 being the worst):</label>
+                    <label for="q5">How likely are you to recommend McDonald's to a friend?</label>
                     <div class="options">
-                        <input type="radio" id="q5_1" name="q5" value="1">
-                        <label for="q5_1">1</label>
-                        <input type="radio" id="q5_2" name="q5" value="2">
-                        <label for="q5_2">2</label>
-                        <input type="radio" id="q5_3" name="q5" value="3">
-                        <label for="q5_3">3</label>
-                        <input type="radio" id="q5_4" name="q5" value="4">
-                        <label for="q5_4">4</label>
-                        <input type="radio" id="q5_5" name="q5" value="5">
-                        <label for="q5_5">5</label>
+                        <input type="radio" id="q5_very_likely" name="q5" value="Very Likely">
+                        <label for="q5_very_likely">Very Likely</label>
+                        <input type="radio" id="q5_likely" name="q5" value="Likely">
+                        <label for="q5_likely">Likely</label>
+                        <input type="radio" id="q5_neutral" name="q5" value="Neutral">
+                        <label for="q5_neutral">Neutral</label>
+                        <input type="radio" id="q5_unlikely" name="q5" value="Unlikely">
+                        <label for="q5_unlikely">Unlikely</label>
+                        <input type="radio" id="q5_very_unlikely" name="q5" value="Very Unlikely">
+                        <label for="q5_very_unlikely">Very Unlikely</label>
                     </div>
                 </div>
                 <div class="survey-nav">
