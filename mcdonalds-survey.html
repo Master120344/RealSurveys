@@ -14,10 +14,11 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-blend-mode: lighten;
         }
 
         header {
-            background-color: #1a1a1a;
+            background-color: #ffc300;
             color: #fff;
             padding: 20px 0;
             position: sticky;
@@ -38,7 +39,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff0000;
+            color: #d90000;
             text-align: left;
         }
 
@@ -61,21 +62,23 @@
         }
 
         header nav ul li a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             font-size: 14px;
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
+            background-color: #fff;
         }
 
         header nav ul li a:hover {
-            background-color: #ff0000;
+            background-color: #d90000;
+            color: #fff;
             transform: scale(1.05);
         }
 
         .hero {
-            background-color: #ff0000;
+            background-color: #d90000;
             height: 200px;
             display: flex;
             justify-content: center;
@@ -100,7 +103,7 @@
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            border: 4px solid #ff0000;
+            border: 4px solid #ffc300;
             margin-top: -50px;
             position: relative;
             z-index: 2;
@@ -109,7 +112,7 @@
         .content h2 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: #ff0000;
+            color: #d90000;
         }
 
         .content p {
@@ -126,7 +129,7 @@
             padding: 20px;
             background-color: rgba(255, 255, 255, 1);
             border-radius: 8px;
-            border: 1px solid #ff0000;
+            border: 1px solid #ffc300;
         }
 
         .survey-question.active {
@@ -160,21 +163,22 @@
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #ff0000;
-            color: #fff;
+            background-color: #ffc300;
+            color: #333;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         .btn:hover {
-            background-color: darkred;
+            background-color: #d90000;
+            color: #fff;
             transform: scale(1.05);
         }
 
         footer {
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: #ffc300;
+            color: #333;
             padding: 20px 0;
             text-align: center;
         }
@@ -194,7 +198,7 @@
         }
 
         footer .social a {
-            color: #fff;
+            color: #333;
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
@@ -202,7 +206,7 @@
         }
 
         footer .social a:hover {
-            color: #ff0000;
+            color: #d90000;
         }
 
         /* Mobile Styles */
@@ -280,11 +284,11 @@
                     origin: { y: 0.6 }
                 });
                 setTimeout(() => {
-                    alert(`Survey completed! You have earned $${rewardAmount}.`);
+                    alert(`Congratulations! Here's your $${rewardAmount}.`);
                     let user = JSON.parse(localStorage.getItem('user')) || {};
                     user.balance = (user.balance || 0) + rewardAmount;
                     localStorage.setItem('user', JSON.stringify(user));
-                    window.location.href = "surveys.html"; // Redirect back to surveys page
+                    window.location.href = "https://master120344.github.io/RealSurveys/surveys.html";
                 }, 3000);
             });
 
