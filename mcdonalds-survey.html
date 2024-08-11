@@ -97,7 +97,7 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Adjusted transparency */
+            background-color: rgba(255, 255, 255, 0.8); /* Increased transparency */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             border: 4px solid #ff0000;
@@ -124,7 +124,7 @@
             margin-bottom: 20px;
             text-align: left;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             border: 1px solid #ff0000;
         }
@@ -258,49 +258,7 @@
                 submitButton.style.display = index === totalQuestions - 1 ? "inline-block" : "none";
             }
 
-            prevButton.addEventListener("click", () => {
-                if (currentQuestion > 0) {
-                    currentQuestion--;
-                    showQuestion(currentQuestion);
-                }
-            });
-
-            nextButton.addEventListener("click", () => {
-                if (currentQuestion < totalQuestions - 1) {
-                    currentQuestion++;
-                    showQuestion(currentQuestion);
-                }
-            });
-
             submitButton.addEventListener("click", (event) => {
-                event.preventDefault();
-                canvasConfetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-                setTimeout(() => {
-                    alert(`Survey completed! You have earned $${rewardAmount}.`);
-                    window.location.href = "https://master120344.github.io/RealSurveys/surveys.html";
-                }, 3000); // Adjusted to 3 seconds delay
-            });
-
-            showQuestion(currentQuestion);
-        });
-    </script>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
-            <nav>
-                <ul class="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</
-submitButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 canvasConfetti({
                     particleCount: 100,
@@ -311,6 +269,20 @@ submitButton.addEventListener("click", (event) => {
                 setTimeout(() => {
                     window.location.href = "surveys.html";
                 }, 3000);
+            });
+
+            nextButton.addEventListener("click", () => {
+                if (currentQuestion < totalQuestions - 1) {
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                }
+            });
+
+            prevButton.addEventListener("click", () => {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    showQuestion(currentQuestion);
+                }
             });
 
             showQuestion(currentQuestion);
@@ -335,6 +307,8 @@ submitButton.addEventListener("click", (event) => {
         </div>
     </header>
 
+    <div class="hero">
+        <h2>McDonald's Survey</h2>
     <div class="hero">
         <h2>McDonald's Survey</h2>
     </div>
@@ -368,16 +342,18 @@ submitButton.addEventListener("click", (event) => {
                 </div>
                 <div class="survey-question" data-question="3">
                     <p>Question 3/5</p>
-                    <label for="q3">How would you rate the cleanliness inside the store?</label>
+                    <label for="q3">How satisfied are you with the cleanliness of McDonald's?</label>
                     <div class="options">
-                        <input type="radio" id="q3_very" name="q3" value="Very">
-                        <label for="q3_very">Very</label>
-                        <input type="radio" id="q3_okay" name="q3" value="Okay">
-                        <label for="q3_okay">Okay</label>
+                        <input type="radio" id="q3_very_satisfied" name="q3" value="Very Satisfied">
+                        <label for="q3_very_satisfied">Very Satisfied</label>
+                        <input type="radio" id="q3_satisfied" name="q3" value="Satisfied">
+                        <label for="q3_satisfied">Satisfied</label>
                         <input type="radio" id="q3_neutral" name="q3" value="Neutral">
                         <label for="q3_neutral">Neutral</label>
-                        <input type="radio" id="q3_depends" name="q3" value="Depends">
-                        <label for="q3_depends">Depends</label>
+                        <input type="radio" id="q3_dissatisfied" name="q3" value="Dissatisfied">
+                        <label for="q3_dissatisfied">Dissatisfied</label>
+                        <input type="radio" id="q3_very_dissatisfied" name="q3" value="Very Dissatisfied">
+                        <label for="q3_very_dissatisfied">Very Dissatisfied</label>
                     </div>
                 </div>
                 <div class="survey-question" data-question="4">
