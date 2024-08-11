@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,11 +94,11 @@
         }
 
         .content {
-            padding: 60px 20px;
+            padding: 40px 20px;
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.8); /* More transparent background */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             border: 4px solid #ff0000;
@@ -120,7 +121,6 @@
         }
 
         .survey-question {
-            display: none;
             margin-bottom: 20px;
             text-align: left;
             padding: 20px;
@@ -129,13 +129,11 @@
             border: 1px solid #ff0000;
         }
 
-        .survey-question.active {
-            display: block;
-        }
-
         .survey-question label {
             font-size: 18px;
             color: #333;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .survey-question .options {
@@ -149,6 +147,7 @@
         .survey-question .options label {
             font-size: 16px;
             margin-right: 20px;
+            display: inline-block;
         }
 
         .survey-nav {
@@ -275,7 +274,7 @@
             submitButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 canvasConfetti({
-                    particleCount: 100,
+                    particleCount: 150,
                     spread: 70,
                     origin: { y: 0.6 }
                 });
@@ -284,7 +283,9 @@
                     let user = JSON.parse(localStorage.getItem('user')) || {};
                     user.balance = (user.balance || 0) + rewardAmount;
                     localStorage.setItem('user', JSON.stringify(user));
-                    window.location.href = "surveys.html"; // Redirect back to surveys page
+                    setTimeout(() => {
+                        window.location.href = "surveys.html"; // Redirect back to surveys page after a delay
+                    }, 1000); // Wait for confetti animation before redirecting
                 }, 3000);
             });
 
@@ -292,6 +293,7 @@
         });
     </script>
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -303,7 +305,7 @@
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
                     <li><a href="leading-platform.html">Leading Platform</a></li>
-                   <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
                     <li><a href="register.html">Register</a></li>
                 </ul>
             </nav>
@@ -414,4 +416,5 @@
         </div>
     </footer>
 </body>
+
 </html>
