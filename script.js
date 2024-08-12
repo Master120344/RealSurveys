@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevButton = document.getElementById("prevButton");
     const nextButton = document.getElementById("nextButton");
     const submitButton = document.getElementById("submitButton");
-    const surveyForm = document.getElementById("tacoBellSurveyForm");
-    const rewardAmount = 3; // Set to $3 for Taco Bell survey
+    const rewardAmount = 3; // Example reward amount for Taco Bell survey
 
     function showQuestion(index) {
         questions.forEach((q, i) => {
