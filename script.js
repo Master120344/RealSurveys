@@ -35,16 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             console.log("Claim Reward button clicked!");
 
-            // Trigger confetti
-            if (typeof confetti === "function") {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-            } else {
-                throw new Error("Confetti function is not defined.");
+            // Check if the confetti library is loaded
+            if (typeof confetti !== "function") {
+                throw new Error("Confetti function is not loaded or defined.");
             }
+
+            // Trigger confetti
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
 
             // Show a congratulatory message
             setTimeout(() => {
