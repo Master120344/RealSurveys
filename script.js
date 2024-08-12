@@ -35,6 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             console.log("Claim Reward button clicked!");
 
+            // Trigger confetti
+            if (typeof confetti === "function") {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                throw new Error("Confetti function is not defined.");
+            }
+
             // Show a congratulatory message
             setTimeout(() => {
                 alert(`Congratulations! You've earned $${rewardAmount}.`);
@@ -43,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem('user', JSON.stringify(user));
                 // Redirect to the surveys page
                 window.location.href = "surveys.html"; // Use a relative path
-            }, 1000); // 1-second delay for the alert
+            }, 2000); // 2 seconds delay for the confetti and alert
 
         } catch (error) {
             console.error("Error detected:", error);
