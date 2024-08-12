@@ -8,7 +8,7 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: rgba(240, 242, 245, 0.6); /* More transparent to show the background */
+            background-color: rgba(240, 242, 245, 0.4); /* More transparent */
             color: #333;
             background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/Screenshot_20240811-114733~2.png?raw=true');
             background-size: cover;
@@ -77,7 +77,7 @@
         }
 
         .hero {
-            background-color: rgba(217, 0, 0, 0.8); /* Semi-transparent red to highlight text while showing background */
+            background-color: rgba(217, 0, 0, 0.8); /* Semi-transparent red */
             height: 200px;
             display: flex;
             justify-content: center;
@@ -99,7 +99,7 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.85); /* Slightly more transparent */
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more transparent */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             border: 4px solid #ffc300;
@@ -240,59 +240,6 @@
             }
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3/dist/confetti.browser.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            let currentQuestion = 0;
-            const questions = document.querySelectorAll(".survey-question");
-            const totalQuestions = questions.length;
-            const prevButton = document.getElementById("prevButton");
-            const nextButton = document.getElementById("nextButton");
-            const submitButton = document.getElementById("submitButton");
-            const rewardAmount = 5; // Example reward amount
-
-            function showQuestion(index) {
-                questions.forEach((q, i) => {
-                    q.classList.toggle("active", i === index);
-                });
-                prevButton.style.display = index === 0 ? "none" : "inline-block";
-                nextButton.style.display = index === totalQuestions - 1 ? "none" : "inline-block";
-                submitButton.style.display = index === totalQuestions - 1 ? "inline-block" : "none";
-            }
-
-            prevButton.addEventListener("click", () => {
-                if (currentQuestion > 0) {
-                    currentQuestion--;
-                    showQuestion(currentQuestion);
-                }
-            });
-
-            nextButton.addEventListener("click", () => {
-                if (currentQuestion < totalQuestions - 1) {
-                    currentQuestion++;
-                    showQuestion(currentQuestion);
-                }
-            });
-
-            submitButton.addEventListener("click", (event) => {
-                event.preventDefault();
-                canvasConfetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-                setTimeout(() => {
-                    alert(`Congratulations! You've earned $${rewardAmount}.`);
-                    let user = JSON.parse(localStorage.getItem('user')) || {};
-                    user.balance = (user.balance || 0) + rewardAmount;
-                    localStorage.setItem('user', JSON.stringify(user));
-                    window.location.href = "https://master120344.github.io/RealSurveys/surveys.html";
-                }, 3000);
-            });
-
-            showQuestion(currentQuestion);
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -321,6 +268,7 @@
             <h2>McDonald's Customer Satisfaction Survey</h2>
             <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
             <form id="mcdonaldsSurveyForm">
+                <!-- Your survey questions here -->
                 <div class="survey-question active" data-question="1">
                     <p>Question 1/5</p>
                     <label for="q1">How often do you eat at McDonald's?</label>
@@ -335,6 +283,7 @@
                         <label for="q1_rarely">Rarely</label>
                     </div>
                 </div>
+                <!-- Repeat survey questions as needed -->
                 <div class="survey-question" data-question="2">
                     <p>Question 2/5</p>
                     <label for="q2">What is your favorite item on the McDonald's menu?</label>
@@ -349,6 +298,7 @@
                         <label for="q2_salad">Salad</label>
                     </div>
                 </div>
+
                 <div class="survey-question" data-question="3">
                     <p>Question 3/5</p>
                     <label for="q3">How would you rate the customer service at McDonald's?</label>
@@ -363,6 +313,7 @@
                         <label for="q3_poor">Poor</label>
                     </div>
                 </div>
+
                 <div class="survey-question" data-question="4">
                     <p>Question 4/5</p>
                     <label for="q4">How satisfied are you with the cleanliness of McDonald's?</label>
@@ -379,6 +330,7 @@
                         <label for="q4_very_dissatisfied">Very Dissatisfied</label>
                     </div>
                 </div>
+
                 <div class="survey-question" data-question="5">
                     <p>Question 5/5</p>
                     <label for="q5">How likely are you to recommend McDonald's to a friend?</label>
@@ -415,5 +367,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script> <!-- Make sure this script tag is linked correctly -->
 </body>
 </html>
