@@ -33,8 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
-        // Directly redirect to the surveys page to test if the redirection works.
-        window.location.href = "https://master120344.github.io/RealSurveys/surveys.html";
+        try {
+            console.log("Claim Reward button clicked!");
+            throw new Error("This is a test error to see if the button is working."); // Intentionally throw an error
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+            console.error("Error detected:", error);
+        }
     });
 
     showQuestion(currentQuestion);
