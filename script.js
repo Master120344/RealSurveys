@@ -32,20 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
-        try {
-            // Log to check if the button is clicked
-            console.log("Claim Reward button clicked!");
+        alert("Button clicked!");
 
-            // Trigger confetti
-            if (typeof canvasConfetti === "function") {
-                canvasConfetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-            } else {
-                throw new Error("canvasConfetti function is not defined.");
-            }
+        try {
+            console.log("Claim Reward button clicked!");
 
             // Show a congratulatory message
             setTimeout(() => {
@@ -54,11 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 user.balance = (user.balance || 0) + rewardAmount;
                 localStorage.setItem('user', JSON.stringify(user));
                 // Redirect to the surveys page
-                window.location.href = "surveys.html"; // Use a relative path since files are in the same directory
-            }, 3000); // 3 seconds delay for the confetti and alert
+                window.location.href = "surveys.html"; // Use a relative path
+            }, 3000); // 3 seconds delay for the alert
 
         } catch (error) {
-            // Log and alert any errors
             console.error("Error detected:", error);
             alert(`Error: ${error.message}`);
         }
