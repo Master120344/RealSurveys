@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 user.balance = (user.balance || 0) + rewardAmount;
                 localStorage.setItem('user', JSON.stringify(user));
                 // Redirect to the surveys page
-                window.location.href = "https://master120344.github.io/RealSurveys/surveys.html";
+                window.location.href = "surveys.html"; // Use a relative path since files are in the same directory
             }, 3000); // 3 seconds delay for the confetti and alert
 
         } catch (error) {
