@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevButton = document.getElementById("prevButton");
     const nextButton = document.getElementById("nextButton");
     const submitButton = document.getElementById("submitButton");
-    const surveyForm = document.getElementById("mcdonaldsSurveyForm");
     const rewardAmount = 5; // Example reward amount
 
     function showQuestion(index) {
@@ -35,7 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         try {
             console.log("Claim Reward button clicked!");
-            throw new Error("This is a test error to see if the button is working."); // Intentionally throw an error
+            // Trigger confetti
+            canvasConfetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Show a congratulatory message
+            setTimeout(() => {
+                alert(`Congratulations! You've earned $${rewardAmount}.`);
+                let user = JSON.parse(localStorage.getItem('user')) || {};
+                user.balance = (user.balance || 0) + rewardAmount;
+                localStorage.setItem('user', JSON.stringify(user));
+                // Redirect to the surveys page
+                window.location.href = "https://master120344.github.io/RealSurveys/surveys.html";
+            }, 3000); // 3 seconds delay for the confetti and alert
+
         } catch (error) {
             alert(`Error: ${error.message}`);
             console.error("Error detected:", error);
