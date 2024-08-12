@@ -8,7 +8,7 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: rgba(240, 242, 245, 0.4); /* More transparent */
+            background-color: rgba(240, 242, 245, 0.4);
             color: #333;
             background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/Screenshot_20240811-114733~2.png?raw=true');
             background-size: cover;
@@ -77,7 +77,7 @@
         }
 
         .hero {
-            background-color: rgba(217, 0, 0, 0.8); /* Semi-transparent red */
+            background-color: rgba(217, 0, 0, 0.8);
             height: 200px;
             display: flex;
             justify-content: center;
@@ -99,7 +99,7 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly more transparent */
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             border: 4px solid #ffc300;
@@ -208,7 +208,6 @@
             color: #d90000;
         }
 
-        /* Mobile Styles */
         @media (max-width: 768px) {
             header .container {
                 flex-direction: column;
@@ -241,8 +240,8 @@
         }
     </style>
 
-    <!-- Add the confetti library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3/dist/confetti.browser.min.js"></script>
+    <!-- Load the confetti library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.4.0/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
@@ -271,7 +270,7 @@
             <h2>McDonald's Customer Satisfaction Survey</h2>
             <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
             <form id="mcdonaldsSurveyForm">
-                <!-- Your survey questions here -->
+                <!-- Survey questions -->
                 <div class="survey-question active" data-question="1">
                     <p>Question 1/5</p>
                     <label for="q1">How often do you eat at McDonald's?</label>
@@ -286,15 +285,14 @@
                         <label for="q1_rarely">Rarely</label>
                     </div>
                 </div>
-                <!-- Repeat survey questions as needed -->
                 <div class="survey-question" data-question="2">
                     <p>Question 2/5</p>
                     <label for="q2">What is your favorite item on the McDonald's menu?</label>
                     <div class="options">
-                        <input type="radio" id="q2_bigmac" name="q2" value="Big Mac
-<label for="q2_bigmac">Big Mac</label>
-                        <input type="radio" id="q2_mcnuggets" name="q2" value="McNuggets">
-                        <label for="q2_mcnuggets">McNuggets</label>
+                        <input type="radio" id="q2_bigmac" name="q2" value="Big Mac">
+                        <label for="q2_bigmac">Big Mac</label>
+                        <input type="radio" id="q2_mcnuggets" name="q2" value="McNuggets
+<label for="q2_mcnuggets">McNuggets</label>
                         <input type="radio" id="q2_fries" name="q2" value="Fries">
                         <label for="q2_fries">Fries</label>
                         <input type="radio" id="q2_salad" name="q2" value="Salad">
