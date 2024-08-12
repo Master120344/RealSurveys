@@ -1,129 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Survey</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subway Survey</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="(link unavailable)"></script>
+  <script src="(link unavailable)"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="referral-program.html">Referral Program</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="survey">
-        <div class="container">
-            <h2>Subway Survey</h2>
-            <div class="survey-question">
-                <p id="question"></p>
-                <div id="options"></div>
-            </div>
-            <div class="survey-navigation">
-                <button id="back" onclick="prevQuestion()">Back</button>
-                <button id="next" onclick="nextQuestion()">Next</button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        const questions = [
-            {
-                question: "How often do you eat at Subway?",
-                options: ["Daily", "Weekly", "Monthly", "Rarely"]
-            },
-            {
-                question: "What is your favorite item on the Subway menu?",
-                options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"]
-            },
-            {
-                question: "How would you rate the freshness of ingredients at Subway?",
-                options: ["Excellent", "Good", "Average", "Poor"]
-            },
-            {
-                question: "How do you usually order at Subway?",
-                options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
-            }
-        ];
-
-        let currentQuestion = 0;
-
-        function showQuestion(index) {
-            const questionElem = document.getElementById('question');
-            const optionsElem = document.getElementById('options');
-
-            questionElem.innerText = questions[index].question;
-            optionsElem.innerHTML = '';
-
-            questions[index].options.forEach(option => {
-                const optionElem = document.createElement('div');
-                optionElem.classList.add('option');
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'option';
-                input.value = option;
-                const label = document.createElement('label');
-                label.innerText = option;
-                optionElem.appendChild(input);
-                optionElem.appendChild(label);
-                optionsElem.appendChild(optionElem);
-            });
-
-            document.getElementById('back').style.display = index === 0 ? 'none' : 'inline-block';
-            document.getElementById('next').innerText = index === questions.length - 1 ? 'Finish' : 'Next';
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            } else {
-                showReward();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion(currentQuestion);
-            }
-        }
-
-        function showReward() {
-            document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $4</p>';
-            document.querySelector('.survey-navigation').style.display = 'none';
-            
-            // Add confetti effect
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            showQuestion(currentQuestion);
-        });
-    </script>
+  <header>
+    <div class="container">
+      <h1><a href="index.html">RealSurveys</a></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+          <li><a href="leading-platform.html">Leading Platform</a></li>
+          <li><a href="referral-program.html">Referral Program</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section class="survey">
+    <div class="container">
+      <h2>Subway Survey</h2>
+      <div class="survey-question">
+        <p id="question"></p>
+        <div id="options"></div>
+      </div>
+      <div class="survey-navigation">
+        <button id="back" onclick="prevQuestion()">Back</button>
+        <button id="next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const questions = [
+      {
+        question: "How often do you eat at Subway?",
+        options: ["Daily", "Weekly", "Monthly", "Rarely"]
+      },
+      {
+        question: "What is your favorite item on the Subway menu?",
+        options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"]
+      },
+      {
+        question: "How would you rate the freshness of ingredients at Subway?",
+        options: ["Excellent", "Good", "Average", "Poor"]
+      },
+      {
+        question: "How do you usually order at Subway?",
+        options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
+      }
+    ];
+    let currentQuestion = 0;
+    function showQuestion(index) {
+      const questionElem = document.getElementById('question');
+      const optionsElem = document.getElementById('options');
+      questionElem.innerText = questions[index].question;
+      optionsElem.innerHTML = '';
+      questions[index].options.forEach(option => {
+        const optionElem = document.createElement('div');
+        optionElem.classList.add('option');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+        const label = document.createElement('label');
+        label.innerText = option;
+        optionElem.appendChild(input);
+        optionElem.appendChild(label);
+        optionsElem.appendChild(optionElem);
+      });
+      document.getElementById('back').style.display = index === 0 ? 'none' : 'inline-block';
+      document.getElementById('next').innerText = index === questions.length - 1 ? 'Finish' : 'Next';
+    }
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      } else {
+        showReward();
+      }
+    }
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    }
+    function showReward() {
+      document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
+      document.querySelector('.survey-navigation').style.display = 'none';
+      // Add confetti effect
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      showQuestion(currentQuestion);
+    });
+  </script>
 </body>
 </html>
