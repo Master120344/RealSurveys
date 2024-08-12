@@ -33,13 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
         try {
+            // Log to check if the button is clicked
             console.log("Claim Reward button clicked!");
+
             // Trigger confetti
-            canvasConfetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
+            if (typeof canvasConfetti === "function") {
+                canvasConfetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                throw new Error("canvasConfetti function is not defined.");
+            }
 
             // Show a congratulatory message
             setTimeout(() => {
@@ -52,8 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000); // 3 seconds delay for the confetti and alert
 
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            // Log and alert any errors
             console.error("Error detected:", error);
+            alert(`Error: ${error.message}`);
         }
     });
 
