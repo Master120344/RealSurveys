@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevButton = document.getElementById("prevButton");
     const nextButton = document.getElementById("nextButton");
     const submitButton = document.getElementById("submitButton");
-    const rewardAmount = document.getElementById("mcdonaldsSurveyForm") ? 5 : 3; // $5 for McDonald's, $3 for Taco Bell
+    const surveyForm = document.getElementById("tacoBellSurveyForm");
+    const rewardAmount = 3; // Set to $3 for Taco Bell survey
 
     function showQuestion(index) {
         questions.forEach((q, i) => {
@@ -35,14 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Claim Reward button clicked!");
 
         try {
-            // Trigger confetti if available
-            if (typeof confetti === "function") {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
+            // Check if the confetti library is loaded
+            if (typeof confetti !== "function") {
+                throw new Error("Confetti function is not loaded or defined.");
             }
+
+            // Trigger confetti
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
 
             // Show a congratulatory message
             setTimeout(() => {
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 user.balance = (user.balance || 0) + rewardAmount;
                 localStorage.setItem('user', JSON.stringify(user));
                 // Redirect to the surveys page
-                window.location.href = "https://master120344.github.io/RealSurveys/surveys.html"; // Redirect back to surveys page
+                window.location.href = "surveys.html"; // Redirect back to surveys page
             }, 2000); // 2 seconds delay for the confetti and alert
 
         } catch (error) {
