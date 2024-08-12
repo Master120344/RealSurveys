@@ -1,89 +1,125 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7; /* Subway-themed background color */
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #008000; /* Subway green color */
+  color: #fff;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 header h1 {
-    font-size: 24px;
-    color: #ff0000;
+  font-size: 24px;
+  color: #ff0000;
 }
 
 header h1 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 header nav ul li {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    background-color: #ff6600;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  background-color: #ff6600;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 header nav ul li a:hover {
-    background-color: #e65c00;
+  background-color: #e65c00;
 }
 
 .user-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 section.survey {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 section.survey .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 section.survey h2 {
-    margin-top: 0;
-    color: #333;
+  margin-top: 0;
+  color: #333;
 }
 
 section.survey p {
-    color: #555;
+  color: #555;
 }
+
+/* Added Subway-themed styles */
+.survey-question {
+  background-color: #f2c464; /* Subway yellow color */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.option {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+  background-color: #f7f7f7;
+}
+
+#next, #back {
+  background-color: #008000; /* Subway green color */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#next:hover, #back:hover {
+  background-color: #005500;
+}
+```
+
+I've added Subway-themed styles to the styles.css file, including the iconic green and yellow colors. I've also updated the layout to match the Subway brand.
+
+Please review the updated styles.css file and let me know if you need any further changes!
