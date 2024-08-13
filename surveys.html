@@ -47,12 +47,12 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: space-around;
-            width: 60%;
+            justify-content: space-between;
+            width: 100%;
         }
 
         header nav ul li {
-            margin-left: 20px;
+            margin: 0 10px; /* Add some space between tabs */
         }
 
         header nav ul li a {
@@ -63,6 +63,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s;
+            white-space: nowrap;
         }
 
         header nav ul li a:hover {
@@ -155,56 +156,68 @@
 
         /* McDonald's theme */
         .survey-item.mcdonalds {
-            background: linear-gradient(135deg, #ffe57f, #ffab00);
-            border-left: 10px solid #ff0000;
+            background: linear-gradient(135deg, #ffcc00, #ff0000); /* Red and yellow */
+            border-left: 10px solid #ff0000; /* McDonald's red */
         }
 
         .survey-item.mcdonalds h3 {
-            color: #ff0000;
+            color: #ff0000; /* McDonald's red */
+        }
+
+        .survey-item.mcdonalds p {
+            color: #ffe57f; /* Softer yellow text */
         }
 
         .survey-item.mcdonalds .btn {
-            background-color: #ff0000;
+            background-color: #ff0000; /* McDonald's red */
         }
 
         .survey-item.mcdonalds .btn:hover {
-            background-color: #cc0000;
+            background-color: #cc0000; /* Darker McDonald's red */
         }
 
         /* Taco Bell theme */
         .survey-item.tacobell {
-            background: linear-gradient(135deg, #fdd835, #ff6600);
-            border-left: 10px solid #ff6600;
+            background: linear-gradient(135deg, #6e2b77, #d3c7e4); /* Purple and white */
+            border-left: 10px solid #6e2b77; /* Taco Bell purple */
         }
 
         .survey-item.tacobell h3 {
-            color: #ff6600;
+            color: #6e2b77; /* Taco Bell purple */
+        }
+
+        .survey-item.tacobell p {
+            color: #d3c7e4; /* Softer purple text */
         }
 
         .survey-item.tacobell .btn {
-            background-color: #ff6600;
+            background-color: #6e2b77; /* Taco Bell purple */
         }
 
         .survey-item.tacobell .btn:hover {
-            background-color: #e65c00;
+            background-color: #4e1e54; /* Darker Taco Bell purple */
         }
 
         /* Subway theme */
         .survey-item.subway {
-            background: linear-gradient(135deg, #c0e9a6, #008000);
-            border-left: 10px solid #008000;
+            background: linear-gradient(135deg, #e1e1e1, #76c043); /* White and green */
+            border-left: 10px solid #76c043; /* Subway green */
         }
 
         .survey-item.subway h3 {
-            color: #008000;
+            color: #76c043; /* Subway green */
+        }
+
+        .survey-item.subway p {
+            color: #e1e1e1; /* Softer white text */
         }
 
         .survey-item.subway .btn {
-            background-color: #008000;
+            background-color: #76c043; /* Subway green */
         }
 
         .survey-item.subway .btn:hover {
-            background-color: #006400;
+            background-color: #5a9934; /* Darker Subway green */
         }
 
         footer {
@@ -296,7 +309,7 @@
 
     <section class="content">
         <div class="container">
-            <h2>Available Surveys</h2>
+<h2>Available Surveys</h2>
             <p>Complete surveys to earn rewards. Your opinions matter!</p>
             <ul class="survey-list">
                 <li class="survey-item mcdonalds">
@@ -311,7 +324,7 @@
                 <li class="survey-item tacobell">
                     <div class="details">
                         <h3>Taco Bell Customer Satisfaction</h3>
-<p>Reward: $3</p>
+                        <p>Reward: $3</p>
                         <p>Available Spots: 100</p>
                         <p>Survey ID: 002</p>
                     </div>
