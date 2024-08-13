@@ -5,10 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subway Survey</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Add the necessary scripts if available -->
-  <!-- <script src="path-to-your-script.js"></script> -->
+  <style>
+    /* Add background image */
+    body {
+      background-image: url('RealSurvey/assets/subway.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #333;
+    }
+
+    /* Dark overlay for better text contrast */
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Container with some opacity for better readability */
+    .survey .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      max-width: 650px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #008000; /* Subway green */
+    }
+
+    .survey-navigation button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
+  <div class="overlay"></div>
+
   <header>
     <div class="container">
       <h1><a href="index.html">RealSurveys</a></h1>
@@ -34,8 +75,8 @@
         <div id="options"></div>
       </div>
       <div class="survey-navigation">
-        <button id="back" onclick="prevQuestion()">Back</button>
-        <button id="next" onclick="nextQuestion()">Next</button>
+        <button id="back" onclick="prevQuestion()" disabled>Back</button>
+        <button id="next" onclick="nextQuestion()" disabled>Next</button>
       </div>
     </div>
   </section>
@@ -65,7 +106,9 @@
         options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
       }
     ];
+
     let currentQuestion = 0;
+    let selectedOption = null;
 
     function showQuestion(index) {
       const questionElem = document.getElementById('question');
@@ -79,22 +122,36 @@
         input.type = 'radio';
         input.name = 'option';
         input.value = option;
+        input.id = option;
+        input.onclick = enableNextButton;
         const label = document.createElement('label');
+        label.setAttribute('for', option);
         label.innerText = option;
         optionElem.appendChild(input);
         optionElem.appendChild(label);
         optionsElem.appendChild(optionElem);
       });
-      document.getElementById('back').style.display = index === 0 ? 'none' : 'inline-block';
-      document.getElementById('next').innerText = index === questions.length - 1 ? 'Finish' : 'Next';
+
+      // Disable the "Back" button if on the first question
+      document.getElementById('back').disabled = index === 0;
+      // Disable the "Next" button initially
+      document.getElementById('next').disabled = true;
+    }
+
+    function enableNextButton() {
+      document.getElementById('next').disabled = false;
     }
 
     function nextQuestion() {
-      if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        showQuestion(currentQuestion);
-      } else {
-        showReward();
+      const selected = document.querySelector('input[name="option"]:checked');
+      if (selected) {
+        selectedOption = selected.value;
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          showQuestion(currentQuestion);
+        } else {
+          showReward();
+        }
       }
     }
 
@@ -108,7 +165,7 @@
     function showReward() {
       document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
       document.querySelector('.survey-navigation').style.display = 'none';
-      // Add confetti effect (make sure you have the confetti.js library linked)
+      // Add confetti effect if you have confetti.js library linked
       // confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 
