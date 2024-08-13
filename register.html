@@ -10,32 +10,43 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f7f9fc;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
             color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('background-survey.jpg'); /* Add a background image */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             max-width: 400px;
             width: 100%;
             text-align: center;
-            border: 2px solid #008000; /* Subway green border */
+            border: 2px solid #008000;
         }
 
         .container h2 {
             margin-bottom: 20px;
-            color: #008000; /* Subway green text */
+            color: #008000;
         }
 
         .container input {
@@ -43,11 +54,19 @@
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #8B0000;
+            background-color: rgba(139, 0, 0, 0.1); /* Light red background */
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .container input:focus {
+            background-color: #ff6347; /* Lighter red */
+            box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+            outline: none;
         }
 
         .container button {
-            background-color: #008000; /* Subway green background */
+            background-color: #008000;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -57,7 +76,7 @@
         }
 
         .container button:hover {
-            background-color: #005500; /* Darker green on hover */
+            background-color: #005500;
             transform: scale(1.05);
         }
 
@@ -67,7 +86,7 @@
             color: green;
         }
 
-        /* Add some survey-themed elements */
+        /* Added survey-themed elements */
         .container::before {
             content: "📝";
             font-size: 50px;
