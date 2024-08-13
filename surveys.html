@@ -4,7 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys - RealSurveys</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #ff0000;
+            text-align: left;
+        }
+
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #ff0000;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            background-color: #ff0000;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h2 {
+            position: relative;
+            font-size: 36px;
+            margin: 0;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 4px solid #ff0000;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .survey-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .survey-item {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .survey-item h3 {
+            margin: 0 0 10px 0;
+            color: #ff0000;
+        }
+
+        .survey-item p {
+            margin: 5px 0;
+        }
+
+        .survey-item .details {
+            flex: 1;
+        }
+
+        .survey-item .actions {
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ff0000;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+
+            .survey-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .survey-item .actions {
+                text-align: left;
+                margin-top: 10px;
+            }
+
+            footer .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -41,7 +276,7 @@
                         <p>Survey ID: 001</p>
                     </div>
                     <div class="actions">
-                        <a href="mcdonalds-survey.html" class="btn btn-mcdonalds">Take Survey</a>
+                        <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
                     </div>
                 </li>
                 <li class="survey-item">
@@ -52,9 +287,10 @@
                         <p>Survey ID: 002</p>
                     </div>
                     <div class="actions">
-                        <a href="taco-bell-survey.html" class="btn btn-tacobell">Take Survey</a>
+                        <a href="taco-bell-survey.html" class="btn">Take Survey</a>
                     </div>
                 </li>
+                <!-- Add more surveys in the same format as needed -->
             </ul>
         </div>
     </section>
@@ -62,14 +298,74 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys</p>
-            <div class="social">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentQuestion = 0;
+            const questions = document.querySelectorAll(".survey-question");
+            const totalQuestions = questions.length;
+            const prevButton = document.getElementById("prevButton");
+            const nextButton = document.getElementById("nextButton");
+            const submitButton = document.getElementById("submitButton");
+            const rewardAmount = document.getElementById("mcdonaldsSurveyForm") ? 5 : 3; // $5 for McDonald's, $3 for Taco Bell
+
+            function showQuestion(index) {
+                questions.forEach((q, i) => {
+                    q.classList.toggle("active", i === index);
+                });
+                prevButton.style.display = index === 0 ? "none" : "inline-block";
+                nextButton.style.display = index === totalQuestions - 1 ? "none" : "inline-block";
+                submitButton.style.display = index === totalQuestions - 1 ? "inline-block" : "none";
+            }
+
+            prevButton.addEventListener("click", () => {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    showQuestion(currentQuestion);
+                }
+            });
+
+            nextButton.addEventListener("click", () => {
+                if (currentQuestion < totalQuestions - 1) {
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                }
+            });
+
+            submitButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                console.log("Claim Reward button clicked!");
+
+                try {
+                    // Trigger confetti if available
+                    if (typeof confetti === "function") {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.6 }
+                        });
+                    }
+
+                    // Show a congratulatory message
+                    setTimeout(() => {
+                        alert(`Congratulations! You've earned $${rewardAmount}.`);
+                        let user = JSON.parse(localStorage.getItem('user')) || {};
+                        user.balance = (user.balance || 0) + rewardAmount;
+                        localStorage.setItem('user', JSON.stringify(user));
+                        // Redirect to the surveys page
+                        window.location.href = "https://master120344.github.io/RealSurveys/surveys.html"; // Redirect back to surveys page
+                    }, 2000); // 2 seconds delay for the confetti and alert
+
+                } catch (error) {
+                    console.error("Error detected:", error);
+                    alert(`Error: ${error.message}`);
+                }
+            });
+
+            showQuestion(currentQuestion);
+        });
+    </script>
 </body>
 </html>
