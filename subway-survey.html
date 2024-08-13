@@ -1,233 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Survey</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Fullscreen background image */
-        body {
-            background-image: url('(link unavailable)');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        /* Dark overlay for readability */
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.7);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        header {
-            background-color: rgba(0, 128, 0, 0.9); /* Semi-transparent Subway green */
-            padding: 15px 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #ffcc00; /* Subway yellow */
-        }
-        header nav ul {
-            list-style: none;
-            margin: 10px 0 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        header nav ul li {
-            margin: 0 15px;
-        }
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        header nav ul li a:hover {
-            background-color: #e65c00;
-            transform: scale(1.05);
-        }
-        /* Enhanced container */
-        .survey .container {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            margin: 100px auto 50px;
-            text-align: center;
-            color: #333;
-        }
-        .survey h2 {
-            margin-bottom: 20px;
-            color: #008000; /* Subway green */
-            font-size: 24px;
-        }
-        .survey-question {
-            background-color: #ffcc00; /* Subway yellow */
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .option {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .option:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        .option input[type="radio"] {
-            margin-right: 10px;
-        }
-        .survey-navigation button {
-            background-color: #008000; /* Subway green */
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 5px;
-            margin: 0 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .survey-navigation button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-        .survey-navigation button:hover:not(:disabled) {
-            background-color: #005500;
-            transform: scale(1.05);
-        }
-        footer {
-            margin-top: auto;
-            background-color: rgba(0, 0, 0,
-        footer {
-            margin-top: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subway Survey</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add background image */
+    body {
+      background-image: url('RealSurvey/assets/subway.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #333;
+    }
+
+    /* Dark overlay for better text contrast */
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Container with some opacity for better readability */
+    .survey .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      max-width: 650px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #008000; /* Subway green */
+    }
+
+    .survey-navigation button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <header>
-        <h1>RealSurveys</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                <li><a href="leading-platform.html">Leading Platform</a></li>
-                <li><a href="referral-program.html">Referral Program</a></li>
-                <li><a href="register.html">Register</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="survey">
-        <div class="container">
-            <h2>Subway Survey</h2>
-            <div class="survey-question">
-                <p id="question"></p>
-                <div id="options"></div>
-            </div>
-            <div class="survey-navigation">
-                <button id="back" onclick="prevQuestion()" disabled>Back</button>
-                <button id="next" onclick="nextQuestion()" disabled>Next</button>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-    </footer>
-    <script>
-        const questions = [
-            { question: "How often do you eat at Subway?", options: ["Daily", "Weekly", "Monthly", "Rarely"] },
-            { question: "What is your favorite item on the Subway menu?", options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"] },
-            { question: "How would you rate the freshness of ingredients at Subway?", options: ["Excellent", "Good", "Average", "Poor"] },
-            { question: "How do you usually order at Subway?", options: ["In-store", "Drive-thru", "Delivery", "Mobile App"] }
-        ];
-        let currentQuestion = 0;
-        let selectedOption = null;
-        function showQuestion(index) {
-            const questionElem = document.getElementById('question');
-            const optionsElem = document.getElementById('options');
-            questionElem.innerText = questions[index].question;
-            optionsElem.innerHTML = '';
-            questions[index].options.forEach(option => {
-                const optionElem = document.createElement('div');
-                optionElem.classList.add('option');
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'option';
-                input.value = option;
-                (link unavailable) = option;
-                input.onclick = enableNextButton;
-                const label = document.createElement('label');
-                label.setAttribute('for', option);
-                label.innerText = option;
-                optionElem.appendChild(input);
-                optionElem.appendChild(label);
-                optionsElem.appendChild(optionElem);
-            });
-            document.getElementById('back').disabled = index === 0;
-            document.getElementById('next').disabled = true;
+  <div class="overlay"></div>
+
+  <header>
+    <div class="container">
+      <h1><a href="index.html">RealSurveys</a></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+          <li><a href="leading-platform.html">Leading Platform</a></li>
+          <li><a href="referral-program.html">Referral Program</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="survey">
+    <div class="container">
+      <h2>Subway Survey</h2>
+      <div class="survey-question">
+        <p id="question"></p>
+        <div id="options"></div>
+      </div>
+      <div class="survey-navigation">
+        <button id="back" onclick="prevQuestion()" disabled>Back</button>
+        <button id="next" onclick="nextQuestion()" disabled>Next</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        question: "How often do you eat at Subway?",
+        options: ["Daily", "Weekly", "Monthly", "Rarely"]
+      },
+      {
+        question: "What is your favorite item on the Subway menu?",
+        options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"]
+      },
+      {
+        question: "How would you rate the freshness of ingredients at Subway?",
+        options: ["Excellent", "Good", "Average", "Poor"]
+      },
+      {
+        question: "How do you usually order at Subway?",
+        options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let selectedOption = null;
+
+    function showQuestion(index) {
+      const questionElem = document.getElementById('question');
+      const optionsElem = document.getElementById('options');
+      questionElem.innerText = questions[index].question;
+      optionsElem.innerHTML = '';
+      questions[index].options.forEach(option => {
+        const optionElem = document.createElement('div');
+        optionElem.classList.add('option');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+        input.id = option;
+        input.onclick = enableNextButton;
+        const label = document.createElement('label');
+        label.setAttribute('for', option);
+        label.innerText = option;
+        optionElem.appendChild(input);
+        optionElem.appendChild(label);
+        optionsElem.appendChild(optionElem);
+      });
+
+      // Disable the "Back" button if on the first question
+      document.getElementById('back').disabled = index === 0;
+      // Disable the "Next" button initially
+      document.getElementById('next').disabled = true;
+    }
+
+    function enableNextButton() {
+      document.getElementById('next').disabled = false;
+    }
+
+    function nextQuestion() {
+      const selected = document.querySelector('input[name="option"]:checked');
+      if (selected) {
+        selectedOption = selected.value;
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          showQuestion(currentQuestion);
+        } else {
+          showReward();
         }
-        function enableNextButton() {
-            document.getElementById('next').disabled = false;
-        }
-        function nextQuestion() {
-            const selected = document.querySelector('input[name="option"]:checked');
-            if (selected) {
-                selectedOption = selected.value;
-                if (currentQuestion < questions.length - 1) {
-                    currentQuestion++;
-                    showQuestion(currentQuestion);
-                } else {
-                    showReward();
-                }
-            }
-        }
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion(currentQuestion);
-            }
-        }
-        function showReward() {
-            document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
-            document.querySelector('.survey-navigation').style.display = 'none';
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            showQuestion(currentQuestion);
-        });
-    </script>
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    function showReward() {
+      document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
+      document.querySelector('.survey-navigation').style.display = 'none';
+      // Add confetti effect if you have confetti.js library linked
+      // confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showQuestion(currentQuestion);
+    });
+  </script>
 </body>
 </html>
