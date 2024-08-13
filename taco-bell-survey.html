@@ -250,7 +250,11 @@
                     origin: { y: 0.6 }
                 });
 
-                alert("Survey submitted! Thank you for your feedback.");
+                // Simulate rewarding the user (replace this with actual reward logic)
+                alert("Congratulations! You've been rewarded with $5.");
+
+                // Redirect to surveys.html
+                window.location.href = "surveys.html";
             });
 
             showQuestion(currentQuestion);
@@ -289,8 +293,8 @@
                 </div>
                 <div class="survey-question" data-question="2">
                     <p>Question 2/5</p>
-<label for="q2">What is your favorite item on the Taco Bell menu?</label>
-                    <div class="options">
+                    <label for="q2">What is your favorite item on the Taco Bell menu?</label>
+<div class="options">
                         <input type="radio" id="q2_tacos" name="q2" value="Tacos">
                         <label for="q2_tacos">Tacos</label>
                         <input type="radio" id="q2_burritos" name="q2" value="Burritos">
