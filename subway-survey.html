@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subway Survey</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="(link unavailable)"></script>
-  <script src="(link unavailable)"></script>
+  <!-- Add the necessary scripts if available -->
+  <!-- <script src="path-to-your-script.js"></script> -->
 </head>
 <body>
   <header>
@@ -25,6 +25,7 @@
       </nav>
     </div>
   </header>
+
   <section class="survey">
     <div class="container">
       <h2>Subway Survey</h2>
@@ -38,11 +39,13 @@
       </div>
     </div>
   </section>
+
   <footer>
     <div class="container">
       <p>&copy; 2024 RealSurveys. All rights reserved.</p>
     </div>
   </footer>
+
   <script>
     const questions = [
       {
@@ -63,6 +66,7 @@
       }
     ];
     let currentQuestion = 0;
+
     function showQuestion(index) {
       const questionElem = document.getElementById('question');
       const optionsElem = document.getElementById('options');
@@ -84,6 +88,7 @@
       document.getElementById('back').style.display = index === 0 ? 'none' : 'inline-block';
       document.getElementById('next').innerText = index === questions.length - 1 ? 'Finish' : 'Next';
     }
+
     function nextQuestion() {
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
@@ -92,22 +97,21 @@
         showReward();
       }
     }
+
     function prevQuestion() {
       if (currentQuestion > 0) {
         currentQuestion--;
         showQuestion(currentQuestion);
       }
     }
+
     function showReward() {
       document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
       document.querySelector('.survey-navigation').style.display = 'none';
-      // Add confetti effect
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+      // Add confetti effect (make sure you have the confetti.js library linked)
+      // confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
+
     document.addEventListener('DOMContentLoaded', () => {
       showQuestion(currentQuestion);
     });
