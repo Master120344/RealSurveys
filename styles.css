@@ -2,7 +2,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7; /* Subway-themed background color */
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Update text color for contrast */
 }
 
 header {
@@ -70,7 +71,8 @@ section.survey {
 }
 
 section.survey .container {
-  background-color: #fff;
+  background-color: #444; /* Darker content background */
+  color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -81,11 +83,11 @@ section.survey .container {
 
 section.survey h2 {
   margin-top: 0;
-  color: #333;
+  color: #ff4747;
 }
 
 section.survey p {
-  color: #555;
+  color: #ccc;
 }
 
 /* Added Subway-themed styles */
@@ -96,7 +98,8 @@ section.survey p {
 }
 
 .option {
-  background-color: #fff;
+  background-color: #555; /* Darker option background */
+  color: #fff;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -104,7 +107,7 @@ section.survey p {
 }
 
 .option:hover {
-  background-color: #f7f7f7;
+  background-color: #666;
 }
 
 #next, #back {
