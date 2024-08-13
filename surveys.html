@@ -9,11 +9,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7; /* Subway-themed background color */
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
         }
 
         header {
-            background-color: #008000; /* Subway green color */
+            background-color: #1f1f1f; /* Darker background for header */
             color: #fff;
             padding: 10px 0;
             position: sticky;
@@ -33,7 +34,7 @@
 
         header h1 {
             font-size: 24px;
-            color: #ff0000;
+            color: #ffab00; /* Yellow accent */
         }
 
         header h1 a {
@@ -56,24 +57,24 @@
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            background-color: #ff6600;
+            background-color: #424242;
             padding: 10px 15px;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #e65c00;
+            background-color: #616161;
         }
 
         .hero {
-            background-color: #f2c464; /* Subway yellow color */
+            background-color: #333; /* Darker hero background */
             height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #008000; /* Subway green */
+            color: #ffab00; /* Yellow accent for hero text */
         }
 
         .hero h2 {
@@ -85,8 +86,8 @@
             padding: 40px 20px;
             max-width: 1000px;
             margin: 0 auto;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             margin-top: -50px;
             position: relative;
@@ -97,7 +98,7 @@
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #333;
+            color: #ffab00;
         }
 
         .content p {
@@ -115,19 +116,22 @@
             margin: 10px 0;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: #2c2c2c;
         }
 
         .survey-item h3 {
             margin: 0 0 10px 0;
+            color: #fff;
         }
 
         .survey-item p {
             margin: 5px 0;
+            color: #bdbdbd;
         }
 
         .survey-item .details {
@@ -174,8 +178,26 @@
             background-color: #e65c00; /* Darker Taco Bell orange */
         }
 
-        footer {
+        /* Subway theme */
+        .survey-item.subway {
+            background: #c0e9a6; /* Subway green light */
+            border-left: 10px solid #008000; /* Subway green */
+        }
+
+        .survey-item.subway h3 {
+            color: #008000; /* Subway green */
+        }
+
+        .survey-item.subway .btn {
             background-color: #008000; /* Subway green */
+        }
+
+        .survey-item.subway .btn:hover {
+            background-color: #006400; /* Darker Subway green */
+        }
+
+        footer {
+            background-color: #1f1f1f; /* Darker footer */
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -196,7 +218,7 @@
         }
 
         footer .social a {
-            color: #fff;
+            color: #ffab00;
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
@@ -204,7 +226,7 @@
         }
 
         footer .social a:hover {
-            color: #f2c464; /* Subway yellow */
+            color: #ffcc80; /* Lighter yellow for hover */
         }
 
         /* Mobile Styles */
@@ -257,12 +279,9 @@
             <nav>
                 <ul class="nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="surveys.html">Surveys</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="referral-program.html">Referral Program</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="logout.html">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -287,8 +306,7 @@
                     <div class="actions">
                         <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
                     </div>
-                </li>
-                <li class="survey-item tacobell">
+                </li>class="survey-item tacobell">
                     <div class="details">
                         <h3>Taco Bell Customer Satisfaction</h3>
                         <p>Reward: $3</p>
@@ -299,7 +317,17 @@
                         <a href="taco-bell-survey.html" class="btn">Take Survey</a>
                     </div>
                 </li>
-                <!-- Add more surveys in the same format as needed -->
+                <li class="survey-item subway">
+                    <div class="details">
+                        <h3>Subway Customer Satisfaction</h3>
+                        <p>Reward: $4</p>
+                        <p>Available Spots: 100</p>
+                        <p>Survey ID: 003</p>
+                    </div>
+                    <div class="actions">
+                        <a href="subway-survey.html" class="btn">Take Survey</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </section>
@@ -307,74 +335,12 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys</p>
+            <div class="social">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            let currentQuestion = 0;
-            const questions = document.querySelectorAll(".survey-question");
-            const totalQuestions = questions.length;
-            const prevButton = document.getElementById("prevButton");
-            const nextButton = document.getElementById("nextButton");
-            const submitButton = document.getElementById("submitButton");
-            const rewardAmount = document.getElementById("mcdonaldsSurveyForm") ? 5 : 3; // $5 for McDonald's, $3 for Taco Bell
-
-            function showQuestion(index) {
-                questions.forEach((q, i) => {
-                    q.classList.toggle("active", i === index);
-                });
-                prevButton.style.display = index === 0 ? "none" : "inline-block";
-                nextButton.style.display = index === totalQuestions - 1 ? "none" : "inline-block";
-                submitButton.style.display = index === totalQuestions - 1 ? "inline-block" : "none";
-            }
-
-            prevButton.addEventListener("click", () => {
-                if (currentQuestion > 0) {
-                    currentQuestion--;
-                    showQuestion(currentQuestion);
-                }
-            });
-
-            nextButton.addEventListener("click", () => {
-                if (currentQuestion < totalQuestions - 1) {
-                    currentQuestion++;
-                    showQuestion(currentQuestion);
-                }
-            });
-
-            submitButton.addEventListener("click", (event) => {
-                event.preventDefault();
-                console.log("Claim Reward button clicked!");
-
-                try {
-                    // Trigger confetti if available
-                    if (typeof confetti === "function") {
-                        confetti({
-                            particleCount: 100,
-                            spread: 70,
-                            origin: { y: 0.6 }
-                        });
-                    }
-
-                    // Show a congratulatory message
-                    setTimeout(() => {
-                        alert(`Congratulations! You've earned $${rewardAmount}.`);
-                        let user = JSON.parse(localStorage.getItem('user')) || {};
-                        user.balance = (user.balance || 0) + rewardAmount;
-                        localStorage.setItem('user', JSON.stringify(user));
-                        // Redirect to the surveys page
-                        window.location.href = "https://master120344.github.io/RealSurveys/surveys.html"; // Redirect back to surveys page
-                    }, 2000); // 2 seconds delay for the confetti and alert
-
-                } catch (error) {
-                    console.error("Error detected:", error);
-                    alert(`Error: ${error.message}`);
-                }
-            });
-
-            showQuestion(currentQuestion);
-        });
-    </script>
 </body>
 </html>
