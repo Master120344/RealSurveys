@@ -2,8 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Update text color for contrast */
+  background-color: #f7f7f7; /* Subway-themed background color */
 }
 
 header {
@@ -71,7 +70,7 @@ section.survey {
 }
 
 section.survey .container {
-  background-color: #444; /* Darker content background */
+  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -82,13 +81,14 @@ section.survey .container {
 
 section.survey h2 {
   margin-top: 0;
-  color: #ff4747;
+  color: #333;
 }
 
 section.survey p {
-  color: #ccc;
+  color: #555;
 }
 
+/* Added Subway-themed styles */
 .survey-question {
   background-color: #f2c464; /* Subway yellow color */
   padding: 20px;
@@ -96,8 +96,7 @@ section.survey p {
 }
 
 .option {
-  background-color: #555; /* Darker option background */
-  color: #fff;
+  background-color: #fff;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -105,7 +104,7 @@ section.survey p {
 }
 
 .option:hover {
-  background-color: #666;
+  background-color: #f7f7f7;
 }
 
 #next, #back {
@@ -120,205 +119,4 @@ section.survey p {
   background-color: #005500;
 }
 
-/* Added styles for other sections */
-.hero {
-  background-color: #2b2b2b; /* Darker hero section */
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  position: relative;
-}
-
-.hero h2 {
-  position: relative;
-  font-size: 48px;
-  margin: 0;
-  z-index: 1;
-  letter-spacing: 1.5px;
-}
-
-.content {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #444; /* Darker content background */
-  color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin-top: -50px;
-  position: relative;
-  z-index: 2;
-}
-
-.content h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #ff4747;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.content p {
-  font-size: 18px;
-  line-height: 1.8;
-  margin-bottom: 40px;
-  color: #ccc;
-}
-
-.survey-list {
-  list-style: none;
-  padding: 0;
-}
-
-.survey-item {
-  background: #555; /* Darker survey items background */
-  margin: 20px 0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.survey-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.survey-item .details {
-  flex: 1;
-  color: #fff;
-}
-
-.survey-item .actions {
-  text-align: right;
-}
-
-.survey-item h3 {
-  margin: 0 0 10px 0;
-  font-size: 24px;
-  color: inherit;
-  transition: color 0.3s;
-}
-
-.survey-item h3:hover {
-  color: #ff4747;
-}
-
-.survey-item p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.survey-item[data-theme="mcdonalds"] {
-  border-left: 6px solid #fdbc3d;
-  background: linear-gradient(135deg, #fbc02d, #f57c00);
-}
-
-.survey-item[data-theme="taco-bell"] {
-  border-left: 6px solid #5f259f;
-  background: linear-gradient(135deg, #7c4dff, #5e35b1);
-}
-
-.survey-item[data-theme="subway"] {
-  border-left: 6px solid #4caf50;
-  background: linear-gradient(135deg, #66bb6a, #43a047);
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff4747;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin: 5px 0;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.btn:hover {
-  background-color: darkred;
-  transform: scale(1.05);
-}
-
-footer {
-  background-color: #1f1f1f;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-}
-
-footer .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-footer p {
-  margin: 0;
-}
-
-footer .social {
-  margin-top: 10px;
-}
-
-footer .social a {
-  color: #fff;
-  margin: 0 10px;
-  font-size: 18px;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-footer .social a:hover {
-  color: #ff4747;
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-  header .container {
-    flex-direction: column;
-  }
-
-  header nav ul {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  header nav ul li {
-    margin: 5px;
-  }
-
-  .content {
-    padding: 20px;
-  }
-
-  .content h2 {
-    font-size: 28px;
-  }
-
-  .content p {
-    font-size: 16px;
-  }
-
-  .survey-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .survey-item .actions {
-    text-align: left;
-    margin-top: 10px;
-  }
-
-  footer .container {
-    padding: 0 20px;
-  }
-}
+Styles.css go ahead. 
