@@ -8,7 +8,7 @@
   <style>
     /* Add background image */
     body {
-      background-image: url('RealSurvey/assets/subway.jpg');
+      background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/subway.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -45,6 +45,22 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    #claim-reward {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #008000; /* Subway green */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none; /* Hidden initially */
+    }
+
+    #claim-reward:hover {
+      background-color: #005c00;
+    }
   </style>
 </head>
 <body>
@@ -78,6 +94,7 @@
         <button id="back" onclick="prevQuestion()" disabled>Back</button>
         <button id="next" onclick="nextQuestion()" disabled>Next</button>
       </div>
+      <button id="claim-reward" onclick="claimReward()">Claim Reward</button>
     </div>
   </section>
 
@@ -87,6 +104,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
   <script>
     const questions = [
       {
@@ -108,7 +126,6 @@
     ];
 
     let currentQuestion = 0;
-    let selectedOption = null;
 
     function showQuestion(index) {
       const questionElem = document.getElementById('question');
@@ -132,9 +149,7 @@
         optionsElem.appendChild(optionElem);
       });
 
-      // Disable the "Back" button if on the first question
       document.getElementById('back').disabled = index === 0;
-      // Disable the "Next" button initially
       document.getElementById('next').disabled = true;
     }
 
@@ -145,7 +160,6 @@
     function nextQuestion() {
       const selected = document.querySelector('input[name="option"]:checked');
       if (selected) {
-        selectedOption = selected.value;
         if (currentQuestion < questions.length - 1) {
           currentQuestion++;
           showQuestion(currentQuestion);
@@ -164,9 +178,14 @@
 
     function showReward() {
       document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
+      document.getElementById('claim-reward').style.display = 'inline-block';
       document.querySelector('.survey-navigation').style.display = 'none';
-      // Add confetti effect if you have confetti.js library linked
-      // confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
+
+    function claimReward() {
+      alert("You've claimed your $2 reward!");
+      window.location.href = 'surveys.html';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
