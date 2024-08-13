@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,22 +16,26 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: url('background-survey.jpg'); /* Add a background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
             text-align: center;
-            border: 2px solid #8B0000; /* Dark red border */
+            border: 2px solid #008000; /* Subway green border */
         }
 
         .container h2 {
             margin-bottom: 20px;
-            color: #8B0000; /* Dark red text */
+            color: #008000; /* Subway green text */
         }
 
         .container input {
@@ -42,7 +47,7 @@
         }
 
         .container button {
-            background-color: #8B0000; /* Dark red background */
+            background-color: #008000; /* Subway green background */
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -52,7 +57,7 @@
         }
 
         .container button:hover {
-            background-color: #ff6347; /* Lighter red */
+            background-color: #005500; /* Darker green on hover */
             transform: scale(1.05);
         }
 
@@ -61,8 +66,26 @@
             margin-top: 20px;
             color: green;
         }
+
+        /* Add some survey-themed elements */
+        .container::before {
+            content: "📝";
+            font-size: 50px;
+            color: #008000;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .container h2::after {
+            content: " (Survey Edition)";
+            font-size: 16px;
+            display: block;
+            color: #555;
+            margin-top: 5px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Register</h2>
@@ -76,4 +99,5 @@
     </div>
     <script src="register.js"></script>
 </body>
+
 </html>
