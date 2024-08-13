@@ -4,274 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys - RealSurveys</title>
-    <style>
-        /* Base Styles */
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f8fc;
-            color: #333;
-        }
-
-        header {
-            background-color: #1f1f1f;
-            color: #fff;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-            color: #ff4747;
-            text-align: left;
-        }
-
-        header h1 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        header nav ul li {
-            margin: 0 10px;
-        }
-
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        header nav ul li a:hover {
-            background-color: #ff4747;
-            transform: scale(1.05);
-        }
-
-        .hero {
-            background-color: #ff4747;
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-        }
-
-        .hero h2 {
-            position: relative;
-            font-size: 48px;
-            margin: 0;
-            z-index: 1;
-            letter-spacing: 1.5px;
-        }
-
-        .content {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: -50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #ff4747;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .content p {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #555;
-        }
-
-        .survey-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .survey-item {
-            background: #fff;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .survey-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .survey-item .details {
-            flex: 1;
-            color: #333;
-        }
-
-        .survey-item .actions {
-            text-align: right;
-        }
-
-        .survey-item h3 {
-            margin: 0 0 10px 0;
-            font-size: 24px;
-            color: inherit;
-            transition: color 0.3s;
-        }
-
-        .survey-item h3:hover {
-            color: #ff4747;
-        }
-
-        .survey-item p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
-        .survey-item[data-theme="mcdonalds"] {
-            border-left: 6px solid #fdbc3d;
-            background: linear-gradient(135deg, #fbc02d, #f57c00);
-        }
-
-        .survey-item[data-theme="taco-bell"] {
-            border-left: 6px solid #5f259f;
-            background: linear-gradient(135deg, #7c4dff, #5e35b1);
-        }
-
-        .survey-item[data-theme="subway"] {
-            border-left: 6px solid #4caf50;
-            background: linear-gradient(135deg, #66bb6a, #43a047);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ff4747;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 5px 0;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .btn:hover {
-            background-color: darkred;
-            transform: scale(1.05);
-        }
-
-        footer {
-            background-color: #1f1f1f;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        footer .social {
-            margin-top: 10px;
-        }
-
-        footer .social a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer .social a:hover {
-            color: #ff4747;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-            }
-
-            header nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            header nav ul li {
-                margin: 5px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .content h2 {
-                font-size: 28px;
-            }
-
-            .content p {
-                font-size: 16px;
-            }
-
-            .survey-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .survey-item .actions {
-                text-align: left;
-                margin-top: 10px;
-            }
-
-            footer .container {
-                padding: 0 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -280,9 +13,12 @@
             <nav>
                 <ul class="nav">
                     <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="balance.html">Balance</a></li>
+                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                    <li><a href="leading-platform.html">Leading Platform</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="register.html">Register</a></li>
                 </ul>
             </nav>
         </div>
@@ -295,56 +31,45 @@
     <section class="content">
         <div class="container">
             <h2>Available Surveys</h2>
-            <p>Take as many surveys as you want as long as they're available. You can't take the same survey twice.</p>
+            <p>Complete surveys to earn rewards. Your opinions matter!</p>
             <ul class="survey-list">
-                <li class="survey-item" data-theme="mcdonalds">
+                <li class="survey-item">
                     <div class="details">
-                        <h3>McDonald's</h3>
+                        <h3>McDonald's Customer Satisfaction</h3>
                         <p>Reward: $5</p>
                         <p>Available Spots: 100</p>
                         <p>Survey ID: 001</p>
                     </div>
                     <div class="actions">
-                        <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
+                        <a href="mcdonalds-survey.html" class="btn btn-mcdonalds">Take Survey</a>
                     </div>
                 </li>
-                <li class="survey-item" data-theme="taco-bell">
-<li class="survey-item" data-theme="taco-bell">
+                <li class="survey-item">
                     <div class="details">
-                        <h3>Taco Bell</h3>
+                        <h3>Taco Bell Customer Satisfaction</h3>
                         <p>Reward: $3</p>
                         <p>Available Spots: 100</p>
                         <p>Survey ID: 002</p>
                     </div>
                     <div class="actions">
-                        <a href="taco-bell-survey.html" class="btn">Take Survey</a>
+                        <a href="taco-bell-survey.html" class="btn btn-tacobell">Take Survey</a>
                     </div>
                 </li>
-                <li class="survey-item" data-theme="subway">
-                    <div class="details">
-                        <h3>Subway</h3>
-                        <p>Reward: $2</p>
-                        <p>Available Spots: 100</p>
-                        <p>Survey ID: 003</p>
-                    </div>
-                    <div class="actions">
-                        <a href="subway-survey.html" class="btn">Take Survey</a>
-                    </div>
-                </li>
-                <!-- Add more surveys in the same format as needed -->
             </ul>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <p>&copy; 2024 RealSurveys</p>
             <div class="social">
-                <a href="https://facebook.com">Facebook</a>
-                <a href="https://twitter.com">Twitter</a>
-                <a href="https://instagram.com">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
