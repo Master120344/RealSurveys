@@ -16,7 +16,7 @@
         header {
             background-color: #1f1f1f; /* Darker background for header */
             color: #fff;
-            padding: 10px 0;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -47,6 +47,8 @@
             margin: 0;
             padding: 0;
             display: flex;
+            justify-content: space-around;
+            width: 60%;
         }
 
         header nav ul li {
@@ -58,7 +60,7 @@
             text-decoration: none;
             font-size: 16px;
             background-color: #424242;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
@@ -87,8 +89,8 @@
             max-width: 1000px;
             margin: 0 auto;
             background-color: #1e1e1e;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
             margin-top: -50px;
             position: relative;
             z-index: 2;
@@ -110,18 +112,26 @@
         .survey-list {
             list-style: none;
             padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .survey-item {
-            margin: 10px 0;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             text-align: left;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
             background-color: #2c2c2c;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .survey-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
         .survey-item h3 {
@@ -134,73 +144,75 @@
             color: #bdbdbd;
         }
 
-        .survey-item .details {
-            flex: 1;
-        }
-
-        .survey-item .actions {
-            text-align: right;
+        .survey-item .btn {
+            align-self: flex-start;
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
         /* McDonald's theme */
         .survey-item.mcdonalds {
-            background: #ffe57f; /* McDonald's yellow */
-            border-left: 10px solid #ff0000; /* McDonald's red */
+            background: linear-gradient(135deg, #ffe57f, #ffab00);
+            border-left: 10px solid #ff0000;
         }
 
         .survey-item.mcdonalds h3 {
-            color: #ff0000; /* McDonald's red */
+            color: #ff0000;
         }
 
         .survey-item.mcdonalds .btn {
-            background-color: #ff0000; /* McDonald's red */
+            background-color: #ff0000;
         }
 
         .survey-item.mcdonalds .btn:hover {
-            background-color: #cc0000; /* Darker McDonald's red */
+            background-color: #cc0000;
         }
 
         /* Taco Bell theme */
         .survey-item.tacobell {
-            background: #fdd835; /* Taco Bell orange */
-            border-left: 10px solid #ff6600; /* Taco Bell orange */
+            background: linear-gradient(135deg, #fdd835, #ff6600);
+            border-left: 10px solid #ff6600;
         }
 
         .survey-item.tacobell h3 {
-            color: #ff6600; /* Taco Bell orange */
+            color: #ff6600;
         }
 
         .survey-item.tacobell .btn {
-            background-color: #ff6600; /* Taco Bell orange */
+            background-color: #ff6600;
         }
 
         .survey-item.tacobell .btn:hover {
-            background-color: #e65c00; /* Darker Taco Bell orange */
+            background-color: #e65c00;
         }
 
         /* Subway theme */
         .survey-item.subway {
-            background: #c0e9a6; /* Subway green light */
-            border-left: 10px solid #008000; /* Subway green */
+            background: linear-gradient(135deg, #c0e9a6, #008000);
+            border-left: 10px solid #008000;
         }
 
         .survey-item.subway h3 {
-            color: #008000; /* Subway green */
+            color: #008000;
         }
 
         .survey-item.subway .btn {
-            background-color: #008000; /* Subway green */
+            background-color: #008000;
         }
 
         .survey-item.subway .btn:hover {
-            background-color: #006400; /* Darker Subway green */
+            background-color: #006400;
         }
 
         footer {
-            background-color: #1f1f1f; /* Darker footer */
+            background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             text-align: center;
+            margin-top: 40px;
         }
 
         footer .container {
@@ -226,7 +238,7 @@
         }
 
         footer .social a:hover {
-            color: #ffcc80; /* Lighter yellow for hover */
+            color: #ffcc80;
         }
 
         /* Mobile Styles */
@@ -256,16 +268,6 @@
                 font-size: 16px;
             }
 
-            .survey-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .survey-item .actions {
-                text-align: left;
-                margin-top: 10px;
-            }
-
             footer .container {
                 padding: 0 20px;
             }
@@ -280,6 +282,7 @@
                 <ul class="nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
+                    <li><a href="balance.html">Balance</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="logout.html">Logout</a></li>
                 </ul>
@@ -303,19 +306,16 @@
                         <p>Available Spots: 100</p>
                         <p>Survey ID: 001</p>
                     </div>
-                    <div class="actions">
-                        <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
-                    </div>
-                </li>class="survey-item tacobell">
+                    <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
+                </li>
+                <li class="survey-item tacobell">
                     <div class="details">
                         <h3>Taco Bell Customer Satisfaction</h3>
-                        <p>Reward: $3</p>
+<p>Reward: $3</p>
                         <p>Available Spots: 100</p>
                         <p>Survey ID: 002</p>
                     </div>
-                    <div class="actions">
-                        <a href="taco-bell-survey.html" class="btn">Take Survey</a>
-                    </div>
+                    <a href="taco-bell-survey.html" class="btn">Take Survey</a>
                 </li>
                 <li class="survey-item subway">
                     <div class="details">
@@ -324,9 +324,7 @@
                         <p>Available Spots: 100</p>
                         <p>Survey ID: 003</p>
                     </div>
-                    <div class="actions">
-                        <a href="subway-survey.html" class="btn">Take Survey</a>
-                    </div>
+                    <a href="subway-survey.html" class="btn">Take Survey</a>
                 </li>
             </ul>
         </div>
