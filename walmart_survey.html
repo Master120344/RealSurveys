@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Survey</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/walmart.jpg'); /* Replace with Walmart-themed image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .survey .container {
+            background-color: #FFFFFF; /* White background */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+            color: #333;
+            border: none; /* No border */
+        }
+
+        h2 {
+            color: #0071CE; /* Walmart blue */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .survey-navigation button {
+            width: 100px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FFC20E; /* Walmart yellow */
+            color: white;
+        }
+
+        .survey-navigation button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .survey-navigation {
+            margin-top: 20px;
+        }
+
+        #claim-reward {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #0071CE; /* Walmart blue */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Hidden initially */
+        }
+
+        #claim-reward:hover {
+            background-color: #0059A2;
+        }
+    </style>
+</head>
+<body>
+
+<section class="survey">
+    <div class="container">
+        <h2>Walmart Survey</h2>
+        <div class="survey-question">
+            <p id="question"></p>
+            <div id="options"></div>
+        </div>
+        <div class="survey-navigation">
+            <button id="back" onclick="prevQuestion()" disabled>Back</button>
+            <button id="next" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+        <button id="claim-reward" onclick="claimReward()">Claim Reward</button>
+    </div>
+</section>
+
+<footer style="text-align:center; padding:20px 0;">
+    <p>&copy; 2024 RealSurveys.
