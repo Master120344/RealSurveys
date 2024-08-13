@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance - RealSurveys</title>
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #ff4747;
+            text-align: left;
+        }
+
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #ff4747;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            background-color: #333;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h2 {
+            position: relative;
+            font-size: 48px;
+            margin: 0;
+            z-index: 1;
+            letter-spacing: 1.5px;
+        }
+
+        .balance-container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .balance-container h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ff4747;
+        }
+
+        .balance-amount {
+            font-size: 64px;
+            margin: 20px 0;
+            color: #00e676;
+            font-weight: bold;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .payment-options img {
+            max-width: 100px;
+            filter: grayscale(1) brightness(0.8);
+            transition: filter 0.3s;
+        }
+
+        .payment-options img:hover {
+            filter: none;
+        }
+
+        .cashout-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #00e676;
+            color: #121212;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .cashout-btn:hover {
+            background-color: #00c853;
+            transform: scale(1.05);
+        }
+
+        .debit-card {
+            margin: 40px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #424242, #212121);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            color: #fff;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .debit-card h4 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+
+        .debit-card .card-number {
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin: 20px 0;
+        }
+
+        .debit-card .card-expiry {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ff4747;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px;
+            }
+
+            .balance-container {
+                padding: 20px;
+            }
+
+            .balance-container h3 {
+                font-size: 28px;
+            }
+
+            .balance-container .balance-amount {
+                font-size: 48px;
+            }
+
+            .payment-options {
+                flex-direction: column;
+            }
+
+            .payment-options img {
+                max-width: 80px;
+                margin-bottom: 20px;
+            }
+
+            .debit-card {
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="balance.html">Balance</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h2>Balance</h2>
+    </div>
+
+    <section class="balance-container">
+        <h3>Your Current Balance</h3>
+        <div class="balance-amount">$20.00</div>
+
+        <div class="payment-options">
+            <img src="paypal-logo.png" alt="PayPal">
+            <img src="cashapp-logo.png" alt="Cash App">
+            <img src="venmo-logo.png" alt="Venmo">
+        </div>
+
+        <a href="#" class="cashout-btn">Cash Out Instantly</a>
+
+        <div class="debit-card">
+            <h4>Your Debit Card</h4>
+            <div class="card-number">1234 5678 9012 3456</div>
+            <div class="card-expiry">EXP: 12/26</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="https://facebook.com">Facebook</a>
+                <a href="https://twitter.com">Twitter</a>
+                <a href="https://instagram.com">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
