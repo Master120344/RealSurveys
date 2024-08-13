@@ -1,197 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subway Survey</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-body {
-background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/subway.jpg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-color: #333;
-margin: 0;
-padding: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Survey</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/subway.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-.overlay {
-background-color: rgba(0, 0, 0, 0.5);
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
-}
+        .survey .container {
+            background-color: #F7D774; /* Gold background */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 400px; /* Reduced width for mobile compatibility */
+            margin: 50px auto;
+            text-align: center;
+            color: #333;
+            border: none; /* Removed the white border */
+        }
 
-.survey .container {
-background-color: #F7D774; /* Solid yellow/gold background for clarity */
-padding: 30px;
-border-radius: 15px;
-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
-max-width: 650px;
-margin: 50px auto;
-text-align: center;
-color: #333; /* Dark text for contrast */
-border: 0; /* Removed the white border */
-}
+        h2 {
+            color: #008000; /* Subway green for the title */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-h2 {
-color: #008000; /* Subway green for the title */
-}
+        .survey-navigation button {
+            width: 100px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #008000; /* Subway green */
+            color: white;
+        }
 
-.survey-navigation button:disabled {
-background-color: #ccc;
-cursor: not-allowed;
-}
+        .survey-navigation button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
 
-#claim-reward {
-margin-top: 20px;
-padding: 10px 20px;
-font-size: 18px;
-background-color: #008000; /* Subway green */
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-display: none; /* Hidden initially */
-}
+        .survey-navigation {
+            margin-top: 20px;
+        }
 
-#claim-reward:hover {
-background-color: #005c00;
-}
-</style>
+        #claim-reward {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #008000; /* Subway green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Hidden initially */
+        }
+
+        #claim-reward:hover {
+            background-color: #005c00;
+        }
+    </style>
 </head>
 <body>
-<div class="overlay"></div>
 
 <header>
-<div class="container">
-<h1><a href="index.html">RealSurveys</a></h1>
-<nav>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About Us</a></li>
-<li><a href="contact.html">Contact</a></li>
-<li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-<li><a href="leading-platform.html">Leading Platform</a></li>
-<li><a href="referral-program.html">Referral Program</a></li>
-<li><a href="register.html">Register</a></li>
-</ul>
-</nav>
-</div>
+    <div class="container">
+        <h1><a href="index.html" style="text-decoration:none; color:#FF4500;">RealSurveys</a></h1>
+        <nav>
+            <ul style="list-style:none; padding:0; display:flex; justify-content:space-around;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                <li><a href="leading-platform.html">Leading Platform</a></li>
+                <li><a href="referral-program.html">Referral Program</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <section class="survey">
-<div class="container">
-<h2>Subway Survey</h2>
-<div class="survey-question">
-<p id="question"></p>
-<div id="options"></div>
-</div>
-<div class="survey-navigation">
-<button id="back" onclick="prevQuestion()" disabled>Back</button>
-<button id="next" onclick="nextQuestion()" disabled>Next</button>
-</div>
-<button id="claim-reward" onclick="claimReward()">Claim Reward</button>
-</div>
+    <div class="container">
+        <h2>Subway Survey</h2>
+        <div class="survey-question">
+            <p id="question"></p>
+            <div id="options"></div>
+        </div>
+        <div class="survey-navigation">
+            <button id="back" onclick="prevQuestion()" disabled>Back</button>
+            <button id="next" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+        <button id="claim-reward" onclick="claimReward()">Claim Reward</button>
+    </div>
 </section>
 
-<footer>
-<div class="container">
-<p>&copy; 2024 RealSurveys. All rights reserved.</p>
-</div>
+<footer style="text-align:center; padding:20px 0;">
+    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
 <script>
-const questions = [
-{
-question: "How often do you eat at Subway?",
-options: ["Daily", "Weekly", "Monthly", "Rarely"]
-},
-{
-question: "What is your favorite item on the Subway menu?",
-options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"]
-},
-{
-question: "How would you rate the freshness of ingredients at Subway?",
-options: ["Excellent", "Good", "Average", "Poor"]
-},
-{
-question: "How do you usually order at Subway?",
-options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
-}
-];
+    const questions = [
+        {
+            question: "How often do you eat at Subway?",
+            options: ["Daily", "Weekly", "Monthly", "Rarely"]
+        },
+        {
+            question: "What is your favorite item on the Subway menu?",
+            options: ["Footlong Sub", "6-Inch Sub", "Salad", "Wrap"]
+        },
+        {
+            question: "How would you rate the freshness of ingredients at Subway?",
+            options: ["Excellent", "Good", "Average", "Poor"]
+        },
+        {
+            question: "How do you usually order at Subway?",
+            options: ["In-store", "Drive-thru", "Delivery", "Mobile App"]
+        }
+    ];
 
-let currentQuestion = 0;
+    let currentQuestion = 0;
 
-function showQuestion(index) {
-const questionElem = document.getElementById('question');
-const optionsElem = document.getElementById('options');
-questionElem.innerText = questions[index].question;
-optionsElem.innerHTML = '';
-questions[index].options.forEach(option => {
-const optionElem = document.createElement('div');
-optionElem.classList.add('option');
-const input = document.createElement('input');
-input.type = 'radio';
-input.name = 'option';
-input.value = option;
-input.id = option;
-input.onclick = enableNextButton;
-const label = document.createElement('label');
-label.setAttribute('for', option);
-label.innerText = option;
-optionElem.appendChild(input);
-optionElem.appendChild(label);
-optionsElem.appendChild(optionElem);
-});
+    function showQuestion(index) {
+        const questionElem = document.getElementById('question');
+        const optionsElem = document.getElementById('options');
+        questionElem.innerText = questions[index].question;
+        optionsElem.innerHTML = '';
+        questions[index].options.forEach(option => {
+            const optionElem = document.createElement('div');
+            optionElem.classList.add('option');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'option';
+            input.value = option;
+            input.id = option;
+            input.onclick = enableNextButton;
+            const label = document.createElement('label');
+            label.setAttribute('for', option);
+            label.innerText = option;
+            optionElem.appendChild(input);
+            optionElem.appendChild(label);
+            optionsElem.appendChild(optionElem);
+        });
 
-document.getElementById('back').disabled = index === 0;
-document.getElementById('next').disabled = true;
-}
+        document.getElementById('back').disabled = index === 0;
+        document.getElementById('next').disabled = true;
+    }
 
-function enableNextButton() {
-document.getElementById('next').disabled = false;
-}
+    function enableNextButton() {
+        document.getElementById('next').disabled = false;
+    }
 
-function nextQuestion() {
-const selected = document.querySelector('input[name="option"]:checked');
-if (selected) {
-if (currentQuestion < questions.length - 1) {
-currentQuestion++;
-showQuestion(currentQuestion);
-} else {
-showReward();
-}
-}
-}
+    function nextQuestion() {
+        const selected = document.querySelector('input[name="option"]:checked');
+        if (selected) {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                showReward();
+            }
+        }
+    }
 
-function prevQuestion() {
-if (currentQuestion > 0) {
-currentQuestion--;
-showQuestion(currentQuestion);
-}
-}
+    function prevQuestion() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+        }
+    }
 
-function showReward() {
-document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
-document.getElementById('claim-reward').style.display = 'inline-block';
-document.querySelector('.survey-navigation').style.display = 'none';
-confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-}
+    function showReward() {
+        document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $2</p>';
+        document.getElementById('claim-reward').style.display = 'inline-block';
+        document.querySelector('.survey-navigation').style.display = 'none';
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
 
-function claimReward() {
-alert("You've claimed your $2 reward!");
-window.location.href = 'surveys.html';
-}
+    function claimReward() {
+        alert("You've claimed your $2 reward!");
+        window.location.href = 'surveys.html';
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-showQuestion(currentQuestion);
-});
+    document.addEventListener('DOMContentLoaded', () => {
+        showQuestion(currentQuestion);
+    });
 </script>
 </body>
 </html>
