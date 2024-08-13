@@ -10,10 +10,10 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(120deg, #f6d365, #fda085);
+            background: linear-gradient(120deg, #2c3e50, #4ca1af);
             background-size: 400% 400%;
             animation: gradientBackground 15s ease infinite;
-            color: #333;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,19 +34,19 @@
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.8); /* Darker semi-transparent background */
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             max-width: 400px;
             width: 100%;
             text-align: center;
-            border: 2px solid #008000;
+            border: 2px solid #8B0000; /* Matching dark red border */
         }
 
         .container h2 {
             margin-bottom: 20px;
-            color: #008000;
+            color: #ff6347; /* Matching lighter red text */
         }
 
         .container input {
@@ -54,19 +54,20 @@
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
-            border: 1px solid #8B0000;
+            border: 1px solid #8B0000; /* Dark red border */
             background-color: rgba(139, 0, 0, 0.1); /* Light red background */
+            color: #fff;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .container input:focus {
-            background-color: #ff6347; /* Lighter red */
+            background-color: #ff6347; /* Lighter red on focus */
             box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
             outline: none;
         }
 
         .container button {
-            background-color: #008000;
+            background-color: #8B0000; /* Dark red background */
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -76,21 +77,21 @@
         }
 
         .container button:hover {
-            background-color: #005500;
+            background-color: #a22b2b; /* Slightly lighter red on hover */
             transform: scale(1.05);
         }
 
         .redirecting {
             display: none;
             margin-top: 20px;
-            color: green;
+            color: #00ff00; /* Bright green for visibility */
         }
 
         /* Added survey-themed elements */
         .container::before {
             content: "📝";
             font-size: 50px;
-            color: #008000;
+            color: #ff6347; /* Matching red color */
             display: block;
             margin-bottom: 20px;
         }
@@ -99,7 +100,7 @@
             content: " (Survey Edition)";
             font-size: 16px;
             display: block;
-            color: #555;
+            color: #ff6347;
             margin-top: 5px;
         }
     </style>
