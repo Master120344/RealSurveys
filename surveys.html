@@ -9,12 +9,12 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f7f8fc;
             color: #333;
         }
 
         header {
-            background-color: #1a1a1a;
+            background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             position: sticky;
@@ -34,8 +34,8 @@
 
         header h1 {
             margin: 0;
-            font-size: 28px;
-            color: #ff0000;
+            font-size: 32px;
+            color: #ff4747;
             text-align: left;
         }
 
@@ -60,20 +60,20 @@
         header nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #ff0000;
+            background-color: #ff4747;
             transform: scale(1.05);
         }
 
         .hero {
-            background-color: #ff0000;
-            height: 200px;
+            background-color: #ff4747;
+            height: 250px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -84,9 +84,10 @@
 
         .hero h2 {
             position: relative;
-            font-size: 36px;
+            font-size: 48px;
             margin: 0;
             z-index: 1;
+            letter-spacing: 1.5px;
         }
 
         .content {
@@ -95,9 +96,8 @@
             margin: 0 auto;
             text-align: center;
             background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            border: 4px solid #ff0000;
             margin-top: -50px;
             position: relative;
             z-index: 2;
@@ -106,13 +106,16 @@
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #ff0000;
+            color: #ff4747;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .content p {
             font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #555;
         }
 
         .survey-list {
@@ -121,38 +124,67 @@
         }
 
         .survey-item {
-            background: #f9f9f9;
-            margin: 10px 0;
+            background: #fff;
+            margin: 20px 0;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .survey-item h3 {
-            margin: 0 0 10px 0;
-            color: #ff0000;
-        }
-
-        .survey-item p {
-            margin: 5px 0;
+        .survey-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .survey-item .details {
             flex: 1;
+            color: #333;
         }
 
         .survey-item .actions {
             text-align: right;
         }
 
+        .survey-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        .survey-item h3:hover {
+            color: #ff4747;
+        }
+
+        .survey-item p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .survey-item[data-theme="mcdonalds"] {
+            border-left: 6px solid #fdbc3d;
+            background: linear-gradient(135deg, #fbc02d, #f57c00);
+        }
+
+        .survey-item[data-theme="taco-bell"] {
+            border-left: 6px solid #5f259f;
+            background: linear-gradient(135deg, #7c4dff, #5e35b1);
+        }
+
+        .survey-item[data-theme="subway"] {
+            border-left: 6px solid #4caf50;
+            background: linear-gradient(135deg, #66bb6a, #43a047);
+        }
+
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #ff0000;
+            background-color: #ff4747;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
@@ -163,10 +195,10 @@
         .btn:hover {
             background-color: darkred;
             transform: scale(1.05);
-}
+        }
 
         footer {
-            background-color: #1a1a1a;
+            background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -195,7 +227,7 @@
         }
 
         footer .social a:hover {
-            color: #ff0000;
+            color: #ff4747;
         }
 
         /* Mobile Styles */
@@ -266,9 +298,9 @@
     <section class="content">
         <div class="container">
             <h2>Available Surveys</h2>
-            <p>Take as many surveys as you want to as long it's available. You can't take the same survey twice</p>
+            <p>Take as many surveys as you want as long as they're available. You can't take the same survey twice.</p>
             <ul class="survey-list">
-                <li class="survey-item">
+                <li class="survey-item" data-theme="mcdonalds">
                     <div class="details">
                         <h3>McDonald's Customer Satisfaction</h3>
                         <p>Reward: $5</p>
@@ -279,8 +311,8 @@
                         <a href="mcdonalds-survey.html" class="btn">Take Survey</a>
                     </div>
                 </li>
-                <li class="survey-item">
-                    <div class="details">
+                <li class="survey-item" data-theme="taco-bell">
+                    <div class="
                         <h3>Taco Bell Customer Satisfaction</h3>
                         <p>Reward: $3</p>
                         <p>Available Spots: 100</p>
@@ -290,8 +322,7 @@
                         <a href="taco-bell-survey.html" class="btn">Take Survey</a>
                     </div>
                 </li>
-                <!-- Add the Subway Survey -->
-                <li class="survey-item">
+                <li class="survey-item" data-theme="subway">
                     <div class="details">
                         <h3>Subway Customer Satisfaction</h3>
                         <p>Reward: $2</p>
@@ -310,6 +341,11 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="https://facebook.com">Facebook</a>
+                <a href="https://twitter.com">Twitter</a>
+                <a href="https://instagram.com">Instagram</a>
+            </div>
         </div>
     </footer>
 </body>
