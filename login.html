@@ -5,95 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - RealSurveys</title>
     <style>
+        /* Basic Styles for Login Page */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(120deg, #0d0d0d, #262626);
-            background-size: 400% 400%;
-            animation: gradientBackground 15s ease infinite;
-            color: #fff;
+            background-color: #f7f9fc;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
+            background: #8B0000;
         }
 
-        @keyframes gradientBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        .login-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
             max-width: 400px;
-            width: 100%;
             text-align: center;
-            border: 2px solid #8B0000;
         }
 
-        .container h2 {
+        .login-container h2 {
             margin-bottom: 20px;
-            color: #ff6347;
+            color: #8B0000;
         }
 
-        .container input {
-            width: 100%;
+        .login-container input {
+            width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #8B0000;
-            background-color: rgba(139, 0, 0, 0.1);
-            color: #fff;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
-        .container input:focus {
-            background-color: #ff6347;
-            box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
-            outline: none;
-        }
-
-        .container button {
-            background-color: #8B0000;
+        .login-container button {
+            background: #FF6347;
             color: #fff;
-            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 16px;
+            transition: background 0.3s;
         }
 
-        .container button:hover {
-            background-color: #a22b2b;
-            transform: scale(1.05);
+        .login-container button:hover {
+            background: #FF7F50;
         }
 
-        .redirecting {
-            display: none;
-            margin-top: 20px;
-            color: #00ff00;
+        .login-container .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            color: #fff;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
         }
     </style>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <!-- Firebase Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
 </head>
 <body>
-    <div class="container">
+    <div class="login-container">
         <h2>Login</h2>
-        <form id="login-form">
+        <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
+            <div class="error-message" id="error-message"></div>
         </form>
-        <div class="redirecting">Redirecting...</div>
     </div>
-    
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <footer>
+        <p>&copy; 2024 RealSurveys. All rights reserved. <a href="index.html">Home</a></p>
+    </footer>
     <script type="module" src="login.js"></script>
 </body>
 </html>
