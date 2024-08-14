@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,157 +9,194 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(120deg, #0d0d0d, #262626); /* Even darker background */
-            background-size: 400% 400%;
-            animation: gradientBackground 15s ease infinite;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a1a1a;
             color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        @keyframes gradientBackground {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .container {
-            background-color: rgba(0, 0, 0, 0.9); /* Darker semi-transparent black background */
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            border: 2px solid #8B0000; /* Matching dark red border */
-        }
-
-        .container h2 {
-            margin-bottom: 20px;
-            color: #ff6347; /* Matching lighter red text */
-        }
-
-        .container input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #8B0000; /* Dark red border */
-            background-color: rgba(139, 0, 0, 0.1); /* Light red background */
+        header h1 {
+            margin: 0;
+            font-size: 28px;
             color: #fff;
-            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        .container input:focus {
-            background-color: #ff6347; /* Lighter red on focus */
-            box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
-            outline: none;
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .container button {
-            background-color: #8B0000; /* Dark red background */
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
             color: #fff;
+            text-decoration: none;
+            font-size: 14px;
             padding: 10px 20px;
-            border: none;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        .container button:hover {
-            background-color: #a22b2b; /* Slightly lighter red on hover */
+        header nav ul li a:hover {
+            background-color: #ff8c00;
             transform: scale(1.05);
         }
 
-        .redirecting {
-            display: none;
-            margin-top: 20px;
-            color: #00ff00; /* Bright green for visibility */
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
         }
 
-        /* Added survey-themed elements */
-        .container::before {
-            content: "📝";
-            font-size: 50px;
-            color: #ff6347; /* Matching red color */
-            display: block;
+        .form-container h2 {
             margin-bottom: 20px;
+            color: #8B0000;
         }
 
-        .container h2::after {
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container input[type="email"],
+        .form-container input[type="password"],
+        .form-container input[type="text"] {
+            margin-bottom: 20px;
+            padding: 10px;
             font-size: 16px;
-            display: block;
-            color: #ff6347;
-            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container input[type="submit"] {
+            background: #FF6347;
+            color: #fff;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background: #FF7F50;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ff8c00;
         }
     </style>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script type="module" src="path/to/your/register.js"></script> <!-- Ensure this path is correct -->
 </head>
-
 <body>
-    <div class="container">
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                    <li><a href="leading-platform.html">Leading Platform</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="form-container">
         <h2>Register</h2>
-        <form id="register-form">
+        <form>
             <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
             <input type="email" id="email" placeholder="Email" required>
-            <button type="submit">Register</button>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Register">
+            <div class="error-message"></div>
         </form>
-        <div class="redirecting">Success! Redirecting...</div>
     </div>
-    
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-    <script type="module">
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-            authDomain: "real-surveys.firebaseapp.com",
-            projectId: "real-surveys",
-            storageBucket: "real-surveys.appspot.com",
-            messagingSenderId: "1024139519354",
-            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-        };
 
-        // Initialize Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        document.getElementById('register-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const email = document.getElementById('email').value;
-
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed up successfully
-                    const user = userCredential.user;
-                    document.querySelector('.redirecting').style.display = 'block';
-                    setTimeout(() => {
-                        window.location.href = 'welcome.html'; // Redirect to welcome page
-                    }, 2000);
-                })
-                .catch((error) => {
-                    // Error occurred
-                    console.error('Error during registration:', error);
-                });
-        });
-    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
-
 </html>
