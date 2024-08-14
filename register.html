@@ -25,11 +25,9 @@
             0% {
                 background-position: 0% 50%;
             }
-
             50% {
                 background-position: 100% 50%;
             }
-
             100% {
                 background-position: 0% 50%;
             }
@@ -115,15 +113,11 @@
             <input type="password" id="password" placeholder="Password" required>
             <input type="email" id="email" placeholder="Email" required>
             <button type="submit">Register</button>
+            <div class="redirecting">Success! Redirecting...</div>
         </form>
-        <div class="redirecting">Success! Redirecting...</div>
     </div>
 
     <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -145,7 +139,7 @@
         const auth = getAuth(app);
         const database = getDatabase(app);
 
-        document.getElementById('register-form').addEventListener('submit', async (event) => {
+        document.getElementById('register-form').addEventListener('submit', (event) => {
             event.preventDefault();
 
             const username = document.getElementById('username').value;
@@ -155,31 +149,32 @@
             // Check if username already exists
             const usersRef = ref(database, 'users');
             const usernameQuery = query(usersRef, orderByChild('username'), equalTo(username));
-            const snapshot = await get(usernameQuery);
-
-            if (snapshot.exists()) {
-                alert('Username already taken. Please choose another one.');
-            } else {
-                try {
+            get(usernameQuery).then((snapshot) => {
+                if (snapshot.exists()) {
+                    alert('Username already taken. Please choose another one.');
+                } else {
                     // Register user with Firebase Authentication
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    const user = userCredential.user;
+                    createUserWithEmailAndPassword(auth, email, password)
+                        .then((userCredential) => {
+                            const user = userCredential.user;
+                            // Save user profile in Firebase Database
+                            set(ref(database, 'users/' + user.uid), {
+                                username: username,
+                                email: email,  // Note: Email is not encrypted in this version
+                                balance: 0  // Start with a balance of 0
+                            });
 
-                    // Save user profile in Firebase Database
-                    await set(ref(database, 'users/' + user.uid), {
-                        username: username,
-                        email: email, // Store email directly
-                        balance: 0  // Start with a balance of 0
-                    });
-
-                    document.querySelector('.redirecting').style.display = 'block';
-                    setTimeout(() => {
-                        window.location.href = 'welcome.html'; // Redirect to welcome page
-                    }, 2000);
-                } catch (error) {
-                    alert('Error: ' + error.message);
+                            document.querySelector('.redirecting').style.display = 'block';
+                            setTimeout(() => {
+                                window.location.href = 'welcome.html'; // Redirect to welcome page
+                            }, 2000);
+                        })
+                        .catch((error) => {
+                            const errorMessage = error.message;
+                            alert("Error: " + errorMessage);
+                        });
                 }
-            }
+            });
         });
     </script>
 </body>
