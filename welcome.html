@@ -13,6 +13,8 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
 <!-- Firebase Realtime Database -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+<!-- Firebase Storage -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
 </head>
 <body>
@@ -44,6 +46,17 @@ To keep this survey site alive, we need real answers. These are quick surveys, s
 <p id="balance"></p>
 <button id="logout-btn">Logout</button>
 <a href="surveys.html" class="btn">Go to Surveys</a>
+
+<!-- File upload and download UI -->
+<h3>Upload a File</h3>
+<input type="file" id="file-upload">
+<button id="upload-btn">Upload</button>
+
+<h3>Download File</h3>
+<input type="text" id="file-path" placeholder="Enter file path">
+<button id="download-btn">Download</button>
+<img id="download-img" alt="File download preview" style="max-width: 100%;"/>
+
 </div>
 </section>
 <footer>
