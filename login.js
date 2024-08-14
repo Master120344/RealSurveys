@@ -2,7 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 
-// Firebase configuration
+// Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
     authDomain: "real-surveys.firebaseapp.com",
@@ -12,7 +12,6 @@ const firebaseConfig = {
     appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
