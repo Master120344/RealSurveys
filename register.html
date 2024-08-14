@@ -25,9 +25,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -108,7 +110,7 @@
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form onsubmit="registerUser(event)">
+        <form id="register-form">
             <input type="text" id="username" placeholder="Username" required>
             <input type="password" id="password" placeholder="Password" required>
             <input type="email" id="email" placeholder="Email" required>
@@ -116,66 +118,69 @@
         </form>
         <div class="redirecting">Success! Redirecting...</div>
     </div>
-    
+
     <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
 
-    <script>
-        // Firebase configuration
-        var firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getDatabase, ref, set, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+            authDomain: "real-surveys.firebaseapp.com",
+            projectId: "real-surveys",
+            storageBucket: "real-surveys.appspot.com",
+            messagingSenderId: "1024139519354",
+            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
         };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
 
-        function registerUser(event) {
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        document.getElementById('register-form').addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            var username = document.getElementById('username').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
             // Check if username already exists
-            firebase.database().ref('users').orderByChild('username').equalTo(username).once('value', function(snapshot) {
-                if (snapshot.exists()) {
-                    alert('Username already taken. Please choose another one.');
-                } else {
+            const usersRef = ref(database, 'users');
+            const usernameQuery = query(usersRef, orderByChild('username'), equalTo(username));
+            const snapshot = await get(usernameQuery);
+
+            if (snapshot.exists()) {
+                alert('Username already taken. Please choose another one.');
+            } else {
+                try {
                     // Register user with Firebase Authentication
-                    firebase.auth().createUserWithEmailAndPassword(email, password)
-                        .then(function(userCredential) {
-                            var user = userCredential.user;
-                            // Encrypt email for storing
-                            var encryptedEmail = CryptoJS.AES.encrypt(email, 'your-secret-key').toString();
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
 
-                            // Save user profile in Firebase Database
-                            firebase.database().ref('users/' + user.uid).set({
-                                username: username,
-                                email: encryptedEmail,
-                                balance: 0  // Start with a balance of 0
-                            });
+                    // Save user profile in Firebase Database
+                    await set(ref(database, 'users/' + user.uid), {
+                        username: username,
+                        email: email, // Store email directly
+                        balance: 0  // Start with a balance of 0
+                    });
 
-                            document.querySelector('.redirecting').style.display = 'block';
-                            setTimeout(function() {
-                                window.location.href = 'dashboard.html'; // Redirect to dashboard or login page
-                            }, 2000);
-                        })
-                        .catch(function(error) {
-                            var errorCode = error.code;
-                            var errorMessage = error.message;
-                            alert("Error: " + errorMessage);
-                        });
+                    document.querySelector('.redirecting').style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = 'welcome.html'; // Redirect to welcome page
+                    }, 2000);
+                } catch (error) {
+                    alert('Error: ' + error.message);
                 }
-            });
-        }
+            }
+        });
     </script>
 </body>
 
