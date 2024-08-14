@@ -1,7 +1,7 @@
 // Import the necessary functions from Firebase SDK
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 
 // Your Firebase configuration object
 const firebaseConfig = {
@@ -28,13 +28,13 @@ onAuthStateChanged(auth, (user) => {
     onValue(userRef, (snapshot) => {
       const userData = snapshot.val();
       if (userData) {
-        document.getElementById('username').innerHTML = userData.username || 'No Username';
-        document.getElementById('email').innerHTML = userData.email || 'No Email';
-        document.getElementById('balance').innerHTML = userData.balance || 'No Balance';
+        document.getElementById('username').textContent = userData.username || 'No Username';
+        document.getElementById('email').textContent = userData.email || 'No Email';
+        document.getElementById('balance').textContent = userData.balance || 'No Balance';
       } else {
-        document.getElementById('username').innerHTML = 'No User Data';
-        document.getElementById('email').innerHTML = 'No User Data';
-        document.getElementById('balance').innerHTML = 'No User Data';
+        document.getElementById('username').textContent = 'No User Data';
+        document.getElementById('email').textContent = 'No User Data';
+        document.getElementById('balance').textContent = 'No User Data';
       }
     });
 
