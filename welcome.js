@@ -23,6 +23,8 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     const userId = user.uid;
     const userRef = ref(database, 'users/' + userId);
+
+    // Listen for user data changes
     onValue(userRef, (snapshot) => {
       const userData = snapshot.val();
       if (userData) {
@@ -36,6 +38,7 @@ onAuthStateChanged(auth, (user) => {
       }
     });
 
+    // Handle logout
     document.getElementById('logout-btn').addEventListener('click', () => {
       signOut(auth).then(() => {
         window.location.href = 'index.html';
@@ -44,6 +47,7 @@ onAuthStateChanged(auth, (user) => {
       });
     });
   } else {
+    // Redirect to login page if no user is authenticated
     window.location.href = 'index.html';
   }
 });
