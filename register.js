@@ -1,8 +1,9 @@
 // Import necessary Firebase SDKs
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 
-// Initialize Firebase (ensure your Firebase config is properly imported and initialized in your app)
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
     authDomain: "real-surveys.firebaseapp.com",
@@ -13,11 +14,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Reference to Firebase Authentication and Database
-const auth = getAuth();
-const database = getDatabase();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase(app);
 
 function registerUser(event) {
     event.preventDefault();
