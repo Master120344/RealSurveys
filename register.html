@@ -106,21 +106,26 @@
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <input type="email" id="email" placeholder="Email" required>
+        <form onsubmit="registerUser(event)">
+            <input type="text" id="username" name="username" placeholder="Username" required autocomplete="username">
+            <input type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
+            <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email">
             <button type="submit">Register</button>
         </form>
         <div class="redirecting">Success! Redirecting...</div>
     </div>
-
+    
     <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
     <script type="module">
-        // Import necessary Firebase SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+        import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
+        import CryptoJS from 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js';
 
         // Firebase configuration
         const firebaseConfig = {
@@ -131,21 +136,19 @@
             messagingSenderId: "1024139519354",
             appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
         };
-
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
+        const auth = getAuth(app);
         const database = getDatabase(app);
 
         function registerUser(event) {
             event.preventDefault();
 
-            // Get user inputs
             const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
             const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-            // Register user with Firebase Authentication
+            // Create a new user with Firebase Authentication
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Get the user's ID
@@ -154,31 +157,24 @@
                     // Create a user object to store in Realtime Database
                     const user = {
                         username,
-                        email,
-                        balance: 0 // Initialize balance
+                        email: CryptoJS.AES.encrypt(email, 'your-secret-key').toString(),
+                        balance: 0
                     };
 
                     // Store the user object in Realtime Database
-                    set(ref(database, 'users/' + userId), user)
-                        .then(() => {
-                            // Show redirecting message and redirect after a short delay
-                            document.querySelector('.redirecting').style.display = 'block';
-                            setTimeout(() => {
-                                window.location.href = 'welcome.html'; // Redirect to welcome.html
-                            }, 2000);
-                        })
-                        .catch((error) => {
-                            console.error("Error writing to database:", error);
-                        });
+                    set(ref(database, 'users/' + userId), user);
+
+                    // Redirect to welcome.html
+                    document.querySelector('.redirecting').style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = 'welcome.html';
+                    }, 2000);
                 })
                 .catch((error) => {
-                    console.error("Error registering user:", error);
-                    alert("Error: " + error.message);
+                    // Handle any errors that occur during registration
+                    console.error(error);
                 });
         }
-
-        // Attach the registerUser function to the form's submit event
-        document.querySelector('form').addEventListener('submit', registerUser);
     </script>
 </body>
 </html>
