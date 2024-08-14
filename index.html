@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #fff; /* Changed from orange to white */
+            color: #fff;
             text-align: left;
         }
 
@@ -72,7 +72,7 @@
         }
 
         .hero {
-            background-color: #8B0000; /* Dark red background */
+            background-color: #8B0000;
             height: 350px;
             display: flex;
             flex-direction: column;
@@ -81,13 +81,13 @@
             text-align: center;
             color: #fff;
             position: relative;
-            margin-top: -30px; /* Move the hero section up */
+            margin-top: -30px;
         }
 
         .hero h2 {
             font-size: 48px;
             margin: 0;
-            padding-top: 20px; /* Move text closer to the edge */
+            padding-top: 20px;
             z-index: 1;
         }
 
@@ -99,7 +99,7 @@
 
         .hero a.btn {
             display: inline-block;
-            background: #FF6347; /* Lighter red */
+            background: #FF6347;
             color: #fff;
             padding: 15px 30px;
             text-decoration: none;
@@ -111,7 +111,7 @@
         }
 
         .hero a.btn:hover {
-            background: #FF7F50; /* Slightly lighter red */
+            background: #FF7F50;
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
@@ -128,7 +128,7 @@
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            border: 4px solid #8B0000; /* Dark red border */
+            border: 4px solid #8B0000;
             margin-top: -50px;
             position: relative;
             z-index: 2;
@@ -137,7 +137,7 @@
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #8B0000; /* Dark red text */
+            color: #8B0000;
         }
 
         .content p {
@@ -232,7 +232,7 @@
                     <li><a href="leading-platform.html">Leading Platform</a></li>
                     <li><a href="referral-program.html">Referral Program</a></li>
                     <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li> <!-- Added Login Button -->
+                    <li><a href="login.html">Login</a></li> <!-- Added Login link -->
                 </ul>
             </nav>
         </div>
@@ -264,22 +264,18 @@
         </div>
     </footer>
 
-    <script type="module" src="path/to/firebase-config.js"></script> <!-- Ensure this path is correct -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <script type="module" src="path/to/your/index.js"></script> <!-- Ensure this path is correct -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Document loaded and script running');
-
             // Disable copy, cut, and paste
-            document.addEventListener('copy', (e) => {
-                e.preventDefault();
-            });
-            document.addEventListener('cut', (e) => {
-                e.preventDefault();
-            });
-            document.addEventListener('paste', (e) => {
-                e.preventDefault();
-            });
+            document.addEventListener('copy', (e) => { e.preventDefault(); });
+            document.addEventListener('cut', (e) => { e.preventDefault(); });
+            document.addEventListener('paste', (e) => { e.preventDefault(); });
         });
     </script>
 </body>
