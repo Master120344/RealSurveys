@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,27 +103,26 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form id="register-form">
+        <form>
             <input type="text" id="username" placeholder="Username" required>
             <input type="password" id="password" placeholder="Password" required>
             <input type="email" id="email" placeholder="Email" required>
             <button type="submit">Register</button>
-            <div class="redirecting">Success! Redirecting...</div>
         </form>
+        <div class="redirecting">Success! Redirecting...</div>
     </div>
 
     <!-- Firebase SDKs -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
+        // Import necessary Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getDatabase, ref, set, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
-        // Your web app's Firebase configuration
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
             authDomain: "real-surveys.firebaseapp.com",
@@ -136,47 +134,51 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+        const auth = getAuth();
         const database = getDatabase(app);
 
-        document.getElementById('register-form').addEventListener('submit', (event) => {
+        function registerUser(event) {
             event.preventDefault();
 
+            // Get user inputs
             const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
 
-            // Check if username already exists
-            const usersRef = ref(database, 'users');
-            const usernameQuery = query(usersRef, orderByChild('username'), equalTo(username));
-            get(usernameQuery).then((snapshot) => {
-                if (snapshot.exists()) {
-                    alert('Username already taken. Please choose another one.');
-                } else {
-                    // Register user with Firebase Authentication
-                    createUserWithEmailAndPassword(auth, email, password)
-                        .then((userCredential) => {
-                            const user = userCredential.user;
-                            // Save user profile in Firebase Database
-                            set(ref(database, 'users/' + user.uid), {
-                                username: username,
-                                email: email,  // Note: Email is not encrypted in this version
-                                balance: 0  // Start with a balance of 0
-                            });
+            // Register user with Firebase Authentication
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Get the user's ID
+                    const userId = userCredential.user.uid;
 
+                    // Create a user object to store in Realtime Database
+                    const user = {
+                        username,
+                        email,
+                        balance: 0 // Initialize balance
+                    };
+
+                    // Store the user object in Realtime Database
+                    set(ref(database, 'users/' + userId), user)
+                        .then(() => {
+                            // Show redirecting message and redirect after a short delay
                             document.querySelector('.redirecting').style.display = 'block';
                             setTimeout(() => {
-                                window.location.href = 'welcome.html'; // Redirect to welcome page
+                                window.location.href = 'welcome.html'; // Redirect to welcome.html
                             }, 2000);
                         })
                         .catch((error) => {
-                            const errorMessage = error.message;
-                            alert("Error: " + errorMessage);
+                            console.error("Error writing to database:", error);
                         });
-                }
-            });
-        });
+                })
+                .catch((error) => {
+                    console.error("Error registering user:", error);
+                    alert("Error: " + error.message);
+                });
+        }
+
+        // Attach the registerUser function to the form's submit event
+        document.querySelector('form').addEventListener('submit', registerUser);
     </script>
 </body>
-
 </html>
