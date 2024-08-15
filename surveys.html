@@ -5,7 +5,236 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys - RealSurveys</title>
     <style>
-        /* Include all the styles from your previous example here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+        }
+
+        header {
+            background-color: #1f1f1f; /* Darker background for header */
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #ffab00; /* Yellow accent */
+        }
+
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            background-color: #424242;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            white-space: nowrap;
+        }
+
+        header nav ul li a:hover {
+            background-color: #616161;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            background-color: #333; /* Darker hero background */
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffab00; /* Yellow accent for hero text */
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffab00;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .survey-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .survey-item {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background-color: #2c2c2c;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .survey-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .survey-item .details {
+            z-index: 1;
+        }
+
+        .survey-item h3 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .survey-item p {
+            margin: 5px 0;
+            color: #bdbdbd;
+        }
+
+        .survey-item .btn {
+            align-self: flex-start;
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .survey-item .btn:hover {
+            background-color: #ffffff;
+            color: #121212;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #ffab00;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ffcc80;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+
+            footer .container {
+                padding: 0 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -33,7 +262,7 @@
             <h2>Available Surveys</h2>
             <p>Complete surveys to earn rewards. Your opinions matter!</p>
             <ul class="survey-list">
-                <li class="survey-item mcdonalds" data-reward="5" data-survey-id="001">
+                <li class="survey-item" data-reward="5" data-survey-id="001">
                     <div class="details">
                         <h3>McDonald's Customer Satisfaction</h3>
                         <p>Reward: $5</p>
@@ -42,7 +271,7 @@
                     </div>
                     <a href="mcdonalds-survey.html" class="btn take-survey" data-reward="5" data-survey-id="001">Take Survey</a>
                 </li>
-                <li class="survey-item tacobell" data-reward="3" data-survey-id="002">
+                <li class="survey-item" data-reward="3" data-survey-id="002">
                     <div class="details">
                         <h3>Taco Bell Customer Satisfaction</h3>
                         <p>Reward: $3</p>
@@ -51,7 +280,7 @@
                     </div>
                     <a href="taco-bell-survey.html" class="btn take-survey" data-reward="3" data-survey-id="002">Take Survey</a>
                 </li>
-                <li class="survey-item subway" data-reward="4" data-survey-id="003">
+                <li class="survey-item" data-reward="4" data-survey-id="003">
                     <div class="details">
                         <h3>Subway Customer Satisfaction</h3>
                         <p>Reward: $4</p>
@@ -60,7 +289,7 @@
                     </div>
                     <a href="subway-survey.html" class="btn take-survey" data-reward="4" data-survey-id="003">Take Survey</a>
                 </li>
-                <li class="survey-item chase" data-reward="7" data-survey-id="004">
+                <li class="survey-item" data-reward="7" data-survey-id="004">
                     <div class="details">
                         <h3>Chase Bank Customer Satisfaction</h3>
                         <p>Reward: $7</p>
@@ -69,7 +298,7 @@
                     </div>
                     <a href="chasebank-survey.html" class="btn take-survey" data-reward="7" data-survey-id="004">Take Survey</a>
                 </li>
-                <li class="survey-item southwest" data-reward="10" data-survey-id="005">
+                <li class="survey-item" data-reward="10" data-survey-id="005">
                     <div class="details">
                         <h3>Southwest Airlines Customer Satisfaction</h3>
                         <p>Reward: $10</p>
@@ -78,7 +307,7 @@
                     </div>
                     <a href="southwest-survey.html" class="btn take-survey" data-reward="10" data-survey-id="005">Take Survey</a>
                 </li>
-                <li class="survey-item wendys" data-reward="6" data-survey-id="006">
+                <li class="survey-item" data-reward="6" data-survey-id="006">
                     <div class="details">
                         <h3>Wendy's Customer Satisfaction</h3>
                         <p>Reward: $6</p>
@@ -87,7 +316,7 @@
                     </div>
                     <a href="wendys-survey.html" class="btn take-survey" data-reward="6" data-survey-id="006">Take Survey</a>
                 </li>
-                <li class="survey-item walmart" data-reward="8" data-survey-id="007">
+                <li class="survey-item" data-reward="8" data-survey-id="007">
                     <div class="details">
                         <h3>Walmart Customer Satisfaction</h3>
                         <p>Reward: $8</p>
