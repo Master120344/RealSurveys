@@ -23,18 +23,17 @@ function loginUser(event) {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // User signed in successfully
-            document.getElementById('error-message').textContent = '';
-            document.getElementById('success-message').textContent = 'Success! Redirecting...';
-            document.querySelector('.redirecting').style.display = 'block';
+            document.querySelector('.error-message').textContent = ''; // Clear error message
+            document.querySelector('.redirecting').style.display = 'block'; // Show redirect message
             setTimeout(() => {
-                window.location.href = 'surveys.html';
+                window.location.href = 'surveys.html'; // Redirect after 2 seconds
             }, 2000);
         })
         .catch((error) => {
             // Handle any errors that occur during login
             console.error("Error logging in:", error);
-            document.getElementById('success-message').textContent = '';
-            document.getElementById('error-message').textContent = "Error: " + error.message;
+            document.querySelector('.redirecting').style.display = 'none'; // Hide redirect message
+            document.querySelector('.error-message').textContent = "Error: " + error.message; // Show error message
         });
 }
 
