@@ -9,18 +9,18 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
         }
 
         header {
-            background-color: #1a1a1a;
+            background-color: #1e1e1e;
             color: #fff;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
         }
 
         header .container {
@@ -74,15 +74,15 @@
             max-width: 500px;
             margin: 50px auto;
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #1e1e1e;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             text-align: center;
         }
 
         .form-container h2 {
             margin-bottom: 20px;
-            color: #8B0000;
+            color: #ff6347; /* Tomato color for header */
         }
 
         .form-container form {
@@ -93,7 +93,7 @@
         .form-container label {
             margin-bottom: 5px;
             font-size: 16px;
-            color: #333;
+            color: #e0e0e0; /* Light text color */
         }
 
         .form-container input[type="email"],
@@ -101,12 +101,21 @@
             margin-bottom: 20px;
             padding: 10px;
             font-size: 16px;
-            border: 1px solid #ddd;
+            border: 2px solid #333; /* Darker border */
             border-radius: 5px;
+            background: #333; /* Dark input background */
+            color: #e0e0e0; /* Light text color in input */
+            transition: border-color 0.3s;
+        }
+
+        .form-container input[type="email"]:focus,
+        .form-container input[type="password"]:focus {
+            border-color: #ff6347; /* Tomato color for focus */
+            outline: none;
         }
 
         .form-container input[type="submit"] {
-            background: #FF6347;
+            background: #ff6347; /* Tomato color for button */
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -117,17 +126,22 @@
         }
 
         .form-container input[type="submit"]:hover {
-            background: #FF7F50;
+            background: #ff7f50; /* Light tomato color for hover */
+        }
+
+        .error-message {
+            color: #ff4d4d; /* Red color for errors */
+            margin-top: 10px;
         }
 
         .redirecting {
             display: none;
             margin-top: 20px;
-            color: #FF6347;
+            color: #32cd32; /* Lime green color for success */
         }
 
         footer {
-            background-color: #1a1a1a;
+            background-color: #1e1e1e;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -157,6 +171,14 @@
 
         footer .social a:hover {
             color: #ff8c00;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            .form-container {
+                width: 90%;
+                padding: 15px;
+            }
         }
     </style>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
@@ -190,7 +212,11 @@
             <label for="password">Password:</label>
             <input type="password" id="password" placeholder="Password" required>
             <input type="submit" value="Login">
-            <div class="redirecting">Redirecting...</div>
+            <div class="redirecting">Success! Redirecting...</div>
+            <div class="error-message"></div> <!-- For error messages -->
+            <div>
+                <a href="reset-password.html" style="color: #ff6347;">Forgot Password?</a> <!-- Reset password link -->
+            </div>
         </form>
     </div>
 
