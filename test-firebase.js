@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
+import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,7 +16,54 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const database = getDatabase(app);
 
-// Test if Firebase is initialized correctly
-console.log('Firebase initialized successfully');
+// Test Firebase Authentication
+async function testAuth() {
+  try {
+    const userCredential = await signInAnonymously(auth);
+    console.log('Signed in anonymously:', userCredential.user.uid);
+    return userCredential.user.uid;
+  } catch (error) {
+    console.error('Error signing in:', error);
+  }
+}
+
+// Test Firebase Realtime Database
+async function writeUserData(userId, name, email) {
+  try {
+    await set(ref(database, 'users/' + userId), {
+      username: name,
+      email: email
+    });
+    console.log('Data written successfully');
+  } catch (error) {
+    console.error('Error writing data:', error);
+  }
+}
+
+async function readUserData(userId) {
+  try {
+    const userRef = ref(database, 'users/' + userId);
+    const snapshot = await get(userRef);
+    if (snapshot.exists()) {
+      console.log('User data:', snapshot.val());
+    } else {
+      console.log('No data available');
+    }
+  } catch (error) {
+    console.error('Error reading data:', error);
+  }
+}
+
+// Execute the test functions
+async function runTests() {
+  const userId = await testAuth();
+  if (userId) {
+    await writeUserData(userId, 'John Doe', 'john.doe@example.com');
+    await readUserData(userId);
+  }
+}
+
+runTests();
