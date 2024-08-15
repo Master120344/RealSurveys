@@ -10,17 +10,17 @@
             margin: 0;
             padding: 0;
             background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text color */
+            color: #f5f5f5; /* Light text color */
         }
 
         header {
-            background-color: #1f1f1f; /* Darker background for header */
+            background-color: #333; /* Darker background for header */
             color: #fff;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         header .container {
@@ -52,32 +52,34 @@
         }
 
         header nav ul li {
-            margin: 0 10px; /* Add some space between tabs */
+            margin: 0 10px;
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            background-color: #424242;
+            background-color: #444;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             white-space: nowrap;
         }
 
         header nav ul li a:hover {
-            background-color: #616161;
+            background-color: #555;
+            transform: scale(1.05);
         }
 
         .hero {
-            background-color: #333; /* Darker hero background */
+            background-color: #1e1e1e; /* Slightly lighter dark background */
             height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: #ffab00; /* Yellow accent for hero text */
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         .hero h2 {
@@ -87,14 +89,11 @@
 
         .content {
             padding: 40px 20px;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            background-color: #1e1e1e;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: #1a1a1a;
             border-radius: 15px;
-            margin-top: -50px;
-            position: relative;
-            z-index: 2;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
 
@@ -120,81 +119,72 @@
 
         .survey-item {
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa); /* Gradient background */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background-color: #2c2c2c;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
+            align-items: center;
+            text-align: center;
+            color: #fff;
         }
 
         .survey-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #8e24aa, #6a1b9a); /* Reverse gradient on hover */
+        }
+
+        .survey-item .details {
+            z-index: 1;
         }
 
         .survey-item h3 {
             margin: 0 0 10px 0;
-            color: #fff;
+            font-size: 22px;
+            text-align: center;
         }
 
-        .survey-item .details {
-            margin-bottom: 20px;
-        }
-
-        .survey-item .details .pot {
-            color: #4caf50; /* Green color for Pot */
-            font-size: 18px;
-        }
-
-        .survey-item .details .spots-left {
-            color: #ff5722; /* Orange color for spots left */
+        .survey-item p {
+            margin: 5px 0;
             font-size: 16px;
         }
 
-        .survey-item .details .reward {
-            color: #4caf50; /* Green color for reward */
+        .survey-item .pot {
             font-size: 18px;
+            margin-top: 10px;
+            color: #00ff00; /* Green for pot amount */
+        }
+
+        .survey-item .reward {
+            font-size: 18px;
+            color: #00ff00; /* Green for reward */
         }
 
         .survey-item .btn {
+            align-self: center; /* Center align the button */
             padding: 10px 20px;
             color: #fff;
-            background-color: #3f51b5; /* Blue color */
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s;
-            margin-top: auto;
+            background-color: #ffab00; /* Yellow accent */
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
         }
 
         .survey-item .btn:hover {
-            background-color: #303f9f; /* Darker blue */
-        }
-
-        /* Purple color for a survey item */
-        .survey-item.purple {
-            background: linear-gradient(135deg, #7e57c2, #5e35b1); /* Purple gradient */
-            border-left: 10px solid #5e35b1; /* Dark purple border */
-        }
-
-        .survey-item.purple h3 {
-            color: #fff; /* White text */
-        }
-
-        .survey-item.purple .details .pot,
-        .survey-item.purple .details .reward {
-            color: #c5cae9; /* Light purple */
-        }
-
-        .survey-item.purple .details .spots-left {
-            color: #b39ddb; /* Lighter purple */
+            background-color: #ffcc00; /* Lighter yellow */
+            transform: scale(1.05);
         }
 
         footer {
-            background-color: #1f1f1f;
+            background-color: #333;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -268,7 +258,7 @@
                 <ul class="nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="balance.html">Balance</a></li>
+                    <li><a href="balance.html" id="balance-link">Balance: $0</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="logout.html">Logout</a></li>
                 </ul>
@@ -285,32 +275,76 @@
             <h2>Available Surveys</h2>
             <p>Complete surveys to earn rewards. Your opinions matter!</p>
             <ul class="survey-list">
-                <li class="survey-item purple" data-survey-id="001" data-reward="5">
+                <li class="survey-item" data-reward="5" data-survey-id="001">
                     <div class="details">
                         <h3>McDonald's</h3>
-                        <p class="pot">Pot: $16,000</p>
-                        <p class="spots-left">1,500 spots left out of 4,000</p>
+                        <p>1,000 / 2,000 spots left</p>
                         <p class="reward">Reward: $5</p>
+                        <p class="pot">Pot: $16,000</p>
                     </div>
-                    <a href="#" class="btn take-survey" data-survey-id="001" data-reward="5">Take Survey</a>
+                    <a href="mcdonalds-survey.html" class="btn take-survey" data-reward="5" data-survey-id="001">Start Survey</a>
                 </li>
-                <li class="survey-item purple" data-survey-id="002" data-reward="3">
+                <li class="survey-item" data-reward="3" data-survey-id="002">
                     <div class="details">
-                        <h3>Starbucks</h3>
-                        <p class="pot">Pot: $7,451</p>
-                        <p class="spots-left">2,200 spots left out of 4,500</p>
+                        <h3>Taco Bell</h3>
+                        <p>850 / 1,500 spots left</p>
                         <p class="reward">Reward: $3</p>
+                        <p class="pot">Pot: $7,451</p>
                     </div>
-                    <a href="#" class="btn take-survey" data-survey-id="002" data-reward="3">Take Survey</a>
+                    <a href="tacobell-survey.html" class="btn take-survey" data-reward="3" data-survey-id="002">Start Survey</a>
                 </li>
-                <!-- Add more survey items here -->
+                <li class="survey-item" data-reward="4" data-survey-id="003">
+                    <div class="details">
+                        <h3>Subway</h3>
+                        <p>1,300 / 2,000 spots left</p>
+                        <p class="reward">Reward: $4</p>
+                        <p class="pot">Pot: $10,000</p>
+                    </div>
+                    <a href="subway-survey.html" class="btn take-survey" data-reward="4" data-survey-id="003">Start Survey</a>
+                </li>
+                <li class="survey-item" data-reward="7" data-survey-id="004">
+                    <div class="details">
+                        <h3>Chase Bank</h3>
+                        <p>1,200 / 1,500 spots left</p>
+                        <p class="reward">Reward: $7</p>
+                        <p class="pot">Pot: $14,000</p>
+                    </div>
+                    <a href="chasebank-survey.html" class="btn take-survey" data-reward="7" data-survey-id="004">Start Survey</a>
+                </li>
+                <li class="survey-item" data-reward="10" data-survey-id="005">
+                    <div class="details">
+                        <h3>Southwest Airlines</h3>
+                        <p>1,000 / 1,300 spots left</p>
+                        <p class="reward">Reward: $10</p>
+                        <p class="pot">Pot: $20,000</p>
+                    </div>
+                    <a href="southwest-survey.html" class="btn take-survey" data-reward="10" data-survey-id="005">Start Survey</a>
+                </li>
+                <li class="survey-item" data-reward="6" data-survey-id="006">
+                    <div class="details">
+                        <h3>Wendy's</h3>
+                        <p>950 / 1,200 spots left</p>
+                        <p class="reward">Reward: $6</p>
+                        <p class="pot">Pot: $12,000</p>
+                    </div>
+                    <a href="wendys-survey.html" class="btn take-survey" data-reward="6" data-survey-id="006">Start Survey</a>
+                </li>
+                <li class="survey-item" data-reward="8" data-survey-id="007">
+                    <div class="details">
+                        <h3>Walmart</h3>
+                        <p>1,100 / 1,500 spots left</p>
+                        <p class="reward">Reward: $8</p>
+                        <p class="pot">Pot: $15,000</p>
+                    </div>
+                    <a href="walmart-survey.html" class="btn take-survey" data-reward="8" data-survey-id="007">Start Survey</a>
+                </li>
             </ul>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <p>&copy; 2024 RealSurveys</p>
             <div class="social">
                 <a href="#">Facebook</a>
                 <a href="#">Twitter</a>
@@ -319,6 +353,11 @@
         </div>
     </footer>
 
+    <!-- Include Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
     <script src="surveys.js"></script>
 </body>
 </html>
