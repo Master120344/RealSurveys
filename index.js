@@ -40,4 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Registration failed. Please try again.');
         }
     });
+
+    // Theme switching logic
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.classList.add(savedTheme);
+
+    themeSwitcher.addEventListener('click', () => {
+        const currentTheme = document.body.classList.contains('light') ? 'light' : 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.body.classList.remove(currentTheme);
+        document.body.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
 });
