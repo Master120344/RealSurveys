@@ -10,17 +10,17 @@
             margin: 0;
             padding: 0;
             background-color: #121212; /* Dark background */
-            color: #f5f5f5; /* Light text color */
+            color: #e0e0e0; /* Light text color */
         }
 
         header {
-            background-color: #333; /* Darker background for header */
+            background-color: #1f1f1f; /* Darker background for header */
             color: #fff;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -52,34 +52,32 @@
         }
 
         header nav ul li {
-            margin: 0 10px;
+            margin: 0 10px; /* Add some space between tabs */
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            background-color: #444;
+            background-color: #424242;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s;
             white-space: nowrap;
         }
 
         header nav ul li a:hover {
-            background-color: #555;
-            transform: scale(1.05);
+            background-color: #616161;
         }
 
         .hero {
-            background-color: #1e1e1e; /* Slightly lighter dark background */
+            background-color: #333; /* Darker hero background */
             height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: #ffab00; /* Yellow accent for hero text */
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         .hero h2 {
@@ -89,11 +87,14 @@
 
         .content {
             padding: 40px 20px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            background-color: #1a1a1a;
-            border-radius: 15px;
+            background-color: #1e1e1e;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
             text-align: center;
         }
 
@@ -109,6 +110,12 @@
             margin-bottom: 20px;
         }
 
+        .balance-update {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffab00; /* Yellow accent */
+        }
+
         .survey-list {
             list-style: none;
             padding: 0;
@@ -119,72 +126,55 @@
 
         .survey-item {
             padding: 20px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #6a1b9a, #8e24aa); /* Gradient background */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             text-align: center;
-            color: #fff;
+            background-color: #2c2c2c;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .survey-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, #8e24aa, #6a1b9a); /* Reverse gradient on hover */
-        }
-
-        .survey-item .details {
-            z-index: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
         .survey-item h3 {
             margin: 0 0 10px 0;
-            font-size: 22px;
-            text-align: center;
+            color: #fff;
+            font-size: 24px;
         }
 
         .survey-item p {
             margin: 5px 0;
-            font-size: 16px;
+            color: #bdbdbd;
+            font-size: 18px;
         }
 
+        .survey-item .reward,
         .survey-item .pot {
-            font-size: 18px;
-            margin-top: 10px;
-            color: #00ff00; /* Green for pot amount */
-        }
-
-        .survey-item .reward {
-            font-size: 18px;
-            color: #00ff00; /* Green for reward */
+            color: #00e676; /* Green for reward and pot */
+            font-weight: bold;
+            font-size: 20px;
         }
 
         .survey-item .btn {
-            align-self: center; /* Center align the button */
+            display: block;
+            margin-top: 15px;
             padding: 10px 20px;
             color: #fff;
+            background-color: #ffab00; /* Yellow accent */
             border-radius: 5px;
             text-decoration: none;
-            background-color: #ffab00; /* Yellow accent */
-            transition: background-color 0.3s, transform 0.3s;
-            display: inline-block;
+            transition: background-color 0.3s;
             text-align: center;
-            margin-top: 20px;
         }
 
         .survey-item .btn:hover {
-            background-color: #ffcc00; /* Lighter yellow */
-            transform: scale(1.05);
+            background-color: #e89c00; /* Darker yellow */
         }
 
         footer {
-            background-color: #333;
+            background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -258,7 +248,7 @@
                 <ul class="nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="balance.html" id="balance-link">Balance: $0</a></li>
+                    <li><a href="balance.html" id="balance-link">Balance: $<span id="user-balance">0</span></a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="logout.html">Logout</a></li>
                 </ul>
@@ -274,6 +264,7 @@
         <div class="container">
             <h2>Available Surveys</h2>
             <p>Complete surveys to earn rewards. Your opinions matter!</p>
+            <div class="balance-update" id="balance-update"></div>
             <ul class="survey-list">
                 <li class="survey-item" data-reward="5" data-survey-id="001">
                     <div class="details">
@@ -287,57 +278,22 @@
                 <li class="survey-item" data-reward="3" data-survey-id="002">
                     <div class="details">
                         <h3>Taco Bell</h3>
-                        <p>850 / 1,500 spots left</p>
+                        <p>1,200 / 2,500 spots left</p>
                         <p class="reward">Reward: $3</p>
-                        <p class="pot">Pot: $7,451</p>
+                        <p class="pot">Pot: $7,500</p>
                     </div>
-                    <a href="tacobell-survey.html" class="btn take-survey" data-reward="3" data-survey-id="002">Start Survey</a>
+                    <a href="taco-bell-survey.html" class="btn take-survey" data-reward="3" data-survey-id="002">Start Survey</a>
                 </li>
                 <li class="survey-item" data-reward="4" data-survey-id="003">
                     <div class="details">
                         <h3>Subway</h3>
-                        <p>1,300 / 2,000 spots left</p>
+                        <p>900 / 2,000 spots left</p>
                         <p class="reward">Reward: $4</p>
-                        <p class="pot">Pot: $10,000</p>
+                        <p class="pot">Pot: $8,000</p>
                     </div>
                     <a href="subway-survey.html" class="btn take-survey" data-reward="4" data-survey-id="003">Start Survey</a>
                 </li>
-                <li class="survey-item" data-reward="7" data-survey-id="004">
-                    <div class="details">
-                        <h3>Chase Bank</h3>
-                        <p>1,200 / 1,500 spots left</p>
-                        <p class="reward">Reward: $7</p>
-                        <p class="pot">Pot: $14,000</p>
-                    </div>
-                    <a href="chasebank-survey.html" class="btn take-survey" data-reward="7" data-survey-id="004">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="10" data-survey-id="005">
-                    <div class="details">
-                        <h3>Southwest Airlines</h3>
-                        <p>1,000 / 1,300 spots left</p>
-                        <p class="reward">Reward: $10</p>
-                        <p class="pot">Pot: $20,000</p>
-                    </div>
-                    <a href="southwest-survey.html" class="btn take-survey" data-reward="10" data-survey-id="005">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="6" data-survey-id="006">
-                    <div class="details">
-                        <h3>Wendy's</h3>
-                        <p>950 / 1,200 spots left</p>
-                        <p class="reward">Reward: $6</p>
-                        <p class="pot">Pot: $12,000</p>
-                    </div>
-                    <a href="wendys-survey.html" class="btn take-survey" data-reward="6" data-survey-id="006">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="8" data-survey-id="007">
-                    <div class="details">
-                        <h3>Walmart</h3>
-                        <p>1,100 / 1,500 spots left</p>
-                        <p class="reward">Reward: $8</p>
-                        <p class="pot">Pot: $15,000</p>
-                    </div>
-                    <a href="walmart-survey.html" class="btn take-survey" data-reward="8" data-survey-id="007">Start Survey</a>
-                </li>
+                <!-- Add more survey items here as needed -->
             </ul>
         </div>
     </section>
