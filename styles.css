@@ -1,10 +1,99 @@
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7; /* Subway-themed background color */
+  background-color: #f7f7f7; /* Default background color */
+  color: #333; /* Default text color */
 }
 
+/* Dark Theme Styles */
+body.dark {
+  background-color: #121212; /* Dark theme background */
+  color: #e0e0e0; /* Light text color */
+}
+
+body.dark header {
+  background-color: #1a1a1a; /* Dark header background */
+}
+
+body.dark .content {
+  background-color: #1e1e1e; /* Dark content background */
+  border: 4px solid #FF6347; /* Highlight color */
+}
+
+body.dark .hero {
+  background-color: #1e1e1e; /* Dark hero section background */
+}
+
+body.dark header nav ul li a {
+  background-color: #ff8c00; /* Dark theme link color */
+}
+
+body.dark header nav ul li a:hover {
+  background-color: #e65c00; /* Dark theme link hover color */
+}
+
+body.dark .survey-question {
+  background-color: #333; /* Dark survey question background */
+}
+
+body.dark .option {
+  background-color: #1e1e1e; /* Dark option background */
+}
+
+body.dark #next, body.dark #back {
+  background-color: #FF6347; /* Dark theme button color */
+}
+
+body.dark #next:hover, body.dark #back:hover {
+  background-color: #FF7F50; /* Dark theme button hover color */
+}
+
+/* Light Theme Styles */
+body.light {
+  background-color: #ffffff; /* Light theme background */
+  color: #000000; /* Dark text color */
+}
+
+body.light header {
+  background-color: #f0f0f0; /* Light header background */
+}
+
+body.light .content {
+  background-color: #ffffff; /* Light content background */
+  border: 4px solid #FF6347; /* Highlight color */
+}
+
+body.light .hero {
+  background-color: #ffffff; /* Light hero section background */
+}
+
+body.light header nav ul li a {
+  background-color: #FF6347; /* Light theme link color */
+}
+
+body.light header nav ul li a:hover {
+  background-color: #FF7F50; /* Light theme link hover color */
+}
+
+body.light .survey-question {
+  background-color: #e0e0e0; /* Light survey question background */
+}
+
+body.light .option {
+  background-color: #f7f7f7; /* Light option background */
+}
+
+body.light #next, body.light #back {
+  background-color: #FF6347; /* Light theme button color */
+}
+
+body.light #next:hover, body.light #back:hover {
+  background-color: #FF7F50; /* Light theme button hover color */
+}
+
+/* Subway-Themed Styles */
 header {
   background-color: #008000; /* Subway green color */
   color: #fff;
@@ -26,7 +115,7 @@ header .container {
 
 header h1 {
   font-size: 24px;
-  color: #ff0000;
+  color: #ff0000; /* Subway red color */
 }
 
 header h1 a {
@@ -88,7 +177,6 @@ section.survey p {
   color: #555;
 }
 
-/* Added Subway-themed styles */
 .survey-question {
   background-color: #f2c464; /* Subway yellow color */
   padding: 20px;
@@ -118,5 +206,3 @@ section.survey p {
 #next:hover, #back:hover {
   background-color: #005500;
 }
-
-Styles.css go ahead. 
