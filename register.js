@@ -17,14 +17,13 @@ const auth = getAuth(app);
 
 function registerUser(event) {
     event.preventDefault();
-
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
-    // Check if passwords match
     if (password !== confirmPassword) {
-        document.getElementById('error-message').textContent = "Passwords do not match!";
+        document.querySelector('.error-message').textContent = 'Passwords do not match.';
+        document.querySelector('.error-message').style.display = 'block';
         return;
     }
 
@@ -33,13 +32,14 @@ function registerUser(event) {
             // User registered successfully
             document.querySelector('.redirecting').style.display = 'block';
             setTimeout(() => {
-                window.location.href = 'welcome.html'; // Redirect to welcome.html after registration
+                window.location.href = 'welcome.html'; // Redirect to welcome.html
             }, 2000);
         })
         .catch((error) => {
             // Handle any errors that occur during registration
-            console.error("Error registering:", error);
-            document.getElementById('error-message').textContent = "Error: " + error.message;
+            console.error("Error registering user:", error);
+            document.querySelector('.error-message').textContent = "Error: " + error.message;
+            document.querySelector('.error-message').style.display = 'block';
         });
 }
 
