@@ -162,7 +162,7 @@
     </style>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script type="module" src="path/to/your/register.js"></script> <!-- Ensure this path is correct -->
+    <script type="module" src="register.js"></script> <!-- Ensure this path is correct -->
 </head>
 <body>
     <header>
@@ -186,9 +186,9 @@
     <div class="form-container">
         <h2>Register</h2>
         <form id="register-form">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <input type="email" id="email" placeholder="Email" required autocomplete="email">
+            <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required autocomplete="new-password">
             <input type="submit" value="Register">
             <div class="redirecting" id="redirecting">Redirecting...</div>
         </form>
@@ -205,6 +205,5 @@
             </div>
         </div>
     </footer>
-    <script type="module" src="path/to/your/register.js"></script> <!-- Ensure this path is correct -->
 </body>
 </html>
