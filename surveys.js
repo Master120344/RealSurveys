@@ -66,21 +66,22 @@ function handleSurveyClick(event) {
 
 // Add event listeners to survey buttons
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if the user is authenticated
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userRef = ref(db, `users/${user.uid}`);
+            onValue(userRef, (snapshot) => {
+                const userData = snapshot.val();
+                if (userData) {
+                    const balance = userData.balance || 0;
+                    updateBalanceDisplay(balance);
+                }
+            });
+        }
+    });
+
     const surveyButtons = document.querySelectorAll('.take-survey');
     surveyButtons.forEach(button => {
         button.addEventListener('click', handleSurveyClick);
     });
-
-    // Update balance on page load
-    const user = auth.currentUser;
-    if (user) {
-        const userRef = ref(db, `users/${user.uid}`);
-        onValue(userRef, (snapshot) => {
-            const userData = snapshot.val();
-            if (userData) {
-                const balance = userData.balance || 0;
-                updateBalanceDisplay(balance);
-            }
-        });
-    }
 });
