@@ -66,7 +66,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff8c00;
+            background-color: #FF6347; /* Highlight color */
             transform: scale(1.05);
         }
 
@@ -108,7 +108,7 @@
         }
 
         .form-container input[type="submit"] {
-            background: #FF6347;
+            background: #FF6347; /* Highlight color */
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -119,7 +119,7 @@
         }
 
         .form-container input[type="submit"]:hover {
-            background: #FF7F50;
+            background: #FF7F50; /* Lighter highlight color */
         }
 
         .forgot-password {
@@ -135,6 +135,20 @@
 
         .forgot-password a:hover {
             text-decoration: underline;
+        }
+
+        .redirecting {
+            color: #28a745; /* Green color for success message */
+            font-size: 16px;
+            margin-top: 20px;
+            display: none; /* Hide by default */
+        }
+
+        .error-message {
+            color: #dc3545; /* Red color for error messages */
+            font-size: 16px;
+            margin-top: 20px;
+            display: none; /* Hide by default */
         }
 
         footer {
@@ -167,12 +181,35 @@
         }
 
         footer .social a:hover {
-            color: #ff8c00;
+            color: #FF6347; /* Highlight color */
         }
     </style>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
     <script type="module" src="register.js"></script> <!-- Ensure this path is correct -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const redirectingElement = document.querySelector('.redirecting');
+            const errorMessageElement = document.querySelector('.error-message');
+
+            // Example function to show success or error message
+            function showMessage(isSuccess, message) {
+                if (isSuccess) {
+                    redirectingElement.textContent = message;
+                    redirectingElement.style.display = 'block';
+                    errorMessageElement.style.display = 'none';
+                } else {
+                    errorMessageElement.textContent = message;
+                    errorMessageElement.style.display = 'block';
+                    redirectingElement.style.display = 'none';
+                }
+            }
+
+            // Example usage
+            // showMessage(true, 'Success! Redirecting...'); // Show success message
+            // showMessage(false, 'An error occurred. Please try again.'); // Show error message
+        });
+    </script>
 </head>
 <body>
     <header>
