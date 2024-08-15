@@ -1,75 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome - RealSurveys</title>
-<style>
-/* Add your CSS styles here */
-</style>
-<!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-<!-- Firebase Authentication -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-<!-- Firebase Realtime Database -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-<!-- Firebase Storage -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - RealSurveys</title>
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #ff6347;
+        }
+
+        header h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #ff6347;
+            transform: scale(1.05);
+        }
+
+        .welcome {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1c1c1c;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .welcome h2 {
+            color: #ff6347;
+        }
+
+        .important-message {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #333;
+            border-radius: 5px;
+            border: 1px solid #ff6347;
+        }
+
+        .welcome p {
+            margin-bottom: 20px;
+        }
+
+        .welcome button, .welcome a.btn {
+            background: #ff6347;
+            color: #fff;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .welcome button:hover, .welcome a.btn:hover {
+            background: #ff7f50;
+        }
+
+        .welcome input[type="file"],
+        .welcome input[type="text"] {
+            background: #333;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .welcome input[type="file"]:focus,
+        .welcome input[type="text"]:focus {
+            border-color: #ff6347;
+            outline: none;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #e0e0e0;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ff6347;
+        }
+    </style>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
 </head>
 <body>
-<header>
-<div class="container">
-<h1><a href="index.html">RealSurveys</a></h1>
-<nav>
-<ul class="nav">
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About Us</a></li>
-<li><a href="contact.html">Contact</a></li>
-<li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-<li><a href="leading-platform.html">Leading Platform</a></li>
-<li><a href="referral-program.html">Referral Program</a></li>
-<li><a href="register.html">Register</a></li>
-</ul>
-</nav>
-</div>
-</header>
-<section class="welcome">
-<div class="container">
-<h2>Welcome to RealSurveys</h2>
-<div class="important-message">
-To keep this survey site alive, we need real answers. These are quick surveys, so all we ask is for you to answer them truthfully. Your honest feedback is crucial to our success.
-</div>
-<p>Your time and opinions are valuable. Join us and earn rewards for sharing your insights.</p>
-<p id="username"></p>
-<p id="email"></p>
-<p id="balance"></p>
-<button id="logout-btn">Logout</button>
-<a href="surveys.html" class="btn">Go to Surveys</a>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+                    <li><a href="leading-platform.html">Leading Platform</a></li>
+                    <li><a href="referral-program.html">Referral Program</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="welcome">
+        <div class="container">
+            <h2>Welcome to RealSurveys</h2>
+            <div class="important-message">
+                To keep this survey site alive, we need real answers. These are quick surveys, so all we ask is for you to answer them truthfully. Your honest feedback is crucial to our success.
+            </div>
+            <p>Your time and opinions are valuable. Join us and earn rewards for sharing your insights.</p>
+            <p id="username"></p>
+            <p id="email"></p>
+            <p id="balance"></p>
+            <button id="logout-btn">Logout</button>
+            <a href="surveys.html" class="btn">Go to Surveys</a>
+            
+            <!-- File upload and download UI -->
+            <h3>Upload a File</h3>
+            <input type="file" id="file-upload">
+            <button id="upload-btn">Upload</button>
 
-<!-- File upload and download UI -->
-<h3>Upload a File</h3>
-<input type="file" id="file-upload">
-<button id="upload-btn">Upload</button>
-
-<h3>Download File</h3>
-<input type="text" id="file-path" placeholder="Enter file path">
-<button id="download-btn">Download</button>
-<img id="download-img" alt="File download preview" style="max-width: 100%;"/>
-
-</div>
-</section>
-<footer>
-<div class="container">
-<p>&copy; 2024 RealSurveys. All rights reserved.</p>
-<div class="social">
-<a href="#"><i class="fab fa-facebook-f"></i></a>
-<a href="#"><i class="fab fa-twitter"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-</div>
-</div>
-</footer>
-<script src="welcome.js"></script>
+            <h3>Download File</h3>
+            <input type="text" id="file-path" placeholder="Enter file path">
+            <button id="download-btn">Download</button>
+            <img id="download-img" alt="File download preview" style="max-width: 100%;"/>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="welcome.js"></script>
 </body>
 </html>
