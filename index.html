@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to RealSurveys</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <style>
         /* Base Styles */
         body {
@@ -68,6 +69,49 @@
         header nav ul li a:hover {
             background-color: #ff8c00;
             transform: scale(1.05);
+        }
+
+        .theme-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-switcher:hover {
+            background: #ff8c00;
+        }
+
+        .theme-dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: #1e1e1e;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .theme-dropdown a {
+            display: block;
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+        }
+
+        .theme-dropdown a:hover {
+            background: #ff8c00;
+        }
+
+        .theme-dropdown a:last-child {
+            border-bottom: none;
         }
 
         .hero {
@@ -215,8 +259,6 @@
             }
         }
     </style>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
 </head>
 <body>
     <header>
@@ -229,13 +271,19 @@
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
                     <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <!-- Removed the Referral Program link -->
                     <li><a href="register.html">Register</a></li>
                     <li><a href="login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <div class="theme-switcher" onclick="toggleThemeDropdown()">Theme</div>
+    <div class="theme-dropdown" id="themeDropdown">
+        <a href="#" onclick="changeTheme('default')">Default</a>
+        <a href="#" onclick="changeTheme('dark')">Dark</a>
+        <a href="#" onclick="changeTheme('light')">Light</a>
+    </div>
 
     <div class="hero">
         <div>
@@ -269,12 +317,21 @@
     <script type="module" src="path/to/your/index.js"></script> <!-- Ensure this path is correct -->
 
     <script>
+        function toggleThemeDropdown() {
+            const dropdown = document.getElementById('themeDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function changeTheme(theme) {
+            document.body.className = ''; // Clear existing themes
+            document.body.classList.add(theme);
+            localStorage.setItem('theme', theme); // Save theme choice
+            document.getElementById('themeDropdown').style.display = 'none'; // Hide dropdown
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('Document loaded and script running');
-            // Disable copy, cut, and paste
-            document.addEventListener('copy', (e) => { e.preventDefault(); });
-            document.addEventListener('cut', (e) => { e.preventDefault(); });
-            document.addEventListener('paste', (e) => { e.preventDefault(); });
+            const savedTheme = localStorage.getItem('theme') || 'default';
+            document.body.classList.add(savedTheme);
         });
     </script>
 </body>
