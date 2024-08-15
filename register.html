@@ -9,18 +9,18 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #121212; /* Dark theme background */
+            color: #e0e0e0; /* Light text color */
         }
 
         header {
             background-color: #1a1a1a;
-            color: #e0e0e0;
+            color: #fff;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff6347;
+            color: #fff;
         }
 
         header h1 a {
@@ -57,7 +57,7 @@
         }
 
         header nav ul li a {
-            color: #e0e0e0;
+            color: #fff;
             text-decoration: none;
             font-size: 14px;
             padding: 10px 20px;
@@ -66,7 +66,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff6347;
+            background-color: #ff8c00;
             transform: scale(1.05);
         }
 
@@ -74,15 +74,15 @@
             max-width: 500px;
             margin: 50px auto;
             padding: 20px;
-            background: #1c1c1c;
+            background: #1e1e1e; /* Dark form background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
         .form-container h2 {
             margin-bottom: 20px;
-            color: #ff6347;
+            color: #FF6347; /* Highlight color */
         }
 
         .form-container form {
@@ -90,26 +90,25 @@
             flex-direction: column;
         }
 
+        .form-container label {
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+
         .form-container input[type="email"],
         .form-container input[type="password"] {
             margin-bottom: 20px;
             padding: 10px;
             font-size: 16px;
-            border: 1px solid #444;
+            border: 2px solid #FF6347; /* Red border */
             border-radius: 5px;
-            background: #333;
-            color: #e0e0e0;
-            transition: border-color 0.3s;
-        }
-
-        .form-container input[type="email"]:focus,
-        .form-container input[type="password"]:focus {
-            border-color: #ff6347;
-            outline: none;
+            background: #333; /* Dark background for inputs */
+            color: #fff; /* Light text color for inputs */
         }
 
         .form-container input[type="submit"] {
-            background: #ff6347;
+            background: #FF6347;
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -120,22 +119,23 @@
         }
 
         .form-container input[type="submit"]:hover {
-            background: #ff7f50;
+            background: #FF7F50;
         }
 
         .redirecting {
             display: none;
             margin-top: 20px;
-            color: #ff6347;
+            color: #32CD32; /* Success color */
         }
 
-        .redirecting.success {
-            color: #32cd32; /* Green color for success */
+        .error-message {
+            color: #FF6347; /* Error color */
+            margin-top: 10px;
         }
 
         footer {
             background-color: #1a1a1a;
-            color: #e0e0e0;
+            color: #fff;
             padding: 20px 0;
             text-align: center;
         }
@@ -155,7 +155,7 @@
         }
 
         footer .social a {
-            color: #e0e0e0;
+            color: #fff;
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
@@ -163,12 +163,12 @@
         }
 
         footer .social a:hover {
-            color: #ff6347;
+            color: #ff8c00;
         }
     </style>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script type="module" src="register.js"></script>
+    <script type="module" src="register.js"></script> <!-- Ensure this path is correct -->
 </head>
 <body>
     <header>
@@ -192,11 +192,15 @@
     <div class="form-container">
         <h2>Register</h2>
         <form id="register-form">
+            <label for="email">Email:</label>
             <input type="email" id="email" placeholder="Email" required>
+            <label for="password">Password:</label>
             <input type="password" id="password" placeholder="Password" required>
+            <label for="confirm-password">Confirm Password:</label>
             <input type="password" id="confirm-password" placeholder="Confirm Password" required>
             <input type="submit" value="Register">
-            <div class="redirecting" id="redirecting">Redirecting...</div>
+            <div class="redirecting">Success! Redirecting...</div>
+            <div class="error-message"></div> <!-- For error messages -->
         </form>
     </div>
 
