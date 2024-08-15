@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - RealSurveys</title>
+    <title>Register - RealSurveys</title>
     <style>
         /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #1a1a1a; /* Dark background for dark theme */
-            color: #f7f9fc; /* Light text color for contrast */
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         header {
-            background-color: #333; /* Darker header for contrast */
-            color: #fff;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
         }
 
         header .container {
@@ -35,7 +35,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff6347; /* Orange-red color for the title */
+            color: #ff6347;
         }
 
         header h1 a {
@@ -57,7 +57,7 @@
         }
 
         header nav ul li a {
-            color: #fff;
+            color: #e0e0e0;
             text-decoration: none;
             font-size: 14px;
             padding: 10px 20px;
@@ -66,7 +66,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff6347; /* Match the header color */
+            background-color: #ff6347;
             transform: scale(1.05);
         }
 
@@ -74,16 +74,15 @@
             max-width: 500px;
             margin: 50px auto;
             padding: 20px;
-            background: #333; /* Dark background for the form */
-            border: 2px solid #ff6347; /* Red border */
+            background: #1c1c1c;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
         .form-container h2 {
             margin-bottom: 20px;
-            color: #ff6347; /* Red text for the heading */
+            color: #ff6347;
         }
 
         .form-container form {
@@ -96,21 +95,21 @@
             margin-bottom: 20px;
             padding: 10px;
             font-size: 16px;
-            border: 2px solid #ff6347; /* Red outline */
+            border: 1px solid #444;
             border-radius: 5px;
-            background: #1a1a1a; /* Dark input background */
-            color: #f7f9fc; /* Light text color for input fields */
+            background: #333;
+            color: #e0e0e0;
             transition: border-color 0.3s;
         }
 
         .form-container input[type="email"]:focus,
         .form-container input[type="password"]:focus {
-            border-color: #ff4500; /* Brighter red outline on focus */
+            border-color: #ff6347;
             outline: none;
         }
 
         .form-container input[type="submit"] {
-            background: #ff6347; /* Red background */
+            background: #ff6347;
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -121,33 +120,22 @@
         }
 
         .form-container input[type="submit"]:hover {
-            background: #ff4500; /* Brighter red on hover */
-        }
-
-        .forgot-password {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #ff6347; /* Red link color */
-        }
-
-        .forgot-password a {
-            color: #ff6347; /* Red link color */
-            text-decoration: none;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
+            background: #ff7f50;
         }
 
         .redirecting {
             display: none;
             margin-top: 20px;
-            color: #ff6347; /* Red color for redirecting message */
+            color: #ff6347;
+        }
+
+        .redirecting.success {
+            color: #32cd32; /* Green color for success */
         }
 
         footer {
-            background-color: #333; /* Dark footer background */
-            color: #fff;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
             padding: 20px 0;
             text-align: center;
         }
@@ -167,7 +155,7 @@
         }
 
         footer .social a {
-            color: #fff;
+            color: #e0e0e0;
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
@@ -175,33 +163,12 @@
         }
 
         footer .social a:hover {
-            color: #ff6347; /* Red color on hover */
-        }
-
-        @media (max-width: 600px) {
-            header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            header nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            header nav ul li {
-                margin: 5px 0;
-            }
-
-            .form-container {
-                padding: 15px;
-                margin: 20px;
-            }
+            color: #ff6347;
         }
     </style>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script type="module" src="path/to/your/login.js"></script> <!-- Ensure this path is correct -->
+    <script type="module" src="register.js"></script>
 </head>
 <body>
     <header>
@@ -223,17 +190,13 @@
     </header>
 
     <div class="form-container">
-        <h2>Login</h2>
-        <form id="login-form">
-            <label for="email">Email:</label>
+        <h2>Register</h2>
+        <form id="register-form">
             <input type="email" id="email" placeholder="Email" required>
-            <label for="password">Password:</label>
             <input type="password" id="password" placeholder="Password" required>
-            <input type="submit" value="Login">
-            <div class="forgot-password">
-                <a href="forgot-password.html">Forgot Password?</a>
-            </div>
-            <div class="redirecting">Redirecting...</div>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <input type="submit" value="Register">
+            <div class="redirecting" id="redirecting">Redirecting...</div>
         </form>
     </div>
 
