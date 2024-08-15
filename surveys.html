@@ -154,168 +154,24 @@
             transition: background-color 0.3s;
         }
 
-        /* McDonald's theme */
-        .survey-item.mcdonalds {
-            background: linear-gradient(135deg, #ffcc00, #ff0000); /* Red and yellow */
-            border-left: 10px solid #ff0000; /* McDonald's red */
-        }
+        /* Theme styles here (McDonald's, Taco Bell, etc.) */
 
-        .survey-item.mcdonalds h3 {
-            color: #ff0000; /* McDonald's red */
-        }
-
-        .survey-item.mcdonalds p {
-            color: #ffe57f; /* Softer yellow text */
-        }
-
-        .survey-item.mcdonalds .btn {
-            background-color: #ff0000; /* McDonald's red */
-        }
-
-        .survey-item.mcdonalds .btn:hover {
-            background-color: #cc0000; /* Darker McDonald's red */
-        }
-
-        /* Taco Bell theme */
-        .survey-item.tacobell {
-            background: linear-gradient(135deg, #6e2b77, #d3c7e4); /* Purple and white */
-            border-left: 10px solid #6e2b77; /* Taco Bell purple */
-        }
-
-        .survey-item.tacobell h3 {
-            color: #6e2b77; /* Taco Bell purple */
-        }
-
-        .survey-item.tacobell p {
-            color: #d3c7e4; /* Softer purple text */
-        }
-
-        .survey-item.tacobell .btn {
-            background-color: #6e2b77; /* Taco Bell purple */
-        }
-
-        .survey-item.tacobell .btn:hover {
-            background-color: #4e1e54; /* Darker Taco Bell purple */
-        }
-
-        /* Subway theme */
-        .survey-item.subway {
-            background: linear-gradient(135deg, #e1e1e1, #76c043); /* White and green */
-            border-left: 10px solid #76c043; /* Subway green */
-        }
-
-        .survey-item.subway h3 {
-            color: #76c043; /* Subway green */
-        }
-
-        .survey-item.subway p {
-            color: #e1e1e1; /* Softer white text */
-        }
-
-        .survey-item.subway .btn {
-            background-color: #76c043; /* Subway green */
-        }
-
-        .survey-item.subway .btn:hover {
-            background-color: #5a9934; /* Darker Subway green */
-        }
-
-        /* Chase Bank theme */
-        .survey-item.chase {
-            background: linear-gradient(135deg, #0071ce, #ffffff); /* Blue and white */
-            border-left: 10px solid #0071ce; /* Chase blue */
-        }
-
-        .survey-item.chase h3 {
-            color: #0071ce; /* Chase blue */
-        }
-
-        .survey-item.chase p {
-            color: #ffffff; /* White text */
-        }
-
-        .survey-item.chase .btn {
-            background-color: #0071ce; /* Chase blue */
-        }
-
-        .survey-item.chase .btn:hover {
-            background-color: #005bb5; /* Darker Chase blue */
-        }
-
-        /* Southwest Airlines theme */
-        .survey-item.southwest {
-            background: linear-gradient(135deg, #0070c9, #d52b1e, #ffb400); /* Blue, red, and yellow */
-            border-left: 10px solid #0070c9; /* Southwest blue */
-        }
-
-        .survey-item.southwest h3 {
-            color: #0070c9; /* Southwest blue */
-        }
-
-        .survey-item.southwest p {
-            color: #ffb400; /* Yellow text */
-        }
-
-        .survey-item.southwest .btn {
-            background-color: #d52b1e; /* Southwest red */
-        }
-
-        .survey-item.southwest .btn:hover {
-            background-color: #b22519; /* Darker Southwest red */
-        }
-
-        /* Wendy's theme */
-        .survey-item.wendys {
-            background: linear-gradient(135deg, #a50021, #e2203d); /* Darker red */
-            border-left: 10px solid #a50021; /* Dark Wendy's red */
-        }
-
-        .survey-item.wendys h3 {
-            color: #e2203d; /* Wendy's red */
-        }
-
-        .survey-item.wendys p {
-            color: #ffc1c7; /* Softer light red/pink text */
-        }
-
-        .survey-item.wendys .btn {
-            background-color: #a50021; /* Dark Wendy's red */
-        }
-
-        .survey-item.wendys .btn:hover {
-            background-color: #7f002b; /* Darker Wendy's red */
-        }
-
-        /* Red Lobster theme */
-        .survey-item.redlobster {
-            background: linear-gradient(135deg, #e23527, #f8f8f8); /* Red and white */
-            border-left: 10px solid #e23527; /* Red Lobster red */
-        }
-
-        .survey-item.redlobster h3 {
-            color: #e23527; /* Red Lobster red */
-        }
-
-        .survey-item.redlobster p {
-            color: #f8f8f8; /* White text */
-        }
-
-        .survey-item.redlobster .btn {
-            background-color: #e23527; /* Red Lobster red */
-        }
-
-        .survey-item.redlobster .btn:hover {
-            background-color: #b72a1c; /* Darker Red Lobster red */
-        }
-
-        /* Footnote */
         footer {
             background-color: #1f1f1f;
-            color: #757575;
+            color: #fff;
             padding: 20px 0;
             text-align: center;
-            font-size: 14px;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
         }
 
         footer .social {
@@ -323,13 +179,47 @@
         }
 
         footer .social a {
-            color: #757575;
-            margin: 0 5px;
+            color: #ffab00;
+            margin: 0 10px;
+            font-size: 18px;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         footer .social a:hover {
-            color: #ffab00; /* Yellow accent */
+            color: #ffcc80;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li {
+                margin: 5px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+
+            footer .container {
+                padding: 0 20px;
+            }
         }
     </style>
 </head>
@@ -367,61 +257,7 @@
                     </div>
                     <a href="#" class="btn take-survey" data-survey-id="001">Take Survey</a>
                 </li>
-                <li class="survey-item tacobell" data-reward="3" data-survey-id="002">
-                    <div class="details">
-                        <h3>Taco Bell Product Feedback</h3>
-                        <p>Reward: $3</p>
-                        <p>Available Spots: 80</p>
-                        <p>Survey ID: 002</p>
-                    </div>
-                    <a href="#" class="btn take-survey" data-survey-id="002">Take Survey</a>
-                </li>
-                <li class="survey-item subway" data-reward="4" data-survey-id="003">
-                    <div class="details">
-                        <h3>Subway Experience Survey</h3>
-                        <p>Reward: $4</p>
-                        <p>Available Spots: 60</p>
-                        <p>Survey ID: 003</p>
-                    </div>
-                    <a href="#" class="btn take-survey" data-survey-id="003">Take Survey</a>
-                </li>
-                <li class="survey-item chase" data-reward="10" data-survey-id="004">
-                    <div class="details">
-                        <h3>Chase Bank Customer Feedback</h3>
-                        <p>Reward: $10</p>
-                        <p>Available Spots: 40</p>
-                        <p>Survey ID: 004</p>
-                    </div>
-                    <a href="#" class="btn take-survey" data-survey-id="004">Take Survey</a>
-                </li>
-                <li class="survey-item southwest" data-reward="6" data-survey-id="005">
-                    <div class="details">
-                        <h3>Southwest Airlines Experience</h3>
-                        <p>Reward: $6</p>
-                        <p>Available Spots: 50</p>
-                        <p>Survey ID: 005</p>
-                    </div>
-                    <a href="#" class="btn take-survey" data-survey-id="005">Take Survey</a>
-                </li>
-                <li class="survey-item wendys" data-reward="7" data-survey-id="006">
-                    <div class="details">
-                        <h3>Wendy's Customer Satisfaction</h3>
-                        <p>Reward: $7</p>
-                        <p>Available Spots: 70</p>
-                        <p>Survey ID: 006</p>
-                    </div>
-                    <a href="#" class="btn take-survey" data-survey-id="006">Take Survey</a>
-                </li>
-                <li class="survey-item redlobster" data-reward="8" data-survey-id="007">
-                    <div class="details">
-                        <h3>Red Lobster Feedback</h3>
-                        <p>Reward: $8</p>
-                        <p>Available Spots: 90</p>
-                        <p>Survey ID: 007</p>
-                    </div>
-                    <a href="#" class="btn take-survey" data-survey-id="007">Take Survey</a>
-                </li>
-                <!-- Add more survey items as needed -->
+                <!-- Other survey items -->
             </ul>
         </div>
     </section>
@@ -441,7 +277,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
     <script src="firebase-config.js"></script>
     <script src="surveys.js"></script>
 </body>
