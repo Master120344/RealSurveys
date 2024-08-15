@@ -28,8 +28,8 @@ window.onload = function() {
             // Handle survey completion
             document.querySelectorAll('.take-survey').forEach(button => {
                 button.addEventListener('click', function(event) {
-                    event.preventDefault();
-
+                    event.preventDefault(); // Prevent the default link behavior
+                    
                     const surveyId = this.getAttribute('data-survey-id');
                     const reward = parseFloat(this.closest('.survey-item').getAttribute('data-reward'));
 
@@ -42,7 +42,6 @@ window.onload = function() {
                         }
                         return userData;
                     }).then(() => {
-                        // Optionally, mark survey as completed in your database
                         alert('Survey completed. Reward added!');
                     }).catch(error => {
                         console.error('Error updating balance:', error);
