@@ -107,6 +107,24 @@
             color: #fff; /* Light text color for inputs */
         }
 
+        .form-container .password-container {
+            position: relative;
+        }
+
+        .form-container .password-container input[type="password"] {
+            padding-right: 40px; /* Space for the toggle button */
+        }
+
+        .form-container .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #FF6347;
+            font-size: 18px;
+        }
+
         .form-container input[type="submit"] {
             background: #FF6347;
             color: #fff;
@@ -195,9 +213,15 @@
             <label for="email">Email:</label>
             <input type="email" id="email" placeholder="Email" required>
             <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+            </div>
             <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <div class="password-container">
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+            </div>
             <input type="submit" value="Register">
             <div class="redirecting">Success! Redirecting...</div>
             <div class="error-message"></div> <!-- For error messages -->
@@ -215,5 +239,18 @@
             </div>
         </div>
     </footer>
+    <script>
+        function togglePassword(id) {
+            const passwordField = document.getElementById(id);
+            const toggleIcon = document.querySelector(`#${id} + .toggle-password`);
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.textContent = '🙈'; // Eye with a slash
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.textContent = '👁️'; // Eye
+            }
+        }
+    </script>
 </body>
 </html>
