@@ -9,7 +9,7 @@ const auth = getAuth();
 function updateBalanceDisplay(balance) {
     const balanceSpan = document.getElementById('user-balance');
     if (balanceSpan) {
-        balanceSpan.textContent = balance;
+        balanceSpan.textContent = `$${balance.toFixed(2)}`;
     }
 }
 
@@ -19,7 +19,7 @@ function handleSurveyClick(event) {
     const surveyButton = event.currentTarget;
     const surveyId = surveyButton.getAttribute('data-survey-id');
     const rewardAmount = parseFloat(surveyButton.getAttribute('data-reward'));
-    
+
     if (!surveyId || isNaN(rewardAmount)) return;
 
     const user = auth.currentUser;
