@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/wendys.jpg'); /* Replace with Wendy's-themed image URL */
+            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/wendys.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -17,7 +17,7 @@
         }
 
         .survey .container {
-            background-color: #FFFFFF; /* White background */
+            background-color: #FFFFFF;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -25,11 +25,11 @@
             margin: 50px auto;
             text-align: center;
             color: #333;
-            border: none; /* No border */
+            position: relative;
         }
 
         h2 {
-            color: #C8102E; /* Wendy's red */
+            color: #C8102E;
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -41,7 +41,7 @@
             margin: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #007AC1; /* Wendy's blue */
+            background-color: #007AC1;
             color: white;
         }
 
@@ -58,16 +58,39 @@
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 18px;
-            background-color: #C8102E; /* Wendy's red */
+            background-color: #C8102E;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none; /* Hidden initially */
+            display: none;
         }
 
         #claim-reward:hover {
             background-color: #A61026;
+        }
+
+        /* Timer styles */
+        #timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+            animation: colorChange 10s linear forwards;
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: red;
+            }
+            50% {
+                color: yellow;
+            }
+            100% {
+                color: green;
+            }
         }
     </style>
 </head>
@@ -76,6 +99,7 @@
 <section class="survey">
     <div class="container">
         <h2>Wendy's Survey</h2>
+        <div id="timer">10</div> <!-- Timer element -->
         <div class="survey-question">
             <p id="question"></p>
             <div id="options"></div>
@@ -114,6 +138,7 @@
     ];
 
     let currentQuestion = 0;
+    let timerInterval;
 
     function showQuestion(index) {
         const questionElem = document.getElementById('question');
@@ -128,7 +153,6 @@
             input.name = 'option';
             input.value = option;
             input.id = option;
-            input.onclick = enableNextButton;
             const label = document.createElement('label');
             label.setAttribute('for', option);
             label.innerText = option;
@@ -138,16 +162,14 @@
         });
 
         document.getElementById('back').disabled = index === 0;
-        document.getElementById('next').disabled = true;
-    }
-
-    function enableNextButton() {
-        document.getElementById('next').disabled = false;
+        document.getElementById('next').disabled = true; // Disable Next button initially
+        startTimer(); // Start the timer when a new question is shown
     }
 
     function nextQuestion() {
         const selected = document.querySelector('input[name="option"]:checked');
-        if (selected) {
+        if (selected && document.getElementById('next').disabled === false) {
+            clearInterval(timerInterval); // Clear the timer when moving to the next question
             if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
                 showQuestion(currentQuestion);
@@ -159,9 +181,26 @@
 
     function prevQuestion() {
         if (currentQuestion > 0) {
+            clearInterval(timerInterval); // Clear the timer when moving to the previous question
             currentQuestion--;
             showQuestion(currentQuestion);
         }
+    }
+
+    function startTimer() {
+        let timeLeft = 10;
+        const timerElem = document.getElementById('timer');
+        timerElem.innerText = timeLeft;
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElem.innerText = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('next').disabled = false; // Enable Next button only when the timer reaches 0
+            }
+        }, 1000);
     }
 
     function showReward() {
