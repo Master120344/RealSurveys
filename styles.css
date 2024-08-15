@@ -206,3 +206,15 @@ section.survey p {
 #next:hover, #back:hover {
   background-color: #005500;
 }
+
+/* Enhanced Styles for Cash Out Options */
+.cashout-method img {
+  max-width: 80px;
+  filter: brightness(1.2); /* Lighten icons by default */
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.cashout-method img:hover {
+  filter: brightness(1.5); /* Further lighten on hover */
+  transform: scale(1.1); /* Slightly scale up on hover */
+}
