@@ -17,33 +17,29 @@ const auth = getAuth(app);
 
 function registerUser(event) {
     event.preventDefault();
-    
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
     // Check if passwords match
     if (password !== confirmPassword) {
-        alert("Passwords do not match.");
+        document.getElementById('error-message').textContent = "Passwords do not match!";
         return;
     }
 
-    // Create a new user with email and password
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // User registered successfully
-            const redirectingElement = document.querySelector('.redirecting');
-            redirectingElement.textContent = 'Success! Redirecting...';
-            redirectingElement.classList.add('success');
-            redirectingElement.style.display = 'block';
+            document.querySelector('.redirecting').style.display = 'block';
             setTimeout(() => {
-                window.location.href = 'login.html';
+                window.location.href = 'welcome.html'; // Redirect to welcome.html after registration
             }, 2000);
         })
         .catch((error) => {
-            // Handle errors
-            console.error("Error registering user:", error);
-            alert("Error: " + error.message);
+            // Handle any errors that occur during registration
+            console.error("Error registering:", error);
+            document.getElementById('error-message').textContent = "Error: " + error.message;
         });
 }
 
