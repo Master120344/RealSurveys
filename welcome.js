@@ -4,20 +4,25 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebas
 
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-    authDomain: "real-surveys.firebaseapp.com",
-    projectId: "real-surveys",
-    storageBucket: "real-surveys.appspot.com",
-    messagingSenderId: "1024139519354",
-    appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+    apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
+    authDomain: 'real-surveys.firebaseapp.com',
+    projectId: 'real-surveys',
+    storageBucket: 'real-surveys.appspot.com',
+    messagingSenderId: '1024139519354',
+    appId: '1:1024139519354:web:a0b11a5a0560ab02ee22c3'
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 function displayWelcomeMessage(user) {
-    // Example: Display user email or username
-    document.getElementById('welcomeMessage').innerText = `Welcome, ${user.email}!`;
+    // Ensure the element exists before trying to modify it
+    const welcomeMessageElement = document.getElementById('welcomeMessage');
+    if (welcomeMessageElement) {
+        welcomeMessageElement.innerText = `Welcome, ${user.email}!`;
+    } else {
+        console.error('Element with ID "welcomeMessage" not found.');
+    }
 }
 
 onAuthStateChanged(auth, (user) => {
