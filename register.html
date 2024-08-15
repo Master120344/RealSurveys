@@ -122,15 +122,19 @@
             background: #FF7F50;
         }
 
-        .redirecting {
-            display: none;
+        .forgot-password {
             margin-top: 20px;
-            color: #32CD32; /* Success color */
+            color: #e0e0e0;
         }
 
-        .error-message {
-            color: #FF6347; /* Error color */
-            margin-top: 10px;
+        .forgot-password a {
+            color: #FF6347; /* Highlight color */
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
         }
 
         footer {
@@ -193,6 +197,9 @@
             <label for="confirm-password">Confirm Password:</label>
             <input type="password" id="confirm-password" placeholder="Confirm Password" required>
             <input type="submit" value="Register">
+            <div class="forgot-password">
+                <a href="forgot_password.html">Forgot your password?</a>
+            </div>
             <div class="redirecting">Success! Redirecting...</div>
             <div class="error-message"></div> <!-- For error messages -->
         </form>
