@@ -16,32 +16,27 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 function loginUser(event) {
-    event.preventDefault(); // Prevent the default form submission
-
+    event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // User signed in successfully
+            document.getElementById('error-message').textContent = '';
+            document.getElementById('success-message').textContent = 'Success! Redirecting...';
             document.querySelector('.redirecting').style.display = 'block';
             setTimeout(() => {
-                window.location.href = 'welcome.html'; // Redirect to welcome page after 2 seconds
+                window.location.href = 'surveys.html';
             }, 2000);
         })
         .catch((error) => {
             // Handle any errors that occur during login
             console.error("Error logging in:", error);
-            alert("Error: " + error.message); // Display error message to user
+            document.getElementById('success-message').textContent = '';
+            document.getElementById('error-message').textContent = "Error: " + error.message;
         });
 }
 
-// Ensure the script runs only after the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', loginUser);
-    } else {
-        console.error('Login form not found');
-    }
-});
+// Attach the loginUser function to the form's submit event
+document.getElementById('login-form').addEventListener('submit', loginUser);
