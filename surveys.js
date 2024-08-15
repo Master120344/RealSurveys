@@ -31,7 +31,7 @@ window.onload = function() {
                     event.preventDefault(); // Prevent the default link behavior
                     
                     const surveyId = this.getAttribute('data-survey-id');
-                    const reward = parseFloat(this.closest('.survey-item').getAttribute('data-reward'));
+                    const reward = parseFloat(this.getAttribute('data-reward'));
 
                     // Update balance in Firebase
                     db.ref(`users/${userId}`).transaction(userData => {
@@ -42,7 +42,8 @@ window.onload = function() {
                         }
                         return userData;
                     }).then(() => {
-                        alert('Survey completed. Reward added!');
+                        // Redirect to the survey page
+                        window.location.href = this.getAttribute('href');
                     }).catch(error => {
                         console.error('Error updating balance:', error);
                     });
