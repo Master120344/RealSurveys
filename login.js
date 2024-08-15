@@ -2,7 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 
-// Initialize Firebase
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
     authDomain: "real-surveys.firebaseapp.com",
@@ -12,9 +12,11 @@ const firebaseConfig = {
     appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// Function to handle user login
 function loginUser(event) {
     event.preventDefault();
     const email = document.getElementById('email').value;
@@ -25,7 +27,7 @@ function loginUser(event) {
             // User signed in successfully
             document.querySelector('.redirecting').style.display = 'block';
             setTimeout(() => {
-                window.location.href = 'welcome.html';
+                window.location.href = 'welcome.html'; // Redirect after login
             }, 2000);
         })
         .catch((error) => {
@@ -36,4 +38,4 @@ function loginUser(event) {
 }
 
 // Attach the loginUser function to the form's submit event
-document.querySelector('form').addEventListener('submit', loginUser);
+document.querySelector('#login-form').addEventListener('submit', loginUser);
