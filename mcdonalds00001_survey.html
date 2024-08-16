@@ -284,22 +284,21 @@
                 </div>
                 <div class="survey-question" data-question="2">
                     <p>Question 2/5</p>
-                    <label for="q2">What is your favorite item on the McDonald's menu?</label>
+                    <label for="q2">What is your favorite McDonald's menu item?</label>
                     <div class="options">
-                        <input type="radio" id="q2_bigmac" name="q2" value="Big Mac">
-                        <label for="q2_bigmac">Big Mac</label>
-                        <input type="radio" id="q2_mcnuggets" name="q2" value="McNuggets">
-                        <label for="q2_mcnuggets">McNuggets</label>
+                        <input type="radio" id="q2_burger" name="q2" value="Burger">
+                        <label for="q2_burger">Burger</label>
                         <input type="radio" id="q2_fries" name="q2" value="Fries">
                         <label for="q2_fries">Fries</label>
-                        <input type="radio" id="q2_salad" name="q2" value="Salad">
-                        <label for="q2_salad">Salad</label>
+                        <input type="radio" id="q2_nuggets" name="q2" value="Nuggets">
+                        <label for="q2_nuggets">Nuggets</label>
+                        <input type="radio" id="q2_sundae" name="q2" value="Sundae">
+                        <label for="q2_sundae">Sundae</label>
                     </div>
                 </div>
-
                 <div class="survey-question" data-question="3">
                     <p>Question 3/5</p>
-                    <label for="q3">How would you rate the customer service at McDonald's?</label>
+                    <label for="q3">How would you rate the service at McDonald's?</label>
                     <div class="options">
                         <input type="radio" id="q3_excellent" name="q3" value="Excellent">
                         <label for="q3_excellent">Excellent</label>
@@ -311,45 +310,29 @@
                         <label for="q3_poor">Poor</label>
                     </div>
                 </div>
-
                 <div class="survey-question" data-question="4">
                     <p>Question 4/5</p>
-                    <label for="q4">How satisfied are you with the cleanliness of McDonald's?</label>
+                    <label for="q4">What improvements would you like to see?</label>
                     <div class="options">
-                        <input type="radio" id="q4_very_satisfied" name="q4" value="Very Satisfied">
-                        <label for="q4_very_satisfied">Very Satisfied</label>
-                        <input type="radio" id="q4_satisfied" name="q4" value="Satisfied">
-                        <label for="q4_satisfied">Satisfied</label>
-                        <input type="radio" id="q4_neutral" name="q4" value="Neutral">
-                        <label for="q4_neutral">Neutral</label>
-                        <input type="radio" id="q4_dissatisfied" name="q4" value="Dissatisfied">
-                        <label for="q4_dissatisfied">Dissatisfied</label>
-                        <input type="radio" id="q4_very_dissatisfied" name="q4" value="Very Dissatisfied">
-                        <label for="q4_very_dissatisfied">Very Dissatisfied</label>
+                        <input type="radio" id="q4_menu" name="q4" value="Menu">
+                        <label for="q4_menu">Menu</label>
+                        <input type="radio" id="q4_service" name="q4" value="Service">
+                        <label for="q4_service">Service</label>
+                        <input type="radio" id="q4_cleanliness" name="q4" value="Cleanliness">
+                        <label for="q4_cleanliness">Cleanliness</label>
+                        <input type="radio" id="q4_price" name="q4" value="Price">
+                        <label for="q4_price">Price</label>
                     </div>
                 </div>
-
                 <div class="survey-question" data-question="5">
                     <p>Question 5/5</p>
-                    <label for="q5">How likely are you to recommend McDonald's to a friend?</label>
-                    <div class="options">
-                        <input type="radio" id="q5_very_likely" name="q5" value="Very Likely">
-                        <label for="q5_very_likely">Very Likely</label>
-                        <input type="radio" id="q5_likely" name="q5" value="Likely">
-                        <label for="q5_likely">Likely</label>
-                        <input type="radio" id="q5_neutral" name="q5" value="Neutral">
-                        <label for="q5_neutral">Neutral</label>
-                        <input type="radio" id="q5_unlikely" name="q5" value="Unlikely">
-                        <label for="q5_unlikely">Unlikely</label>
-                        <input type="radio" id="q5_very_unlikely" name="q5" value="Very Unlikely">
-                        <label for="q5_very_unlikely">Very Unlikely</label>
-                    </div>
+                    <label for="q5">Any additional comments?</label>
+                    <textarea id="q5" name="q5" rows="4"></textarea>
                 </div>
-
                 <div class="survey-nav">
-                    <button type="button" class="btn" id="prevButton" style="display:none;">Back</button>
-                    <button type="button" class="btn" id="nextButton">Next</button>
-                    <button type="submit" class="btn" id="submitButton" style="display:none;">Claim Reward</button>
+                    <button type="button" id="prevButton" class="btn" style="display: none;">Previous</button>
+                    <button type="button" id="nextButton" class="btn">Next</button>
+                    <button type="submit" id="submitButton" class="btn" style="display: none;">Submit</button>
                 </div>
             </form>
         </div>
@@ -359,15 +342,16 @@
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
             <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="Instagram">Instagram</a>
             </div>
         </div>
     </footer>
 
-    <!-- Link to your custom JavaScript file -->
-    <script src="mcdonalds00001_survey.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
+    <script src="survey.js"></script>
 </body>
 </html>
