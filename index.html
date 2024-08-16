@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to RealSurveys</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <style>
         /* Base Styles */
         body {
@@ -35,15 +34,10 @@
             padding: 0 20px;
         }
 
-        header h1 {
+        header .logo h1 {
             margin: 0;
             font-size: 32px;
             color: #ff6347;
-        }
-
-        header h1 a {
-            color: inherit;
-            text-decoration: none;
         }
 
         header nav ul {
@@ -83,7 +77,7 @@
             border-radius: 5px;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s;
+            transition: background 0.3s ease;
         }
 
         .theme-switcher:hover {
@@ -94,7 +88,7 @@
             display: none;
             position: absolute;
             top: 50px;
-            right: 0;
+            right: 20px;
             background: #1e1e1e;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -107,7 +101,7 @@
             padding: 10px;
             text-decoration: none;
             border-bottom: 1px solid #333;
-            transition: background 0.3s;
+            transition: background 0.3s ease;
         }
 
         .theme-dropdown a:hover {
@@ -119,30 +113,31 @@
         }
 
         .hero {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://your-image-url.jpg') no-repeat center center/cover;
+            background: url('hero-bg.jpg') no-repeat center center/cover;
+            color: #fff;
             height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #fff;
             position: relative;
+            margin-top: -50px;
+            padding: 0 20px;
+            box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.5);
         }
 
-        .hero h2 {
-            font-size: 50px;
+        .hero-content h2 {
+            font-size: 48px;
             margin: 0;
-            padding-top: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding-bottom: 20px;
+            font-weight: bold;
+            animation: fadeIn 2s ease-out;
         }
 
-        .hero p {
-            font-size: 22px;
-            margin: 10px 0 20px;
-            font-weight: 300;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        .hero-content p {
+            font-size: 24px;
+            margin: 10px 0;
         }
 
         .hero a.btn {
@@ -153,65 +148,175 @@
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero a.btn:hover {
             background: #ff7f50;
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
         .hero a.btn:active {
             transform: scale(0.95);
         }
 
-        .content {
+        .features {
+            background: #fff;
             padding: 60px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
             text-align: center;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            border: 4px solid #ff6347;
-            position: relative;
-            z-index: 2;
         }
 
-        .content h2 {
+        .features h2 {
             font-size: 36px;
             margin-bottom: 20px;
             color: #ff6347;
         }
 
-        .content p {
-            font-size: 18px;
-            line-height: 1.6;
+        .feature-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 30%;
+            margin: 10px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-item i {
+            font-size: 40px;
+            color: #ff6347;
+            margin-bottom: 10px;
+        }
+
+        .feature-item h3 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .feature-item p {
+            font-size: 16px;
+        }
+
+        .testimonials {
+            background: #f4f4f4;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
             margin-bottom: 20px;
+            color: #ff6347;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-item {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-item p {
+            font-size: 18px;
+            margin: 0 0 10px;
+        }
+
+        .testimonial-item cite {
+            display: block;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .contact {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6347;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button.btn {
+            background: #ff6347;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button.btn:hover {
+            background: #ff7f50;
+            transform: scale(1.05);
         }
 
         footer {
-            background-color: #1e1e1e;
+            background: #1e1e1e;
             color: #fff;
             padding: 20px 0;
             text-align: center;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
 
         footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        footer .social {
-            margin-top: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         footer .social a {
@@ -219,47 +324,36 @@
             margin: 0 10px;
             font-size: 20px;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         footer .social a:hover {
             color: #ff6347;
         }
 
-        /* Mobile Styles */
         @media (max-width: 768px) {
-            header .container {
+            .feature-grid {
                 flex-direction: column;
-                align-items: center;
             }
 
-            header nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
+            .feature-item {
+                width: 100%;
+                margin: 10px 0;
             }
 
-            header nav ul li {
-                margin: 5px;
+            .testimonial-item {
+                font-size: 14px;
             }
+        }
 
-            .content {
-                padding: 20px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
-
-            .content h2 {
-                font-size: 28px;
-            }
-
-            .content p {
-                font-size: 16px;
-            }
-
-            .hero h2 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 18px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -267,63 +361,110 @@
 <body>
     <header>
         <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
+            <div class="logo">
+                <h1>RealSurveys</h1>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="theme-switcher" onclick="toggleThemeDropdown()">Change Theme</div>
+            <div id="themeDropdown" class="theme-dropdown">
+                <a href="#" onclick="changeTheme('default')">Default</a>
+                <a href="#" onclick="changeTheme('dark')">Dark</a>
+                <a href="#" onclick="changeTheme('light')">Light</a>
+            </div>
         </div>
     </header>
 
-    <div class="theme-switcher" onclick="toggleThemeDropdown()">Theme</div>
-    <div class="theme-dropdown" id="themeDropdown">
-        <a href="#" onclick="changeTheme('default')">Default</a>
-        <a href="#" onclick="changeTheme('dark')">Dark</a>
-        <a href="#" onclick="changeTheme('light')">Light</a>
-    </div>
-
-    <div class="hero">
-        <div>
+    <section class="hero">
+        <div class="hero-content">
             <h2>Welcome to RealSurveys</h2>
-            <p>Your opinions matter.</p>
-            <p>Get rewarded for your insights.</p>
-            <a href="register.html" class="btn">Get Started</a>
+            <p>Your go-to platform for insightful and actionable surveys.</p>
+            <a href="#contact" class="btn">Get Started</a>
         </div>
-    </div>
+    </section>
 
-    <div class="content">
-        <h2>Why Choose RealSurveys?</h2>
-        <p>Real Surveys that actually pay a minimum of one dollar. We don't sell your personal or track you.</p>
-    </div>
+    <section id="features" class="features">
+        <h2>Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <i class="fa fa-bar-chart"></i>
+                <h3>Analytics</h3>
+                <p>Get in-depth insights and analytics on your survey results.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa fa-users"></i>
+                <h3>Audience Targeting</h3>
+                <p>Reach your target audience with precision.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa fa-cogs"></i>
+                <h3>Customizable</h3>
+                <p>Customize surveys to fit your needs perfectly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-item">
+                <p>"RealSurveys has transformed the way we collect feedback. The analytics are top-notch!"</p>
+                <cite>- Alex J., Marketing Manager</cite>
+            </div>
+            <div class="testimonial-item">
+                <p>"The audience targeting feature is incredibly effective. We’ve seen a significant improvement in response rates."</p>
+                <cite>- Jamie L., Product Developer</cite>
+            </div>
+            <div class="testimonial-item">
+                <p>"I love how customizable the surveys are. It’s exactly what we needed for our research."</p>
+                <cite>- Taylor R., Research Analyst</cite>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
             <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-linkedin"></a>
             </div>
         </div>
     </footer>
 
-    <!-- Add custom Firebase script -->
-    <script type="module" src="test-firebase.js"></script>
-
     <script>
+        // Toggle theme dropdown
         function toggleThemeDropdown() {
             const dropdown = document.getElementById('themeDropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
 
+        // Change theme
         function changeTheme(theme) {
             document.body.className = ''; // Clear existing themes
             document.body.classList.add(theme);
@@ -331,10 +472,29 @@
             document.getElementById('themeDropdown').style.display = 'none'; // Hide dropdown
         }
 
+        // Load saved theme on page load
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'default';
             document.body.classList.add(savedTheme);
         });
+
+        // Simple slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-item');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
     </script>
 </body>
 </html>
