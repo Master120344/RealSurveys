@@ -373,10 +373,29 @@
     </footer>
 
     <!-- Include Firebase scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="surveys.js"></script>
+    <script type="module">
+        import { auth, storage, database } from './firebase-config.js';
+
+        // Your additional JavaScript code here
+        // Example: Initialize Firebase Auth state observer and get user data.
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User signed in:', user);
+                // Example: Update balance link
+                document.getElementById('balance-link').textContent = `Balance: $${user.balance || 0}`;
+            } else {
+                console.log('No user signed in');
+            }
+        });
+
+        // Example function to handle survey clicks
+        document.querySelectorAll('.take-survey').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const surveyId = event.target.getAttribute('data-survey-id');
+                console.log(`Starting survey ID: ${surveyId}`);
+                // Redirect or handle survey start logic
+            });
+        });
+    </script>
 </body>
 </html>
