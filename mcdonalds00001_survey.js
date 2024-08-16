@@ -21,10 +21,8 @@ let currentQuestion = 1;
 
 document.getElementById('nextButton').addEventListener('click', () => {
     if (currentQuestion < 5) {
-        // Hide current question
         document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.remove('active');
         currentQuestion++;
-        // Show next question
         document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.add('active');
         document.getElementById('prevButton').style.display = 'inline-block';
         if (currentQuestion === 5) {
@@ -36,10 +34,8 @@ document.getElementById('nextButton').addEventListener('click', () => {
 
 document.getElementById('prevButton').addEventListener('click', () => {
     if (currentQuestion > 1) {
-        // Hide current question
         document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.remove('active');
         currentQuestion--;
-        // Show previous question
         document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.add('active');
         document.getElementById('nextButton').style.display = 'inline-block';
         document.getElementById('submitButton').style.display = 'none';
@@ -62,10 +58,10 @@ document.getElementById('mcdonaldsSurveyForm').addEventListener('submit', (event
         q2: document.querySelector('input[name="q2"]:checked')?.value,
         q3: document.querySelector('input[name="q3"]:checked')?.value,
         q4: document.querySelector('input[name="q4"]:checked')?.value,
-        q5: document.querySelector('input[name="q5"]:checked')?.value
+        q5: document.querySelector('textarea[name="q5"]').value  // Note: Changed to textarea
     };
 
-    if (Object.values(answers).every(answer => answer)) {
+    if (Object.values(answers).every(answer => answer || answer === "")) {  // Handle empty answers for textarea
         // Update user's balance in Firebase
         usersRef.child(userId).once('value').then(snapshot => {
             const userData = snapshot.val();
