@@ -167,6 +167,7 @@
             display: flex;
             justify-content: center;
             background-color: #444;
+            margin: 20px 0;
         }
 
         .tab {
@@ -242,6 +243,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
         .feature-item {
@@ -249,8 +251,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 30%;
-            margin: 10px 0;
+            width: calc(33.333% - 40px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -466,7 +467,7 @@
         <h2>Features</h2>
         <div class="feature-grid">
             <div class="feature-item">
-                <img src="no-tracking-icon.png" alt="No Tracking" class="icon">
+                <img src="no-tracking-icon.png" alt="No Tracking" class="icon no-tracking">
                 <h3>No Tracking</h3>
                 <p>We respect your privacy. Our surveys do not track user data.</p>
             </div>
@@ -529,9 +530,9 @@
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
             <div class="social">
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-twitter"></a>
-                <a href="#" class="fa fa-linkedin"></a>
+                <a href="#" class="fa fa-facebook" aria-label="Facebook"></a>
+                <a href="#" class="fa fa-twitter" aria-label="Twitter"></a>
+                <a href="#" class="fa fa-linkedin" aria-label="LinkedIn"></a>
             </div>
         </div>
     </footer>
