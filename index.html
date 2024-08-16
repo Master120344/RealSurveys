@@ -10,18 +10,20 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #121212; /* Dark theme background */
-            color: #e0e0e0; /* Light text color */
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
         }
 
         header {
-            background-color: #1a1a1a;
+            background-color: #1e1e1e;
             color: #fff;
-            padding: 20px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
         }
 
         header .container {
@@ -35,8 +37,8 @@
 
         header h1 {
             margin: 0;
-            font-size: 28px;
-            color: #fff;
+            font-size: 32px;
+            color: #ff6347;
         }
 
         header h1 a {
@@ -54,20 +56,20 @@
         }
 
         header nav ul li {
-            margin: 0 10px;
+            margin: 0 15px;
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-size: 14px;
-            padding: 10px 20px;
+            font-size: 16px;
+            padding: 10px 15px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #ff8c00;
+            background-color: #ff6347;
             transform: scale(1.05);
         }
 
@@ -75,26 +77,27 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #1a1a1a;
+            background: #1e1e1e;
             color: #fff;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
         }
 
         .theme-switcher:hover {
-            background: #ff8c00;
+            background: #ff6347;
         }
 
         .theme-dropdown {
             display: none;
             position: absolute;
-            top: 40px;
+            top: 50px;
             right: 0;
             background: #1e1e1e;
             border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
 
@@ -104,10 +107,11 @@
             padding: 10px;
             text-decoration: none;
             border-bottom: 1px solid #333;
+            transition: background 0.3s;
         }
 
         .theme-dropdown a:hover {
-            background: #ff8c00;
+            background: #ff6347;
         }
 
         .theme-dropdown a:last-child {
@@ -115,48 +119,48 @@
         }
 
         .hero {
-            background-color: #1e1e1e; /* Dark background for hero section */
-            height: 350px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://your-image-url.jpg') no-repeat center center/cover;
+            height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #e0e0e0;
+            color: #fff;
             position: relative;
-            margin-top: -30px;
         }
 
         .hero h2 {
-            font-size: 48px;
+            font-size: 50px;
             margin: 0;
             padding-top: 20px;
-            z-index: 1;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         .hero p {
-            font-size: 24px;
+            font-size: 22px;
             margin: 10px 0 20px;
-            z-index: 1;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
 
         .hero a.btn {
             display: inline-block;
-            background: #FF6347; /* Highlight color */
+            background: #ff6347;
             color: #fff;
             padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            z-index: 1;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .hero a.btn:hover {
-            background: #FF7F50; /* Lighter orange */
+            background: #ff7f50;
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .hero a.btn:active {
@@ -168,11 +172,10 @@
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
-            background-color: #1e1e1e; /* Dark background for content */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            border: 4px solid #FF6347; /* Highlight color */
-            margin-top: -50px;
+            border: 4px solid #ff6347;
             position: relative;
             z-index: 2;
         }
@@ -180,7 +183,7 @@
         .content h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #FF6347; /* Highlight color */
+            color: #ff6347;
         }
 
         .content p {
@@ -190,10 +193,11 @@
         }
 
         footer {
-            background-color: #1a1a1a;
+            background-color: #1e1e1e;
             color: #fff;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
 
         footer .container {
@@ -213,19 +217,20 @@
         footer .social a {
             color: #fff;
             margin: 0 10px;
-            font-size: 18px;
+            font-size: 20px;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         footer .social a:hover {
-            color: #ff8c00;
+            color: #ff6347;
         }
 
         /* Mobile Styles */
         @media (max-width: 768px) {
             header .container {
                 flex-direction: column;
+                align-items: center;
             }
 
             header nav ul {
@@ -239,7 +244,6 @@
 
             .content {
                 padding: 20px;
-                margin-top: 20px;
             }
 
             .content h2 {
@@ -251,7 +255,7 @@
             }
 
             .hero h2 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .hero p {
@@ -310,13 +314,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Remove Firebase script imports -->
-    <!--
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-    -->
 
     <!-- Add custom Firebase script -->
     <script type="module" src="test-firebase.js"></script>
