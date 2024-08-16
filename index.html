@@ -66,51 +66,6 @@
             transform: scale(1.05);
         }
 
-        .theme-switcher {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: #ff6347; /* Red color */
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: background 0.3s ease;
-        }
-
-        .theme-switcher:hover {
-            background: #ff7f50; /* Lighter red on hover */
-        }
-
-        .theme-dropdown {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 20px;
-            background: #000;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
-
-        .theme-dropdown a {
-            display: block;
-            color: #fff;
-            padding: 10px;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: background 0.3s ease;
-        }
-
-        .theme-dropdown a:hover {
-            background: #ff6347; /* Red color */
-        }
-
-        .theme-dropdown a:last-child {
-            border-bottom: none;
-        }
-
         .hero {
             background: url('hero-bg.jpg') no-repeat center center/cover;
             color: #fff;
@@ -368,18 +323,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="tab" data-tab="register">Register</a></li>
-                    <li><a href="#" class="tab" data-tab="login">Login</a></li>
-                    <li><a href="#" class="tab" data-tab="contact">Contact</a></li>
+                    <li><a href="register.html" class="tab">Register</a></li>
+                    <li><a href="login.html" class="tab">Login</a></li>
+                    <li><a href="contact.html" class="tab">Contact</a></li>
                 </ul>
             </nav>
-            <div class="theme-switcher" onclick="toggleTheme()">
-                <span>🌙</span> Theme
-                <div class="theme-dropdown">
-                    <a href="#" onclick="setTheme('light')">Light Mode</a>
-                    <a href="#" onclick="setTheme('dark')">Dark Mode</a>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -446,14 +394,7 @@
             });
         });
 
-        function toggleTheme() {
-            document.querySelector('.theme-dropdown').classList.toggle('show');
-        }
-
-        function setTheme(theme) {
-            document.body.className = theme;
-            document.querySelector('.theme-dropdown').classList.remove('show');
-        }
+        // Removed theme-related JavaScript functionality
     </script>
 </body>
 </html>
