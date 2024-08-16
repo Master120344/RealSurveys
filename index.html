@@ -32,6 +32,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
         }
 
         header .logo h1 {
@@ -160,6 +161,69 @@
 
         .hero a.btn:active {
             transform: scale(0.95);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            background-color: #555;
+            border: 1px solid #666;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background-color: #666;
+        }
+
+        .tab.active {
+            background-color: #00bfff;
+        }
+
+        .tab-content {
+            padding: 20px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .get-paid {
+            color: green;
+        }
+
+        .no-tracking {
+            color: red;
+        }
+
+        .tab-content img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-content h2 {
+            color: #333;
+        }
+
+        .tab-content p {
+            color: #666;
         }
 
         .features {
@@ -344,6 +408,10 @@
             .testimonial-item {
                 font-size: 14px;
             }
+
+            .tab-content {
+                padding: 15px;
+            }
         }
 
         @keyframes fadeIn {
@@ -388,23 +456,34 @@
         </div>
     </section>
 
+    <section class="tabs">
+        <div class="tab active" onclick="showTab('tab1')">No Tracking</div>
+        <div class="tab" onclick="showTab('tab2')">Paid Surveys</div>
+        <div class="tab" onclick="showTab('tab3')">Customizable Surveys</div>
+    </section>
+
     <section id="features" class="features">
         <h2>Features</h2>
         <div class="feature-grid">
             <div class="feature-item">
-                <i class="fa fa-bar-chart"></i>
-                <h3>Analytics</h3>
-                <p>Get in-depth insights and analytics on your survey results.</p>
+                <img src="no-tracking-icon.png" alt="No Tracking" class="icon">
+                <h3>No Tracking</h3>
+                <p>We respect your privacy. Our surveys do not track user data.</p>
             </div>
             <div class="feature-item">
-                <i class="fa fa-users"></i>
-                <h3>Audience Targeting</h3>
-                <p>Reach your target audience with precision.</p>
+                <img src="paid-surveys-icon.png" alt="Paid Surveys" class="icon">
+                <h3>Paid Surveys</h3>
+                <p>Earn rewards by participating in paid surveys.</p>
             </div>
             <div class="feature-item">
-                <i class="fa fa-cogs"></i>
+                <img src="customizable-icon.png" alt="Customizable Surveys" class="icon">
                 <h3>Customizable</h3>
-                <p>Customize surveys to fit your needs perfectly.</p>
+                <p>Fully customize your surveys to meet your needs.</p>
+            </div>
+            <div class="feature-item">
+                <img src="get-paid-icon.png" alt="Get Paid" class="icon get-paid">
+                <h3>Get Paid</h3>
+                <p>Receive payments for your survey responses quickly and securely.</p>
             </div>
         </div>
     </section>
@@ -476,6 +555,23 @@
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'default';
             document.body.classList.add(savedTheme);
+        });
+
+        // Show tab content
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.querySelector(`.${tabId}`).style.display = 'block';
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+
+        // Initialize with the first tab visible
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('tab1');
         });
 
         // Simple slider functionality
