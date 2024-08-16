@@ -208,13 +208,6 @@
             color: #d90000;
         }
 
-        .timer {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #d90000;
-            display: none;
-        }
-
         @media (max-width: 768px) {
             header .container {
                 flex-direction: column;
@@ -244,6 +237,17 @@
             footer .container {
                 padding: 0 20px;
             }
+        }
+
+        .timer {
+            display: none;
+            background-color: yellow;
+            color: red;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
         }
     </style>
 </head>
@@ -299,8 +303,8 @@
                         <label for="q2_fries">Fries</label>
                         <input type="radio" id="q2_nuggets" name="q2" value="Nuggets">
                         <label for="q2_nuggets">Nuggets</label>
-                        <input type="radio" id="q2_sundae" name="q2" value="Sundae">
-                        <label for="q2_sundae">Sundae</label>
+                        <input type="radio" id="q2_salad" name="q2" value="Salad">
+                        <label for="q2_salad">Salad</label>
                     </div>
                 </div>
                 <div class="survey-question" data-question="3">
@@ -319,30 +323,26 @@
                 </div>
                 <div class="survey-question" data-question="4">
                     <p>Question 4/5</p>
-                    <label for="q4">What improvements would you like to see?</label>
-                    <div class="options">
-                        <input type="radio" id="q4_menu" name="q4" value="Menu">
-                        <label for="q4_menu">Menu</label>
-                        <input type="radio" id="q4_service" name="q4" value="Service">
-                        <label for="q4_service">Service</label>
-                        <input type="radio" id="q4_cleanliness" name="q4" value="Cleanliness">
-                        <label for="q4_cleanliness">Cleanliness</label>
-                        <input type="radio" id="q4_price" name="q4" value="Price">
-                        <label for="q4_price">Price</label>
-                    </div>
+                    <label for="q4">What improvements would you like to see at McDonald's?</label>
+                    <textarea id="q4" name="q4" rows="4" cols="50"></textarea>
                 </div>
                 <div class="survey-question" data-question="5">
                     <p>Question 5/5</p>
-                    <label for="q5">Any additional comments?</label>
-                    <textarea id="q5" name="q5" rows="4"></textarea>
+                    <label for="q5">Would you recommend McDonald's to a friend?</label>
+                    <div class="options">
+                        <input type="radio" id="q5_yes" name="q5" value="Yes">
+                        <label for="q5_yes">Yes</label>
+                        <input type="radio" id="q5_no" name="q5" value="No">
+                        <label for="q5_no">No</label>
+                    </div>
                 </div>
                 <div class="survey-nav">
                     <button type="button" id="prevButton" class="btn" style="display: none;">Previous</button>
                     <button type="button" id="nextButton" class="btn">Next</button>
                     <button type="submit" id="submitButton" class="btn" style="display: none;">Submit</button>
                 </div>
-                <div id="timer" class="timer">Next question in: 10s</div>
             </form>
+            <div id="timer" class="timer">10 seconds remaining</div>
         </div>
     </section>
 
@@ -350,9 +350,9 @@
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
             <div class="social">
-                <a href="#" aria-label="Facebook">Facebook</a>
-                <a href="#" aria-label="Twitter">Twitter</a>
-                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
             </div>
         </div>
     </footer>
@@ -361,7 +361,10 @@
     <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
     <script>
-        // Initialize Firebase
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
         const firebaseConfig = {
             apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
             authDomain: "real-surveys.firebaseapp.com",
@@ -372,8 +375,8 @@
             appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
         };
 
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database(app);
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
         const surveyForm = document.getElementById('mcdonaldsSurveyForm');
         const surveyQuestions = document.querySelectorAll('.survey-question');
@@ -383,7 +386,8 @@
         const timerElement = document.getElementById('timer');
 
         let currentQuestionIndex = 0;
-        let timerInterval;
+        let timer;
+        let timeRemaining = 10;
 
         function showQuestion(index) {
             surveyQuestions.forEach((question, i) => {
@@ -392,19 +396,19 @@
             prevButton.style.display = index === 0 ? 'none' : 'inline-block';
             nextButton.style.display = index === surveyQuestions.length - 1 ? 'none' : 'inline-block';
             submitButton.style.display = index === surveyQuestions.length - 1 ? 'inline-block' : 'none';
-            timerElement.style.display = 'none'; // Hide timer when not in use
+            resetTimer();
         }
 
-        function startTimer() {
-            let timeLeft = 10;
-            timerElement.style.display = 'block'; // Show timer
-            timerElement.textContent = `Next question in: ${timeLeft}s`;
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                timerElement.textContent = `Next question in: ${timeLeft}s`;
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timerElement.style.display = 'none';
+        function resetTimer() {
+            clearInterval(timer);
+            timeRemaining = 10;
+            timerElement.textContent = `10 seconds remaining`;
+            timerElement.style.display = 'block';
+            timer = setInterval(() => {
+                timeRemaining--;
+                timerElement.textContent = `${timeRemaining} seconds remaining`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
                     nextQuestion();
                 }
             }, 1000);
@@ -421,14 +425,10 @@
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
                 showQuestion(currentQuestionIndex);
-                clearInterval(timerInterval); // Stop the timer when going back
-                timerElement.style.display = 'none'; // Hide timer when not in use
             }
         });
 
-        nextButton.addEventListener('click', () => {
-            startTimer(); // Start the timer when clicking next
-        });
+        nextButton.addEventListener('click', nextQuestion);
 
         surveyForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -440,7 +440,7 @@
                 surveyResults[key] = value;
             });
 
-            firebase.database().ref('surveys').push(surveyResults)
+            push(ref(database, 'surveys'), surveyResults)
                 .then(() => {
                     alert('Thank you for completing the survey!');
                     surveyForm.reset();
@@ -452,7 +452,6 @@
                 });
         });
 
-        // Initialize survey display
         showQuestion(currentQuestionIndex);
     </script>
 </body>
