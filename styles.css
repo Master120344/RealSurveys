@@ -8,49 +8,6 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark Theme Styles */
-body.dark {
-  background-color: #121212; /* Dark theme background */
-  color: #e0e0e0; /* Light text color */
-}
-
-body.dark header {
-  background-color: #1a1a1a; /* Dark header background */
-}
-
-body.dark .content {
-  background-color: #1e1e1e; /* Dark content background */
-  border: 4px solid #FF6347; /* Highlight color */
-}
-
-body.dark .hero {
-  background-color: #1e1e1e; /* Dark hero section background */
-}
-
-body.dark header nav ul li a {
-  background-color: #ff8c00; /* Dark theme link color */
-}
-
-body.dark header nav ul li a:hover {
-  background-color: #e65c00; /* Dark theme link hover color */
-}
-
-body.dark .survey-question {
-  background-color: #333; /* Dark survey question background */
-}
-
-body.dark .option {
-  background-color: #1e1e1e; /* Dark option background */
-}
-
-body.dark #next, body.dark #back {
-  background-color: #FF6347; /* Dark theme button color */
-}
-
-body.dark #next:hover, body.dark #back:hover {
-  background-color: #FF7F50; /* Dark theme button hover color */
-}
-
 /* Light Theme Styles */
 body.light {
   background-color: #ffffff; /* Light theme background */
@@ -150,6 +107,10 @@ header nav ul li a:hover {
   background-color: #e65c00;
 }
 
+header nav ul li a.active {
+  background-color: #ff7f50; /* Active tab color */
+}
+
 .user-info {
   display: flex;
   flex-direction: column;
@@ -221,7 +182,7 @@ section.survey p {
   transform: scale(1.1); /* Slightly scale up on hover */
 }
 
-/* Tab Styles */
+/* Tabs */
 .tabs {
   display: flex;
   justify-content: center;
@@ -361,4 +322,13 @@ button.btn {
 
 button.btn:hover {
   background: #ff7f50;
+}
+
+/* Header Tabs */
+header nav ul li a.register, header nav ul li a.login {
+  background-color: #FF6347; /* Register/Login tab color */
+}
+
+header nav ul li a.register:hover, header nav ul li a.login:hover {
+  background-color: #FF7F50; /* Register/Login tab hover color */
 }
