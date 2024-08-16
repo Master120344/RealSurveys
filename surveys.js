@@ -1,78 +1,85 @@
-// surveys.js
-import { getDatabase, ref, onValue, update } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
 
-const db = getDatabase();
-const auth = getAuth();
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-function updateBalanceDisplay(balance) {
-    const balanceSpan = document.getElementById('user-balance');
-    if (balanceSpan) {
-        balanceSpan.textContent = `$${balance.toFixed(2)}`;
-    }
-}
+// Reference to the Firebase database
+const db = firebase.database();
+const usersRef = db.ref('users');  // Reference to the 'users' node in your Firebase Realtime Database
 
-function handleSurveyClick(event) {
-    event.preventDefault();
-    const surveyButton = event.currentTarget;
-    const surveyId = surveyButton.getAttribute('data-survey-id');
-    const rewardAmount = parseFloat(surveyButton.getAttribute('data-reward'));
+// Survey navigation
+let currentQuestion = 1;
 
-    if (!surveyId || isNaN(rewardAmount)) return;
-
-    const user = auth.currentUser;
-    if (!user) {
-        alert('You need to be logged in to take a survey.');
-        return;
-    }
-
-    const userRef = ref(db, `users/${user.uid}`);
-    const surveyRef = ref(db, `surveys/${surveyId}`);
-
-    onValue(userRef, (snapshot) => {
-        const userData = snapshot.val();
-        const currentBalance = userData ? userData.balance || 0 : 0;
-
-        update(userRef, {
-            balance: currentBalance + rewardAmount
-        }).then(() => {
-            onValue(surveyRef, (surveySnapshot) => {
-                const surveyData = surveySnapshot.val();
-                if (surveyData) {
-                    const spotsLeft = surveyData.spotsLeft - 1;
-
-                    update(surveyRef, {
-                        spotsLeft: spotsLeft
-                    }).then(() => {
-                        alert(`You have successfully completed the survey and earned $${rewardAmount}!`);
-                        updateBalanceDisplay(currentBalance + rewardAmount);
-                    }).catch((error) => {
-                        console.error('Error updating survey spots:', error);
-                    });
-                }
-            });
-        }).catch((error) => {
-            console.error('Error updating user balance:', error);
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const userRef = ref(db, `users/${user.uid}`);
-            onValue(userRef, (snapshot) => {
-                const userData = snapshot.val();
-                if (userData) {
-                    const balance = userData.balance || 0;
-                    updateBalanceDisplay(balance);
-                }
-            });
+document.getElementById('nextButton').addEventListener('click', () => {
+    console.log('Next Button Clicked');
+    if (currentQuestion < 5) {
+        document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.remove('active');
+        currentQuestion++;
+        document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.add('active');
+        document.getElementById('prevButton').style.display = 'inline-block';
+        if (currentQuestion === 5) {
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('submitButton').style.display = 'inline-block';
         }
-    });
+    }
+});
 
-    const surveyButtons = document.querySelectorAll('.take-survey');
-    surveyButtons.forEach(button => {
-        button.addEventListener('click', handleSurveyClick);
-    });
+document.getElementById('prevButton').addEventListener('click', () => {
+    console.log('Previous Button Clicked');
+    if (currentQuestion > 1) {
+        document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.remove('active');
+        currentQuestion--;
+        document.querySelector(`.survey-question[data-question="${currentQuestion}"]`).classList.add('active');
+        document.getElementById('nextButton').style.display = 'inline-block';
+        document.getElementById('submitButton').style.display = 'none';
+        if (currentQuestion === 1) {
+            document.getElementById('prevButton').style.display = 'none';
+        }
+    }
+});
+
+// Form submission
+document.getElementById('mcdonaldsSurveyForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Get user ID (this could come from user authentication or local storage)
+    const userId = 'exampleUserId';  // Replace with actual user ID
+
+    // Handle form submission
+    const answers = {
+        q1: document.querySelector('input[name="q1"]:checked')?.value,
+        q2: document.querySelector('input[name="q2"]:checked')?.value,
+        q3: document.querySelector('input[name="q3"]:checked')?.value,
+        q4: document.querySelector('input[name="q4"]:checked')?.value,
+        q5: document.querySelector('textarea[name="q5"]').value
+    };
+
+    if (Object.values(answers).every(answer => answer || answer === "")) {  // Handle empty answers for textarea
+        // Update user's balance in Firebase
+        usersRef.child(userId).once('value').then(snapshot => {
+            const userData = snapshot.val();
+            const currentBalance = userData?.balance || 0;
+            const newBalance = currentBalance + 10;  // Reward amount
+
+            usersRef.child(userId).update({ balance: newBalance }).then(() => {
+                alert('Survey completed! Your balance has been updated.');
+                window.location.href = 'reward.html';  // Redirect to reward page
+            }).catch(error => {
+                console.error('Error updating balance:', error);
+            });
+        }).catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+    } else {
+        alert('Please answer all questions before submitting.');
+    }
 });
