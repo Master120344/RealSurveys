@@ -3,15 +3,15 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7; /* Default background color */
-  color: #333; /* Default text color */
+  background-color: #000; /* Black background for overall page */
+  color: #fff; /* White text color for contrast */
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* Light Theme Styles */
 body.light {
-  background-color: #ffffff; /* Light theme background */
-  color: #000000; /* Dark text color */
+  background-color: #fff; /* Light theme background */
+  color: #000; /* Dark text color */
 }
 
 body.light header {
@@ -19,12 +19,12 @@ body.light header {
 }
 
 body.light .content {
-  background-color: #ffffff; /* Light content background */
+  background-color: #fff; /* Light content background */
   border: 4px solid #FF6347; /* Highlight color */
 }
 
 body.light .hero {
-  background-color: #ffffff; /* Light hero section background */
+  background-color: #fff; /* Light hero section background */
 }
 
 body.light header nav ul li a {
@@ -36,11 +36,11 @@ body.light header nav ul li a:hover {
 }
 
 body.light .survey-question {
-  background-color: #e0e0e0; /* Light survey question background */
+  background-color: #f2c464; /* Light survey question background */
 }
 
 body.light .option {
-  background-color: #f7f7f7; /* Light option background */
+  background-color: #fff; /* Light option background */
 }
 
 body.light #next, body.light #back {
@@ -53,7 +53,7 @@ body.light #next:hover, body.light #back:hover {
 
 /* Subway-Themed Styles */
 header {
-  background-color: #008000; /* Subway green color */
+  background-color: #ff6347; /* Bright red header */
   color: #fff;
   padding: 10px 0;
   position: sticky;
@@ -74,7 +74,7 @@ header .container {
 
 header h1 {
   font-size: 24px;
-  color: #ff0000; /* Subway red color */
+  color: #fff; /* White color for header text */
 }
 
 header h1 a {
@@ -97,14 +97,14 @@ header nav ul li a {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
-  background-color: #ff6600;
+  background-color: #333; /* Dark background for links */
   padding: 10px 15px;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
 header nav ul li a:hover {
-  background-color: #e65c00;
+  background-color: #555; /* Darker background on hover */
 }
 
 header nav ul li a.active {
@@ -122,7 +122,7 @@ section.survey {
 }
 
 section.survey .container {
-  background-color: #fff;
+  background-color: #fff; /* Light background for survey container */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -133,11 +133,11 @@ section.survey .container {
 
 section.survey h2 {
   margin-top: 0;
-  color: #333;
+  color: #333; /* Dark color for headings */
 }
 
 section.survey p {
-  color: #555;
+  color: #555; /* Slightly lighter text color for paragraphs */
 }
 
 .survey-question {
@@ -147,7 +147,7 @@ section.survey p {
 }
 
 .option {
-  background-color: #fff;
+  background-color: #fff; /* White background for options */
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -155,11 +155,11 @@ section.survey p {
 }
 
 .option:hover {
-  background-color: #f7f7f7;
+  background-color: #f7f7f7; /* Light grey on hover */
 }
 
 #next, #back {
-  background-color: #008000; /* Subway green color */
+  background-color: #ff6347; /* Red buttons */
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
@@ -167,7 +167,7 @@ section.survey p {
 }
 
 #next:hover, #back:hover {
-  background-color: #005500;
+  background-color: #ff7f50; /* Lighter red on hover */
 }
 
 /* Enhanced Styles for Cash Out Options */
@@ -194,17 +194,17 @@ section.survey p {
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
-  background: #FF6347;
+  background: #FF6347; /* Bright red for tabs */
   color: #fff;
   transition: background 0.3s, transform 0.3s;
 }
 
 .tab.active {
-  background: #ff7f50;
+  background: #ff7f50; /* Lighter red for active tab */
 }
 
 .tab:hover {
-  background: #e65c00;
+  background: #e65c00; /* Darker red on hover */
   transform: scale(1.05);
 }
 
@@ -240,7 +240,7 @@ section.survey p {
   top: 10px;
   cursor: pointer;
   font-size: 16px;
-  background: #FF6347;
+  background: #FF6347; /* Red theme switcher button */
   color: #fff;
   padding: 10px;
   border-radius: 5px;
@@ -248,7 +248,7 @@ section.survey p {
 }
 
 .theme-switcher:hover {
-  background: #ff7f50;
+  background: #ff7f50; /* Lighter red on hover */
   transform: scale(1.05);
 }
 
@@ -258,7 +258,7 @@ section.survey p {
   position: absolute;
   right: 20px;
   top: 40px;
-  background: #fff;
+  background: #fff; /* White dropdown background */
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -267,13 +267,13 @@ section.survey p {
 .theme-dropdown a {
   display: block;
   padding: 10px;
-  color: #333;
+  color: #333; /* Dark text for dropdown items */
   text-decoration: none;
   transition: background 0.3s;
 }
 
 .theme-dropdown a:hover {
-  background: #f0f0f0;
+  background: #f0f0f0; /* Light grey on hover */
 }
 
 /* Form Styles */
@@ -281,7 +281,7 @@ form {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background: #fff;
+  background: #fff; /* White background for forms */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -310,7 +310,7 @@ form {
 }
 
 button.btn {
-  background: #FF6347;
+  background: #FF6347; /* Red button color */
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -321,14 +321,14 @@ button.btn {
 }
 
 button.btn:hover {
-  background: #ff7f50;
+  background: #ff7f50; /* Lighter red on hover */
 }
 
 /* Header Tabs */
 header nav ul li a.register, header nav ul li a.login {
-  background-color: #FF6347; /* Register/Login tab color */
+  background-color: #FF6347; /* Red for Register/Login tabs */
 }
 
 header nav ul li a.register:hover, header nav ul li a.login:hover {
-  background-color: #FF7F50; /* Register/Login tab hover color */
+  background-color: #FF7F50; /* Lighter red on hover */
 }
