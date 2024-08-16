@@ -95,14 +95,23 @@
         .survey-question {
             margin-bottom: 20px;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: rgba(112, 32, 130, 0.6); /* Semi-transparent purple */
             border-radius: 8px;
-            border: 1px solid #ffc107;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+            position: relative;
+        }
+
+        .question-counter {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 18px;
+            color: #fff;
         }
 
         .survey-question label {
             font-size: 18px;
-            color: #333;
+            color: #fff; /* White text color for better contrast */
         }
 
         .survey-question .options {
@@ -230,7 +239,15 @@
                 nextButton.style.display = index === questions.length - 1 ? "none" : "inline-block";
                 submitButton.style.display = index === questions.length - 1 ? "inline-block" : "none";
 
+                updateQuestionCounter(index);
                 resetTimer();
+            };
+
+            const updateQuestionCounter = (index) => {
+                const counter = document.querySelector(".question-counter");
+                if (counter) {
+                    counter.textContent = `${index + 1}/${questions.length}`;
+                }
             };
 
             const resetTimer = () => {
@@ -308,6 +325,7 @@
             <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
             <form id="tacoBellSurveyForm">
                 <div class="survey-question">
+                    <div class="question-counter">1/5</div>
                     <label for="question1">How would you rate your overall experience at Taco Bell?</label>
                     <div class="options">
                         <label><input type="radio" name="question1" value="excellent"> Excellent</label>
@@ -318,6 +336,7 @@
                 </div>
 
                 <div class="survey-question" style="display:none;">
+                    <div class="question-counter">2/5</div>
                     <label for="question2">Was your food served hot and fresh?</label>
                     <div class="options">
                         <label><input type="radio" name="question2" value="yes"> Yes</label>
@@ -326,12 +345,15 @@
                 </div>
 
                 <div class="survey-question" style="display:none;">
+                    <div class="question-counter">3/5</div>
                     <label for="question3">Would you recommend Taco Bell to others?</label>
                     <div class="options">
                         <label><input type="radio" name="question3" value="yes"> Yes</label>
                         <label><input type="radio" name="question3" value="no"> No</label>
                     </div>
                 </div>
+
+                <!-- Add more questions here if needed -->
 
                 <div class="survey-nav">
                     <button type="button" id="prevButton" class="btn" style="display:none;">Previous</button>
