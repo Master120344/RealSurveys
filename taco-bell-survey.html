@@ -144,6 +144,7 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
+            color: yellow; /* Set the timer color to yellow */
         }
 
         footer {
@@ -249,14 +250,7 @@
 
             const updateTimerDisplay = () => {
                 timerElement.textContent = `Time left: ${timer}s`;
-
-                if (timer > 6) {
-                    timerElement.style.color = "red";
-                } else if (timer > 3) {
-                    timerElement.style.color = "yellow";
-                } else {
-                    timerElement.style.color = "green";
-                }
+                timerElement.style.color = "yellow"; // Set the timer color to yellow
             };
 
             const isOptionSelected = () => {
@@ -313,7 +307,7 @@
             <h2>Taco Bell Customer Satisfaction Survey</h2>
             <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
             <form id="tacoBellSurveyForm">
-<div class="survey-question">
+                <div class="survey-question">
                     <label for="question1">How would you rate your overall experience at Taco Bell?</label>
                     <div class="options">
                         <label><input type="radio" name="question1" value="excellent"> Excellent</label>
