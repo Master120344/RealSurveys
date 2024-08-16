@@ -5,6 +5,7 @@ body {
   padding: 0;
   background-color: #f7f7f7; /* Default background color */
   color: #333; /* Default text color */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Dark Theme Styles */
@@ -102,6 +103,7 @@ header {
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
 }
 
 header .container {
@@ -217,4 +219,146 @@ section.survey p {
 .cashout-method img:hover {
   filter: brightness(1.5); /* Further lighten on hover */
   transform: scale(1.1); /* Slightly scale up on hover */
+}
+
+/* Tab Styles */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  background: #FF6347;
+  color: #fff;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.tab.active {
+  background: #ff7f50;
+}
+
+.tab:hover {
+  background: #e65c00;
+  transform: scale(1.05);
+}
+
+/* Testimonial Slider */
+.testimonial-slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.testimonial-item {
+  display: none;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
+.testimonial-item p {
+  font-style: italic;
+}
+
+.testimonial-item cite {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Theme Switcher */
+.theme-switcher {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  background: #FF6347;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.theme-switcher:hover {
+  background: #ff7f50;
+  transform: scale(1.05);
+}
+
+/* Dropdown */
+.theme-dropdown {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-dropdown a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.theme-dropdown a:hover {
+  background: #f0f0f0;
+}
+
+/* Form Styles */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+button.btn {
+  background: #FF6347;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button.btn:hover {
+  background: #ff7f50;
 }
