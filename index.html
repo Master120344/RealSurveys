@@ -9,19 +9,19 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #000; /* Changed background color to black */
-            color: #fff;
+            background-color: #f0f0f0;
+            color: #333;
             line-height: 1.6;
         }
 
         header {
-            background-color: #000;
+            background-color: #0088cc;
             color: #fff;
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -31,13 +31,12 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
         }
 
         header .logo h1 {
             margin: 0;
             font-size: 32px;
-            color: #ff6347; /* Red color */
+            color: #ffcc00;
         }
 
         header nav ul {
@@ -62,7 +61,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff6347; /* Red color */
+            background-color: #ffcc00;
             transform: scale(1.05);
         }
 
@@ -75,10 +74,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
-            margin-top: -50px;
             padding: 0 20px;
-            box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 0 0 500px rgba(0, 136, 204, 0.6);
         }
 
         .hero-content h2 {
@@ -86,7 +83,7 @@
             margin: 0;
             padding-bottom: 20px;
             font-weight: bold;
-            color: #ff6347; /* Bright red color */
+            color: #ffcc00;
             animation: fadeIn 2s ease-out;
         }
 
@@ -97,8 +94,8 @@
 
         .hero a.btn {
             display: inline-block;
-            background: #ff6347; /* Red color */
-            color: #fff;
+            background: #ffcc00;
+            color: #333;
             padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
@@ -108,7 +105,7 @@
         }
 
         .hero a.btn:hover {
-            background: #ff7f50; /* Lighter red on hover */
+            background: #ffdd33;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
@@ -117,74 +114,8 @@
             transform: scale(0.95);
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            background-color: #ff6347; /* Red color */
-            margin: 20px 0;
-            padding: 10px 0;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            color: #fff;
-            background-color: #ff4500; /* Darker red */
-            border: 1px solid #ff6347;
-            cursor: pointer;
-        }
-
-        .tab:hover {
-            background-color: #ff6347; /* Red color */
-        }
-
-        .tab.active {
-            background-color: #ff6347; /* Red color */
-            border-bottom: 1px solid #fff;
-        }
-
-        .tab-content {
-            padding: 20px;
-            background-color: #000; /* Black background */
-            border-top: 1px solid #ddd;
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-
-        .get-paid {
-            color: #28a745; /* Green for "Get Paid" */
-        }
-
-        .no-tracking {
-            color: #dc3545; /* Red for "No Tracking" */
-        }
-
-        .tab-content img {
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tab-content h2 {
-            color: #fff; /* White text for content headings */
-        }
-
-        .tab-content p {
-            color: #ccc; /* Light grey text for content paragraphs */
-        }
-
         .features {
-            background: #000; /* Black background */
+            background: #fff;
             padding: 60px 20px;
             text-align: center;
         }
@@ -192,7 +123,7 @@
         .features h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #ff6347; /* Bright red color */
+            color: #0088cc;
         }
 
         .feature-grid {
@@ -203,36 +134,58 @@
         }
 
         .feature-item {
-            background: #111; /* Slightly off-black background */
+            background: #f8f8f8;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            width: calc(33.333% - 40px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: calc(25% - 40px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .feature-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .feature-item i {
-            font-size: 40px;
-            color: #ff6347; /* Bright red color */
-            margin-bottom: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .feature-item h3 {
             font-size: 24px;
             margin: 10px 0;
+            color: #0088cc;
         }
 
         .feature-item p {
             font-size: 16px;
+            color: #555;
+        }
+
+        .feature-item a.learn-more {
+            display: block;
+            margin-top: 20px;
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .feature-item a.learn-more:hover {
+            text-decoration: underline;
+        }
+
+        .daily-giveaways {
+            background: #0088cc;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .daily-giveaways h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
         }
 
         .testimonials {
-            background: #111; /* Slightly off-black background */
+            background: #f8f8f8;
             padding: 60px 20px;
             text-align: center;
         }
@@ -240,7 +193,7 @@
         .testimonials h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #ff6347; /* Bright red color */
+            color: #0088cc;
         }
 
         .testimonial-slider {
@@ -252,9 +205,9 @@
         .testimonial-item {
             display: none;
             padding: 20px;
-            background: #222; /* Darker background for testimonials */
+            background: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .testimonial-item p {
@@ -265,14 +218,15 @@
         .testimonial-item cite {
             display: block;
             font-style: italic;
-            color: #ccc; /* Light grey for citation */
+            color: #555;
         }
 
         footer {
-            background: #000; /* Black background */
+            background: #0088cc;
             color: #fff;
             text-align: center;
             padding: 20px;
+            margin-top: 40px;
         }
 
         footer p {
@@ -292,14 +246,18 @@
                 font-size: 20px;
             }
 
-            .feature-item {
-                width: 100%;
+            .daily-giveaways h2 {
+                font-size: 28px;
             }
         }
 
         @media (max-width: 480px) {
             .feature-item {
                 width: 100%;
+            }
+
+            .daily-giveaways h2 {
+                font-size: 24px;
             }
         }
 
@@ -323,9 +281,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="register.html" class="tab">Register</a></li>
-                    <li><a href="login.html" class="tab">Login</a></li>
-                    <li><a href="contact.html" class="tab">Contact</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -344,37 +302,48 @@
             <h2>Features</h2>
             <div class="feature-grid">
                 <div class="feature-item">
-                    <i class="icon">&#10004;</i>
-                    <h3>Get Paid</h3>
-                    <p class="get-paid">Earn rewards for your feedback!</p>
+                    <h3>Quick and Easy Surveys</h3>
+                    <p>Participate in surveys with ease and speed.</p>
+                    <a href="#" class="learn-more">Click to Learn More</a>
                 </div>
                 <div class="feature-item">
-                    <i class="icon">&#128274;</i>
-                    <h3>No Tracking</h3>
-                    <p class="no-tracking">Your privacy is our priority.</p>
+                    <h3>No One is Disqualified</h3>
+                    <p>Everyone gets a chance to provide feedback.</p>
+                    <a href="#" class="learn-more">Click to Learn More</a>
                 </div>
                 <div class="feature-item">
-                    <i class="icon">&#128187;</i>
-                    <h3>Easy Surveys</h3>
-                    <p>Simple and quick to participate.</p>
+                    <h3>Get Paid Fast</h3>
+                    <p>Receive payments quickly after completing surveys.</p>
+                    <a href="#" class="learn-more">Click to Learn More</a>
+                </div>
+                <div class="feature-item">
+                    <h3>No Ads, No Tracking, No Spying</h3>
+                    <p>Your privacy is our priority. No data tracking or ads.</p>
+                    <a href="#" class="learn-more">Click to Learn More</a>
                 </div>
             </div>
+        </div>
+
+        <div class="daily-giveaways">
+            <h2>Daily Giveaways</h2>
+            <p>Participate in our daily giveaways and stand a chance to win exciting rewards.</p>
+            <a href="#" class="btn">Join Now</a>
         </div>
 
         <div class="testimonials">
             <h2>What Our Users Say</h2>
             <div class="testimonial-slider">
                 <div class="testimonial-item">
-                    <p>"RealSurveys is amazing! I love how easy it is to participate and earn rewards."</p>
-                    <cite>- Alex B.</cite>
+                    <p>"RealSurveys is by far the best platform I've used for earning extra cash. It's easy, fast, and trustworthy!"</p>
+                    <cite>- Sarah K.</cite>
                 </div>
                 <div class="testimonial-item">
-                    <p>"The surveys are quick and fun. Plus, my data is secure with them."</p>
-                    <cite>- Jamie L.</cite>
+                    <p>"I love how transparent and user-friendly RealSurveys is. I never have to worry about being disqualified."</p>
+                    <cite>- John D.</cite>
                 </div>
                 <div class="testimonial-item">
-                    <p>"Great platform for getting honest feedback. Highly recommend!"</p>
-                    <cite>- Taylor C.</cite>
+                    <p>"The fast payouts are amazing. Plus, no annoying ads or tracking, which is a huge bonus!"</p>
+                    <cite>- Emily T.</cite>
                 </div>
             </div>
         </div>
@@ -385,16 +354,26 @@
     </footer>
 
     <script>
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(tc => tc.style.display = 'none');
-                this.classList.add('active');
-                document.querySelector(`#${this.getAttribute('data-tab')}-content`).style.display = 'block';
-            });
-        });
+        // Basic JavaScript to cycle through testimonials
+        let testimonials = document.querySelectorAll('.testimonial-item');
+        let currentTestimonial = 0;
 
-        // Removed theme-related JavaScript functionality
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        // Initial display
+        showTestimonial(currentTestimonial);
+
+        // Change testimonials every 5 seconds
+        setInterval(nextTestimonial, 5000);
     </script>
 </body>
 </html>
