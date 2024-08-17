@@ -8,20 +8,20 @@
         /* Base Styles */
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f9f9; /* Very Light Aqua */
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4; /* Light background */
             color: #333;
             line-height: 1.6;
         }
 
         header {
-            background-color: #007bff; /* Bootstrap Blue */
+            background-color: #000;
             color: #fff;
-            padding: 15px;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         header .container {
@@ -35,7 +35,8 @@
 
         header .logo h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 32px;
+            color: #e60012; /* Bright red color */
         }
 
         header nav ul {
@@ -43,31 +44,31 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 20px; /* Space between tabs */
+            align-items: center;
         }
 
         header nav ul li {
-            margin: 0;
+            margin: 0 15px;
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            padding: 10px 20px;
-            border: 2px solid #fff;
+            padding: 10px 15px;
+            border: 2px solid #e60012; /* Red border */
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #fff;
-            color: #007bff; /* Bootstrap Blue */
+            background-color: #e60012; /* Red background */
+            color: #fff;
             transform: scale(1.05);
         }
 
         .hero {
-            background: url('clean-wallpaper.jpg') no-repeat center center/cover; /* Matching Wallpaper */
+            background: url('hero-bg.jpg') no-repeat center center/cover;
             color: #fff;
             height: 400px;
             display: flex;
@@ -76,110 +77,140 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.6);
         }
 
         .hero-content h2 {
-            font-size: 42px;
+            font-size: 48px;
             margin: 0;
             padding-bottom: 20px;
             font-weight: bold;
+            color: #e60012; /* Bright red color */
+            animation: fadeIn 2s ease-out;
         }
 
         .hero-content p {
-            font-size: 20px;
+            font-size: 24px;
             margin: 10px 0;
         }
 
         .hero a.btn {
             display: inline-block;
-            background: #28a745; /* Success Green */
+            background: #e60012; /* Red color */
             color: #fff;
-            padding: 12px 24px;
+            padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
             transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero a.btn:hover {
-            background: #218838; /* Darker Green */
+            background: #d70011; /* Darker red on hover */
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
         .hero a.btn:active {
             transform: scale(0.95);
         }
 
-        .features {
-            background: #ffffff; /* White */
-            padding: 60px 20px;
-            text-align: center;
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #e60012; /* Red color */
+            margin: 20px 0;
+            padding: 10px 0;
+            border-radius: 5px;
         }
 
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+            background-color: #000; /* Black background */
+            border: 2px solid #e60012; /* Red border */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #e60012; /* Red color */
+            color: #fff;
+        }
+
+        .tab.active {
+            background-color: #e60012; /* Red color */
+            color: #fff;
+            border-bottom: 2px solid #000;
+        }
+
+        .tab-content {
+            padding: 20px;
+            background-color: #fff; /* White background for content */
+            border-top: 2px solid #e60012; /* Red border */
+            border-radius: 5px;
             color: #333;
+        }
+
+        .tab-content h2 {
+            color: #e60012; /* Bright red text for headings */
+        }
+
+        .tab-content p {
+            color: #555; /* Dark grey text for paragraphs */
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
         }
 
         .feature-grid {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             flex-wrap: wrap;
             gap: 20px;
         }
 
         .feature-item {
-            background: #ffffff; /* White */
+            background: #fff; /* White background */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             width: calc(33.333% - 40px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
         .feature-item i {
             font-size: 40px;
+            color: #e60012; /* Bright red color */
             margin-bottom: 10px;
         }
 
         .feature-item h3 {
             font-size: 24px;
             margin: 10px 0;
+            color: #333;
         }
 
         .feature-item p {
             font-size: 16px;
-        }
-
-        .daily-giveaways {
-            background: #f9f9f9; /* Very Light Grey */
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .daily-giveaways h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #28a745; /* Success Green */
-        }
-
-        .daily-giveaways p {
-            font-size: 18px;
-            color: #555; /* Dark Grey */
+            color: #666;
         }
 
         footer {
-            background: #333; /* Dark Grey */
+            background: #000; /* Black background */
             color: #fff;
             text-align: center;
             padding: 20px;
@@ -199,7 +230,11 @@
             }
 
             .hero-content p {
-                font-size: 18px;
+                font-size: 20px;
+            }
+
+            .feature-item {
+                width: 100%;
             }
         }
 
@@ -207,15 +242,16 @@
             .feature-item {
                 width: 100%;
             }
+        }
 
-            header nav ul {
-                flex-direction: column;
-                gap: 10px; /* Reduced gap for mobile */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
-
-            header nav ul li a {
-                padding: 12px 20px;
-                font-size: 14px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -228,9 +264,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="register.html" class="tab">Register</a></li>
+                    <li><a href="login.html" class="tab">Login</a></li>
+                    <li><a href="contact.html" class="tab">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -245,35 +281,60 @@
     </div>
 
     <div class="content-wrapper">
-        <div class="features" id="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <i class="icon">&#128578;</i> <!-- Happy Emoji -->
-                    <h3>Quick and Easy Surveys</h3>
-                    <p>Surveys that are simple and fast to complete.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="icon">&#10004;</i> <!-- Green Check Mark -->
-                    <h3>No One is Disqualified</h3>
-                    <p>Everyone gets to participate without disqualification.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="icon">&#128176;</i> <!-- Money Bag -->
-                    <h3>Get Paid Fast</h3>
-                    <p>Receive your rewards quickly after completing surveys.</p>
-                </div>
-            </div>
+        <div class="tabs">
+            <div class="tab active" data-tab="quick-easy-surveys">Quick and Easy Surveys</div>
+            <div class="tab" data-tab="no-one-disqualified">No One is Disqualified</div>
+            <div class="tab" data-tab="get-paid-fast">Get Paid Fast</div>
         </div>
 
-        <div class="daily-giveaways">
-            <h2>Daily Giveaways</h2>
-            <p>Participate in our daily giveaways for a chance to win exciting prizes!</p>
+        <div class="tab-content" id="quick-easy-surveys">
+            <h2>Quick and Easy Surveys</h2>
+            <p>Participate in surveys that are simple and quick to complete.</p>
+        </div>
+
+        <div class="tab-content" id="no-one-disqualified" style="display:none;">
+            <h2>No One is Disqualified</h2>
+     <p>Everyone gets a chance to participate without disqualification.</p>
+        </div>
+
+        <div class="tab-content" id="get-paid-fast" style="display:none;">
+            <h2>Get Paid Fast</h2>
+            <p>Receive your payment quickly and easily, with no minimum cash-out limit.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <i class="icon">✔️</i> <!-- Green check mark icon -->
+                <h3>Quick Surveys</h3>
+                <p>Complete surveys in no time and earn rewards fast.</p>
+            </div>
+            <div class="feature-item">
+                <i class="icon">😀</i> <!-- Happy emoji -->
+                <h3>No Disqualification</h3>
+                <p>Everyone is welcome to participate, without any disqualification.</p>
+            </div>
+            <div class="feature-item">
+                <i class="icon">💸</i> <!-- Money emoji -->
+                <h3>Fast Payments</h3>
+                <p>Get your earnings quickly with a simple cash-out process.</p>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+        <p>&copy; 2024 RealSurveys. All rights reserved. <a href="privacy-policy.html" style="color: #e60012;">Privacy Policy</a></p>
     </footer>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
