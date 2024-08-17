@@ -9,13 +9,13 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #000;
+            color: #fff;
             line-height: 1.6;
         }
 
         header {
-            background-color: #0056b3; /* Blue background */
+            background-color: #000;
             color: #fff;
             padding: 15px 0;
             position: sticky;
@@ -36,7 +36,7 @@
         header .logo h1 {
             margin: 0;
             font-size: 32px;
-            color: #ffdd57; /* Yellow color */
+            color: #ff6347;
         }
 
         header nav ul {
@@ -48,22 +48,20 @@
         }
 
         header nav ul li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
 
         header nav ul li a {
-            color: #ffdd57; /* Yellow color for links */
+            color: #fff;
             text-decoration: none;
             font-size: 16px;
             padding: 10px 15px;
-            border: 2px solid #ffdd57;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #ffdd57; /* Yellow background on hover */
-            color: #0056b3; /* Blue text on hover */
+            background-color: #ff6347;
             transform: scale(1.05);
         }
 
@@ -76,7 +74,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-top: -50px;
+            position: relative;
             padding: 0 20px;
             box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.6);
         }
@@ -86,7 +84,7 @@
             margin: 0;
             padding-bottom: 20px;
             font-weight: bold;
-            color: #ffdd57; /* Yellow color */
+            color: #ff6347;
             animation: fadeIn 2s ease-out;
         }
 
@@ -97,8 +95,8 @@
 
         .hero a.btn {
             display: inline-block;
-            background: #ffdd57; /* Yellow background */
-            color: #0056b3; /* Blue text */
+            background: #ff6347;
+            color: #fff;
             padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
@@ -108,17 +106,79 @@
         }
 
         .hero a.btn:hover {
-            background: #ffcc00; /* Darker yellow on hover */
+            background: #ff7f50;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
-        .hero a.btn:active {
-            transform: scale(0.95);
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #ff6347;
+            margin: 20px 0;
+            padding: 10px 0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+            background-color: #ff4500;
+            border: 1px solid #ff6347;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background-color: #ff6347;
+        }
+
+        .tab.active {
+            background-color: #ff6347;
+            border-bottom: 1px solid #fff;
+        }
+
+        .tab-content {
+            padding: 20px;
+            background-color: #000;
+            border-top: 1px solid #ddd;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .get-paid {
+            color: #28a745;
+        }
+
+        .no-disqualification {
+            color: #28a745;
+        }
+
+        .tab-content img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-content h2 {
+            color: #fff;
+        }
+
+        .tab-content p {
+            color: #ccc;
         }
 
         .features {
-            background: #fff;
+            background: #000;
             padding: 60px 20px;
             text-align: center;
         }
@@ -126,7 +186,7 @@
         .features h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #0056b3; /* Blue color */
+            color: #ff6347;
         }
 
         .feature-grid {
@@ -137,22 +197,21 @@
         }
 
         .feature-item {
-            background: #f1f1f1;
+            background: #111;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: calc(25% - 40px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: calc(33.333% - 40px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
         .feature-item i {
             font-size: 40px;
-            color: #0056b3; /* Blue color */
             margin-bottom: 10px;
         }
 
@@ -163,11 +222,22 @@
 
         .feature-item p {
             font-size: 16px;
-            color: #555;
+        }
+
+        .testimonials {
+            background: #111;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6347;
         }
 
         footer {
-            background: #0056b3; /* Blue background */
+            background: #000;
             color: #fff;
             text-align: center;
             padding: 20px;
@@ -190,8 +260,16 @@
                 font-size: 20px;
             }
 
-            .hero {
-                height: 300px;
+            .feature-item {
+                width: 100%;
+            }
+
+            header nav ul {
+                flex-direction: column;
+            }
+
+            header nav ul li {
+                margin: 10px 0;
             }
         }
 
@@ -200,24 +278,8 @@
                 width: 100%;
             }
 
-            header .container {
-                flex-direction: column;
-            }
-
-            header nav ul {
-                flex-direction: column;
-            }
-
-            .hero {
-                height: 250px;
-            }
-
-            .hero-content h2 {
-                font-size: 28px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
+            header nav ul li {
+                margin: 5px 0;
             }
         }
 
@@ -241,9 +303,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="register.html" class="tab">Register</a></li>
+                    <li><a href="login.html" class="tab">Login</a></li>
+                    <li><a href="contact.html" class="tab">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -257,39 +319,47 @@
         </div>
     </div>
 
-    <div class="features" id="features">
-        <h2>Features</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <i class="icon">&#128187;</i>
-                <h3>Quick and Easy Surveys</h3>
-                <p>Participate in simple, fast, and easy surveys.</p>
+    <div class="content-wrapper">
+        <div class="features" id="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="icon">😊</i>
+                    <h3>Quick and Easy Surveys</h3>
+                    <p>Surveys that are simple, fast, and rewarding.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="icon">✔️</i>
+                    <h3>No One is Disqualified</h3>
+                    <p class="no-disqualification">Every survey counts. No disqualification.</p>
+               <div class="feature-item">
+                    <i class="icon">💸</i>
+                    <h3>Get Paid Fast</h3>
+                    <p>No minimum cash-out limit, just a 10% cash-out fee.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="icon">🔒</i>
+                    <h3>No Ads, No Tracking, No Spying</h3>
+                    <p>Your privacy is our priority. No cookies or tracking.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="icon">🎁</i>
+                    <h3>Daily Giveaways</h3>
+                    <p>Participate in our daily giveaways for extra rewards.</p>
+                </div>
             </div>
-            <div class="feature-item">
-                <i class="icon">&#128274;</i>
-                <h3>No One is Disqualified</h3>
-                <p>Everyone gets to complete surveys without disqualification.</p>
-            </div>
-            <div class="feature-item">
-                <i class="icon">&#128176;</i>
-                <h3>Get Paid Fast</h3>
-                <p>Receive fast payouts for your participation.</p>
-            </div>
-            <div class="feature-item">
-                <i class="icon">&#128683;</i>
-                <h3>No Ads, No Tracking, No Spying</h3>
-                <p>Your privacy is our priority. No ads or tracking.</p>
-            </div>
-            <div class="feature-item">
-                <i class="icon">&#127873;</i>
-                <h3>Daily Giveaways</h3>
-                <p>Enter our daily giveaways for more rewards!</p>
-            </div>
+        </div>
+
+        <div class="testimonials" id="testimonials">
+            <!-- Removed testimonials section for now -->
+            <h2>Trust Us - Real Results</h2>
+            <p>Check us out on Trustpilot (coming soon).</p>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2024 RealSurveys. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
