@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealSurveys</title>
+    <title>Welcome to RealSurveys</title>
     <style>
         /* Base Styles */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
         }
 
         header {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Blue background */
             color: #fff;
             padding: 15px 0;
             position: sticky;
@@ -36,7 +36,7 @@
         header .logo h1 {
             margin: 0;
             font-size: 32px;
-            color: #ffd700; /* Yellow color */
+            color: #ffdd57; /* Yellow color */
         }
 
         header nav ul {
@@ -52,16 +52,18 @@
         }
 
         header nav ul li a {
-            color: #fff;
+            color: #ffdd57; /* Yellow color for links */
             text-decoration: none;
             font-size: 16px;
             padding: 10px 15px;
+            border: 2px solid #ffdd57;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #ffd700; /* Yellow color */
+            background-color: #ffdd57; /* Yellow background on hover */
+            color: #0056b3; /* Blue text on hover */
             transform: scale(1.05);
         }
 
@@ -76,7 +78,7 @@
             text-align: center;
             margin-top: -50px;
             padding: 0 20px;
-            box-shadow: inset 0 0 0 500px rgba(0, 86, 179, 0.7);
+            box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.6);
         }
 
         .hero-content h2 {
@@ -84,7 +86,8 @@
             margin: 0;
             padding-bottom: 20px;
             font-weight: bold;
-            color: #ffd700; /* Bright yellow color */
+            color: #ffdd57; /* Yellow color */
+            animation: fadeIn 2s ease-out;
         }
 
         .hero-content p {
@@ -92,8 +95,30 @@
             margin: 10px 0;
         }
 
+        .hero a.btn {
+            display: inline-block;
+            background: #ffdd57; /* Yellow background */
+            color: #0056b3; /* Blue text */
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero a.btn:hover {
+            background: #ffcc00; /* Darker yellow on hover */
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero a.btn:active {
+            transform: scale(0.95);
+        }
+
         .features {
-            background: #f0f0f0;
+            background: #fff;
             padding: 60px 20px;
             text-align: center;
         }
@@ -112,65 +137,37 @@
         }
 
         .feature-item {
-            background: #fff;
+            background: #f1f1f1;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: calc(25% - 20px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: calc(25% - 40px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-item i {
+            font-size: 40px;
+            color: #0056b3; /* Blue color */
+            margin-bottom: 10px;
         }
 
         .feature-item h3 {
             font-size: 24px;
             margin: 10px 0;
-            color: #0056b3;
         }
 
         .feature-item p {
             font-size: 16px;
-            color: #666;
-        }
-
-        .daily-giveaways {
-            background: #0056b3;
-            padding: 60px 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .daily-giveaways h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #ffd700; /* Bright yellow color */
-        }
-
-        .daily-giveaways p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .daily-giveaways .btn {
-            background-color: #ffd700;
-            color: #0056b3;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .daily-giveaways .btn:hover {
-            background-color: #ffeb3b; /* Lighter yellow */
-            transform: scale(1.05);
+            color: #555;
         }
 
         footer {
-            background: #333;
+            background: #0056b3; /* Blue background */
             color: #fff;
             text-align: center;
             padding: 20px;
@@ -180,29 +177,21 @@
             margin: 0;
         }
 
-        footer a {
-            color: #ffd700;
-            text-decoration: none;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .feature-item {
-                width: calc(33.333% - 20px);
-            }
-        }
-
         @media (max-width: 768px) {
             .feature-item {
-                width: calc(50% - 20px);
+                width: calc(50% - 40px);
             }
 
             .hero-content h2 {
-                font-size: 36px;
+                font-size: 32px;
             }
 
             .hero-content p {
                 font-size: 20px;
+            }
+
+            .hero {
+                height: 300px;
             }
         }
 
@@ -211,12 +200,35 @@
                 width: 100%;
             }
 
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav ul {
+                flex-direction: column;
+            }
+
+            .hero {
+                height: 250px;
+            }
+
             .hero-content h2 {
                 font-size: 28px;
             }
 
             .hero-content p {
                 font-size: 18px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -241,40 +253,43 @@
         <div class="hero-content">
             <h2>Welcome to RealSurveys</h2>
             <p>Your trusted partner in gathering real opinions</p>
+            <a href="#features" class="btn">Discover More</a>
         </div>
     </div>
 
-    <div class="features">
-        <h2>Our Features</h2>
+    <div class="features" id="features">
+        <h2>Features</h2>
         <div class="feature-grid">
             <div class="feature-item">
+                <i class="icon">&#128187;</i>
                 <h3>Quick and Easy Surveys</h3>
-                <p>Simple, fast, and easy to complete.</p>
+                <p>Participate in simple, fast, and easy surveys.</p>
             </div>
             <div class="feature-item">
+                <i class="icon">&#128274;</i>
                 <h3>No One is Disqualified</h3>
-                <p>Everyone gets to complete the survey and earn rewards.</p>
+                <p>Everyone gets to complete surveys without disqualification.</p>
             </div>
             <div class="feature-item">
+                <i class="icon">&#128176;</i>
                 <h3>Get Paid Fast</h3>
-                <p>Receive your earnings quickly with no minimum cash-out limit.</p>
+                <p>Receive fast payouts for your participation.</p>
             </div>
             <div class="feature-item">
-                <h3>No Ads, No Tracking</h3>
-                <p>We respect your privacy. No ads, no tracking, and no spying.</p>
+                <i class="icon">&#128683;</i>
+                <h3>No Ads, No Tracking, No Spying</h3>
+                <p>Your privacy is our priority. No ads or tracking.</p>
+            </div>
+            <div class="feature-item">
+                <i class="icon">&#127873;</i>
+                <h3>Daily Giveaways</h3>
+                <p>Enter our daily giveaways for more rewards!</p>
             </div>
         </div>
-    </div>
-
-    <div class="daily-giveaways">
-        <h2>Daily Giveaways</h2>
-        <p>Participate in our daily giveaways and win exciting prizes!</p>
-        <a href="#" class="btn">Enter Now</a>
     </div>
 
     <footer>
-        <p>&copy; 2024 RealSurveys. All Rights Reserved.</p>
-        <p><a href="trustpilot-link.html">Check us out on Trustpilot</a></p>
+        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
     </footer>
 </body>
 </html>
