@@ -3,64 +3,20 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #000; /* Black background for overall page */
-  color: #fff; /* White text color for contrast */
+  background-color: #f2f2f2; /* Light background for overall page */
+  color: #333; /* Dark text color for contrast */
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Light Theme Styles */
-body.light {
-  background-color: #fff; /* Light theme background */
-  color: #000; /* Dark text color */
-}
-
-body.light header {
-  background-color: #f0f0f0; /* Light header background */
-}
-
-body.light .content {
-  background-color: #fff; /* Light content background */
-  border: 4px solid #FF6347; /* Highlight color */
-}
-
-body.light .hero {
-  background-color: #fff; /* Light hero section background */
-}
-
-body.light header nav ul li a {
-  background-color: #FF6347; /* Light theme link color */
-}
-
-body.light header nav ul li a:hover {
-  background-color: #FF7F50; /* Light theme link hover color */
-}
-
-body.light .survey-question {
-  background-color: #f2c464; /* Light survey question background */
-}
-
-body.light .option {
-  background-color: #fff; /* Light option background */
-}
-
-body.light #next, body.light #back {
-  background-color: #FF6347; /* Light theme button color */
-}
-
-body.light #next:hover, body.light #back:hover {
-  background-color: #FF7F50; /* Light theme button hover color */
-}
-
-/* Subway-Themed Styles */
+/* Header Styles */
 header {
-  background-color: #ff6347; /* Bright red header */
+  background-color: #4CAF50; /* Green header */
   color: #fff;
-  padding: 10px 0;
+  padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
 }
 
 header .container {
@@ -97,238 +53,84 @@ header nav ul li a {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
-  background-color: #333; /* Dark background for links */
+  background-color: #009688; /* Teal background for links */
   padding: 10px 15px;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
 header nav ul li a:hover {
-  background-color: #555; /* Darker background on hover */
+  background-color: #00796b; /* Darker teal on hover */
 }
 
 header nav ul li a.active {
-  background-color: #ff7f50; /* Active tab color */
+  background-color: #004d40; /* Darker teal for active tab */
 }
 
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-section.survey {
-  padding: 20px 0;
-}
-
-section.survey .container {
-  background-color: #fff; /* Light background for survey container */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
+/* Hero Section */
+.hero {
+  background-color: #4CAF50; /* Green background */
+  color: #fff;
+  padding: 40px 20px;
   text-align: center;
 }
 
-section.survey h2 {
-  margin-top: 0;
-  color: #333; /* Dark color for headings */
+.hero h2 {
+  margin: 0;
+  font-size: 36px;
 }
 
-section.survey p {
-  color: #555; /* Slightly lighter text color for paragraphs */
+.hero p {
+  font-size: 18px;
 }
 
-.survey-question {
-  background-color: #f2c464; /* Subway yellow color */
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.option {
-  background-color: #fff; /* White background for options */
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.option:hover {
-  background-color: #f7f7f7; /* Light grey on hover */
-}
-
-#next, #back {
-  background-color: #ff6347; /* Red buttons */
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-#next:hover, #back:hover {
-  background-color: #ff7f50; /* Lighter red on hover */
-}
-
-/* Enhanced Styles for Cash Out Options */
-.cashout-method img {
-  max-width: 80px;
-  filter: brightness(1.2); /* Lighten icons by default */
-  transition: filter 0.3s, transform 0.3s;
-}
-
-.cashout-method img:hover {
-  filter: brightness(1.5); /* Further lighten on hover */
-  transform: scale(1.1); /* Slightly scale up on hover */
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.tab {
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-  background: #FF6347; /* Bright red for tabs */
-  color: #fff;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.tab.active {
-  background: #ff7f50; /* Lighter red for active tab */
-}
-
-.tab:hover {
-  background: #e65c00; /* Darker red on hover */
-  transform: scale(1.05);
-}
-
-/* Testimonial Slider */
-.testimonial-slider {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.testimonial-item {
-  display: none;
-  font-size: 16px;
+/* Features Section */
+.features {
+  padding: 40px 20px;
+  background-color: #fff; /* White background for features */
   text-align: center;
-  padding: 20px;
 }
 
-.testimonial-item p {
-  font-style: italic;
+.features .feature {
+  margin-bottom: 20px;
 }
 
-.testimonial-item cite {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
+.features .feature .icon {
+  font-size: 48px; /* Emoji size */
 }
 
-/* Theme Switcher */
-.theme-switcher {
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  cursor: pointer;
+.features .feature h3 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.features .feature p {
   font-size: 16px;
-  background: #FF6347; /* Red theme switcher button */
+}
+
+/* Giveaways Section */
+.giveaways {
+  padding: 40px 20px;
+  background-color: #e8f5e9; /* Light green background */
+  text-align: center;
+}
+
+.giveaways h2 {
+  font-size: 28px;
+}
+
+.giveaways p {
+  font-size: 18px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #4CAF50; /* Green background */
   color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
+  padding: 15px 0;
+  text-align: center;
 }
 
-.theme-switcher:hover {
-  background: #ff7f50; /* Lighter red on hover */
-  transform: scale(1.05);
-}
-
-/* Dropdown */
-.theme-dropdown {
-  display: none;
-  position: absolute;
-  right: 20px;
-  top: 40px;
-  background: #fff; /* White dropdown background */
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.theme-dropdown a {
-  display: block;
-  padding: 10px;
-  color: #333; /* Dark text for dropdown items */
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.theme-dropdown a:hover {
-  background: #f0f0f0; /* Light grey on hover */
-}
-
-/* Form Styles */
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background: #fff; /* White background for forms */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.form-group textarea {
-  height: 150px;
-  resize: vertical;
-}
-
-button.btn {
-  background: #FF6347; /* Red button color */
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button.btn:hover {
-  background: #ff7f50; /* Lighter red on hover */
-}
-
-/* Header Tabs */
-header nav ul li a.register, header nav ul li a.login {
-  background-color: #FF6347; /* Red for Register/Login tabs */
-}
-
-header nav ul li a.register:hover, header nav ul li a.login:hover {
-  background-color: #FF7F50; /* Lighter red on hover */
+footer p {
+  margin: 0;
 }
