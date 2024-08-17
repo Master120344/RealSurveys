@@ -1,458 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McDonald's Survey - RealSurveys</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: rgba(240, 242, 245, 0.4);
-            color: #333;
-            background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/Screenshot_20240811-114733~2.png?raw=true');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        header {
-            background-color: #ffc300;
-            color: #fff;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #d90000;
-            text-align: left;
-        }
-
-        header h1 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        header nav ul li {
-            margin: 0 10px;
-        }
-
-        header nav ul li a {
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-            background-color: #fff;
-        }
-
-        header nav ul li a:hover {
-            background-color: #d90000;
-            color: #fff;
-            transform: scale(1.05);
-        }
-
-        .hero {
-            background-color: rgba(217, 0, 0, 0.8);
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-        }
-
-        .hero h2 {
-            position: relative;
-            font-size: 36px;
-            margin: 0;
-            z-index: 1;
-        }
-
-        .content {
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            border: 4px solid #ffc300;
-            margin-top: -50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .content h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #d90000;
-        }
-
-        .content p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .survey-question {
-            display: none;
-            margin-bottom: 20px;
-            text-align: left;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 1);
-            border-radius: 8px;
-            border: 1px solid #ffc300;
-        }
-
-        .survey-question.active {
-            display: block;
-        }
-
-        .survey-question label {
-            font-size: 18px;
-            color: #333;
-        }
-
-        .survey-question .options {
-            margin-top: 10px;
-        }
-
-        .survey-question .options input {
-            margin-right: 10px;
-        }
-
-        .survey-question .options label {
-            font-size: 16px;
-            margin-right: 20px;
-        }
-
-        .survey-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ffc300;
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #d90000;
-            color: #fff;
-            transform: scale(1.05);
-        }
-
-        footer {
-            background-color: #ffc300;
-            color: #333;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        footer .social {
-            margin-top: 10px;
-        }
-
-        footer .social a {
-            color: #333;
-            margin: 0 10px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer .social a:hover {
-            color: #d90000;
-        }
-
-        @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-            }
-
-            header nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            header nav ul li {
-                margin: 5px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .content h2 {
-                font-size: 24px;
-            }
-
-            .content p {
-                font-size: 16px;
-            }
-
-            footer .container {
-                padding: 0 20px;
-            }
-        }
-
-        .timer {
-            display: none;
-            margin: 20px 0;
-            padding: 10px;
-            background-color: yellow;
-            color: red;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McDonald's Survey - RealSurveys</title>
+<style>
+body {
+margin: 0;
+font-family: 'Arial', sans-serif;
+background-color: rgba(240, 242, 245, 0.4);
+color: #333;
+background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/Screenshot_20240811-114733~2.png?raw=true');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+header {
+background-color: #ffc300;
+color: #fff;
+padding: 20px 0;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+header .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+header h1 {
+margin: 0;
+font-size: 28px;
+color: #d90000;
+text-align: left;
+}
+header h1 a {
+color: inherit;
+text-decoration: none;
+}
+header nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+}
+header nav ul li {
+margin: 0 10px;
+}
+header nav ul li a {
+color: #333;
+text-decoration: none;
+font-size: 14px;
+padding: 10px 20px;
+border-radius: 5px;
+transition: background-color 0.3s, transform 0.3s;
+background-color: #fff;
+}
+header nav ul li a:hover {
+background-color: #d90000;
+color: #fff;
+transform: scale(1.05);
+}
+.hero {
+background-color: rgba(217, 0, 0, 0.8);
+height: 200px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+color: #fff;
+position: relative;
+}
+.hero h2 {
+position: relative;
+font-size: 36px;
+margin: 0;
+z-index: 1;
+}
+.content {
+padding: 60px 20px;
+max-width: 800px;
+margin: 0 auto;
+text-align: center;
+background-color: rgba(255, 255, 255, 0.9);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+border: 4px solid #ffc300;
+margin-top: -50px;
+position: relative;
+z-index: 2;
+}
+.content h2 {
+font-size: 28px;
+margin-bottom: 20px;
+color: #d90000;
+}
+.content p {
+font-size: 18px;
+line-height: 1.6;
+margin-bottom: 20px;
+color: #333;
+}
+.survey-question {
+display: none;
+margin-bottom: 20px;
+text-align: left;
+padding: 20px;
+background-color: rgba(255, 255, 255, 1);
+border-radius: 8px;
+border: 1px solid #ffc300;
+}
+.survey-question.active {
+display: block;
+}
+.survey-question label {
+font-size: 18px;
+color: #333;
+}
+.survey-question .options {
+margin-top: 10px;
+}
+.survey-question .options input {
+margin-right: 10px;
+}
+.survey-question .options label {
+font-size: 16px;
+margin-right: 20px;
+}
+.survey-nav {
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+.btn {
+display: inline-block;
+padding: 10px 20px;
+background-color: #ffc300;
+color: #333;
+text-decoration: none;
+border-radius: 5px;
+transition: background-color 0.3s, transform 0.3s;
+}
+.btn:hover {
+background-color: #d90000;
+color: #fff;
+transform: scale(1.05);
+}
+footer {
+background-color: #ffc300;
+color: #333;
+padding: 20px 0;
+text-align: center;
+}
+footer .container {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+footer p {
+margin: 0;
+}
+footer .social {
+margin-top: 10px;
+}
+footer .social a {
+color: #333;
+margin: 0 10px;
+font-size: 18px;
+text-decoration: none;
+transition: color 0.3s;
+}
+footer .social a:hover {
+color: #d90000;
+}
+@media (max-width: 768px) {
+header .container {
+flex-direction: column;
+}
+header nav ul {
+justify-content: center;
+flex-wrap: wrap;
+}
+header nav ul li {
+margin: 5px;
+}
+.content {
+padding: 20px;
+}
+.content h2 {
+font-size: 24px;
+}
+.content p {
+font-size: 16px;
+}
+footer .container {
+padding: 0 20px;
+}
+}
+.timer {
+display: none;
+margin: 20px 0;
+padding: 10px;
+background-color: yellow;
+color: red;
+font-size: 18px;
+font-weight: bold;
+border-radius: 5px;
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
-            <nav>
-                <ul class="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="referral-program.html">Referral Program</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="hero">
-        <h2>McDonald's Survey</h2>
-    </div>
-
-    <section class="content">
-        <div class="container">
-            <h2>McDonald's Survey</h2>
-            <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
-            <form id="mcdonaldsSurveyForm">
-                <!-- Survey questions -->
-                <div class="survey-question active" data-question="1">
-                    <p>Question 1/5</p>
-                    <label for="q1">How often do you eat at McDonald's?</label>
-                    <div class="options">
-                        <input type="radio" id="q1_daily" name="q1" value="Daily">
-                        <label for="q1_daily">Daily</label>
-                        <input type="radio" id="q1_weekly" name="q1" value="Weekly">
-                        <label for="q1_weekly">Weekly</label>
-                        <input type="radio" id="q1_monthly" name="q1" value="Monthly">
-                        <label for="q1_monthly">Monthly</label>
-                        <input type="radio" id="q1_rarely" name="q1" value="Rarely">
-                        <label for="q1_rarely">Rarely</label>
-                    </div>
-                </div>
-                <div class="survey-question" data-question="2">
-                    <p>Question 2/5</p>
-                    <label for="q2">What is your favorite McDonald's menu item?</label>
-                    <div class="options">
-                        <input type="radio" id="q2_burger" name="q2" value="Burger">
-                        <label for="q2_burger">Burger</label>
-                        <input type="radio" id="q2_fries" name="q2" value="Fries">
-                        <label for="q2_fries">Fries</label>
-                        <input type="radio" id="q2_nuggets" name="q2" value="Nuggets">
-                        <label for="q2_nuggets">Nuggets</label>
-                        <input type="radio" id="q2_sundae" name="q2" value="Sundae">
-                        <label for="q2_sundae">Sundae</label>
-                    </div>
-                </div>
-                <div class="survey-question" data-question="3">
-                    <p>Question 3/5</p>
-                    <label for="q3">How would you rate the service at McDonald's?</label>
-                    <div class="options">
-                        <input type="radio" id="q3_excellent" name="q3" value="Excellent">
-                        <label for="q3_excellent">Excellent</label>
-                        <input type="radio" id="q3_good" name="q3" value="Good">
-                        <label for="q3_good">Good</label>
-                        <input type="radio" id="q3_average" name="q3" value="Average">
-                        <label for="q3_average">Average</label>
-                        <input type="radio" id="q3_poor" name="q3" value="Poor">
-                        <label for="q3_poor">Poor</label>
-                    </div>
-                </div>
-                <div class="survey-question" data-question="4">
-                    <p>Question 4/5</p>
-                    <label for="q4">What improvements would you like to see?</label>
-                    <div class="options">
-                        <input type="radio" id="q4_menu" name="q4" value="Menu">
-                        <label for="q4_menu">Menu</label>
-                        <input type="radio" id="q4_service" name="q4" value="Service">
-                        <label for="q4_service">Service</label>
-                        <input type="radio" id="q4_cleanliness" name="q4" value="Cleanliness">
-                        <label for="q4_cleanliness">Cleanliness</label>
-                        <input type="radio" id="q4_price" name="q4" value="Price">
-                        <label for="q4_price">Price</label>
-                    </div>
-                </div>
-                <div class="survey-question" data-question="5">
-                    <p>Question 5/5</p>
-                    <label for="q5">Any additional comments?</label>
-                    <textarea id="q5" name="q5" rows="4"></textarea>
-                </div>
-                <div class="survey-nav">
-                    <button type="button" id="prevButton" class="btn" style="display: none;">Previous</button>
-                    <button type="button" id="nextButton" class="btn">Next</button>
-                    <button type="submit" id="submitButton" class="btn" style="display: none;">Submit</button>
-                </div>
-            </form>
-            <div id="timer" class="timer"></div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#" aria-label="Facebook">Facebook</a>
-                <a href="#" aria-label="Twitter">Twitter</a>
-                <a href="#" aria-label="Instagram">Instagram</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-            authDomain: "real-surveys.firebaseapp.com",
-            databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
-            projectId: "real-surveys",
-            storageBucket: "real-surveys.appspot.com",
-            messagingSenderId: "1024139519354",
-            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        const surveyForm = document.getElementById('mcdonaldsSurveyForm');
-        const surveyQuestions = document.querySelectorAll('.survey-question');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        const submitButton = document.getElementById('submitButton');
-        const timerDiv = document.getElementById('timer');
-        
-        let currentQuestionIndex = 0;
-        let timer;
-        
-        function showQuestion(index) {
-            surveyQuestions.forEach((question, i) => {
-                question.classList.toggle('active', i === index);
-            });
-            prevButton.style.display = index === 0 ? 'none' : 'inline-block';
-            nextButton.style.display = index === surveyQuestions.length - 1 ? 'none' : 'inline-block';
-            submitButton.style.display = index === surveyQuestions.length - 1 ? 'inline-block' : 'none';
-            startTimer();
-        }
-
-        function startTimer() {
-            let timeLeft = 10;
-            timerDiv.style.display = 'block';
-            timerDiv.textContent = `Time left: ${timeLeft} seconds`;
-
-            timer = setInterval(() => {
-                timeLeft--;
-                timerDiv.textContent = `Time left: ${timeLeft} seconds`;
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    nextButton.click();
-                }
-            }, 1000);
-        }
-
-        prevButton.addEventListener('click', () => {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                showQuestion(currentQuestionIndex);
-            }
-        });
-
-        nextButton.addEventListener('click', () => {
-            if (currentQuestionIndex < surveyQuestions.length - 1) {
-                currentQuestionIndex++;
-                showQuestion(currentQuestionIndex);
-            }
-        });
-
-        surveyForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const surveyData = new FormData(surveyForm);
-            const surveyResults = {};
-
-            surveyData.forEach((value, key) => {
-                surveyResults[key] = value;
-            });
-
-            firebase.database().ref('surveys').push(surveyResults)
-                .then(() => {
-                    alert('Thank you for completing the survey!');
-                    surveyForm.reset();
-                    currentQuestionIndex = 0;
-                    showQuestion(currentQuestionIndex);
-                })
-                .catch((error) => {
-                    console.error('Error saving survey data:', error);
-                });
-        });
-
-        // Initialize survey display
-        showQuestion(currentQuestionIndex);
-    </script>
+<header>
+<div class="container">
+<h1><a href="index.html">RealSurveys</a></h1>
+<nav>
+<ul class="nav">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+<li><a href="leading-platform.html">Leading Platform</a></li>
+<li><a href="referral-program.html">Referral Program</a></li>
+<li><a href="register.html">Register</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="hero">
+<h2>McDonald's Survey</h2>
+</div>
+<section class="content">
+<div class="container">
+<h2>McDonald's Survey</h2>
+<p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
+<form id="mcdonaldsSurveyForm">
+<div class="survey-question active" data-question="1">
+<p>Question 1/5</p>
+<label for="q1">How often do you eat at McDonald's?</label>
+<div class="options">
+<input type="radio" id="q1_daily" name="q1" value="Daily">
+<label for="q1_daily">Daily</label>
+<input type="radio" id="q1_weekly" name="q1" value="Weekly">
+<label for="q1_weekly">Weekly</label>
+<input type="radio" id="q1_monthly" name="q1" value="Monthly">
+<label for="q1_monthly">Monthly</label>
+<input type="radio" id="q1_rarely" name="q1" value="Rarely">
+<label for="q1_rarely">Rarely</label>
+</div>
+</div>
+<div class="survey-question" data-question="2">
+<p>Question 2/5</p>
+<label for="q2">What is your favorite McDonald's menu item?</label>
+<div class="options">
+<input type="radio" id="q2_burger" name="q2" value="Burger">
+<label for="q2_burger">Burger</label>
+<input type="radio" id="q2_fries" name="q2" value="Fries">
+<label for="q2_fries">Fries</label>
+<input type="radio" id="q2_nuggets" name="q2" value="Nuggets">
+<label for="q2_nuggets">Nuggets</label>
+<input type="radio" id="q2_sundae" name="q2" value="Sundae">
+<label for="q2_sundae">Sundae</label>
+</div>
+</div>
+<div class="survey-question" data-question="3">
+<p>Question 3/5</p>
+<label for="q3">How would you rate the service at McDonald's?</label>
+<div class="options">
+<input type="radio" id="q3_excellent" name="q3" value="Excellent">
+<label for="q3_excellent">Excellent</label>
+<input type="radio" id="q3_good" name="q3" value="Good">
+<label for="q3_good">Good</label>
+<input type="radio" id="q3_average" name="q3" value="Average">
+<label for="q3_average">Average</label>
+<input type="radio" id="q3_poor" name="q3" value="Poor">
+<label for="q3_poor">Poor</label>
+</div>
+</div>
+<div class="survey-question" data-question="4">
+<p>Question 4/5</p>
+<label for="q4">What improvements would you like to see?</label>
+<div class="options">
+<input type="radio" id="q4_menu" name="q4" value="Menu">
+<label for="q4_menu">Menu</label>
+<input type="radio" id="q4_service" name="q4" value="Service">
+<label for="q4_service">Service</label>
+<input type="radio" id="q4_cleanliness" name="q4" value="Cleanliness">
+<label for="q4_cleanliness">Cleanliness</label>
+<input type="radio" id="q4_price" name="q4" value="Price">
+<label for="q4_price">Price</label>
+</div>
+</div>
+<div class="survey-question" data-question="5">
+<p>Question 5/5</p>
+<label for="q5">Any additional comments?</label>
+<textarea id="q5" name="q5" rows="4"></textarea>
+</div>
+<div class="survey-nav">
+<button type="button" id="prevButton" class="btn" style="display: none;">Previous</button>
+<button type="button" id="nextButton" class="btn">Next</button>
+<button type="submit" id="submitButton" class="btn" style="display: none;">Submit</button>
+</div>
+</form>
+<div id="timer" class="timer"></div>
+</div>
+</section>
+<footer>
+<div class="container">
+<p>&copy; 2024 RealSurveys. All rights reserved.</p>
+<div class="social">
+<a href="#" aria-label="Facebook">Facebook</a>
+<a href="#" aria-label="Twitter">Twitter</a>
+<a href="#" aria-label="Instagram">Instagram</a>
+</div>
+</div>
+</footer>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
+<script>
+// Your web app's Firebase configuration
+const firebaseConfig = {
+apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+authDomain: "real-surveys.firebaseapp.com",
+databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
+projectId: "real-surveys",
+storageBucket: "real-surveys.appspot.com",
+messagingSenderId: "1024139519354",
+appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const surveyForm = document.getElementById('mcdonaldsSurveyForm');
+const surveyQuestions = document.querySelectorAll('.survey-question');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+const submitButton = document.getElementById('submitButton');
+const timerDiv = document.getElementById('timer');
+let currentQuestionIndex = 0;
+let timer;
+function showQuestion(index) {
+surveyQuestions.forEach((question, i) => {
+question.classList.toggle('active', i === index);
+});
+prevButton.style.display = index === 0 ? 'none' : 'inline-block';
+nextButton.style.display = index === surveyQuestions.length - 1 ? 'none' : 'inline-block';
+submitButton.style.display = index === surveyQuestions.length - 1 ? 'inline-block' : 'none';
+startTimer();
+}
+function startTimer() {
+let timeLeft = 10;
+timerDiv.style.display = 'block';
+timerDiv.textContent = `Time left: ${timeLeft} seconds`;
+timer = setInterval(() => {
+timeLeft--;
+timerDiv.textContent = `Time left: ${timeLeft} seconds`;
+if (timeLeft <= 0) {
+clearInterval(timer);
+nextButton.click();
+}
+}, 1000);
+}
+prevButton.addEventListener('click', () => {
+if (currentQuestionIndex > 0) {
+currentQuestionIndex--;
+showQuestion(currentQuestionIndex);
+}
+});
+nextButton.addEventListener('click', () => {
+if (currentQuestionIndex < surveyQuestions.length - 1) {
+currentQuestionIndex++;
+showQuestion(currentQuestionIndex);
+}
+});
+surveyForm.addEventListener('submit', (e) => {
+e.preventDefault();
+const surveyData = new FormData(surveyForm);
+const surveyResults = {};
+surveyData.forEach((value, key) => {
+surveyResults[key] = value;
+});
+firebase.database().ref('surveys').push(surveyResults)
+.then(() => {
+alert('Thank you for completing the survey!');
+surveyForm.reset();
+currentQuestionIndex = 0;
+showQuestion(currentQuestionIndex);
+})
+.catch((error) => {
+console.error('Error saving survey data:', error);
+});
+});
+// Initialize survey display
+showQuestion(currentQuestionIndex);
+</script>
 </body>
 </html>
