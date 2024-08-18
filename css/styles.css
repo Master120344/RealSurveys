@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to RealSurveys</title>
+    <!-- Link to the CSS file in the css folder -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><a href="#">RealSurveys</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h2>Welcome to RealSurveys</h2>
+            <p>Your trusted partner in gathering real opinions</p>
+            <a href="#features" class="btn">Discover More</a>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="features" id="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="icon">&#128578;</i> <!-- Happy Emoji -->
+                    <h3>Quick and Easy Surveys</h3>
+                    <p>Surveys that are quick to set up and simple to complete.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="icon">&#128200;</i> <!-- Bar Chart Emoji -->
+                    <h3>Real-Time Analytics</h3>
+                    <p>Get instant insights with real-time analytics.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="icon">&#128176;</i> <!-- Money Bag Emoji -->
+                    <h3>Earn Rewards</h3>
+                    <p>Earn rewards for participating in surveys.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="daily-giveaways">
+            <h2>Daily Giveaways</h2>
+            <p>Participate in our daily giveaways and stand a chance to win exciting prizes!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+    </footer>
+</body>
+</html>
