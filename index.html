@@ -3,323 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to RealSurveys</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>RealSurveys</title>
     <style>
-        /* Base Styles */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light grey background for the whole page */
             margin: 0;
             padding: 0;
-            background-color: #000; /* Black background for overall page */
-            color: #fff; /* White text color for contrast */
-            transition: background-color 0.3s, color 0.3s;
+            color: #333; /* Dark grey text color for contrast */
         }
 
-        /* Light Theme Styles */
-        body.light {
-            background-color: #fff; /* Light theme background */
-            color: #000; /* Dark text color */
-        }
-
-        body.light header {
-            background-color: #f0f0f0; /* Light header background */
-        }
-
-        body.light .content-wrapper {
-            background-color: #fff; /* Light content background */
-            border: 4px solid #FF6347; /* Highlight color */
-        }
-
-        body.light .hero {
-            background-color: #fff; /* Light hero section background */
-        }
-
-        body.light header nav ul li a {
-            background-color: #FF6347; /* Light theme link color */
-        }
-
-        body.light header nav ul li a:hover {
-            background-color: #FF7F50; /* Light theme link hover color */
-        }
-
-        body.light .features, body.light .daily-giveaways {
-            background-color: #fff; /* Light background for sections */
-        }
-
-        body.light #next, body.light #back {
-            background-color: #FF6347; /* Light theme button color */
-        }
-
-        body.light #next:hover, body.light #back:hover {
-            background-color: #FF7F50; /* Light theme button hover color */
-        }
-
-        /* Subway-Themed Styles */
         header {
-            background-color: #ff6347; /* Bright red header */
+            background-color: #4CAF50; /* Subway green for header */
             color: #fff;
-            padding: 15px;
+            padding: 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s;
+            text-align: center;
         }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        header h1 a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 36px;
         }
 
-        header h1 {
-            font-size: 28px;
-            color: #fff; /* White color for header text */
-            margin: 0;
+        header nav {
+            margin-top: 10px;
         }
 
         header nav ul {
             list-style: none;
-            margin: 0;
             padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        header nav ul li {
             margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            background-color: #333; /* Dark background for links */
             padding: 10px 15px;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
 
         header nav ul li a:hover {
-            background-color: #555; /* Darker background on hover */
+            background-color: #45a049; /* Slightly darker green on hover */
         }
 
-        header nav ul li a.active {
-            background-color: #ff7f50; /* Active tab color */
-        }
-
-        .hero {
-            background: url('clean-wallpaper.jpg') no-repeat center center/cover; /* Background image */
-            color: #fff;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .main-content {
+            padding: 40px 20px;
             text-align: center;
-            padding: 0 20px;
-            box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.4); /* Darker shadow for contrast */
         }
 
-        .hero-content h2 {
-            font-size: 42px;
-            margin: 0;
-            padding-bottom: 20px;
-            font-weight: bold;
+        .main-content h2 {
+            font-size: 28px;
+            color: #4CAF50; /* Subway green for headings */
         }
 
-        .hero-content p {
-            font-size: 20px;
-            margin: 10px 0;
-        }
-
-        .hero a.btn {
-            display: inline-block;
-            background: #28a745; /* Success Green */
-            color: #fff;
-            padding: 12px 24px;
-            text-decoration: none;
+        .main-content p {
             font-size: 18px;
-            border-radius: 5px;
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero a.btn:hover {
-            background: #218838; /* Darker Green */
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero a.btn:active {
-            transform: scale(0.95);
-        }
-
-        .features {
-            background: #ffffff; /* White */
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .feature-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .feature-item {
-            background: #ffffff; /* White */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: calc(33.333% - 40px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-item i {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .feature-item h3 {
-            font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .feature-item p {
-            font-size: 16px;
-        }
-
-        .daily-giveaways {
-            background: #e3f2f1; /* Very Light Teal */
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .daily-giveaways h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #00796b; /* Teal */
-        }
-
-        .daily-giveaways p {
-            font-size: 18px;
-            color: #555; /* Dark Grey */
+            color: #666; /* Medium grey for text */
         }
 
         footer {
-            background: #333; /* Dark Grey */
+            background-color: #4CAF50; /* Matching green for footer */
             color: #fff;
             text-align: center;
             padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
         footer p {
             margin: 0;
         }
-
-        @media (max-width: 768px) {
-            .feature-item {
-                width: calc(50% - 40px);
-            }
-
-            .hero-content h2 {
-                font-size: 32px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .feature-item {
-                width: 100%;
-            }
-
-            header nav ul {
-                flex-direction: column;
-                gap: 10px; /* Reduced gap for mobile */
-            }
-
-            header nav ul li a {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1><a href="#">RealSurveys</a></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <div class="hero">
-        <div class="hero-content">
-            <h2>Welcome to RealSurveys</h2>
-            <p>Your trusted partner in gathering real opinions</p>
-            <a href="#features" class="btn">Discover More</a>
-        </div>
-    </div>
+<header>
+    <h1><a href="index.html">RealSurveys</a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+            <li><a href="leading-platform.html">Leading Platform</a></li>
+            <li><a href="referral-program.html">Referral Program</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <div class="content-wrapper">
-        <div class="features" id="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <i class="icon">&#128197;</i> <!-- Calendar Emoji -->
-                    <h3>Quick Surveys</h3>
-                    <p>Surveys that are quick to set up and simple to complete.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="icon">&#128200;</i> <!-- Bar Chart Emoji -->
-                    <h3>Real-Time Analytics</h3>
-                    <p>Get instant insights with real-time analytics.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="icon">&#128176;</i> <!-- Money Bag Emoji -->
-                    <h3>Earn Rewards</h3>
-                    <p>Earn rewards for participating in surveys.</p>
-                </div>
-            </div>
-        </div>
+<div class="main-content">
+    <h2>Welcome to RealSurveys!</h2>
+    <p>Your go-to platform for the most exciting surveys and rewards. We provide real-time analytics and feedback to help you make the most of your survey experience.</p>
+    <p>Explore our platform and take advantage of daily giveaways, referral programs, and more!</p>
+</div>
 
-        <div class="daily-giveaways">
-            <h2>Daily Giveaways</h2>
-            <p>Participate in our daily giveaways and stand a chance to win exciting prizes!</p>
-        </div>
-    </div>
+<footer>
+    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+</footer>
 
-    <footer>
-        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-    </footer>
 </body>
 </html>
