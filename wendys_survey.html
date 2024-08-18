@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wendy's Survey</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/wendys.jpg');
@@ -14,6 +13,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
         }
 
         .survey .container {
@@ -29,7 +29,7 @@
         }
 
         h2 {
-            color: #C8102E;
+            color: #C8102E; /* Wendy's red */
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -41,7 +41,7 @@
             margin: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #007AC1;
+            background-color: #007AC1; /* Wendy's blue for buttons */
             color: white;
         }
 
@@ -58,7 +58,7 @@
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 18px;
-            background-color: #C8102E;
+            background-color: #C8102E; /* Wendy's red */
             color: white;
             border: none;
             border-radius: 5px;
@@ -67,7 +67,7 @@
         }
 
         #claim-reward:hover {
-            background-color: #A61026;
+            background-color: #A61026; /* Darker red on hover */
         }
 
         /* Timer styles */
@@ -78,19 +78,6 @@
             font-size: 18px;
             font-weight: bold;
             color: red;
-            animation: colorChange 10s linear forwards;
-        }
-
-        @keyframes colorChange {
-            0% {
-                color: red;
-            }
-            50% {
-                color: yellow;
-            }
-            100% {
-                color: green;
-            }
         }
     </style>
 </head>
@@ -168,7 +155,7 @@
 
     function nextQuestion() {
         const selected = document.querySelector('input[name="option"]:checked');
-        if (selected && document.getElementById('next').disabled === false) {
+        if (selected && !document.getElementById('next').disabled) {
             clearInterval(timerInterval); // Clear the timer when moving to the next question
             if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
