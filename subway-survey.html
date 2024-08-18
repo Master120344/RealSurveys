@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subway Survey</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/subway.jpg');
@@ -14,22 +13,59 @@
             color: #333;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: rgba(255, 69, 0, 0.8); /* Semi-transparent orange */
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            text-align: center;
+        }
+
+        header h1 a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
         }
 
         .survey .container {
-            background-color: #F7D774; /* Gold background */
+            background-color: rgba(247, 215, 116, 0.9); /* Semi-transparent gold */
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px; /* Reduced width for mobile compatibility */
+            max-width: 400px;
             margin: 50px auto;
             text-align: center;
             color: #333;
-            border: none; /* Removed the white border */
         }
 
         h2 {
-            color: #008000; /* Subway green for the title */
+            color: #008000; /* Subway green */
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -43,6 +79,7 @@
             border-radius: 5px;
             background-color: #008000; /* Subway green */
             color: white;
+            cursor: pointer;
         }
 
         .survey-navigation button:disabled {
@@ -69,15 +106,51 @@
         #claim-reward:hover {
             background-color: #005c00;
         }
+
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            cursor: pointer;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .option:hover {
+            background-color: rgba(255, 255, 255, 0.6); /* Slightly darker on hover */
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark */
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .timer {
+            font-size: 18px;
+            color: #ff4500; /* Highlight color */
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="container">
-        <h1><a href="index.html" style="text-decoration:none; color:#FF4500;">RealSurveys</a></h1>
+        <h1><a href="index.html">RealSurveys</a></h1>
         <nav>
-            <ul style="list-style:none; padding:0; display:flex; justify-content:space-around;">
+            <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -96,6 +169,7 @@
         <div class="survey-question">
             <p id="question"></p>
             <div id="options"></div>
+            <div class="timer" id="timer">10s</div>
         </div>
         <div class="survey-navigation">
             <button id="back" onclick="prevQuestion()" disabled>Back</button>
@@ -105,7 +179,7 @@
     </div>
 </section>
 
-<footer style="text-align:center; padding:20px 0;">
+<footer>
     <p>&copy; 2024 RealSurveys. All rights reserved.</p>
 </footer>
 
@@ -131,6 +205,20 @@
     ];
 
     let currentQuestion = 0;
+    let timerInterval;
+
+    function startTimer() {
+        let timeLeft = 10;
+        document.getElementById('timer').innerText = `${timeLeft}s`;
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            document.getElementById('timer').innerText = `${timeLeft}s`;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('next').disabled = false; // Enable next button when time is up
+            }
+        }, 1000);
+    }
 
     function showQuestion(index) {
         const questionElem = document.getElementById('question');
@@ -156,9 +244,11 @@
 
         document.getElementById('back').disabled = index === 0;
         document.getElementById('next').disabled = true;
+        startTimer(); // Start the timer when a new question is displayed
     }
 
     function enableNextButton() {
+        clearInterval(timerInterval); // Stop the timer when an option is selected
         document.getElementById('next').disabled = false;
     }
 
