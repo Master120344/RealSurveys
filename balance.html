@@ -29,24 +29,31 @@
             <p class="balance-amount">$20.00</p>
         </div>
         <div class="cashout-options">
-            <div class="cashout-method">
+            <div id="cashout-step-1" class="cashout-step">
+                <h3>Step 1: Enter Amount</h3>
                 <input type="number" id="cashout-amount" placeholder="Enter amount to cash out" />
-                <button class="cashout-btn">Cash Out</button>
+                <button class="cashout-btn" id="cashout-btn">Next</button>
             </div>
-            <div class="error-message"></div>
-            <div class="success-message"></div>
+            <div id="cashout-step-2" class="cashout-step hidden">
+                <h3>Step 2: Choose Payment Method</h3>
+                <div id="payment-section">
+                    <form id="payment-form">
+                        <div id="card-element">
+                            <!-- A Stripe Element will be inserted here. -->
+                        </div>
+                        <div id="card-errors" role="alert"></div>
+                        <button type="submit" id="pay-button">Pay</button>
+                    </form>
+                </div>
+                <p id="fee-info">A 10% processing fee will be deducted.</p>
+            </div>
+            <div id="cashout-step-3" class="cashout-step hidden">
+                <h3>Step 3: Confirmation</h3>
+                <p id="confirmation-message"></p>
+            </div>
         </div>
-    </div>
-    <div class="payment-section">
-        <h3>Make a Payment</h3>
-        <form id="payment-form">
-            <div id="card-element">
-                <!-- A Stripe Element will be inserted here. -->
-            </div>
-            <div id="card-errors" role="alert"></div>
-            <button type="submit" id="pay-button">Pay</button>
-        </form>
-        <img src="https://stripe.com/img/v3/home/twitter.png" alt="Stripe Logo" class="stripe-logo" />
+        <div class="error-message"></div>
+        <div class="success-message"></div>
     </div>
     <script src="js/balance.js"></script>
 </body>
