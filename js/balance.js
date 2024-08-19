@@ -1,5 +1,5 @@
 // Initialize Stripe with your public key
-const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY');
+const stripe = Stripe('pk_live_51PGUR0P8M9Pgb8qZmxBX8zhH2i9ZhtSP9RNGmD1dgbsPDiW0zDcmRnNxVACAcBLzhz12YlKLMv9BvMrTUF69YlWS002ZqQ9Pey');
 const elements = stripe.elements();
 
 // Create an instance of the card Element
