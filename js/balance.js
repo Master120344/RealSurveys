@@ -1,10 +1,9 @@
-// balance.js
+// js/balance.js
 
-// Import the necessary Firebase modules
 import { getDatabase, ref, onValue, update } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
   authDomain: 'real-surveys.firebaseapp.com',
