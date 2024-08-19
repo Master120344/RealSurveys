@@ -1,47 +1,26 @@
-/* css/balance.css */
-
-/* Base Styles */
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #0d1117;
-    color: #c9d1d9;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 header {
-    background-color: #161b22;
+    background: #333;
     color: #fff;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 0 20px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 32px;
-    color: #58a6ff;
-    text-align: left;
-}
-
 header h1 a {
-    color: inherit;
+    color: #fff;
     text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
-
-header h1 a:hover {
-    color: #00e676;
 }
 
 header nav ul {
@@ -49,126 +28,70 @@ header nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
 }
 
 header nav ul li {
-    margin: 0 10px;
+    margin-right: 20px;
 }
 
 header nav ul li a {
-    color: #c9d1d9;
+    color: #fff;
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-header nav ul li a:hover {
-    background-color: #58a6ff;
-    transform: scale(1.05);
 }
 
 .hero {
-    background-color: #1f2b34;
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    background: #007bff;
     color: #fff;
-    position: relative;
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-}
-
-.hero h2 {
-    position: relative;
-    font-size: 42px;
-    margin: 0;
-    z-index: 1;
-    letter-spacing: 2px;
-    color: #00e676;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
 }
 
 .balance-container {
-    padding: 50px 20px;
-    max-width: 800px;
-    margin: -60px auto 0 auto;
-    text-align: center;
-    background-color: #161b22;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.balance-container h3 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #58a6ff;
+    padding: 20px;
 }
 
 .balance-info {
-    margin-bottom: 30px;
-    color: #8b949e;
-    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .balance-amount {
-    font-size: 60px;
-    margin: 20px 0;
-    color: #00e676;
+    font-size: 24px;
     font-weight: bold;
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-}
-
-.cashout-options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0;
 }
 
 .cashout-method {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
-.cashout-method input {
-    font-size: 16px;
-    padding: 10px;
-    border: 2px solid #58a6ff;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: calc(100% - 80px);
-}
-
-.cashout-method button {
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #58a6ff;
+.cashout-btn {
+    background: #28a745;
     color: #fff;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
 }
 
-.cashout-method button:hover {
-    background-color: #00e676;
-    transform: scale(1.05);
+.cashout-btn:hover {
+    background: #218838;
 }
 
-.error-message {
-    color: #ff6b6b;
-    margin-top: 20px;
+.payment-section {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.success-message {
-    color: #00e676;
-    margin-top: 20px;
+#card-element {
+    margin-bottom: 20px;
+}
+
+#card-errors {
+    color: #dc3545;
+}
+
+.stripe-logo {
+    width: 100px;
+    display: block;
+    margin: 20px auto 0;
 }
