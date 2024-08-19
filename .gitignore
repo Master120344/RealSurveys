@@ -6,16 +6,11 @@ npm-debug.log
 .env
 
 # Logs
-logs
+logs/
 *.log
-npm-debug.log*
 
 # Dependency directories
 jspm_packages/
 
-# Firebase and service account key
-serviceAccountKey.json
-
-# Miscellaneous
-.DS_Store
-*.pem
+# Environment files
+.env
