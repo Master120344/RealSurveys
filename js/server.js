@@ -1,24 +1,24 @@
-// server.js
-
+// Import required packages
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
 const Stripe = require('stripe');
+require('dotenv').config(); // Load environment variables
 
 // Initialize Firebase Admin SDK
 const serviceAccount = require('./path/to/your/firebase-service-account.json'); // Adjust the path accordingly
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://real-surveys-default-rtdb.firebaseio.com'  // Use your actual database URL
+    databaseURL: process.env.FIREBASE_DATABASE_URL // Use environment variable
 });
 
 const db = admin.database();
 const usersRef = db.ref('users');
 
-// Initialize Stripe
-const stripe = Stripe('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'); // Your Stripe secret key
+// Initialize Stripe with secret key from environment variables
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Initialize Express app
 const app = express();
