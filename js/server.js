@@ -51,16 +51,17 @@ app.post('/complete-survey', async (req, res) => {
         const userSnapshot = await usersRef.child(userId).once('value');
         const userData = userSnapshot.val();
         const currentBalance = userData?.balance || 0;
-        const newBalance = currentBalance + 10;
+        const newBalance = currentBalance - (surveyAnswers.length * 5); // Example logic
 
         await usersRef.child(userId).update({ balance: newBalance });
-        res.json({ message: 'Survey completed and balance updated!' });
+
+        res.json({ success: true, newBalance });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// Start server
+// Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
