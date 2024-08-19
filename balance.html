@@ -37,10 +37,17 @@
             <div class="success-message"></div>
         </div>
     </div>
-    <form id="payment-form">
-        <input type="hidden" id="payment-intent-id">
-        <button type="submit" id="pay-button">Pay</button>
-    </form>
+    <div class="payment-section">
+        <h3>Make a Payment</h3>
+        <form id="payment-form">
+            <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+            </div>
+            <div id="card-errors" role="alert"></div>
+            <button type="submit" id="pay-button">Pay</button>
+        </form>
+        <img src="https://stripe.com/img/v3/home/twitter.png" alt="Stripe Logo" class="stripe-logo" />
+    </div>
     <script src="js/balance.js"></script>
 </body>
 </html>
