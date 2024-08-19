@@ -13,5 +13,9 @@ npm-debug.log*
 # Dependency directories
 jspm_packages/
 
-# Environment files
-.env
+# Firebase and service account key
+serviceAccountKey.json
+
+# Miscellaneous
+.DS_Store
+*.pem
