@@ -3,7 +3,6 @@
 import { getDatabase, ref, onValue, update } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
   authDomain: 'real-surveys.firebaseapp.com',
@@ -14,14 +13,11 @@ const firebaseConfig = {
   appId: '1:1024139519354:web:a0b11a5a0560ab02ee22c3'
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Stripe Elements setup
-const stripe = Stripe('pk_live_51PGUR0P8M9Pgb8qZmxBX8zhH2i9ZhtSP9RNGmD1dgbsPDiW0zDcmRnNxVACAcBLzhz12YlKLMv9BvMrTUF69YlWS002ZqQ9Pey'); // Your Stripe publishable key
+const stripe = Stripe('pk_live_51PGUR0P8M9Pgb8qZmxBX8zhH2i9ZhtSP9RNGmD1dgbsPDiW0zDcmRnNxVACAcBLzhz12YlKLMv9BvMrTUF69YlWS002ZqQ9Pey');
 
-// Function to fetch user balance
 function fetchUserBalance(userId) {
   const userBalanceRef = ref(database, 'users/' + userId + '/balance');
   onValue(userBalanceRef, (snapshot) => {
@@ -30,7 +26,6 @@ function fetchUserBalance(userId) {
   });
 }
 
-// Function to handle cash out
 function handleCashOut(userId, amount) {
   const userBalanceRef = ref(database, 'users/' + userId + '/balance');
   onValue(userBalanceRef, (snapshot) => {
@@ -51,7 +46,6 @@ function handleCashOut(userId, amount) {
   });
 }
 
-// Event listener for the cash out button
 document.addEventListener('DOMContentLoaded', () => {
   const userId = 'user123'; // Replace with the actual user ID
   fetchUserBalance(userId);
@@ -65,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleCashOut(userId, cashoutAmount);
   });
 
-  // Handle payment form submission
   const paymentForm = document.getElementById('payment-form');
   const payButton = document.getElementById('pay-button');
 
@@ -81,20 +74,24 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: JSON.stringify({ amount })
       });
-      const { clientSecret } = await response.json();
+      const data = await response.json();
+      const clientSecret = data.clientSecret;
 
-      const result = await stripe.confirmCardPayment(clientSecret, {
+      const { error } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: cardElement, // Replace with your actual card element
+          card: {
+            number: '4242424242424242',
+            exp_month: 12,
+            exp_year: 2024,
+            cvc: '123'
+          }
         }
       });
 
-      if (result.error) {
-        console.error(result.error.message);
+      if (error) {
         alert('Payment failed. Please try again.');
-      } else if (result.paymentIntent.status === 'succeeded') {
+      } else {
         alert('Payment successful!');
-        // Additional logic after successful payment
       }
     } catch (error) {
       console.error('Error processing payment:', error);
