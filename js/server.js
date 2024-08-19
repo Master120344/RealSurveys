@@ -36,7 +36,6 @@ app.post('/create-payment-intent', async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: 'usd',
-            // You can add more options here, like description, etc.
         });
         res.json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
@@ -49,11 +48,10 @@ app.post('/complete-survey', async (req, res) => {
     const { userId, surveyAnswers } = req.body;
 
     try {
-        // Handle survey logic here
         const userSnapshot = await usersRef.child(userId).once('value');
         const userData = userSnapshot.val();
         const currentBalance = userData?.balance || 0;
-        const newBalance = currentBalance + 10; // Reward amount
+        const newBalance = currentBalance + 10;
 
         await usersRef.child(userId).update({ balance: newBalance });
         res.json({ message: 'Survey completed and balance updated!' });
