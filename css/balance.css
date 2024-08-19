@@ -48,6 +48,10 @@ header nav ul li a {
 
 .balance-container {
     padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(to bottom right, #e0f7fa, #b9fbc0);
 }
 
 .balance-info {
@@ -59,11 +63,11 @@ header nav ul li a {
     font-weight: bold;
 }
 
-.cashout-method {
-    margin-bottom: 20px;
+.cashout-options {
+    margin-top: 20px;
 }
 
-.cashout-btn {
+.cashout-btn, #pay-button {
     background: #28a745;
     color: #fff;
     border: none;
@@ -71,7 +75,7 @@ header nav ul li a {
     cursor: pointer;
 }
 
-.cashout-btn:hover {
+.cashout-btn:hover, #pay-button:hover {
     background: #218838;
 }
 
@@ -97,11 +101,27 @@ header nav ul li a {
 .stripe-logo {
     width: 100px;
     display: block;
-    margin: 20px auto 0;
+    margin: 20px auto;
 }
 
 #fee-info {
     margin-top: 10px;
     font-size: 14px;
     color: #333;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
