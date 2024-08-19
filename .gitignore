@@ -6,11 +6,9 @@ npm-debug.log
 .env
 
 # Logs
-logs/
+logs
 *.log
+npm-debug.log*
 
 # Dependency directories
 jspm_packages/
-
-# Environment files
-.env
