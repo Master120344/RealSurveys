@@ -1,0 +1,16 @@
+{
+  "name": "stripe-firebase-integration",
+  "version": "1.0.0",
+  "description": "A simple Stripe and Firebase integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node js/server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "stripe": "^8.174.0",
+    "firebase-admin": "^9.8.0"
+  }
+}
