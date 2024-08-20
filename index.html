@@ -7,14 +7,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9; /* Light background for a clean look */
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            color: #333; /* Dark grey text for readability */
+            color: #333;
         }
 
         header {
-            background-color: #2e8b57; /* Fresh green for header */
+            background-color: #2e8b57;
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -46,23 +46,23 @@
         }
 
         header nav ul li a:hover {
-            background-color: #3a9f6f; /* Slightly darker green on hover */
+            background-color: #3a9f6f;
         }
 
         .main-content {
             padding: 60px 20px;
             text-align: center;
-            background-color: #ffffff; /* Clean white background */
+            background-color: #ffffff;
         }
 
         .main-content h2 {
             font-size: 36px;
-            color: #2e8b57; /* Matching green for headings */
+            color: #2e8b57;
         }
 
         .main-content p {
             font-size: 20px;
-            color: #666; /* Medium grey for text */
+            color: #666;
         }
 
         .feature-container {
@@ -75,7 +75,7 @@
 
         .feature-box {
             background-color: #fff;
-            border: 1px solid #ddd; /* Light grey border */
+            border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             padding: 30px;
@@ -85,7 +85,7 @@
 
         .feature-box h3 {
             margin-top: 0;
-            color: #2e8b57; /* Green for subheadings */
+            color: #2e8b57;
             font-size: 24px;
         }
 
@@ -104,12 +104,12 @@
             margin-top: 40px;
             text-transform: uppercase;
             cursor: pointer;
-            text-decoration: none; /* Remove underline */
+            text-decoration: none;
             transition: background-color 0.3s;
         }
 
         .cta-button:hover {
-            background-color: #3a9f6f; /* Slightly darker green on hover */
+            background-color: #3a9f6f;
         }
 
         footer {
@@ -125,7 +125,6 @@
             font-size: 14px;
         }
 
-        /* Mobile styling */
         @media (max-width: 768px) {
             header nav ul {
                 flex-direction: column;
@@ -185,6 +184,29 @@
 <footer>
     <p>&copy; 2024 RealSurveys. All rights reserved. No cookies. No tracking. Just honest rewards.</p>
 </footer>
+
+<script type="module">
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+        authDomain: "real-surveys.firebaseapp.com",
+        projectId: "real-surveys",
+        storageBucket: "real-surveys.appspot.com",
+        messagingSenderId: "1024139519354",
+        appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            window.location.href = 'login.html';
+        }
+    });
+</script>
 
 </body>
 </html>
