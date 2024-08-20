@@ -139,6 +139,23 @@
             text-decoration: underline;
         }
 
+        .live-chat-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .live-chat-button:hover {
+            background-color: #388E3C; /* Darker green */
+        }
+
         footer {
             background-color: #4CAF50; /* Green background */
             color: #fff;
@@ -221,51 +238,6 @@
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://kit.fontawesome.com;">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="hero">
-        <h2>Contact Us</h2>
-    </div>
-
-    <div class="content">
-        <h2>We're Here to Help</h2>
-        <p>If you have any questions, feedback, or need assistance, please don't hesitate to reach out to us. We're available 24/7/365, including holidays, to ensure you have the best experience possible.</p>
-        <div class="contact-method">
-            <h3>Contact Methods</h3>
-            <p>Call us: <a href="tel:+1234567890">+1 234 567 890</a></p>
-            <p>Send us a text: <a href="sms:+1234567890">+1 234 567 890</a></p>
-            <p>Send us an email: <a href="mailto:info@realsurveys.com">info@realsurveys.com</a></p>
-            <p>Live chat: <a href="#">Chat with us</a></p>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Document loaded and script running');
@@ -282,5 +254,49 @@
             });
         });
     </script>
-</body>
-</html>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h2>Contact Us</h2>
+    </div>
+
+    <div class="content">
+        <h2>We're Here to Help</h2>
+        <p>If you have any questions, feedback, or need assistance, please don't hesitate to reach out to us. We're available 24/7/365, including holidays, to ensure you have the best experience possible.</p>
+        <div class="contact-method">
+            <h3>Contact Methods</h3>
+            <p>Send us an email: <a href="mailto:help@realsurveys.com">help@realsurveys.com</a></p>
+            <p>Live chat: <a href="#" class="live-chat-button" onclick="openLiveChat()">Chat with us</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openLiveChat() {
+            // Simple live chat integration
+            
