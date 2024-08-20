@@ -4,28 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RealSurveys</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Light background for a clean look */
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #333; /* Dark grey text for readability */
         }
 
         header {
-            background-color: #2e8b57;
+            background-color: #2e8b57; /* Fresh green for header */
             color: #fff;
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        header h1 a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 36px;
+        }
+
         header nav ul {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 20px 0 0 0;
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -41,44 +46,69 @@
         }
 
         header nav ul li a:hover {
-            background-color: #3a9f6f;
+            background-color: #3a9f6f; /* Slightly darker green on hover */
         }
 
-        .hero {
+        .main-content {
             padding: 60px 20px;
-            background-color: #ffffff;
             text-align: center;
+            background-color: #ffffff; /* Clean white background */
         }
 
-        .hero h2 {
+        .main-content h2 {
             font-size: 36px;
-            color: #2e8b57;
+            color: #2e8b57; /* Matching green for headings */
         }
 
-        .features {
+        .main-content p {
+            font-size: 20px;
+            color: #666; /* Medium grey for text */
+        }
+
+        .feature-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 20px;
             gap: 20px;
+            margin-top: 40px;
         }
 
-        .feature-item {
-            background-color: #ffffff;
+        .feature-box {
+            background-color: #fff;
+            border: 1px solid #ddd; /* Light grey border */
             border-radius: 10px;
-            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             max-width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            text-align: left;
         }
 
-        .feature-item h3 {
-            color: #2e8b57;
-            margin-bottom: 15px;
+        .feature-box h3 {
+            margin-top: 0;
+            color: #2e8b57; /* Green for subheadings */
+            font-size: 24px;
         }
 
-        .feature-item p {
-            color: #555;
+        .feature-box p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .cta-button {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            margin-top: 40px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #3a9f6f; /* Slightly darker green on hover */
         }
 
         footer {
@@ -91,51 +121,76 @@
 
         footer p {
             margin: 0;
+            font-size: 14px;
         }
 
+        /* Mobile styling */
         @media (max-width: 768px) {
-            .features {
+            header nav ul {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .feature-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                padding: 15px 0;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="surveys.html">Surveys</a></li>
-                <li><a href="#">Giveaways</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="hero">
-        <h2>Welcome to RealSurveys</h2>
-        <p>Your voice matters here. Earn rewards by sharing your opinions, with full transparency and fairness. No ads, no tracking, just easy, fast, and honest surveys.</p>
+
+<header>
+    <h1><a href="index.html">RealSurveys</a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="main-content">
+    <h2>Welcome to RealSurveys!</h2>
+    <p>Your voice matters here. Earn rewards by sharing your opinions, with full transparency and fairness. No ads, no tracking, just easy, fast, and honest surveys.</p>
+
+    <div class="feature-container">
+        <div class="feature-box">
+            <h3>No Data Tracking</h3>
+            <p>Your privacy is our priority. We don’t use cookies, and we don’t sell your data. You can participate knowing that your personal information is safe.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Everyone Qualifies</h3>
+            <p>No more disqualifications. If a survey is available, you can take it and get paid—simple as that. Everyone has a fair shot here.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Instant Payments</h3>
+            <p>Get paid quickly after completing a survey. With no minimum cash-out, you can withdraw your earnings anytime, with just a 10% fee.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Daily Giveaways</h3>
+            <p>Earn tickets for every survey you take and referral you make. Redeem them for daily prizes and be part of our extensive giveaways.</p>
+        </div>
     </div>
-    <div class="features">
-        <div class="feature-item">
-            <h3>Quick and Easy Surveys</h3>
-            <p>Complete surveys quickly and earn rewards with minimal effort.</p>
-        </div>
-        <div class="feature-item">
-            <h3>No One is Disqualified</h3>
-            <p>Everyone's opinion counts, and nobody is left out.</p>
-        </div>
-        <div class="feature-item">
-            <h3>Get Paid Fast</h3>
-            <p>Your rewards are processed quickly, ensuring you get paid fast.</p>
-        </div>
-        <div class="feature-item">
-            <h3>No Ads, No Tracking</h3>
-            <p>Enjoy a clean, private survey experience without any interruptions.</p>
-        </div>
-    </div>
-    <footer>
-        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-    </footer>
+
+    <button class="cta-button">Start Earning Today</button>
+</div>
+
+<footer>
+    <p>&copy; 2024 RealSurveys. All rights reserved. No cookies. No tracking. Just honest rewards.</p>
+</footer>
+
 </body>
 </html>
