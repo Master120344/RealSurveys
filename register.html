@@ -94,6 +94,18 @@
             background-color: #3a9f6f;
         }
 
+        .success-message {
+            color: #28a745;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
         footer {
             background-color: #2e8b57;
             color: #fff;
@@ -134,10 +146,12 @@
     <p>Create an account to start earning rewards with RealSurveys.</p>
     <div class="form-container">
         <form id="registerForm">
-            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="username" placeholder="Username" required>
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
             <button type="submit">Register</button>
+            <div id="message" class="success-message" style="display: none;"></div>
         </form>
     </div>
 </div>
@@ -164,16 +178,32 @@
 
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = document.getElementById('name').value;
+        const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const messageElement = document.getElementById('message');
+
+        if (password !== confirmPassword) {
+            messageElement.textContent = 'Passwords do not match.';
+            messageElement.className = 'error-message';
+            messageElement.style.display = 'block';
+            return;
+        }
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-            window.location.href = 'index.html'; // Redirect to home page after registration
+            messageElement.textContent = 'Success! Redirecting...';
+            messageElement.className = 'success-message';
+            messageElement.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'index.html'; // Redirect to home page after registration
+            }, 2000); // Delay redirection to show the success message
         } catch (error) {
             console.error('Registration failed:', error);
-            alert('Registration failed. Please try again.');
+            messageElement.textContent = 'Registration failed. Please try again.';
+            messageElement.className = 'error-message';
+            messageElement.style.display = 'block';
         }
     });
 </script>
