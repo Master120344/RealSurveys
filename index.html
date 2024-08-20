@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealSurveys - Balance</title>
+    <title>RealSurveys</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4; /* Light grey for a balanced tone */
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            color: #333; /* Dark grey text for readability */
+            color: #333;
         }
 
         header {
-            background-color: #2e8b57; /* Green symbolizes growth and balance */
+            background-color: #2e8b57;
             color: #fff;
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 36px;
         }
 
         header nav ul {
@@ -34,11 +30,6 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        header nav ul li {
-            margin: 5px 0;
         }
 
         header nav ul li a {
@@ -51,169 +42,171 @@
         }
 
         header nav ul li a:hover {
-            background-color: #3a9f6f; /* Slightly darker green on hover */
+            background-color: #3a9f6f;
         }
 
-        .main-content {
-            padding: 40px 20px;
+        .hero {
+            padding: 60px 20px;
+            background-color: #ffffff;
             text-align: center;
-            background-color: #ffffff; /* Clean white background */
         }
 
-        .main-content h2 {
-            font-size: 28px;
-            color: #2e8b57; /* Matching green for headings */
-        }
-
-        .main-content p {
-            font-size: 18px;
-            color: #666; /* Medium grey for text */
+        .hero h2 {
+            font-size: 36px;
+            color: #2e8b57;
         }
 
         .balance-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .balance-box {
-            background-color: #fff;
-            border: 1px solid #ddd; /* Light grey border */
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 100%;
-            max-width: 300px;
-            text-align: left;
+            background-color: #ffffff;
+            margin: 20px auto;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .balance-box h3 {
-            margin-top: 0;
-            color: #2e8b57; /* Green for subheadings */
-            font-size: 22px;
+        .balance-container h3 {
+            color: #2e8b57;
+            font-size: 24px;
         }
 
-        .balance-box p {
-            color: #666;
-            font-size: 16px;
+        .balance-info {
+            font-size: 32px;
+            color: #2e8b57;
+            text-align: center;
+            margin: 20px 0;
         }
 
-        .cta-button {
+        .cashout-options {
+            margin-top: 20px;
+        }
+
+        .cashout-step {
+            margin-bottom: 20px;
+        }
+
+        .cashout-step.hidden {
+            display: none;
+        }
+
+        .cashout-btn {
             background-color: #2e8b57;
             color: #fff;
-            padding: 15px 30px;
+            padding: 10px;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             font-size: 18px;
-            margin-top: 30px;
-            text-transform: uppercase;
             cursor: pointer;
-            transition: background-color 0.3s;
             width: 100%;
-            max-width: 300px;
         }
 
-        .cta-button:hover {
-            background-color: #3a9f6f; /* Slightly darker green on hover */
+        .cashout-btn:hover {
+            background-color: #3a9f6f;
         }
 
         footer {
             background-color: #2e8b57;
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             margin-top: 40px;
         }
 
-        footer p {
+        footer p, footer img {
             margin: 0;
-            font-size: 14px;
         }
 
-        /* Mobile styling */
+        .stripe-logo {
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
-            header nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .main-content h2 {
-                font-size: 24px;
-            }
-
-            .main-content p {
-                font-size: 16px;
-            }
-
-            .balance-box {
-                padding: 15px;
-            }
-
-            .balance-box h3 {
-                font-size: 20px;
-            }
-
-            .balance-box p {
-                font-size: 14px;
-            }
-
-            .cta-button {
-                padding: 10px;
-                font-size: 16px;
+            .balance-container {
+                width: 90%;
             }
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1><a href="index.html">RealSurveys</a></h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
-</header>
-
-<div class="main-content">
-    <h2>Balance and Fairness in Every Survey</h2>
-    <p>At RealSurveys, we believe in balance. Balance between user privacy and corporate insights, between effort and reward, and between transparency and trust. Join us in creating a fairer, more balanced survey experience.</p>
-
-    <div class="balance-container">
-        <div class="balance-box">
-            <h3>Privacy & Transparency</h3>
-            <p>We respect your privacy. We don’t track, spy, or sell your data. Transparency is at the heart of what we do—what you see is what you get.</p>
-        </div>
-
-        <div class="balance-box">
-            <h3>Effort & Reward</h3>
-            <p>Your time is valuable. We ensure that every survey you complete is rewarded fairly, with no disqualifications, ever.</p>
-        </div>
-
-        <div class="balance-box">
-            <h3>Fairness for All</h3>
-            <p>Everyone deserves a fair chance. Our platform is built on equality—whether you're a new user or a seasoned pro, your voice matters the same.</p>
-        </div>
-
-        <div class="balance-box">
-            <h3>Balanced Payouts</h3>
-            <p>Withdraw your earnings whenever you like. With no minimum cash-out limits and a fair 10% fee, you're in control of your rewards.</p>
-        </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="surveys.html">Surveys</a></li>
+                <li><a href="#">Giveaways</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="hero">
+        <h2>Welcome to RealSurveys</h2>
+        <p>Your voice matters here. Earn rewards by sharing your opinions, with full transparency and fairness. No ads, no tracking, just easy, fast, and honest surveys.</p>
     </div>
+    <div class="balance-container">
+        <h3>Your Current Balance:</h3>
+        <div class="balance-info">
+            <p class="balance-amount" id="current-balance">$20.00</p>
+        </div>
+        <div class="cashout-options">
+            <div id="cashout-step-1" class="cashout-step">
+                <h3>Step 1: Enter Amount</h3>
+                <input type="number" id="cashout-amount" placeholder="Enter amount to cash out" oninput="calculateNetAmount()" />
+                <p id="net-amount" class="net-amount"></p>
+                <button class="cashout-btn" id="cashout-btn">Next</button>
+            </div>
+            <div id="cashout-step-2" class="cashout-step hidden">
+                <h3>Step 2: Choose Payment Method</h3>
+                <div id="payment-section">
+                    <form id="payment-form">
+                        <div id="card-element"></div>
+                        <div id="card-errors" role="alert"></div>
+                        <button type="submit" id="pay-button">Cash Out</button>
+                    </form>
+                </div>
+                <p id="fee-info">A 10% processing fee will be deducted.</p>
+            </div>
+            <div id="cashout-step-3" class="cashout-step hidden">
+                <h3>Step 3: Confirmation</h3>
+                <p id="confirmation-message"></p>
+                <p>Money will be instantly deposited within a few minutes or less.</p>
+            </div>
+        </div>
+        <div class="error-message"></div>
+        <div class="success-message"></div>
+    </div>
+    <footer>
+        <p>Powered by <a href="https://stripe.com" target="_blank">Stripe</a> - The payment processor.</p>
+        <img src="https://github.com/Master120344/RealSurveys/raw/main/assets/untitled-3.gif" alt="Stripe Logo" class="stripe-logo" style="width:100px; height:auto;">
+    </footer>
+    <script>
+        function calculateNetAmount() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount)) {
+                const netAmount = amount * 0.9;
+                document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('net-amount').innerText = '';
+            }
+        }
 
-    <button class="cta-button">Join the Balance</button>
-</div>
-
-<footer>
-    <p>&copy; 2024 RealSurveys. All rights reserved. No cookies. No tracking. Just honest rewards.</p>
-</footer>
-
+        document.getElementById('cashout-btn').addEventListener('click', function() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount) && amount > 0) {
+                const netAmount = amount * 0.9;
+                const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
+                if (amount <= currentBalance) {
+                    const newBalance = currentBalance - amount;
+                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+                    document.getElementById('confirmation-message').innerText = `Your money is on the way and will arrive within a few minutes or less.`;
+                    document.getElementById('cashout-step-1').classList.add('hidden');
+                    document.getElementById('cashout-step-3').classList.remove('hidden');
+                } else {
+                    alert('Insufficient balance.');
+                }
+            } else {
+                alert('Please enter a valid amount.');
+            }
+        });
+    </script>
 </body>
 </html>
