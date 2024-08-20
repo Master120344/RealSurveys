@@ -12,8 +12,8 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Surveys</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="surveys.html">Surveys</a></li>
                     <li><a href="#">Giveaways</a></li>
                     <li><a href="#">Log Out</a></li>
                 </ul>
@@ -26,7 +26,7 @@
     <div class="balance-container">
         <h3>Your Current Balance:</h3>
         <div class="balance-info">
-            <p class="balance-amount">$20.00</p>
+            <p class="balance-amount" id="current-balance">$20.00</p>
         </div>
         <div class="cashout-options">
             <div id="cashout-step-1" class="cashout-step">
@@ -72,6 +72,25 @@
                 document.getElementById('net-amount').innerText = '';
             }
         }
+
+        document.getElementById('cashout-btn').addEventListener('click', function() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount) && amount > 0) {
+                const netAmount = amount * 0.9;
+                const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
+                if (amount <= currentBalance) {
+                    const newBalance = currentBalance - amount;
+                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+                    document.getElementById('confirmation-message').innerText = `Your money is on the way and will arrive within a few minutes or less.`;
+                    document.getElementById('cashout-step-1').classList.add('hidden');
+                    document.getElementById('cashout-step-3').classList.remove('hidden');
+                } else {
+                    alert('Insufficient balance.');
+                }
+            } else {
+                alert('Please enter a valid amount.');
+            }
+        });
     </script>
 </body>
 </html>
