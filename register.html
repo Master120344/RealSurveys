@@ -9,12 +9,12 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #121212; /* Dark theme background */
-            color: #e0e0e0; /* Light text color */
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text color */
         }
 
         header {
-            background-color: #1a1a1a;
+            background-color: #4CAF50; /* Green background */
             color: #fff;
             padding: 20px 0;
             position: sticky;
@@ -66,7 +66,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #FF6347; /* Highlight color */
+            background-color: #388E3C; /* Darker green */
             transform: scale(1.05);
         }
 
@@ -74,15 +74,15 @@
             max-width: 500px;
             margin: 50px auto;
             padding: 20px;
-            background: #1e1e1e; /* Dark form background */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background: #fff; /* White background for the form */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
         }
 
         .form-container h2 {
             margin-bottom: 20px;
-            color: #FF6347; /* Highlight color */
+            color: #4CAF50; /* Green color */
         }
 
         .form-container form {
@@ -93,7 +93,7 @@
         .form-container label {
             margin-bottom: 5px;
             font-size: 16px;
-            color: #e0e0e0;
+            color: #333; /* Dark text color */
         }
 
         .form-container input[type="email"],
@@ -101,14 +101,14 @@
             margin-bottom: 20px;
             padding: 10px;
             font-size: 16px;
-            border: 2px solid #FF6347; /* Red border */
+            border: 2px solid #4CAF50; /* Green border */
             border-radius: 5px;
-            background: #333; /* Dark background for inputs */
-            color: #fff; /* Light text color for inputs */
+            background: #f1f1f1; /* Light gray background for inputs */
+            color: #333; /* Dark text color for inputs */
         }
 
         .form-container input[type="submit"] {
-            background: #FF6347; /* Highlight color */
+            background: #4CAF50; /* Green background */
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -119,16 +119,16 @@
         }
 
         .form-container input[type="submit"]:hover {
-            background: #FF7F50; /* Lighter highlight color */
+            background: #388E3C; /* Darker green */
         }
 
         .forgot-password {
             margin-top: 20px;
-            color: #e0e0e0;
+            color: #333; /* Dark text color */
         }
 
         .forgot-password a {
-            color: #FF6347; /* Highlight color */
+            color: #4CAF50; /* Green color */
             text-decoration: none;
             font-size: 14px;
         }
@@ -138,21 +138,21 @@
         }
 
         .redirecting {
-            color: #28a745; /* Green color for success message */
+            color: #4CAF50; /* Green color for success message */
             font-size: 16px;
             margin-top: 20px;
             display: none; /* Hide by default */
         }
 
         .error-message {
-            color: #dc3545; /* Red color for error messages */
+            color: #F44336; /* Red color for error messages */
             font-size: 16px;
             margin-top: 20px;
             display: none; /* Hide by default */
         }
 
         footer {
-            background-color: #1a1a1a;
+            background-color: #4CAF50; /* Green background */
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -181,7 +181,7 @@
         }
 
         footer .social a:hover {
-            color: #FF6347; /* Highlight color */
+            color: #388E3C; /* Darker green */
         }
     </style>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
@@ -254,4 +254,4 @@
         </div>
     </footer>
 </body>
-</html> 
+</html>
