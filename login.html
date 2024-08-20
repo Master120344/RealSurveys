@@ -168,7 +168,14 @@
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = 'index.html'; // Redirect to home page after login
+            
+            // Random chance to go to either surveys.html or welcome.html
+            const randomChance = Math.random();
+            if (randomChance < 0.1) { // 10% chance to go to welcome.html
+                window.location.href = 'welcome.html';
+            } else {
+                window.location.href = 'surveys.html';
+            }
         } catch (error) {
             console.error('Login failed:', error);
             alert('Login failed. Please check your credentials and try again.');
