@@ -376,8 +376,7 @@
     <script type="module">
         import { auth, storage, database } from './firebase-config.js';
 
-        // Your additional JavaScript code here
-        // Example: Initialize Firebase Auth state observer and get user data.
+        // Initialize Firebase Auth state observer and get user data
         auth.onAuthStateChanged(user => {
             if (user) {
                 console.log('User signed in:', user);
@@ -388,7 +387,7 @@
             }
         });
 
-        // Example function to handle survey clicks
+        // Function to handle survey clicks
         document.querySelectorAll('.take-survey').forEach(button => {
             button.addEventListener('click', (event) => {
                 const surveyId = event.target.getAttribute('data-survey-id');
