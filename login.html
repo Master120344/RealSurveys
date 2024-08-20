@@ -9,18 +9,18 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text color */
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text color */
         }
 
         header {
-            background-color: #1e1e1e;
+            background-color: #4CAF50; /* Green background */
             color: #fff;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -66,7 +66,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff8c00;
+            background-color: #388E3C; /* Darker green */
             transform: scale(1.05);
         }
 
@@ -74,15 +74,15 @@
             max-width: 500px;
             margin: 50px auto;
             padding: 20px;
-            background: #1e1e1e;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            background: #fff; /* White background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
         }
 
         .form-container h2 {
             margin-bottom: 20px;
-            color: #ff6347; /* Tomato color for header */
+            color: #4CAF50; /* Green color for header */
         }
 
         .form-container form {
@@ -93,7 +93,7 @@
         .form-container label {
             margin-bottom: 5px;
             font-size: 16px;
-            color: #e0e0e0; /* Light text color */
+            color: #333; /* Dark text color */
         }
 
         .form-container input[type="email"],
@@ -101,21 +101,21 @@
             margin-bottom: 20px;
             padding: 10px;
             font-size: 16px;
-            border: 2px solid #333; /* Darker border */
+            border: 2px solid #4CAF50; /* Green border */
             border-radius: 5px;
-            background: #333; /* Dark input background */
-            color: #e0e0e0; /* Light text color in input */
+            background: #f1f1f1; /* Light background for input */
+            color: #333; /* Dark text color in input */
             transition: border-color 0.3s;
         }
 
         .form-container input[type="email"]:focus,
         .form-container input[type="password"]:focus {
-            border-color: #ff6347; /* Tomato color for focus */
+            border-color: #388E3C; /* Darker green for focus */
             outline: none;
         }
 
         .form-container input[type="submit"] {
-            background: #ff6347; /* Tomato color for button */
+            background: #4CAF50; /* Green color for button */
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -126,7 +126,7 @@
         }
 
         .form-container input[type="submit"]:hover {
-            background: #ff7f50; /* Light tomato color for hover */
+            background: #388E3C; /* Darker green for hover */
         }
 
         .error-message {
@@ -141,7 +141,7 @@
         }
 
         footer {
-            background-color: #1e1e1e;
+            background-color: #4CAF50; /* Green background */
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -170,7 +170,7 @@
         }
 
         footer .social a:hover {
-            color: #ff8c00;
+            color: #388E3C; /* Darker green */
         }
 
         /* Mobile Styles */
@@ -192,13 +192,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="daily-giveaways.html">Daily Giveaways</a></li>
-                    <li><a href="leading-platform.html">Leading Platform</a></li>
-                    <li><a href="referral-program.html">Referral Program</a></li>
                     <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -215,7 +210,7 @@
             <div class="redirecting">Success! Redirecting...</div>
             <div class="error-message"></div> <!-- For error messages -->
             <div>
-                <a href="reset-password.html" style="color: #ff6347;">Forgot Password?</a> <!-- Reset password link -->
+                <a href="reset-password.html" style="color: #4CAF50;">Forgot Password?</a> <!-- Reset password link -->
             </div>
         </form>
     </div>
