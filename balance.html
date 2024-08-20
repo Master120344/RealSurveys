@@ -14,8 +14,9 @@
             <nav>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Surveys</a></li>
+                    <li><a href="#">Giveaways</a></li>
+                    <li><a href="#">Log Out</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,7 +32,8 @@
         <div class="cashout-options">
             <div id="cashout-step-1" class="cashout-step">
                 <h3>Step 1: Enter Amount</h3>
-                <input type="number" id="cashout-amount" placeholder="Enter amount to cash out" />
+                <input type="number" id="cashout-amount" placeholder="Enter amount to cash out" oninput="calculateNetAmount()" />
+                <p id="net-amount" class="net-amount"></p>
                 <button class="cashout-btn" id="cashout-btn">Next</button>
             </div>
             <div id="cashout-step-2" class="cashout-step hidden">
@@ -50,6 +52,7 @@
             <div id="cashout-step-3" class="cashout-step hidden">
                 <h3>Step 3: Confirmation</h3>
                 <p id="confirmation-message"></p>
+                <p>Money will be instantly deposited within a few minutes or less.</p>
             </div>
         </div>
         <div class="error-message"></div>
@@ -57,8 +60,18 @@
     </div>
     <footer>
         <p>Powered by <a href="https://stripe.com" target="_blank">Stripe</a> - The payment processor.</p>
-        <img src="images/stripe-logo.png" alt="Stripe Logo" class="stripe-logo">
+        <img src="https://github.com/Master120344/RealSurveys/raw/main/assets/untitled-3.gif" alt="Stripe Logo" class="stripe-logo" style="width:100px; height:auto;">
     </footer>
-    <script src="js/balance.js"></script>
+    <script>
+        function calculateNetAmount() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount)) {
+                const netAmount = amount * 0.9;
+                document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('net-amount').innerText = '';
+            }
+        }
+    </script>
 </body>
 </html>
