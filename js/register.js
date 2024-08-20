@@ -15,18 +15,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// Function to register a user
 function registerUser(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent form from submitting normally
+
+    // Get form values
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
+    // Validate passwords
     if (password !== confirmPassword) {
         document.querySelector('.error-message').textContent = 'Passwords do not match.';
         document.querySelector('.error-message').style.display = 'block';
         return;
     }
 
+    // Register user
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // User registered successfully
@@ -44,4 +49,9 @@ function registerUser(event) {
 }
 
 // Attach the registerUser function to the form's submit event
-document.getElementById('register-form').addEventListener('submit', registerUser);
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('register-form');
+    if (form) {
+        form.addEventListener('submit', registerUser);
+    }
+});
