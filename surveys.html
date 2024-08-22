@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -47,8 +47,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: space-between;
-            width: 100%;
+            align-items: center;
         }
 
         header nav ul li {
@@ -77,15 +76,10 @@
         }
 
         .profile img {
-            border-radius: 50%;
             width: 40px;
             height: 40px;
+            border-radius: 50%;
             margin-right: 10px;
-        }
-
-        .profile .username {
-            color: #fff;
-            font-size: 16px;
         }
 
         .hero {
@@ -302,75 +296,62 @@
                 fetchUserBalance(user.uid).then(balance => {
                     document.getElementById('balance-link').innerText = `Balance: $${balance.toFixed(2)}`;
                 });
-
-                // Example to set username
-                document.getElementById('username').innerText = user.displayName || 'User';
-
-                // Populate survey list
-                fetchAvailableSurveys().then(surveys => {
-                    const surveyListElement = document.getElementById('survey-list');
-                    surveyListElement.innerHTML = surveys.map(survey => `
-                        <li class="survey-item">
-                            <div class="survey-id">ID: ${survey.id}</div>
-                            <div class="details">
-                                <h3>${survey.title}</h3>
-                                <p>${survey.description}</p>
-                                <p class="pot">Pot: $${survey.pot.toFixed(2)}</p>
-                                <p class="reward">Reward: $${survey.reward.toFixed(2)}</p>
-                                <a href="survey.html?id=${survey.id}" class="btn">Take Survey</a>
-                            </div>
-                        </li>
-                    `).join('');
-                });
             }
         });
 
-        async function fetchAvailableSurveys() {
-            // Simulate fetching data from an API
-            return [
-                { id: '001', title: 'Survey 1', description: 'Description of Survey 1', pot: 100, reward: 10 },
-                { id: '002', title: 'Survey 2', description: 'Description of Survey 2', pot: 150, reward: 15 },
-                { id: '003', title: 'Survey 3', description: 'Description of Survey 3', pot: 200, reward: 20 }
-            ];
-        }
-
-        async function fetchUserBalance(userId) {
-            // Simulate fetching user balance from an API
-            return 50.00;
+        async function fetchUserBalance(uid) {
+            // Replace with actual API call to fetch the balance
+            return 100.00;
         }
     </script>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
+            <h1><a href="#">Real Surveys</a></h1>
             <nav>
                 <ul>
-                    <li><a href="index.html" id="balance-link">Balance: $0.00</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Surveys</a></li>
+                    <li><a href="#">My Surveys</a></li>
+                    <li><a href="#">Profile</a></li>
                     <li class="profile">
                         <img src="profile-icon.png" alt="Profile Icon">
-                        <span id="username" class="username">User</span>
+                        <span id="username">User</span>
                     </li>
+                    <li><a href="#" id="balance-link">Balance: $0.00</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <div class="hero">
-        <h2>Discover New Surveys and Earn Rewards!</h2>
+        <h2>Find and Complete Surveys to Earn Money!</h2>
     </div>
     <div class="content">
         <h2>Available Surveys</h2>
-        <ul id="survey-list" class="survey-list">
-            <!-- Survey items will be dynamically populated here -->
+        <p>Browse the latest surveys to earn rewards. Click on any survey to get started!</p>
+        <ul class="survey-list">
+            <!-- Example of survey item -->
+            <li class="survey-item">
+                <div class="survey-id">Survey ID: 12345</div>
+                <div class="details">
+                    <h3>Survey Title</h3>
+                    <p>Details about the survey go here. This should give users an idea of what the survey is about.</p>
+                    <p class="pot">Pot: $50.00</p>
+                    <p class="reward">Reward: $5.00</p>
+                    <a href="#" class="btn">Start Survey</a>
+                </div>
+            </li>
+            <!-- Repeat similar blocks for other surveys -->
         </ul>
     </div>
     <footer>
         <div class="container">
-            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <p>&copy; 2024 Real Surveys. All rights reserved.</p>
             <div class="social">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Twitter</a>
+                <a href="#" target="_blank">Instagram</a>
             </div>
         </div>
     </footer>
