@@ -18,9 +18,9 @@ const auth = getAuth(app);
 // Function to check if the user is authenticated
 function checkAuth() {
     onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            // User is not signed in
-            window.location.href = 'login.html'; // Redirect to login page
+        // Redirect only if user is not authenticated and not on the login page
+        if (!user && window.location.pathname !== '/login.html') {
+            window.location.href = '/login.html'; // Redirect to login page
         }
     });
 }
