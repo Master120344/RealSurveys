@@ -1,4 +1,4 @@
-<!DOCTYPE HTML)
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,6 +69,23 @@
         header nav ul li a:hover {
             background-color: #555;
             transform: scale(1.05);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .profile .username {
+            color: #fff;
+            font-size: 16px;
         }
 
         .hero {
@@ -285,53 +302,42 @@
                 fetchUserBalance(user.uid).then(balance => {
                     document.getElementById('balance-link').innerText = `Balance: $${balance.toFixed(2)}`;
                 });
+
+                // Example to set username
+                document.getElementById('username').innerText = user.displayName || 'User';
+
+                // Populate survey list
+                fetchAvailableSurveys().then(surveys => {
+                    const surveyListElement = document.getElementById('survey-list');
+                    surveyListElement.innerHTML = surveys.map(survey => `
+                        <li class="survey-item">
+                            <div class="survey-id">ID: ${survey.id}</div>
+                            <div class="details">
+                                <h3>${survey.title}</h3>
+                                <p>${survey.description}</p>
+                                <p class="pot">Pot: $${survey.pot.toFixed(2)}</p>
+                                <p class="reward">Reward: $${survey.reward.toFixed(2)}</p>
+                                <a href="survey.html?id=${survey.id}" class="btn">Take Survey</a>
+                            </div>
+                        </li>
+                    `).join('');
+                });
             }
         });
 
-        async function fetchUserBalance(userId) {
-            // Fetch user balance from your backend or Firebase
-            // Replace this URL with your actual endpoint
-            const response = await fetch(`/api/get-balance?userId=${userId}`);
-            const data = await response.json();
-            return data.balance;
-        }
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        async function loadSurveys() {
-            const surveys = [
-                { id: 1, title: "Survey 1", description: "This is Survey 1", reward: 5, pot: 100, progress: 30 },
-                { id: 2, title: "Survey 2", description: "This is Survey 2", reward: 10, pot: 200, progress: 50 },
-                { id: 3, title: "Survey 3", description: "This is Survey 3", reward: 7, pot: 150, progress: 70 },
-                { id: 4, title: "Survey 4", description: "This is Survey 4", reward: 8, pot: 180, progress: 20 },
-                { id: 5, title: "Survey 5", description: "This is Survey 5", reward: 12, pot: 250, progress: 40 },
-                // Add more surveys as needed
+        async function fetchAvailableSurveys() {
+            // Simulate fetching data from an API
+            return [
+                { id: '001', title: 'Survey 1', description: 'Description of Survey 1', pot: 100, reward: 10 },
+                { id: '002', title: 'Survey 2', description: 'Description of Survey 2', pot: 150, reward: 15 },
+                { id: '003', title: 'Survey 3', description: 'Description of Survey 3', pot: 200, reward: 20 }
             ];
-
-            const surveyList = document.querySelector('.survey-list');
-            const shuffledSurveys = shuffleArray(surveys);
-            surveyList.innerHTML = shuffledSurveys.map(survey => `
-                <li class="survey-item">
-                    <div class="survey-id">ID: ${survey.id}</div>
-                    <div class="details">
-                        <h3>${survey.title}</h3>
-                        <p>${survey.description}</p>
-                        <p class="reward">Reward: $${survey.reward.toFixed(2)}</p>
-                        <p class="pot">Total Pot: $${survey.pot.toFixed(2)}</p>
-                        <p class="progress">Progress: ${survey.progress}%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=${survey.id}" class="btn">Take Survey</a>
-                </li>
-            `).join('');
         }
 
-        document.addEventListener('DOMContentLoaded', loadSurveys);
+        async function fetchUserBalance(userId) {
+            // Simulate fetching user balance from an API
+            return 50.00;
+        }
     </script>
 </head>
 <body>
@@ -339,190 +345,32 @@
         <div class="container">
             <h1><a href="index.html">RealSurveys</a></h1>
             <nav>
-                <ul class="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="rewards.html">Rewards</a></li>
-                    <li><a href="balance.html" id="balance-link">Balance: $0</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                <ul>
+                    <li><a href="index.html" id="balance-link">Balance: $0.00</a></li>
+                    <li class="profile">
+                        <img src="profile-icon.png" alt="Profile Icon">
+                        <span id="username" class="username">User</span>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <div class="hero">
-        <h2>Real Surveys</h2>
+        <h2>Discover New Surveys and Earn Rewards!</h2>
     </div>
-
-    <section class="content">
-        <div class="container">
-            <h2>Available Surveys</h2>
-            <p>The only way to keep these surveys going is for honest feedback! You can take as many surveys as you want, only the same survey ID once, then it will become unavailable.</p>
-            <ul class="survey-list">
-                <li class="survey-item">
-                    <div class="survey-id">ID: 3</div>
-                    <div class="details">
-                        <h3>Survey 3</h3>
-                        <p>This is Survey 3</p>
-                        <p class="reward">Reward: $7.00</p>
-                        <p class="pot">Total Pot: $150.00</p>
-                        <p class="progress">Progress: 70%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=3" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 1</div>
-                    <div class="details">
-                        <h3>Survey 1</h3>
-                        <p>This is Survey 1</p>
-                        <p class="reward">Reward: $5.00</p>
-                        <p class="pot">Total Pot: $100.00</p>
-                        <p class="progress">Progress: 30%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=1" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 4</div>
-                    <div class="details">
-                        <h3>Survey 4</h3>
-                        <p>This is Survey 4</p>
-                        <p class="reward">Reward: $8.00</p>
-                        <p class="pot">Total Pot: $180.00</p>
-                        <p class="progress">Progress: 20%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=4" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 2</div>
-                    <div class="details">
-                        <h3>Survey 2</h3>
-                        <p>This is Survey 2</p>
-                        <p class="reward">Reward: $10.00</p>
-                        <p class="pot">Total Pot: $200.00</p>
-                        <p class="progress">Progress: 50%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=2" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 5</div>
-                    <div class="details">
-                        <h3>Survey 5</h3>
-                        <p>This is Survey 5</p>
-                        <p class="reward">Reward: $12.00</p>
-                        <p class="pot">Total Pot: $250.00</p>
-                        <p class="progress">Progress: 40%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=5" class="btn">Take Survey</a>
-                </li>
-            </ul>
-        </div>
-    </section>
-
+    <div class="content">
+        <h2>Available Surveys</h2>
+        <ul id="survey-list" class="survey-list">
+            <!-- Survey items will be dynamically populated here -->
+        </ul>
+    </div>
     <footer>
         <div class="container">
-            <p>© 2024 RealSurveys. All rights reserved.</p>
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
             <div class="social">
-                <a href="https://twitter.com">Twitter</a>
-                <a href="https://facebook.com">Facebook</a>
-                <a href="https://instagram.com">Instagram</a>
-            </div>
-        </div>
-    </footer>
-</body>
-<header>
-        <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
-            <nav>
-                <ul class="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="rewards.html">Rewards</a></li>
-                    <li><a href="balance.html" id="balance-link">Balance: $0</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <div class="hero">
-        <h2>Real Surveys</h2>
-    </div>
-    <section class="content">
-        <div class="container">
-            <h2>Available Surveys</h2>
-            <p>The only way to keep these surveys going is for honest feedback! You can take as many surveys as you want, only the same survey ID once, then it will become unavailable.</p>
-            <ul class="survey-list">
-                <li class="survey-item">
-                    <div class="survey-id">ID: 3</div>
-                    <div class="details">
-                        <h3>Survey 3</h3>
-                        <p>This is Survey 3</p>
-                        <p class="reward">Reward: $7.00</p>
-                        <p class="pot">Total Pot: $150.00</p>
-                        <p class="progress">Progress: 70%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=3" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 1</div>
-                    <div class="details">
-                        <h3>Survey 1</h3>
-                        <p>This is Survey 1</p>
-                        <p class="reward">Reward: $5.00</p>
-                        <p class="pot">Total Pot: $100.00</p>
-                        <p class="progress">Progress: 30%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=1" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 4</div>
-                    <div class="details">
-                        <h3>Survey 4</h3>
-                        <p>This is Survey 4</p>
-                        <p class="reward">Reward: $8.00</p>
-                        <p class="pot">Total Pot: $180.00</p>
-                        <p class="progress">Progress: 20%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=4" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 2</div>
-                    <div class="details">
-                        <h3>Survey 2</h3>
-                        <p>This is Survey 2</p>
-                        <p class="reward">Reward: $10.00</p>
-                        <p class="pot">Total Pot: $200.00</p>
-                        <p class="progress">Progress: 50%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=2" class="btn">Take Survey</a>
-                </li>
-            
-                <li class="survey-item">
-                    <div class="survey-id">ID: 5</div>
-                    <div class="details">
-                        <h3>Survey 5</h3>
-                        <p>This is Survey 5</p>
-                        <p class="reward">Reward: $12.00</p>
-                        <p class="pot">Total Pot: $250.00</p>
-                        <p class="progress">Progress: 40%</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=5" class="btn">Take Survey</a>
-                </li>
-            </ul>
-        </div>
-    </section>
-            <div class="container">
-            <p>© 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="https://twitter.com">Twitter</a>
-                <a href="https://facebook.com">Facebook</a>
-                <a href="https://instagram.com">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
             </div>
         </div>
     </footer>
