@@ -295,6 +295,43 @@
             const data = await response.json();
             return data.balance;
         }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        async function loadSurveys() {
+            const surveys = [
+                { id: 1, title: "Survey 1", description: "This is Survey 1", reward: 5, pot: 100, progress: 30 },
+                { id: 2, title: "Survey 2", description: "This is Survey 2", reward: 10, pot: 200, progress: 50 },
+                { id: 3, title: "Survey 3", description: "This is Survey 3", reward: 7, pot: 150, progress: 70 },
+                { id: 4, title: "Survey 4", description: "This is Survey 4", reward: 8, pot: 180, progress: 20 },
+                { id: 5, title: "Survey 5", description: "This is Survey 5", reward: 12, pot: 250, progress: 40 },
+                // Add more surveys as needed
+            ];
+
+            const surveyList = document.querySelector('.survey-list');
+            const shuffledSurveys = shuffleArray(surveys);
+            surveyList.innerHTML = shuffledSurveys.map(survey => `
+                <li class="survey-item">
+                    <div class="survey-id">ID: ${survey.id}</div>
+                    <div class="details">
+                        <h3>${survey.title}</h3>
+                        <p>${survey.description}</p>
+                        <p class="reward">Reward: $${survey.reward.toFixed(2)}</p>
+                        <p class="pot">Total Pot: $${survey.pot.toFixed(2)}</p>
+                        <p class="progress">Progress: ${survey.progress}%</p>
+                    </div>
+                    <a href="take-survey.html?surveyId=${survey.id}" class="btn">Take Survey</a>
+                </li>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', loadSurveys);
     </script>
 </head>
 <body>
@@ -337,30 +374,5 @@
             </div>
         </div>
     </footer>
-
-    <script type="module">
-        async function loadSurveys() {
-            // Fetch survey data from your backend or Firebase
-            // Replace this URL with your actual endpoint
-            const response = await fetch('/api/get-surveys');
-            const surveys = await response.json();
-
-            const surveyList = document.querySelector('.survey-list');
-            surveyList.innerHTML = surveys.map(survey => `
-                <li class="survey-item">
-                    <div class="survey-id">ID: ${survey.id}</div>
-                    <div class="details">
-                        <h3>${survey.title}</h3>
-                        <p>${survey.description}</p>
-                        <p class="reward">Reward: $${survey.reward.toFixed(2)}</p>
-                        <p class="pot">Total Pot: $${survey.pot.toFixed(2)}</p>
-                    </div>
-                    <a href="take-survey.html?surveyId=${survey.id}" class="btn">Take Survey</a>
-                </li>
-            `).join('');
-        }
-
-        document.addEventListener('DOMContentLoaded', loadSurveys);
-    </script>
 </body>
 </html>
