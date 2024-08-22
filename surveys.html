@@ -261,7 +261,41 @@
             }
         }
     </style>
-    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+            authDomain: "real-surveys.firebaseapp.com",
+            projectId: "real-surveys",
+            storageBucket: "real-surveys.appspot.com",
+            messagingSenderId: "1024139519354",
+            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            } else {
+                // Example function to update the balance dynamically
+                fetchUserBalance(user.uid).then(balance => {
+                    document.getElementById('balance-link').innerText = `Balance: $${balance.toFixed(2)}`;
+                });
+            }
+        });
+
+        async function fetchUserBalance(userId) {
+            // Fetch user balance from your backend or Firebase
+            // Replace this URL with your actual endpoint
+            const response = await fetch(`/api/get-balance?userId=${userId}`);
+            const data = await response.json();
+            return data.balance;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -288,19 +322,7 @@
             <h2>Available Surveys</h2>
             <p>The only way to keep these surveys going is for honest feedback! You can take as many surveys as you want, only the same survey ID once, then it will become unavailable.</p>
             <ul class="survey-list">
-                <!-- Survey items here -->
-                <!-- Example Survey Item -->
-                <li class="survey-item">
-                    <div class="survey-id">ID: 12345</div>
-                    <div class="details">
-                        <h3>Survey Title</h3>
-                        <p>Survey description goes here. It should<p>Survey description goes here. It should give users an idea of what the survey is about.</p>
-                        <p class="reward">Reward: $2.50</p>
-                        <p class="pot">Total Pot: $500</p>
-                    </div>
-                    <a href="take-survey.html" class="btn">Take Survey</a>
-                </li>
-                <!-- Add more survey items as needed -->
+                <!-- Survey items will be dynamically inserted here -->
             </ul>
         </div>
     </section>
@@ -315,5 +337,30 @@
             </div>
         </div>
     </footer>
+
+    <script type="module">
+        async function loadSurveys() {
+            // Fetch survey data from your backend or Firebase
+            // Replace this URL with your actual endpoint
+            const response = await fetch('/api/get-surveys');
+            const surveys = await response.json();
+
+            const surveyList = document.querySelector('.survey-list');
+            surveyList.innerHTML = surveys.map(survey => `
+                <li class="survey-item">
+                    <div class="survey-id">ID: ${survey.id}</div>
+                    <div class="details">
+                        <h3>${survey.title}</h3>
+                        <p>${survey.description}</p>
+                        <p class="reward">Reward: $${survey.reward.toFixed(2)}</p>
+                        <p class="pot">Total Pot: $${survey.pot.toFixed(2)}</p>
+                    </div>
+                    <a href="take-survey.html?surveyId=${survey.id}" class="btn">Take Survey</a>
+                </li>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', loadSurveys);
+    </script>
 </body>
 </html>
