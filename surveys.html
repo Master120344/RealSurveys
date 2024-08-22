@@ -261,6 +261,7 @@
             }
         }
     </style>
+    <script type="module" src="auth.js"></script>
 </head>
 <body>
     <header>
@@ -287,75 +288,17 @@
             <h2>Available Surveys</h2>
             <p>The only way to keep these surveys going is for honest feedback! You can take as many surveys as you want, only the same survey ID once, then it will become unavailable.</p>
             <ul class="survey-list">
-                <li class="survey-item" data-reward="5" data-survey-id="00001">
-                    <div class="survey-id">ID: 00001</div>
+                <!-- Survey items here -->
+                <!-- Example Survey Item -->
+                <li class="survey-item">
+                    <div class="survey-id">ID: 12345</div>
                     <div class="details">
-                        <h3>McDonald's</h3>
-                        <p>2,000 / 2,000 spots left</p>
+                        <h3>Survey Title</h3>
+                        <p>Survey description goes here. It should be concise and informative.</p>
+                        <p class="pot">Pot: $50</p>
                         <p class="reward">Reward: $5</p>
-                        <p class="pot">Pot: $10,000</p>
+                        <a href="#" class="btn">Take Survey</a>
                     </div>
-                    <a href="mcdonalds00001_survey.html" class="btn take-survey" data-reward="5" data-survey-id="00001">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="3" data-survey-id="00002">
-                    <div class="survey-id">ID: 00002</div>
-                    <div class="details">
-                        <h3>Taco Bell</h3>
-                        <p>1,500 / 2,000 spots left</p>
-                        <p class="reward">Reward: $3</p>
-                        <p class="pot">Pot: $7,451</p>
-                    </div>
-                    <a href="taco-bell-survey.html" class="btn take-survey" data-reward="3" data-survey-id="00002">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="4" data-survey-id="00003">
-                    <div class="survey-id">ID: 00003</div>
-                    <div class="details">
-                        <h3>Subway</h3>
-                        <p>1,300 / 2,000 spots left</p>
-                        <p class="reward">Reward: $4</p>
-                        <p class="pot">Pot: $10,000</p>
-                    </div>
-                    <a href="subway-survey.html" class="btn take-survey" data-reward="4" data-survey-id="00003">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="7" data-survey-id="00004">
-                    <div class="survey-id">ID: 00004</div>
-                    <div class="details">
-                        <h3>Chase Bank</h3>
-                        <p>1,200 / 1,500 spots left</p>
-                        <p class="reward">Reward: $7</p>
-                        <p class="pot">Pot: $14,000</p>
-                    </div>
-                    <a href="chase-bank-survey.html" class="btn take-survey" data-reward="7" data-survey-id="00004">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="10" data-survey-id="00005">
-                    <div class="survey-id">ID: 00005</div>
-                    <div class="details">
-                        <h3>Southwest Airlines</h3>
-                        <p>1,000 / 1,300 spots left</p>
-                        <p class="reward">Reward: $10</p>
-                        <p class="pot">Pot: $20,000</p>
-                    </div>
-                    <a href="southwest_survey.html" class="btn take-survey" data-reward="10" data-survey-id="00005">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="6" data-survey-id="00006">
-                    <div class="survey-id">ID: 00006</div>
-                    <div class="details">
-                        <h3>Wendy's</h3>
-                        <p>950 / 1,200 spots left</p>
-                        <p class="reward">Reward: $6</p>
-                        <p class="pot">Pot: $12,000</p>
-                    </div>
-                    <a href="wendys_survey.html" class="btn take-survey" data-reward="6" data-survey-id="00006">Start Survey</a>
-                </li>
-                <li class="survey-item" data-reward="8" data-survey-id="00007">
-                    <div class="survey-id">ID: 00007</div>
-                    <div class="details">
-                        <h3>Walmart</h3>
-                        <p>1,100 / 1,500 spots left</p>
-                        <p class="reward">Reward: $8</p>
-                        <p class="pot">Pot: $15,000</p>
-                    </div>
-                    <a href="walmart_survey.html" class="btn take-survey" data-reward="8" data-survey-id="00007">Start Survey</a>
                 </li>
             </ul>
         </div>
@@ -371,30 +314,5 @@
             </div>
         </div>
     </footer>
-
-    <!-- Include Firebase scripts -->
-    <script type="module">
-        import { auth, storage, database } from './firebase-config.js';
-
-        // Initialize Firebase Auth state observer and get user data
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                console.log('User signed in:', user);
-                // Example: Update balance link
-                document.getElementById('balance-link').textContent = `Balance: $${user.balance || 0}`;
-            } else {
-                console.log('No user signed in');
-            }
-        });
-
-        // Function to handle survey clicks
-        document.querySelectorAll('.take-survey').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const surveyId = event.target.getAttribute('data-survey-id');
-                console.log(`Starting survey ID: ${surveyId}`);
-                // Redirect or handle survey start logic
-            });
-        });
-    </script>
 </body>
 </html>
