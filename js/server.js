@@ -1,4 +1,3 @@
-// Import required packages
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -27,6 +26,25 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+// Authentication middleware
+async function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (token == null) return res.sendStatus(401);
+
+    try {
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        req.user = decodedToken;
+        next();
+    } catch (error) {
+        res.sendStatus(403); // Forbidden
+    }
+}
+
+// Protected route example
+app.use('/surveys', authenticateToken, express.static('public/surveys.html'));
 
 // Route to create payment intent
 app.post('/create-payment-intent', async (req, res) => {
