@@ -190,7 +190,8 @@ footer .social a:hover {
 </div>
 </header>
 <div class="hero">
-<h2>McDonald's Survey</h2>
+    <!-- Hero section with no white text -->
+    <h2>McDonald's Survey</h2>
 </div>
 <section class="content">
 <div class="container">
@@ -352,13 +353,23 @@ prevButton.addEventListener('click', () => {
 
 document.getElementById('mcdonaldsSurveyForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  document.querySelector('.content').innerHTML = '<div style="text-align: center; margin: 20px;"><h2>Thank you for completing the survey!</h2><div id="confetti"></div></div>';
+  
+  // Update content to show thank you message and confetti
+  document.querySelector('.content').innerHTML = `
+      <div style="text-align: center; margin: 20px;">
+          <h2>Thank you for completing the survey!</h2>
+          <div id="confetti"></div>
+      </div>
+  `;
+  
   // Start confetti animation
   const confetti = new ConfettiGenerator({ target: 'confetti' });
   confetti.render();
+  
+  // Redirect after 5 seconds
   setTimeout(() => {
-    window.location.href = 'surveys.html'; // Redirect after 5 seconds
-  }, 5000); // Redirect after 5 seconds
+      window.location.href = 'surveys.html';
+  }, 5000);
 });
 
 showQuestion(currentQuestion);
