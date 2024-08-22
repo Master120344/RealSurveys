@@ -6,6 +6,28 @@
     <title>Balance</title>
     <link rel="stylesheet" href="css/balance.css">
     <script src="https://js.stripe.com/v3/"></script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+            authDomain: "real-surveys.firebaseapp.com",
+            projectId: "real-surveys",
+            storageBucket: "real-surveys.appspot.com",
+            messagingSenderId: "1024139519354",
+            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -15,7 +37,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
                     <li><a href="#">Giveaways</a></li>
-                    <li><a href="#">Log Out</a></li>
+                    <li><a href="logout.html">Log Out</a></li>
                 </ul>
             </nav>
         </div>
