@@ -55,19 +55,25 @@
             background-color: #ffffff;
         }
 
-        .main-content h2 {
-            font-size: 36px;
-            color: #2e8b57;
-        }
-
-        .main-content p {
-            font-size: 20px;
-            color: #666;
-        }
-
         .form-container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #f1f1f1;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+            color: #2e8b57;
+            margin-bottom: 20px;
+        }
+
+        .form-container p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
         }
 
         .form-container form {
@@ -118,6 +124,14 @@
             margin-top: 20px;
         }
 
+        .forgot-password-section {
+            text-align: left;
+        }
+
+        .back-to-login {
+            text-align: left;
+        }
+
         footer {
             background-color: #2e8b57;
             color: #fff;
@@ -135,6 +149,10 @@
             header nav ul {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .form-container {
+                padding: 20px;
             }
         }
     </style>
@@ -154,9 +172,9 @@
 </header>
 
 <div class="main-content">
-    <h2>Login</h2>
-    <p>Log in to access your RealSurveys account.</p>
     <div class="form-container">
+        <h2 id="loginHeading">Login</h2>
+        <p id="loginDescription">Log in to access your RealSurveys account.</p>
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
@@ -164,13 +182,15 @@
             <a id="forgotPasswordLink">Forgot Password?</a>
             <div id="loginMessage" class="success-message" style="display: none;"></div>
         </form>
-        <div id="forgotPasswordSection" class="forgot-password" style="display: none;">
-            <p>Forgot your password? Enter your email to reset it:</p>
+        <div id="forgotPasswordSection" class="forgot-password-section" style="display: none;">
+            <p>Enter your email to reset your password:</p>
             <input type="email" id="resetEmail" placeholder="Enter your email">
             <button id="resetPasswordBtn">Reset Password</button>
-            <a id="backToLoginLink">Back to Login</a>
             <div id="resetMessage" class="success-message" style="display: none;"></div>
             <div id="resetError" class="error-message" style="display: none;"></div>
+            <div class="back-to-login">
+                <a id="backToLoginLink">Back to Login</a>
+            </div>
         </div>
     </div>
 </div>
@@ -219,12 +239,16 @@
 
     document.getElementById('forgotPasswordLink').addEventListener('click', () => {
         document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('loginHeading').style.display = 'none';
+        document.getElementById('loginDescription').style.display = 'none';
         document.getElementById('forgotPasswordSection').style.display = 'block';
     });
 
     document.getElementById('backToLoginLink').addEventListener('click', () => {
         document.getElementById('forgotPasswordSection').style.display = 'none';
         document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('loginHeading').style.display = 'block';
+        document.getElementById('loginDescription').style.display = 'block';
     });
 
     document.getElementById('resetPasswordBtn').addEventListener('click', async () => {
@@ -240,7 +264,7 @@
             resetError.style.display = 'none';
         } catch (error) {
             console.error('Password reset failed:', error);
-            resetMessage.style.display = 'none';
+resetMessage.style.display = 'none';
             resetError.textContent = 'Failed to send password reset email. Please try again.';
             resetError.className = 'error-message';
             resetError.style.display = 'block';
