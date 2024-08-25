@@ -236,11 +236,12 @@
         try {
             await sendPasswordResetEmail(auth, email);
             document.getElementById('forgotPasswordContainer').style.display = 'none';
-            document.getElementById('resetContainer').style.display = 'block';
             document.getElementById('resetMessage').textContent = `A reset link has been sent to ${email}. Please check your email.`;
+            document.getElementById('resetMessage').style.display = 'block';
         } catch (error) {
             console.error('Password reset failed:', error);
             document.getElementById('resetMessage').textContent = 'Failed to send password reset link. Please try again.';
+            document.getElementById('resetMessage').style.display = 'block';
         }
     });
 
@@ -248,7 +249,6 @@
         document.getElementById('forgotPasswordContainer').style.display = 'none';
         document.getElementById('loginContainer').style.display = 'block';
         document.getElementById('backButton').style.display = 'none';
-        document.getElementById('resetContainer').style.display = 'none';
         document.getElementById('resetMessage').style.display = 'none';
     });
 </script>
