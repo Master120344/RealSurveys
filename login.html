@@ -94,6 +94,20 @@
             background-color: #3a9f6f;
         }
 
+        .success-message, .error-message {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            color: #2e8b57;
+        }
+
+        .error-message {
+            color: #e74c3c;
+        }
+
         footer {
             background-color: #2e8b57;
             color: #fff;
@@ -113,38 +127,6 @@
                 align-items: center;
             }
         }
-
-        /* Forgot password styles */
-        #forgotPasswordContainer, #resetContainer {
-            display: none;
-        }
-
-        #forgotPasswordContainer.active, #resetContainer.active {
-            display: block;
-        }
-
-        #resetMessage {
-            color: #2e8b57;
-            font-size: 18px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        #backButton {
-            display: none;
-            background-color: #2e8b57;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 16px;
-        }
-
-        #backButton:hover {
-            background-color: #3a9f6f;
-        }
     </style>
 </head>
 <body>
@@ -162,30 +144,16 @@
 </header>
 
 <div class="main-content">
-    <div id="loginContainer">
-        <h2>Login</h2>
-        <p>Log in to your account to access your surveys and rewards.</p>
-        <div class="form-container">
-            <form id="loginForm">
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <a href="#" id="forgotPasswordLink">Forgot Password?</a>
-            </form>
-        </div>
-    </div>
-
-    <div id="forgotPasswordContainer">
-        <h2>Forgot Password</h2>
-        <p>Please enter your email address to reset your password:</p>
-        <div class="form-container">
-            <form id="forgotPasswordForm">
-                <input type="email" id="resetEmail" placeholder="Email" required>
-                <button type="submit">Send Reset Link</button>
-            </form>
-        </div>
-        <button id="backButton">Back to Login</button>
-        <p id="resetMessage"></p>
+    <h2>Login</h2>
+    <p>Log in to your account to access your surveys and rewards.</p>
+    <div class="form-container">
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        <div id="messageContainer"></div>
     </div>
 </div>
 
@@ -194,7 +162,7 @@
 </footer>
 
 <script type="module">
-    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+    import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 
     const firebaseConfig = {
@@ -216,41 +184,45 @@
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = 'surveys.html';
+            // Display success message and redirect
+            document.getElementById('messageContainer').innerHTML = '<div class="success-message">Success! Redirecting...</div>';
+            setTimeout(() => {
+                window.location.href = 'surveys.html';
+            }, 2000); // Redirect after 2 seconds
         } catch (error) {
             console.error('Login failed:', error);
-            alert('Login failed. Please check your credentials and try again.');
+            document.getElementById('messageContainer').innerHTML = '<div class="error-message">Login failed. Please check your credentials and try again.</div>';
         }
     });
 
-    document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.getElementById('loginContainer').style.display = 'none';
-        document.getElementById('forgotPasswordContainer').style.display = 'block';
-        document.getElementById('backButton').style.display = 'block';
-    });
+    document.getElementById('forgotPasswordLink').addEventListener('click', () => {
+        document.querySelector('.main-content').innerHTML = `
+            <h2>Reset Password</h2>
+            <p>Enter your email address below to receive a password reset link:</p>
+            <div class="form-container">
+                <form id="resetPasswordForm">
+                    <input type="email" id="resetEmail" placeholder="Email" required>
+                    <button type="submit">Send Reset Link</button>
+                </form>
+                <a href="#" id="backToLoginLink">Back to Login</a>
+                <div id="resetMessageContainer"></div>
+            </div>
+        `;
+        document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const resetEmail = document.getElementById('resetEmail').value;
+            try {
+                await auth.sendPasswordResetEmail(resetEmail);
+                document.getElementById('resetMessageContainer').innerHTML = '<div class="success-message">A reset link has been sent to ' + resetEmail + '. Please check your email.</div>';
+            } catch (error) {
+                console.error('Failed to send reset link:', error);
+                document.getElementById('resetMessageContainer').innerHTML = '<div class="error-message">Failed to send reset link. Please try again.</div>';
+            }
+        });
 
-    document.getElementById('forgotPasswordForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('resetEmail').value;
-
-        try {
-            await sendPasswordResetEmail(auth, email);
-            document.getElementById('forgotPasswordContainer').style.display = 'none';
-            document.getElementById('resetMessage').textContent = `A reset link has been sent to ${email}. Please check your email.`;
-            document.getElementById('resetMessage').style.display = 'block';
-        } catch (error) {
-            console.error('Password reset failed:', error);
-            document.getElementById('resetMessage').textContent = 'Failed to send password reset link. Please try again.';
-            document.getElementById('resetMessage').style.display = 'block';
-        }
-    });
-
-    document.getElementById('backButton').addEventListener('click', () => {
-        document.getElementById('forgotPasswordContainer').style.display = 'none';
-        document.getElementById('loginContainer').style.display = 'block';
-        document.getElementById('backButton').style.display = 'none';
-        document.getElementById('resetMessage').style.display = 'none';
+        document.getElementById('backToLoginLink').addEventListener('click', () => {
+            location.reload(); // Reload to show login form again
+        });
     });
 </script>
 
