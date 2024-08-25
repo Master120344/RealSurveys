@@ -1,50 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const q1Options = document.querySelectorAll('input[name="q1"]');
-    const q2 = document.getElementById('q2');
-    const q3 = document.getElementById('q3');
-    const submitDiv = document.getElementById('submitDiv');
-    const messageDiv = document.getElementById('message');
+    const surveyForm = document.getElementById('surveyForm');
+    const message = document.getElementById('message');
 
-    q1Options.forEach(option => {
-        option.addEventListener('change', () => {
-            handleQ1Response(option.value);
-        });
-    });
-
-    function handleQ1Response(value) {
-        // Hide all questions initially
-        hideAllQuestions();
-
-        // Show questions based on the answer to Question 1
-        if (value === 'Today') {
-            q2.classList.remove('hidden');
-        } else if (value === 'This week') {
-            q2.classList.remove('hidden');
-        } else if (value === 'This month') {
-            q2.classList.remove('hidden');
-        } else if (value === 'More than a month ago') {
-            q2.classList.remove('hidden');
+    // Questions and their follow-up questions
+    const questions = [
+        {
+            id: 'q1',
+            text: 'When was the last time you visited Wendy’s?',
+            type: 'radio',
+            options: [
+                { value: 'Today', text: 'Today' },
+                { value: 'This week', text: 'This week' },
+                { value: 'This month', text: 'This month' },
+                { value: 'More than a month ago', text: 'More than a month ago' }
+            ],
+            followUp: {
+                'Today': [
+                    { id: 'q2', text: 'How was your experience today?', type: 'radio', options: ['Excellent', 'Good', 'Average', 'Poor'] }
+                ],
+                'This week': [
+                    { id: 'q3', text: 'What did you order?', type: 'text' }
+                ],
+                'This month': [
+                    { id: 'q4', text: 'Would you visit again soon?', type: 'radio', options: ['Yes', 'No'] }
+                ],
+                'More than a month ago': [
+                    { id: 'q5', text: 'What made you visit Wendy’s again?', type: 'text' }
+                ]
+            }
+        },
+        {
+            id: 'q6',
+            text: 'How likely are you to recommend Wendy’s to a friend?',
+            type: 'radio',
+            options: [
+                { value: 'Very Likely', text: 'Very Likely' },
+                { value: 'Somewhat Likely', text: 'Somewhat Likely' },
+                { value: 'Neutral', text: 'Neutral' },
+                { value: 'Somewhat Unlikely', text: 'Somewhat Unlikely' },
+                { value: 'Very Unlikely', text: 'Very Unlikely' }
+            ]
         }
+    ];
 
-        // Additional logic for more dynamic questions can be added here
-        submitDiv.classList.remove('hidden');
-    }
+    function renderQuestions(questions) {
+        surveyForm.innerHTML = '';
 
-    function hideAllQuestions() {
-        document.querySelectorAll('.question').forEach(question => {
-            question.classList.add('hidden');
+        questions.forEach(q => {
+            const container = document.createElement('div');
+            container.className = 'question-container';
+            
+            const title = document.createElement('h2');
+            title.textContent = q.text;
+            container.appendChild(title);
+
+            q.options && q.options.forEach(option => {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = q.type;
+                input.name = q.id;
+                input.value = option.value;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(option.text));
+                container.appendChild(label);
+            });
+
+            if (q.type === 'text') {
+                const textarea = document.createElement('textarea');
+                textarea.name = q.id;
+                container.appendChild(textarea);
+            }
+
+            surveyForm.appendChild(container);
         });
+
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'Submit';
+        submitButton.onclick = handleSubmit;
+        surveyForm.appendChild(submitButton);
     }
 
-    function submitSurvey() {
-        // Simulate form submission and display success message
-        messageDiv.textContent = 'Thank you for completing the survey! Your responses have been recorded.';
-        messageDiv.classList.add('success');
-        messageDiv.classList.remove('hidden');
+    function handleSubmit() {
+        const selectedValues = [...document.querySelectorAll('input[type="radio"]:checked')].map(input => input.value);
+        const textResponses = [...document.querySelectorAll('textarea')].map(textarea => textarea.value);
 
-        // Hide the form after submission
-        document.getElementById('surveyForm').reset();
+        let messageText = 'Thank you for your feedback!';
+        let messageType = 'success';
+
+        // Add dynamic message logic based on responses
+        // This is where you would implement custom logic based on answers
+        // For simplicity, just show a success message here
+
+        message.textContent = messageText;
+        message.className = `message ${messageType}`;
     }
 
-    document.querySelector('#submitDiv button').addEventListener('click', submitSurvey);
+    // Initial render
+    renderQuestions(questions);
 });
