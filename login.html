@@ -83,10 +83,6 @@
             font-size: 16px;
         }
 
-        .form-container input[type="email"], .form-container input[type="password"] {
-            border: 1px solid #ccc;
-        }
-
         .form-container button {
             background-color: #2e8b57;
             color: #fff;
@@ -98,27 +94,16 @@
             background-color: #3a9f6f;
         }
 
-        .forgot-password {
+        #forgotPasswordContainer, #resetContainer {
+            display: none;
+        }
+
+        #resetContainer {
             text-align: center;
             margin-top: 20px;
         }
 
-        .forgot-password a {
-            color: #2e8b57;
-            text-decoration: underline;
-            font-size: 16px;
-        }
-
-        .forgot-password a:hover {
-            color: #1d6f43;
-        }
-
-        .reset-container {
-            display: none;
-            text-align: center;
-        }
-
-        .reset-container input {
+        #resetContainer input {
             width: 100%;
             padding: 15px;
             border-radius: 5px;
@@ -126,31 +111,34 @@
             font-size: 16px;
         }
 
-        .reset-container button {
-            background-color: #2e8b57;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .reset-container button:hover {
-            background-color: #3a9f6f;
-        }
-
-        .reset-message {
-            display: none;
-            background-color: #dff0d8;
-            color: #3c763d;
-            padding: 15px;
-            border: 1px solid #d6e9c6;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .back-button {
+        #resetMessage {
             display: none;
             margin-top: 20px;
+            font-size: 18px;
+            color: #2e8b57;
+            font-weight: bold;
+        }
+
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            border: 5px solid #2e8b57;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d4edda;
+        }
+
+        .checkmark::before {
+            content: '✓';
+            font-size: 24px;
+            color: #2e8b57;
+        }
+
+        #backButton {
+            margin-top: 20px;
+            display: none;
             background-color: #2e8b57;
             color: #fff;
             padding: 10px 20px;
@@ -159,7 +147,7 @@
             cursor: pointer;
         }
 
-        .back-button:hover {
+        #backButton:hover {
             background-color: #3a9f6f;
         }
 
@@ -200,24 +188,29 @@
 
 <div class="main-content">
     <div class="form-container">
-        <form id="loginForm">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-            <div class="forgot-password">
+        <div id="loginContainer">
+            <h2>Login</h2>
+            <p>Log in to your account to access your surveys and rewards.</p>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
                 <a href="#" id="forgotPasswordLink">Forgot Password?</a>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
 
-    <div class="reset-container" id="resetContainer">
-        <h2>Reset Password</h2>
-        <p>Enter your email to reset your password.</p>
-        <input type="email" id="resetEmail" placeholder="Email" required>
-        <button id="resetButton">Send Reset Link</button>
-        <button class="back-button" id="backButton">Back to Login</button>
-        <div class="reset-message" id="resetMessage">
-            <span class="reset-text"></span>
+        <div id="forgotPasswordContainer">
+            <h2>Forgot Password</h2>
+            <p>Enter your email to reset your password:</p>
+            <form id="resetPasswordForm">
+                <input type="email" id="resetEmail" placeholder="Email" required>
+                <button type="submit">Reset Password</button>
+            </form>
+            <button id="backButton">Back to Login</button>
+            <div id="resetContainer">
+                <div class="checkmark"></div>
+                <div id="resetMessage"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -258,38 +251,34 @@
 
     document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
         e.preventDefault();
-        document.querySelector('.form-container').style.display = 'none';
-        document.querySelector('#resetContainer').style.display = 'block';
-        document.querySelector('#backButton').style.display = 'block';
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('forgotPasswordContainer').style.display = 'block';
+        document.getElementById('backButton').style.display = 'block';
     });
 
-    document.getElementById('resetButton').addEventListener('click', async () => {
+    document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
         const email = document.getElementById('resetEmail').value;
+
         try {
             await sendPasswordResetEmail(auth, email);
-            document.querySelector('#resetMessage .reset-text').innerHTML = `Please check your email at <strong>${email}</strong> to reset your password.`;
-            document.getElementById('resetMessage').style.display = 'block';
-            document.querySelector('#resetContainer').style.display = 'none';
-            document.getElementById('backButton').style.display = 'none';
+            document.getElementById('forgotPasswordContainer').style.display = 'none';
+            document.getElementById('resetContainer').style.display = 'block';
+            document.getElementById('resetMessage').innerText = `Please check your email at ${email} to reset your password.`;
         } catch (error) {
-            console.error('Reset failed:', error);
-            document.querySelector('#resetMessage .reset-text').innerHTML = `Failed to send password reset email. Please try again.`;
-            document.getElementById('resetMessage').style.display = 'block';
+            console.error('Password reset failed:', error);
+            alert('Failed to send password reset email. Please try again.');
         }
     });
 
     document.getElementById('backButton').addEventListener('click', () => {
-        document.querySelector('.form-container').style.display = 'block';
-        document.querySelector('#resetContainer').style.display = 'none';
-        document.querySelector('#backButton').style.display = 'none';
-        document.getElementBy
-document.getElementById('backButton').addEventListener('click', () => {
-        document.querySelector('.form-container').style.display = 'block';
-        document.querySelector('#resetContainer').style.display = 'none';
-        document.querySelector('#backButton').style.display = 'none';
+        document.getElementById('forgotPasswordContainer').style.display = 'none';
+        document.getElementById('loginContainer').style.display = 'block';
+        document.getElementById('backButton').style.display = 'none';
         document.getElementById('resetMessage').style.display = 'none';
     });
 </script>
 
 </body>
 </html>
+``
