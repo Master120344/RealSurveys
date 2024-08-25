@@ -162,7 +162,7 @@
         <button type="submit">Send</button>
     </form>
     <div id="confirmationMessage" class="confirmation-message">
-        Your message was sent successfully!
+        Your message has been sent. We will get back to you at <span id="userEmail"></span> as soon as possible.
     </div>
 </div>
 
@@ -187,15 +187,15 @@
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
-        // Skip redirection if visiting contact page
         if (!user && window.location.pathname !== '/contact.html') {
             window.location.href = 'login.html';
         }
     });
 
-    // Form submission handling
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevents the default form submission
+        const email = document.getElementById('email').value;
+        document.getElementById('userEmail').innerText = email;
         document.getElementById('confirmationMessage').style.display = 'block';
         document.getElementById('contactForm').reset(); // Resets the form fields
     });
