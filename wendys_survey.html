@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wendy's Survey - RealSurveys</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Wendy's Survey</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,78 +13,65 @@
             margin: 0;
             padding: 0;
             color: #333;
+            text-align: center;
         }
-        
-        .container {
+        .survey-container {
+            background-color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            margin-top: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        h2 {
-            color: #d9534f; /* Wendy's red */
+        h1 {
+            color: #e22c29;
+            margin-bottom: 20px;
         }
-
         .question {
             margin-bottom: 20px;
         }
-
         .question label {
-            font-size: 18px;
             display: block;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
-
-        .question input[type="radio"], .question input[type="checkbox"] {
+        .question input {
             margin-right: 10px;
         }
-
-        .buttons {
+        .button-container {
             margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
         }
-
-        .buttons button {
-            padding: 10px 20px;
+        button {
+            background-color: #e22c29;
+            color: white;
             border: none;
+            padding: 10px 20px;
             border-radius: 5px;
-            background-color: #d9534f; /* Wendy's red */
-            color: #fff;
             cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
         }
-
-        .buttons button:hover {
-            background-color: #c9302c; /* Darker red */
+        button:hover {
+            background-color: #c91b1b;
         }
-
-        .message {
-            font-size: 18px;
-            color: green;
+        #message {
             margin-top: 20px;
+            font-size: 18px;
+        }
+        .hidden {
             display: none;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h2>Wendy's Customer Survey</h2>
-    <form id="surveyForm">
+    <div class="survey-container">
+        <h1>Wendy's Customer Survey</h1>
         <div id="questionContainer"></div>
-        <div class="buttons">
-            <button type="button" id="backButton" style="display:none;">Back</button>
-            <button type="button" id="nextButton">Next</button>
+        <div class="button-container">
+            <button id="backButton" class="hidden">Back</button>
+            <button id="nextButton">Next</button>
         </div>
-        <div class="message" id="message"></div>
-    </form>
-</div>
-
-<script src="wendys_survey.js"></script>
+        <div id="message" class="hidden"></div>
+    </div>
+    <script src="wendys_survey.js" type="module"></script>
 </body>
 </html>
