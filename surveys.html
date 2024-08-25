@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,33 @@
             text-align: center;
             color: #333;
             margin-bottom: 30px;
+        }
+
+        /* Navigation tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-tabs li {
+            margin: 0 15px;
+        }
+
+        .nav-tabs a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-tabs a:hover {
+            background-color: #007bff;
+            color: white;
         }
 
         /* Container for the surveys */
@@ -99,82 +127,89 @@
         }
     </style>
 </head>
+
 <body>
 
-<h1>Available Surveys</h1>
+    <!-- Navigation Tabs -->
+    <ul class="nav-tabs">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="balance.html">Balance</a></li>
+        <li><a href="surveys.html">Surveys</a></li>
+    </ul>
 
-<!-- Survey Container -->
-<div class="survey-container">
-    <!-- Survey 1 -->
-    <div class="survey-card">
-        <h2>Wendy's Survey</h2>
-        <p>Complete this survey to share your feedback on Wendy's services.</p>
-        <a href="wendys_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 2 -->
-    <div class="survey-card">
-        <h2>McDonald's Survey</h2>
-        <p>Help us improve McDonald's by sharing your experience.</p>
-        <a href="mcdonalds1_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 3 -->
-    <div class="survey-card">
-        <h2>Southwest Survey</h2>
-        <p>Tell us about your recent flight with Southwest Airlines.</p>
-        <a href="southwest_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 4 -->
-    <div class="survey-card">
-        <h2>Subway Survey</h2>
-        <p>Share your thoughts on your recent visit to Subway.</p>
-        <a href="subway-survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 5 -->
-    <div class="survey-card">
-        <h2>Taco Bell Survey</h2>
-        <p>Complete this survey and help Taco Bell serve you better.</p>
-        <a href="taco-bell-survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 6 -->
-    <div class="survey-card">
-        <h2>Walmart Survey</h2>
-        <p>Give your feedback on your recent shopping experience at Walmart.</p>
-        <a href="walmart_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 7 -->
-    <div class="survey-card">
-        <h2>Waffle House Survey</h2>
-        <p>Share your thoughts on your recent visit to Waffle House.</p>
-        <a href="waffle_house_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 8 -->
-    <div class="survey-card">
-        <h2>Canes Survey</h2>
-        <p>Help us improve Canes by sharing your experience.</p>
-        <a href="canes_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 9 -->
-    <div class="survey-card">
-        <h2>Home Depot Survey</h2>
-        <p>Give feedback on your recent experience at Home Depot.</p>
-        <a href="home_depot_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 10 -->
-    <div class="survey-card">
-        <h2>Netflix Survey</h2>
-        <p>Tell us about your Netflix viewing experience.</p>
-        <a href="netflix_survey.html">Start Survey</a>
-    </div>
-</div>
+    <h1>Available Surveys</h1>
 
-<!-- Pagination -->
-<div class="pagination">
-    <a href="surveys.html" class="active">1</a>
-    <a href="surveys1.html">2</a>
-    <a href="surveys2.html">3</a>
-    <a href="surveys3.html">4</a>
-    <!-- Add more pages as needed -->
-</div>
+    <!-- Survey Container -->
+    <div class="survey-container">
+        <!-- Survey 1 -->
+        <div class="survey-card">
+            <h2>Wendy's Survey</h2>
+            <p>Complete this survey to share your feedback on Wendy's services.</p>
+            <a href="wendys_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 2 -->
+        <div class="survey-card">
+            <h2>McDonald's Survey</h2>
+            <p>Help us improve McDonald's by sharing your experience.</p>
+            <a href="mcdonalds1_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 3 -->
+        <div class="survey-card">
+            <h2>Southwest Survey</h2>
+            <p>Tell us about your recent flight with Southwest Airlines.</p>
+            <a href="southwest_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 4 -->
+        <div class="survey-card">
+            <h2>Subway Survey</h2>
+            <p>Share your thoughts on your recent visit to Subway.</p>
+            <a href="subway-survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 5 -->
+        <div class="survey-card">
+            <h2>Taco Bell Survey</h2>
+            <p>Complete this survey and help Taco Bell serve you better.</p>
+            <a href="taco-bell-survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 6 -->
+        <div class="survey-card">
+            <h2>Walmart Survey</h2>
+            <p>Give your feedback on your recent shopping experience at Walmart.</p>
+            <a href="walmart_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 7 -->
+        <div class="survey-card">
+            <h2>Waffle House Survey</h2>
+            <p>Share your thoughts on your recent visit to Waffle House.</p>
+            <a href="waffle_house_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 8 -->
+        <div class="survey-card">
+            <h2>Canes Survey</h2>
+            <p>Help us improve Canes by sharing your experience.</p>
+            <a href="canes_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 9 -->
+        <div class="survey-card">
+            <h2>Home Depot Survey</h2>
+            <p>Give feedback on your recent experience at Home Depot.</p>
+            <a href="home_depot_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 10 -->
+        <div class="survey-card">
+            <h2>Netflix Survey</h2>
+            <p>Tell us about your Netflix viewing experience.</p>
+            <a href="netflix_survey.html">Start Survey</a>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a href="surveys.html" class="active">1</a>
+        <a href="surveys2.html">2</a>
+        <a href="surveys2.html">Next &raquo;</a>
+    </div>
 
 </body>
+
 </html>
