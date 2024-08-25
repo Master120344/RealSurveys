@@ -112,13 +112,13 @@
 
         .success-message .checkmark {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background-color: #2e8b57;
             color: #fff;
             text-align: center;
-            line-height: 20px;
+            line-height: 24px;
             font-size: 16px;
             margin-right: 10px;
         }
@@ -173,6 +173,7 @@
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
+            <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
         </form>
         <div class="forgot-password-container" id="forgotPasswordContainer">
             <h3>Forgot Password</h3>
@@ -185,7 +186,7 @@
                 <span class="checkmark">&#10003;</span>Your password reset request was successful. Please check your email to reset your password.
             </p>
             <p class="error-message" id="forgotPasswordMessage"></p>
-            <button onclick="showLoginForm()">Back to Login</button>
+            <button type="button" onclick="showLoginForm()">Back to Login</button>
         </div>
     </div>
 </div>
@@ -249,8 +250,6 @@
         document.getElementById('forgotPasswordContainer').style.display = 'none';
         document.getElementById('loginForm').style.display = 'block';
     }
-
-    document.querySelector('button[type="button"]').addEventListener('click', showForgotPassword);
 </script>
 
 </body>
