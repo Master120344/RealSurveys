@@ -60,17 +60,21 @@
             padding: 20px;
             width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             border-radius: 8px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            background-color: #fff;
         }
 
         .survey-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .survey-card h2 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #333;
         }
 
         .survey-card a {
@@ -89,24 +93,16 @@
             border-color: #0056b3;
         }
 
-        /* Burger King themed card */
+        /* Burger King Card */
         .burger-king-card {
             background-image: url('assets/burgerkingcard.png');
             background-size: cover;
             background-position: center;
-            border: none;
-            color: white;
+            color: transparent;
         }
 
-        .burger-king-card a {
-            background-color: #fbbd14;
-            color: #d62300;
-            font-weight: bold;
-        }
-
-        .burger-king-card a:hover {
-            background-color: #d62300;
-            color: white;
+        .burger-king-card h2 {
+            display: none;
         }
     </style>
 </head>
@@ -126,42 +122,51 @@
     <div class="survey-container">
         <!-- Survey 41 -->
         <div class="survey-card">
+            <h2>Chipotle</h2>
             <a href="chipotle_survey.html">Start Survey</a>
         </div>
         <!-- Survey 42 -->
         <div class="survey-card">
+            <h2>Whole Foods</h2>
             <a href="wholefoods_survey.html">Start Survey</a>
         </div>
         <!-- Survey 43 -->
         <div class="survey-card">
+            <h2>Apple</h2>
             <a href="applestore_survey.html">Start Survey</a>
         </div>
         <!-- Survey 44 -->
         <div class="survey-card">
+            <h2>Panera Bread</h2>
             <a href="panera_survey.html">Start Survey</a>
         </div>
-        <!-- Survey 45 - Burger King Survey -->
+        <!-- Survey 45 - Burger King Themed -->
         <div class="survey-card burger-king-card">
             <a href="burgerking_survey.html">Start Survey</a>
         </div>
         <!-- Survey 46 -->
         <div class="survey-card">
+            <h2>Lowe's</h2>
             <a href="lowes_survey.html">Start Survey</a>
         </div>
         <!-- Survey 47 -->
         <div class="survey-card">
+            <h2>Staples</h2>
             <a href="staples_survey.html">Start Survey</a>
         </div>
         <!-- Survey 48 -->
         <div class="survey-card">
+            <h2>Sephora</h2>
             <a href="sephora_survey.html">Start Survey</a>
         </div>
         <!-- Survey 49 -->
         <div class="survey-card">
+            <h2>Kroger</h2>
             <a href="kroger_survey.html">Start Survey</a>
         </div>
         <!-- Survey 50 -->
         <div class="survey-card">
+            <h2>Trader Joe's</h2>
             <a href="traderjoes_survey.html">Start Survey</a>
         </div>
     </div>
