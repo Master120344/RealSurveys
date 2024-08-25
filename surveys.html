@@ -16,7 +16,7 @@
         header {
             background-color: #333; /* Darker background for header */
             color: #fff;
-            padding: 15px 0;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -35,7 +35,6 @@
         header h1 {
             font-size: 24px;
             color: #ffab00; /* Yellow accent */
-            margin: 0;
         }
 
         header h1 a {
@@ -60,7 +59,7 @@
             text-decoration: none;
             font-size: 16px;
             background-color: #444;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
             white-space: nowrap;
@@ -69,51 +68,6 @@
         header nav ul li a:hover {
             background-color: #555;
             transform: scale(1.05);
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .profile-dropdown {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 0;
-            background-color: #444;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-            min-width: 150px;
-        }
-
-        .profile-dropdown a {
-            display: block;
-            color: #fff;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-bottom: 1px solid #555;
-        }
-
-        .profile-dropdown a:last-child {
-            border-bottom: none;
-        }
-
-        .profile-dropdown a:hover {
-            background-color: #555;
-        }
-
-        .profile:hover .profile-dropdown {
-            display: block;
         }
 
         .hero {
@@ -315,34 +269,28 @@
             authDomain: "real-surveys.firebaseapp.com",
             projectId: "real-surveys",
             storageBucket: "real-surveys.appspot.com",
-            messagingSenderId: "102413
-const firebaseConfig = {
-    apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-    authDomain: "real-surveys.firebaseapp.com",
-    projectId: "real-surveys",
-    storageBucket: "real-surveys.appspot.com",
-    messagingSenderId: "1024139519354",
-    appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-};
+            messagingSenderId: "1024139519354",
+            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+        };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-onAuthStateChanged(auth, (user) => {
-    if (!user) {
-        window.location.href = 'login.html';
-    } else {
-        fetchUserBalance(user.uid).then(balance => {
-            document.getElementById('balance-link').innerText = `Balance: $${balance.toFixed(2)}`;
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            } else {
+                fetchUserBalance(user.uid).then(balance => {
+                    document.getElementById('balance-link').innerText = `Balance: $${balance.toFixed(2)}`;
+                });
+            }
         });
-    }
-});
 
-async function fetchUserBalance(uid) {
-    // Simulate an API call to fetch user balance; replace with actual API logic
-    return 100.00;
-}
-</script>
+        async function fetchUserBalance(uid) {
+            // Simulate an API call to fetch user balance; replace with actual API logic
+            return 100.00;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -352,45 +300,84 @@ async function fetchUserBalance(uid) {
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Surveys</a></li>
-                    <li><a href="#">My Surveys</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li class="profile">
-                        <img src="profile-icon.png" alt="Profile Icon">
-                        <span id="username">User</span>
-                    </li>
-                    <li><a href="balance.html" id="balance-link">Balance: $0.00</a></li>
+                    <li><a href
+<li><a id="balance-link" href="#">Balance: $0.00</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <div class="hero">
-        <h2>Find and Complete Surveys to Earn Money!</h2>
-    </div>
-    <div class="content">
+
+    <section class="hero">
+        <h2>Earn Money by Completing Surveys</h2>
+    </section>
+
+    <section class="content">
         <h2>Available Surveys</h2>
-        <p>Browse the latest surveys to earn rewards. Click on any survey to get started!</p>
         <ul class="survey-list">
-            <!-- Example of survey item -->
             <li class="survey-item">
-                <div class="survey-id">Survey ID: 12345</div>
                 <div class="details">
-                    <h3>Survey Title</h3>
-                    <p>Details about the survey go here. This should give users an idea of what the survey is about.</p>
-                    <p class="pot">Pot: $50.00</p>
-                    <p class="reward">Reward: $5.00</p>
-                    <a href="#" class="btn">Start Survey</a>
+                    <span class="survey-id">#1</span>
+                    <h3>Wendy's Survey</h3>
+                    <p>Help us improve by taking this survey.</p>
+                    <span class="reward">Reward: $2.00</span>
                 </div>
+                <a class="btn" href="wendys_survey.html">Take Survey</a>
             </li>
-            <!-- Repeat similar blocks for other surveys -->
+            <li class="survey-item">
+                <div class="details">
+                    <span class="survey-id">#2</span>
+                    <h3>McDonald's Survey</h3>
+                    <p>Share your feedback with us.</p>
+                    <span class="reward">Reward: $2.50</span>
+                </div>
+                <a class="btn" href="mcdonalds1_survey.html">Take Survey</a>
+            </li>
+            <li class="survey-item">
+                <div class="details">
+                    <span class="survey-id">#3</span>
+                    <h3>Southwest Survey</h3>
+                    <p>Let us know about your experience.</p>
+                    <span class="reward">Reward: $3.00</span>
+                </div>
+                <a class="btn" href="southwest_survey.html">Take Survey</a>
+            </li>
+            <li class="survey-item">
+                <div class="details">
+                    <span class="survey-id">#4</span>
+                    <h3>Subway Survey</h3>
+                    <p>Your opinion matters to us.</p>
+                    <span class="reward">Reward: $1.75</span>
+                </div>
+                <a class="btn" href="subway_survey.html">Take Survey</a>
+            </li>
+            <li class="survey-item">
+                <div class="details">
+                    <span class="survey-id">#5</span>
+                    <h3>Taco Bell Survey</h3>
+                    <p>Tell us how we did.</p>
+                    <span class="reward">Reward: $2.25</span>
+                </div>
+                <a class="btn" href="taco-bell_survey.html">Take Survey</a>
+            </li>
+            <li class="survey-item">
+                <div class="details">
+                    <span class="survey-id">#6</span>
+                    <h3>Walmart Survey</h3>
+                    <p>Help us serve you better.</p>
+                    <span class="reward">Reward: $2.00</span>
+                </div>
+                <a class="btn" href="walmart_survey.html">Take Survey</a>
+            </li>
         </ul>
-    </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Real Surveys. All rights reserved.</p>
             <div class="social">
-                <a href="#" target="_blank">Facebook</a>
-                <a href="#" target="_blank">Twitter</a>
-                <a href="#" target="_blank">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
             </div>
         </div>
     </footer>
