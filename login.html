@@ -55,14 +55,14 @@
             background-color: #ffffff;
         }
 
+        .main-content h2 {
+            font-size: 36px;
+            color: #2e8b57;
+        }
+
         .form-container {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            background-color: #e8f0f2;
-            border: 1px solid #b0c4c4;
         }
 
         .form-container form {
@@ -79,7 +79,13 @@
         }
 
         .form-container input {
-            border: 1px solid #b0c4c4;
+            border: 1px solid #bbb;
+            transition: border-color 0.3s;
+        }
+
+        .form-container input:focus {
+            border-color: #2e8b57;
+            outline: none;
         }
 
         .form-container button {
@@ -87,68 +93,45 @@
             color: #fff;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .form-container button:hover {
             background-color: #3a9f6f;
         }
 
-        .success-message {
-            color: #28a745;
+        .success-message, .error-message {
             font-size: 18px;
             margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
 
         .error-message {
-            color: #dc3545;
-            font-size: 18px;
-            margin-top: 20px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         .forgot-password {
-            margin-top: 20px;
-        }
-
-        .forgot-password p {
-            font-size: 16px;
-            color: #666;
-        }
-
-        .forgot-password input {
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #b0c4c4;
-        }
-
-        .forgot-password button {
-            width: 100%;
-            background-color: #2e8b57;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .forgot-password button:hover {
-            background-color: #3a9f6f;
-        }
-
-        .back-to-login {
             text-align: left;
             margin-top: 10px;
         }
 
-        .back-to-login a {
+        .forgot-password a {
             color: #2e8b57;
             text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
+            font-size: 14px;
         }
 
-        .back-to-login a:hover {
-            color: #3a9f6f;
+        .forgot-password a:hover {
+            text-decoration: underline;
         }
 
         footer {
@@ -187,25 +170,29 @@
 </header>
 
 <div class="main-content">
+    <h2 id="loginHeading">Login</h2>
+    <p id="loginText">Log in to access your RealSurveys account.</p>
     <div class="form-container">
         <form id="loginForm">
-            <h2 id="loginHeading">Login</h2>
-            <p id="loginText">Log in to access your RealSurveys account.</p>
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
-            <div id="loginMessage" class="success-message" style="display: none;"></div>
-            <div id="forgotPasswordSection" class="forgot-password" style="display: none;">
-                <p>Forgot your password? Enter your email to reset it:</p>
-                <input type="email" id="resetEmail" placeholder="Enter your email">
-                <button id="resetPasswordBtn">Reset Password</button>
-                <div id="resetMessage" class="success-message" style="display: none;"></div>
-                <div id="resetError" class="error-message" style="display: none;"></div>
-                <div class="back-to-login">
-                    <a href="#" id="backToLogin">Back to Login</a>
-                </div>
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink">Forgot Password?</a>
             </div>
         </form>
+
+        <div id="forgotPasswordSection" style="display: none;">
+            <h2>Password Reset</h2>
+            <p>Enter your email to reset your password.</p>
+            <input type="email" id="resetEmail" placeholder="Enter your email" required>
+            <button id="resetPasswordBtn">Reset Password</button>
+            <div id="resetMessage" class="success-message" style="display: none;"></div>
+            <div id="resetError" class="error-message" style="display: none;"></div>
+            <div class="forgot-password">
+                <a href="#" id="backToLogin">Back to Login</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -248,34 +235,40 @@
             console.error('Login failed:', error);
             loginMessage.textContent = '';
             forgotPasswordSection.style.display = 'block';
-            document.getElementById('loginHeading').style.display = 'none';
-            document.getElementById('loginText').style.display = 'none';
             const resetError = document.getElementById('resetError');
             resetError.textContent = 'Invalid login credentials. Please try again.';
             resetError.style.display = 'block';
         }
     });
 
+    document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('loginHeading').style.display = 'none';
+        document.getElementById('loginText').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('forgotPasswordSection').style.display = 'block';
+    });
+
     document.getElementById('resetPasswordBtn').addEventListener('click', async () => {
         const resetEmail = document.getElementById('resetEmail').value;
-        const resetMessage = document.getElementById('resetMessage');
+        const
+resetMessage = document.getElementById('resetMessage');
         const resetError = document.getElementById('resetError');
 
         try {
             await sendPasswordResetEmail(auth, resetEmail);
-await sendPasswordResetEmail(auth, resetEmail);
-            resetMessage.textContent = 'A password reset link has been sent to your email.';
+            resetMessage.textContent = 'Password reset link sent to your email.';
             resetMessage.style.display = 'block';
             resetError.style.display = 'none';
         } catch (error) {
-            console.error('Error sending password reset email:', error);
+            console.error('Password reset failed:', error);
             if (error.code === 'auth/user-not-found') {
-                resetError.textContent = 'Error: This email is not registered with us.';
+                resetError.textContent = 'The email address is not registered. Please check and try again.';
             } else {
-                resetError.textContent = 'Error: Something went wrong. Please try again later.';
+                resetError.textContent = 'Failed to send password reset email. Please try again.';
             }
-            resetError.style.display = 'block';
             resetMessage.style.display = 'none';
+            resetError.style.display = 'block';
         }
     });
 
@@ -283,9 +276,8 @@ await sendPasswordResetEmail(auth, resetEmail);
         e.preventDefault();
         document.getElementById('loginHeading').style.display = 'block';
         document.getElementById('loginText').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'block';
         document.getElementById('forgotPasswordSection').style.display = 'none';
-        document.getElementById('resetError').style.display = 'none';
-        document.getElementById('resetMessage').style.display = 'none';
     });
 </script>
 
