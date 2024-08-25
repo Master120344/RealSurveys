@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 20px;
         }
@@ -15,7 +15,7 @@
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         /* Container for the surveys */
@@ -23,20 +23,18 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 30px;
+            gap: 20px;
         }
 
         /* Individual survey card styling */
         .survey-card {
-            border: 2px solid #ddd;
+            border: 1px solid #ddd;
             padding: 20px;
-            margin: 10px;
-            width: calc(33.333% - 40px);
+            width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             border-radius: 8px;
             text-align: center;
-            box-sizing: border-box;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -46,7 +44,7 @@
         }
 
         .survey-card h2 {
-            font-size: 1.2em;
+            font-size: 1.4em;
             margin-bottom: 10px;
             color: #333;
         }
@@ -58,29 +56,30 @@
 
         .survey-card a {
             text-decoration: none;
-            color: #007bff;
-            background-color: #e7f0ff;
+            color: #fff;
+            background-color: #007bff;
             padding: 10px 15px;
             border-radius: 5px;
             border: 1px solid #007bff;
-            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .survey-card a:hover {
-            background-color: #007bff;
-            color: white;
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
 
         /* Pagination styling */
         .pagination {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 30px;
         }
 
         .pagination a {
             padding: 10px 15px;
-            margin: 0 5px;
             border: 1px solid #ddd;
             text-decoration: none;
             color: #007bff;
