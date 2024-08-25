@@ -138,8 +138,16 @@
             background: linear-gradient(135deg, #8e24aa, #6a1b9a); /* Reverse gradient on hover */
         }
 
-        .survey-item .details {
-            z-index: 1;
+        .survey-item .survey-id {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .survey-item h3 {
@@ -151,12 +159,6 @@
         .survey-item p {
             margin: 5px 0;
             font-size: 16px;
-        }
-
-        .survey-item .pot {
-            font-size: 18px;
-            margin-top: 10px;
-            color: #00ff00; /* Green for pot amount */
         }
 
         .survey-item .reward {
@@ -180,18 +182,6 @@
         .survey-item .btn:hover {
             background-color: #ffcc00; /* Lighter yellow */
             transform: scale(1.05);
-        }
-
-        .survey-id {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
         }
 
         footer {
@@ -287,7 +277,7 @@
         });
 
         async function fetchUserBalance(uid) {
-            // Simulate an API call to fetch user balance; replace with actual API logic
+            // Replace with actual API call to fetch the balance
             return 100.00;
         }
     </script>
@@ -295,13 +285,12 @@
 <body>
     <header>
         <div class="container">
-            <h1><a href="#">Real Surveys</a></h1>
+            <h1><a href="index.html">Real Surveys</a></h1>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Surveys</a></li>
-                    <li><a href
-<li><a id="balance-link" href="#">Balance: $0.00</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="surveys.html">Surveys</a></li>
+                    <li><a href="balance.html" id="balance-link">Balance: $0.00</a></li>
                 </ul>
             </nav>
         </div>
@@ -310,63 +299,50 @@
     <section class="hero">
         <h2>Earn Money by Completing Surveys</h2>
     </section>
-
-    <section class="content">
+<section class="content">
         <h2>Available Surveys</h2>
         <ul class="survey-list">
             <li class="survey-item">
-                <div class="details">
-                    <span class="survey-id">#1</span>
-                    <h3>Wendy's Survey</h3>
-                    <p>Help us improve by taking this survey.</p>
-                    <span class="reward">Reward: $2.00</span>
-                </div>
-                <a class="btn" href="wendys_survey.html">Take Survey</a>
+                <div class="survey-id">#1</div>
+                <h3>Wendy's Survey</h3>
+                <p>Complete this survey to share your feedback on Wendy's services.</p>
+                <p class="reward">$5.00 Reward</p>
+                <a href="wendys_survey.html" class="btn">Start Survey</a>
             </li>
             <li class="survey-item">
-                <div class="details">
-                    <span class="survey-id">#2</span>
-                    <h3>McDonald's Survey</h3>
-                    <p>Share your feedback with us.</p>
-                    <span class="reward">Reward: $2.50</span>
-                </div>
-                <a class="btn" href="mcdonalds1_survey.html">Take Survey</a>
+                <div class="survey-id">#2</div>
+                <h3>McDonald's Survey</h3>
+                <p>Help us improve McDonald's by sharing your experience.</p>
+                <p class="reward">$5.00 Reward</p>
+                <a href="mcdonalds1_survey.html" class="btn">Start Survey</a>
             </li>
             <li class="survey-item">
-                <div class="details">
-                    <span class="survey-id">#3</span>
-                    <h3>Southwest Survey</h3>
-                    <p>Let us know about your experience.</p>
-                    <span class="reward">Reward: $3.00</span>
-                </div>
-                <a class="btn" href="southwest_survey.html">Take Survey</a>
+                <div class="survey-id">#3</div>
+                <h3>Southwest Survey</h3>
+                <p>Tell us about your recent flight with Southwest Airlines.</p>
+                <p class="reward">$10.00 Reward</p>
+                <a href="southwest_survey.html" class="btn">Start Survey</a>
             </li>
             <li class="survey-item">
-                <div class="details">
-                    <span class="survey-id">#4</span>
-                    <h3>Subway Survey</h3>
-                    <p>Your opinion matters to us.</p>
-                    <span class="reward">Reward: $1.75</span>
-                </div>
-                <a class="btn" href="subway_survey.html">Take Survey</a>
+                <div class="survey-id">#4</div>
+                <h3>Subway Survey</h3>
+                <p>Share your thoughts on your recent visit to Subway.</p>
+                <p class="reward">$3.00 Reward</p>
+                <a href="subway-survey.html" class="btn">Start Survey</a>
             </li>
             <li class="survey-item">
-                <div class="details">
-                    <span class="survey-id">#5</span>
-                    <h3>Taco Bell Survey</h3>
-                    <p>Tell us how we did.</p>
-                    <span class="reward">Reward: $2.25</span>
-                </div>
-                <a class="btn" href="taco-bell_survey.html">Take Survey</a>
+                <div class="survey-id">#5</div>
+                <h3>Taco Bell Survey</h3>
+                <p>Complete this survey and help Taco Bell serve you better.</p>
+                <p class="reward">$4.00 Reward</p>
+                <a href="taco-bell-survey.html" class="btn">Start Survey</a>
             </li>
             <li class="survey-item">
-                <div class="details">
-                    <span class="survey-id">#6</span>
-                    <h3>Walmart Survey</h3>
-                    <p>Help us serve you better.</p>
-                    <span class="reward">Reward: $2.00</span>
-                </div>
-                <a class="btn" href="walmart_survey.html">Take Survey</a>
+                <div class="survey-id">#6</div>
+                <h3>Walmart Survey</h3>
+                <p>Give your feedback on your recent shopping experience at Walmart.</p>
+                <p class="reward">$6.00 Reward</p>
+                <a href="walmart_survey.html" class="btn">Start Survey</a>
             </li>
         </ul>
     </section>
