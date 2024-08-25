@@ -1,201 +1,155 @@
-const questions = [
-    {
-        id: 1,
-        text: 'When was the last time you visited Wendy\'s?',
-        options: [
-            { value: 'Today', text: 'Today' },
-            { value: 'This week', text: 'This week' },
-            { value: 'This month', text: 'This month' },
-            { value: 'More than a month ago', text: 'More than a month ago' }
-        ],
-        next: {
-            'Today': 2,
-            'This week': 2,
-            'This month': 3,
-            'More than a month ago': 4
-        }
-    },
-    {
-        id: 2,
-        text: 'How satisfied are you with the service?',
-        options: [
-            { value: 'Very satisfied', text: 'Very satisfied' },
-            { value: 'Somewhat satisfied', text: 'Somewhat satisfied' },
-            { value: 'Neutral', text: 'Neutral' },
-            { value: 'Somewhat dissatisfied', text: 'Somewhat dissatisfied' },
-            { value: 'Very dissatisfied', text: 'Very dissatisfied' }
-        ],
-        next: {
-            'Very satisfied': 5,
-            'Somewhat satisfied': 5,
-            'Neutral': 5,
-            'Somewhat dissatisfied': 5,
-            'Very dissatisfied': 6
-        }
-    },
-    {
-        id: 3,
-        text: 'What was the main reason for your visit?',
-        options: [
-            { value: 'Lunch', text: 'Lunch' },
-            { value: 'Dinner', text: 'Dinner' },
-            { value: 'Snacks', text: 'Snacks' },
-            { value: 'Other', text: 'Other' }
-        ],
-        next: {
-            'Lunch': 7,
-            'Dinner': 7,
-            'Snacks': 7,
-            'Other': 7
-        }
-    },
-    {
-        id: 4,
-        text: 'What would make you visit Wendy\'s more often?',
-        options: [
-            { value: 'Better prices', text: 'Better prices' },
-            { value: 'More variety', text: 'More variety' },
-            { value: 'Better quality', text: 'Better quality' },
-            { value: 'Other', text: 'Other' }
-        ],
-        next: {
-            'Better prices': 7,
-            'More variety': 7,
-            'Better quality': 7,
-            'Other': 7
-        }
-    },
-    {
-        id: 5,
-        text: 'How likely are you to recommend Wendy\'s to a friend?',
-        options: [
-            { value: 'Very likely', text: 'Very likely' },
-            { value: 'Somewhat likely', text: 'Somewhat likely' },
-            { value: 'Not sure', text: 'Not sure' },
-            { value: 'Somewhat unlikely', text: 'Somewhat unlikely' },
-            { value: 'Very unlikely', text: 'Very unlikely' }
-        ],
-        next: {
-            'Very likely': 8,
-            'Somewhat likely': 8,
-            'Not sure': 8,
-            'Somewhat unlikely': 8,
-            'Very unlikely': 9
-        }
-    },
-    {
-        id: 6,
-        text: 'What can Wendy\'s do to improve your experience?',
-        options: [
-            { value: 'Improve food quality', text: 'Improve food quality' },
-            { value: 'Improve service speed', text: 'Improve service speed' },
-            { value: 'Add more menu items', text: 'Add more menu items' },
-            { value: 'Other', text: 'Other' }
-        ],
-        next: {
-            'Improve food quality': 9,
-            'Improve service speed': 9,
-            'Add more menu items': 9,
-            'Other': 9
-        }
-    },
-    {
-        id: 7,
-        text: 'Would you like to provide any additional feedback?',
-        options: [
-            { value: 'Yes', text: 'Yes' },
-            { value: 'No', text: 'No' }
-        ],
-        next: {
-            'Yes': 10,
-            'No': 11
-        }
-    },
-    {
-        id: 8,
-        text: 'Thank you for your feedback! Would you like to leave your email for further communication?',
-        options: [
-            { value: 'Yes', text: 'Yes' },
-            { value: 'No', text: 'No' }
-        ],
-        next: {
-            'Yes': 12,
-            'No': 13
-        }
-    },
-    {
-        id: 9,
-        text: 'Thank you for your feedback!',
-        options: [],
-        next: {}
-    },
-    {
-        id: 10,
-        text: 'Please enter your email for further communication:',
-        options: [],
-        next: {}
-    },
-    {
-        id: 11,
-        text: 'Thank you for your time!',
-        options: [],
-        next: {}
-    },
-    {
-        id: 12,
-        text: 'A confirmation email has been sent to you.',
-        options: [],
-        next: {}
-    },
-    {
-        id: 13,
-        text: 'Thank you for your feedback!',
-        options: [],
-        next: {}
-    }
-];
-
 document.addEventListener('DOMContentLoaded', () => {
+    const questions = [
+        {
+            id: 1,
+            text: 'When is the last time you visited Wendy\'s?',
+            options: [
+                { value: 'today', text: 'Today' },
+                { value: 'this_week', text: 'This Week' },
+                { value: 'this_month', text: 'This Month' },
+                { value: 'longer', text: 'More Than a Month Ago' }
+            ],
+            next: {
+                today: 2,
+                this_week: 2,
+                this_month: 2,
+                longer: 3
+            }
+        },
+        {
+            id: 2,
+            text: 'How would you rate your last experience?',
+            options: [
+                { value: 'excellent', text: 'Excellent' },
+                { value: 'good', text: 'Good' },
+                { value: 'average', text: 'Average' },
+                { value: 'poor', text: 'Poor' }
+            ],
+            next: {
+                excellent: 4,
+                good: 4,
+                average: 4,
+                poor: 5
+            }
+        },
+        {
+            id: 3,
+            text: 'What was the reason for your last visit?',
+            options: [
+                { value: 'dining_in', text: 'Dining In' },
+                { value: 'drive_thru', text: 'Drive-Thru' },
+                { value: 'delivery', text: 'Delivery' }
+            ],
+            next: {
+                dining_in: 6,
+                drive_thru: 6,
+                delivery: 6
+            }
+        },
+        {
+            id: 4,
+            text: 'Would you recommend Wendy\'s to a friend?',
+            options: [
+                { value: 'yes', text: 'Yes' },
+                { value: 'no', text: 'No' }
+            ],
+            next: {
+                yes: 7,
+                no: 7
+            }
+        },
+        {
+            id: 5,
+            text: 'Please provide details on your poor experience:',
+            options: [],
+            next: {}
+        },
+        {
+            id: 6,
+            text: 'How satisfied are you with the service?',
+            options: [
+                { value: 'very_satisfied', text: 'Very Satisfied' },
+                { value: 'satisfied', text: 'Satisfied' },
+                { value: 'neutral', text: 'Neutral' },
+                { value: 'dissatisfied', text: 'Dissatisfied' }
+            ],
+            next: {
+                very_satisfied: 7,
+                satisfied: 7,
+                neutral: 7,
+                dissatisfied: 7
+            }
+        },
+        {
+            id: 7,
+            text: 'Do you have any suggestions for improvement?',
+            options: [
+                { value: 'yes', text: 'Yes' },
+                { value: 'no', text: 'No' }
+            ],
+            next: {
+                yes: 8,
+                no: 9
+            }
+        },
+        {
+            id: 8,
+            text: 'Please provide your suggestions:',
+            options: [],
+            next: {}
+        },
+        {
+            id: 9,
+            text: 'Thank you for completing the survey!',
+            options: [],
+            next: {}
+        }
+    ];
+
     const questionContainer = document.getElementById('questionContainer');
-    const backButton = document.getElementById('backButton');
     const nextButton = document.getElementById('nextButton');
+    const backButton = document.getElementById('backButton');
     const message = document.getElementById('message');
+
     let currentQuestion = 1;
     let previousQuestion = [];
 
     function renderQuestion(questionId) {
-        const question = questions.find(q => q.id === questionId);
         questionContainer.innerHTML = '';
-        message.innerHTML = '';
-        message.style.display = 'none';
-        
+        const question = questions.find(q => q.id === questionId);
         const questionElement = document.createElement('div');
         questionElement.classList.add('question');
-        
-        const questionText = document.createElement('p');
-        questionText.textContent = question.text;
-        questionElement.appendChild(questionText);
+        questionElement.innerHTML = `<p>${question.text}</p>`;
 
-        question.options.forEach(option => {
-            const label = document.createElement('label');
-            const input = document.createElement('input');
-            input.type = 'radio';
-            input.name = 'option';
-            input.value = option.value;
-            input.id = option.value;
-            
-            const span = document.createElement('span');
-            span.textContent = option.text;
-            
-            label.appendChild(input);
-            label.appendChild(span);
-            questionElement.appendChild(label);
-        });
+        if (question.options.length > 0) {
+            question.options.forEach(option => {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'option';
+                input.value = option.value;
+                input.id = option.value;
+
+                const span = document.createElement('span');
+                span.textContent = option.text;
+
+                label.appendChild(input);
+                label.appendChild(span);
+                questionElement.appendChild(label);
+            });
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.id = 'details';
+            textarea.placeholder = 'Enter your details here...';
+            textarea.style.width = '100%';
+            textarea.style.padding = '10px';
+            textarea.style.marginTop = '10px';
+            questionElement.appendChild(textarea);
+        }
 
         questionContainer.appendChild(questionElement);
-        
-        if (questionId === 10) {
-            // Email input for further communication
+
+        if (questionId === 9) {
             const emailInput = document.createElement('input');
             emailInput.type = 'email';
             emailInput.id = 'emailInput';
@@ -205,12 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
             emailInput.style.marginTop = '10px';
             questionContainer.appendChild(emailInput);
         }
-        
-        if (questionId === 9 || questionId === 11 || questionId === 12) {
+
+        if (questionId === 7) {
             nextButton.style.display = 'none';
         } else {
             nextButton.style.display = 'inline-block';
         }
+
+        backButton.style.display = previousQuestion.length > 0 ? 'inline-block' : 'none';
     }
 
     function showMessage(text, type) {
@@ -221,31 +177,226 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextButton.addEventListener('click', () => {
         const selectedOption = document.querySelector('input[name="option"]:checked');
-        if (selectedOption) {
-            const selectedValue = selectedOption.value;
+        if (selectedOption || currentQuestion === 9) {
             const question = questions.find(q => q.id === currentQuestion);
             previousQuestion.push(currentQuestion);
 
-            if (question.next[selectedValue]) {
-                currentQuestion = question.next[selectedValue];
-                renderQuestion(currentQuestion);
-                backButton.style.display = previousQuestion.length > 0 ? 'inline-block' : 'none';
-            } else {
-                showMessage('Survey completed. Thank you for your feedback!', 'success');
+            if (question.id === 9 && document.getElementById('emailInput')) {
+                const email = document.getElementById('emailInput').value;
+                showMessage(`A password reset link has been sent to ${email}`, 'success');
                 nextButton.style.display = 'none';
+            } else {
+                const selectedValue = selectedOption ? selectedOption.value : 'details';
+                const nextQuestion = question.next[selectedValue];
+                if (nextQuestion) {
+                    currentQuestion = nextQuestion;
+                    renderQuestion(currentQuestion);
+                } else {
+                    showMessage('Survey completed. Thank you for your feedback!', 'success');
+                    nextButton.style.display = 'none';
+                }
             }
         } else {
             showMessage('Please select an option before proceeding.', 'error');
         }
-    });
-
-    backButton.addEventListener('click', () => {
-        if (previousQuestion.length > 0) {
-            currentQuestion = previousQuestion.pop();
-            renderQuestion(currentQuestion);
-            backButton.style.display = previousQuestion.length > 0 ? 'inline-block' : 'none';
+document.addEventListener('DOMContentLoaded', () => {
+    const questions = [
+        {
+            id: 1,
+            text: 'When is the last time you visited Wendy\'s?',
+            options: [
+                { value: 'today', text: 'Today' },
+                { value: 'this_week', text: 'This Week' },
+                { value: 'this_month', text: 'This Month' },
+                { value: 'longer', text: 'More Than a Month Ago' }
+            ],
+            next: {
+                today: 2,
+                this_week: 2,
+                this_month: 2,
+                longer: 3
+            }
+        },
+        {
+            id: 2,
+            text: 'How would you rate your last experience?',
+            options: [
+                { value: 'excellent', text: 'Excellent' },
+                { value: 'good', text: 'Good' },
+                { value: 'average', text: 'Average' },
+                { value: 'poor', text: 'Poor' }
+            ],
+            next: {
+                excellent: 4,
+                good: 4,
+                average: 4,
+                poor: 5
+            }
+        },
+        {
+            id: 3,
+            text: 'What was the reason for your last visit?',
+            options: [
+                { value: 'dining_in', text: 'Dining In' },
+                { value: 'drive_thru', text: 'Drive-Thru' },
+                { value: 'delivery', text: 'Delivery' }
+            ],
+            next: {
+                dining_in: 6,
+                drive_thru: 6,
+                delivery: 6
+            }
+        },
+        {
+            id: 4,
+            text: 'Would you recommend Wendy\'s to a friend?',
+            options: [
+                { value: 'yes', text: 'Yes' },
+                { value: 'no', text: 'No' }
+            ],
+            next: {
+                yes: 7,
+                no: 7
+            }
+        },
+        {
+            id: 5,
+            text: 'Please provide details on your poor experience:',
+            options: [],
+            next: {}
+        },
+        {
+            id: 6,
+            text: 'How satisfied are you with the service?',
+            options: [
+                { value: 'very_satisfied', text: 'Very Satisfied' },
+                { value: 'satisfied', text: 'Satisfied' },
+                { value: 'neutral', text: 'Neutral' },
+                { value: 'dissatisfied', text: 'Dissatisfied' }
+            ],
+            next: {
+                very_satisfied: 7,
+                satisfied: 7,
+                neutral: 7,
+                dissatisfied: 7
+            }
+        },
+        {
+            id: 7,
+            text: 'Do you have any suggestions for improvement?',
+            options: [
+                { value: 'yes', text: 'Yes' },
+                { value: 'no', text: 'No' }
+            ],
+            next: {
+                yes: 8,
+                no: 9
+            }
+        },
+        {
+            id: 8,
+            text: 'Please provide your suggestions:',
+            options: [],
+            next: {}
+        },
+        {
+            id: 9,
+            text: 'Thank you for completing the survey!',
+            options: [],
+            next: {}
         }
-    });
+    ];
 
-    renderQuestion(currentQuestion);
-});
+    const questionContainer = document.getElementById('questionContainer');
+    const nextButton = document.getElementById('nextButton');
+    const backButton = document.getElementById('backButton');
+    const message = document.getElementById('message');
+
+    let currentQuestion = 1;
+    let previousQuestion = [];
+
+    function renderQuestion(questionId) {
+        questionContainer.innerHTML = '';
+        const question = questions.find(q => q.id === questionId);
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `<p>${question.text}</p>`;
+
+        if (question.options.length > 0) {
+            question.options.forEach(option => {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'option';
+                input.value = option.value;
+                input.id = option.value;
+
+                const span = document.createElement('span');
+                span.textContent = option.text;
+
+                label.appendChild(input);
+                label.appendChild(span);
+                questionElement.appendChild(label);
+            });
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.id = 'details';
+            textarea.placeholder = 'Enter your details here...';
+            textarea.style.width = '100%';
+            textarea.style.padding = '10px';
+            textarea.style.marginTop = '10px';
+            questionElement.appendChild(textarea);
+        }
+
+        questionContainer.appendChild(questionElement);
+
+        if (questionId === 9) {
+            const emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.id = 'emailInput';
+            emailInput.placeholder = 'Enter your email address';
+            emailInput.style.width = '100%';
+            emailInput.style.padding = '10px';
+            emailInput.style.marginTop = '10px';
+            questionContainer.appendChild(emailInput);
+        }
+
+        if (questionId === 7) {
+            nextButton.style.display = 'none';
+        } else {
+            nextButton.style.display = 'inline-block';
+        }
+
+        backButton.style.display = previousQuestion.length > 0 ? 'inline-block' : 'none';
+    }
+
+    function showMessage(text, type) {
+        message.textContent = text;
+        message.style.color = type === 'success' ? 'green' : 'red';
+        message.style.display = 'block';
+    }
+
+    nextButton.addEventListener('click', () => {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (selectedOption || currentQuestion === 9) {
+            const question = questions.find(q => q.id === currentQuestion);
+            previousQuestion.push(currentQuestion);
+
+            if (question.id === 9 && document.getElementById('emailInput')) {
+                const email = document.getElementById('emailInput').value;
+                showMessage(`A password reset link has been sent to ${email}`, 'success');
+                nextButton.style.display = 'none';
+            } else {
+                const selectedValue = selectedOption ? selectedOption.value : 'details';
+                const nextQuestion = question.next[selectedValue];
+                if (nextQuestion) {
+                    currentQuestion = nextQuestion;
+                    renderQuestion(currentQuestion);
+                } else {
+                    showMessage('Survey completed. Thank you for your feedback!', 'success');
+                    nextButton.style.display = 'none';
+                }
+            }
+        } else {
+            showMessage('Please select an option before proceeding.', 'error');
+        }
