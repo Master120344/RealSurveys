@@ -131,17 +131,20 @@
             text-decoration: none;
             color: #007bff;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 5px;
-            border: 1px solid #ddd;
-            margin: 0 5px;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .pagination a:hover,
-        .pagination a.active {
+        .pagination a:hover {
             background-color: #007bff;
             color: white;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
         }
     </style>
 </head>
@@ -221,11 +224,9 @@
     <!-- Pagination -->
     <div class="pagination">
         <a href="surveys4.html">&laquo; Previous</a>
-        <a href="surveys.html">1</a>
-        <a href="surveys2.html">2</a>
-        <a href="surveys3.html">3</a>
-        <a href="surveys4.html">4</a>
-        <a href="surveys5.html" class="active">5</a>
+        <a href="surveys4.html">3</a>
+        <a href="surveys5.html" class="active">4</a>
+        <a href="surveys6.html">5</a>
         <a href="surveys6.html">Next &raquo;</a>
     </div>
 
