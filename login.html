@@ -94,44 +94,30 @@
             background-color: #3a9f6f;
         }
 
+        .success-message {
+            display: none;
+            font-size: 18px;
+            color: #2e8b57;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            display: none;
+            font-size: 18px;
+            color: #e74c3c;
+            margin-top: 20px;
+        }
+
         .forgot-password-container {
             display: none;
+            max-width: 600px;
+            margin: 0 auto;
             text-align: center;
         }
 
         .forgot-password-container input {
-            margin-bottom: 10px;
-        }
-
-        .success-message, .error-message {
-            display: none;
-            margin: 20px 0;
-            font-size: 18px;
-        }
-
-        .success-message {
-            color: green;
-        }
-
-        .success-message .checkmark {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: #2e8b57;
-            color: #fff;
-            text-align: center;
-            line-height: 24px;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-
-        .error-message {
-            color: red;
-        }
-
-        .forgot-password-container button {
-            margin-top: 10px;
+            width: calc(100% - 32px);
+            margin: 0 auto;
         }
 
         footer {
@@ -151,15 +137,6 @@
             header nav ul {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .form-container input, .form-container button {
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            .forgot-password-container {
-                padding: 20px;
             }
         }
     </style>
@@ -181,26 +158,35 @@
 <div class="main-content">
     <h2>Login</h2>
     <p>Log in to your account to access your surveys and rewards.</p>
-    <div class="form-container">
+    
+    <!-- Login Form -->
+    <div class="form-container" id="loginFormContainer">
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
-            <a href="#" id="forgotPasswordLink">Forgot Password?</a>
         </form>
-        <div class="forgot-password-container" id="forgotPasswordContainer">
-            <h3>Forgot Password</h3>
-            <p>Enter your email to reset your password:</p>
-            <form id="forgotPasswordForm">
-                <input type="email" id="forgotEmail" placeholder="Email" required>
-                <button type="submit">Reset Password</button>
-            </form>
-            <p class="success-message" id="successMessage">
-                <span class="checkmark">&#10003;</span>Password reset email sent to <span id="successEmail"></span>.
-            </p>
-            <p class="error-message" id="forgotPasswordMessage"></p>
-            <button type="button" id="backToLoginButton">Back to Login</button>
+        <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div class="forgot-password-container" id="forgotPasswordContainer">
+        <h2>Reset Password</h2>
+        <p>Enter your email address to receive a password reset link.</p>
+        <form id="forgotPasswordForm">
+            <input type="email" id="forgotEmail" placeholder="Email" required>
+            <button type="submit">Reset Password</button>
+        </form>
+        <button id="backToLoginButton">Back to Login</button>
+        <div class="success-message" id="successMessage">
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #2e8b57; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                    <span style="color: #fff; font-size: 18px;">&#10003;</span>
+                </div>
+                <p>Your password reset link has been sent to <span id="successEmail"></span>. Please check your email.</p>
+            </div>
         </div>
+        <div class="error-message" id="forgotPasswordMessage"></div>
     </div>
 </div>
 
@@ -244,7 +230,8 @@
 
         try {
             await sendPasswordResetEmail(auth, email);
-            document.getElementById('forgotPasswordContainer').style.display = 'none';
+            document.getElementById('loginFormContainer').style.display = 'none';
+            document.getElementById('forgotPasswordContainer').style.display = 'block';
             document.getElementById('successMessage').style.display = 'block';
             document.getElementById('forgotPasswordMessage').style.display = 'none';
             document.getElementById('successEmail').innerText = email;
@@ -257,75 +244,16 @@
 
     document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
         e.preventDefault();
-        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('loginFormContainer').style.display = 'none';
         document.getElementById('forgotPasswordContainer').style.display = 'block';
     });
 
     document.getElementById('backToLoginButton').addEventListener('click', () => {
         document.getElementById('forgotPasswordContainer').style.display = 'none';
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none'; // Hide success message when going back
-        document.getElementById('forgotPasswordMessage').style.display = 'none'; // Hide error message when going back
-    });
-</script>
-<script type="module">
-    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-        authDomain: "real-surveys.firebaseapp.com",
-        projectId: "real-surveys",
-        storageBucket: "real-surveys.appspot.com",
-        messagingSenderId: "1024139519354",
-        appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = 'surveys.html';
-        } catch (error) {
-            console.error('Login failed:', error);
-            alert('Login failed. Please check your credentials and try again.');
-        }
-    });
-
-    document.getElementById('forgotPasswordForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('forgotEmail').value;
-
-        try {
-            await sendPasswordResetEmail(auth, email);
-            document.getElementById('forgotPasswordContainer').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('forgotPasswordMessage').style.display = 'none';
-            document.getElementById('successEmail').innerText = email;
-        } catch (error) {
-            document.getElementById('forgotPasswordMessage').innerText = 'Failed to reset password. Please check your email and try again.';
-            document.getElementById('forgotPasswordMessage').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
-        }
-    });
-
-    document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('forgotPasswordContainer').style.display = 'block';
-    });
-
-    document.getElementById('backToLoginButton').addEventListener('click', () => {
-        document.getElementById('forgotPasswordContainer').style.display = 'none';
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none'; // Hide success message when going back
-        document.getElementById('forgotPasswordMessage').style.display = 'none'; // Hide error message when going back
+        document.getElementById('loginFormContainer').style.display = 'block';
+        document.getElementById('successMessage').
+document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('forgotPasswordMessage').style.display = 'none';
     });
 </script>
 
