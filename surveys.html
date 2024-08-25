@@ -7,101 +7,125 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            color: #333;
         }
 
-        h1 {
+        /* Header and navigation */
+        header {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 15px 0;
             text-align: center;
-            color: #333;
-            margin-bottom: 30px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .nav-bar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-bar a:hover {
+            background-color: #3a9f6f;
+        }
+
+        .nav-bar a.active {
+            background-color: #fff;
+            color: #2e8b57;
+            border-color: #2e8b57;
         }
 
         /* Container for the surveys */
         .survey-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-around;
+            padding: 20px;
         }
 
         /* Individual survey card styling */
         .survey-card {
             border: 1px solid #ddd;
             padding: 20px;
-            width: 300px;
+            margin: 15px;
+            width: calc(33.333% - 30px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             border-radius: 8px;
+            box-sizing: border-box;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .survey-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s;
         }
 
         .survey-card h2 {
             font-size: 1.4em;
             margin-bottom: 10px;
-            color: #333;
         }
 
         .survey-card p {
             margin-bottom: 15px;
-            color: #666;
         }
 
         .survey-card a {
             text-decoration: none;
             color: #fff;
-            background-color: #007bff;
+            background-color: #2e8b57;
             padding: 10px 15px;
             border-radius: 5px;
-            border: 1px solid #007bff;
-            display: inline-block;
-            transition: background-color 0.3s, border-color 0.3s;
+            border: none;
+            transition: background-color 0.3s;
         }
 
         .survey-card a:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            background-color: #3a9f6f;
         }
 
         /* Pagination styling */
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
+            margin-top: 20px;
+            padding-bottom: 20px;
         }
 
         .pagination a {
             padding: 10px 15px;
+            margin: 0 5px;
             border: 1px solid #ddd;
             text-decoration: none;
             color: #007bff;
             border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #fff;
         }
 
         .pagination a:hover {
             background-color: #007bff;
             color: white;
         }
-
-        .pagination .active {
-            background-color: #007bff;
-            color: white;
-            border: 1px solid #007bff;
-        }
     </style>
 </head>
 <body>
 
-<h1>Available Surveys</h1>
+<header>
+    <h1>Survey Portal</h1>
+    <nav class="nav-bar">
+        <a href="contact.html">Contact</a>
+        <a href="balance.html" class="active">Balance</a>
+        <a href="surveys.html">Surveys</a>
+    </nav>
+</header>
 
 <!-- Survey Container -->
 <div class="survey-container">
@@ -169,7 +193,7 @@
 
 <!-- Pagination -->
 <div class="pagination">
-    <a href="surveys.html" class="active">1</a>
+    <a href="surveys.html">1</a>
     <a href="surveys1.html">2</a>
     <a href="surveys2.html">3</a>
     <a href="surveys3.html">4</a>
