@@ -94,6 +94,18 @@
             background-color: #3a9f6f;
         }
 
+        .form-container a {
+            color: #2e8b57;
+            text-decoration: none;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .form-container a:hover {
+            color: #3a9f6f;
+        }
+
         .success-message {
             color: #28a745;
             font-size: 18px;
@@ -103,10 +115,6 @@
         .error-message {
             color: #dc3545;
             font-size: 18px;
-            margin-top: 20px;
-        }
-
-        .forgot-password {
             margin-top: 20px;
         }
 
@@ -153,15 +161,17 @@
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
+            <a id="forgotPasswordLink">Forgot Password?</a>
             <div id="loginMessage" class="success-message" style="display: none;"></div>
-            <div id="forgotPasswordSection" class="forgot-password" style="display: none;">
-                <p>Forgot your password? Enter your email to reset it:</p>
-                <input type="email" id="resetEmail" placeholder="Enter your email">
-                <button id="resetPasswordBtn">Reset Password</button>
-                <div id="resetMessage" class="success-message" style="display: none;"></div>
-                <div id="resetError" class="error-message" style="display: none;"></div>
-            </div>
         </form>
+        <div id="forgotPasswordSection" class="forgot-password" style="display: none;">
+            <p>Forgot your password? Enter your email to reset it:</p>
+            <input type="email" id="resetEmail" placeholder="Enter your email">
+            <button id="resetPasswordBtn">Reset Password</button>
+            <a id="backToLoginLink">Back to Login</a>
+            <div id="resetMessage" class="success-message" style="display: none;"></div>
+            <div id="resetError" class="error-message" style="display: none;"></div>
+        </div>
     </div>
 </div>
 
@@ -190,7 +200,6 @@
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const loginMessage = document.getElementById('loginMessage');
-        const forgotPasswordSection = document.getElementById('forgotPasswordSection');
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
@@ -202,12 +211,20 @@
             }, 2000); // Delay redirection to show the success message
         } catch (error) {
             console.error('Login failed:', error);
-            loginMessage.textContent = '';
-            forgotPasswordSection.style.display = 'block';
-            const resetError = document.getElementById('resetError');
-            resetError.textContent = 'Invalid login credentials. Please try again.';
-            resetError.style.display = 'block';
+            loginMessage.textContent = 'Invalid login credentials. Please try again.';
+            loginMessage.className = 'error-message';
+            loginMessage.style.display = 'block';
         }
+    });
+
+    document.getElementById('forgotPasswordLink').addEventListener('click', () => {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('forgotPasswordSection').style.display = 'block';
+    });
+
+    document.getElementById('backToLoginLink').addEventListener('click', () => {
+        document.getElementById('forgotPasswordSection').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
     });
 
     document.getElementById('resetPasswordBtn').addEventListener('click', async () => {
