@@ -5,34 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
         /* Container for the surveys */
         .survey-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: center;
             margin-bottom: 30px;
         }
 
         /* Individual survey card styling */
         .survey-card {
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
             padding: 20px;
             margin: 10px;
-            width: 30%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            text-align: center;
-            background-color: #f9f9f9;
+            width: calc(33.333% - 40px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             border-radius: 8px;
+            text-align: center;
+            box-sizing: border-box;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .survey-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .survey-card h2 {
             font-size: 1.2em;
             margin-bottom: 10px;
+            color: #333;
         }
 
         .survey-card p {
             margin-bottom: 15px;
+            color: #666;
         }
 
         .survey-card a {
@@ -42,6 +63,7 @@
             padding: 10px 15px;
             border-radius: 5px;
             border: 1px solid #007bff;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .survey-card a:hover {
@@ -62,11 +84,19 @@
             border: 1px solid #ddd;
             text-decoration: none;
             color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .pagination a:hover {
             background-color: #007bff;
             color: white;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
         }
     </style>
 </head>
@@ -136,89 +166,11 @@
         <p>Tell us about your Netflix viewing experience.</p>
         <a href="netflix_survey.html">Start Survey</a>
     </div>
-    <!-- Survey 11 -->
-    <div class="survey-card">
-        <h2>Hulu Survey</h2>
-        <p>Share your thoughts on your Hulu experience.</p>
-        <a href="hulu_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 12 -->
-    <div class="survey-card">
-        <h2>Costco Survey</h2>
-        <p>Help us improve Costco by providing your feedback.</p>
-        <a href="costco_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 13 -->
-    <div class="survey-card">
-        <h2>BJs Survey</h2>
-        <p>Give feedback on your recent shopping experience at BJs.</p>
-        <a href="bjs_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 14 -->
-    <div class="survey-card">
-        <h2>Pizza Hut Survey</h2>
-        <p>Share your feedback on your recent Pizza Hut order.</p>
-        <a href="pizza_hut_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 15 -->
-    <div class="survey-card">
-        <h2>IBM Survey</h2>
-        <p>Provide feedback on your experience with IBM.</p>
-        <a href="ibm_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 16 -->
-    <div class="survey-card">
-        <h2>Apple Survey</h2>
-        <p>Share your thoughts on your recent Apple purchase.</p>
-        <a href="apple_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 17 -->
-    <div class="survey-card">
-        <h2>Samsung Survey</h2>
-        <p>Help us improve Samsung products by providing feedback.</p>
-        <a href="samsung_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 18 -->
-    <div class="survey-card">
-        <h2>Lowes Survey</h2>
-        <p>Tell us about your recent shopping experience at Lowes.</p>
-        <a href="lowes_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 19 -->
-    <div class="survey-card">
-        <h2>Spirit Survey</h2>
-        <p>Share your experience with Spirit Airlines.</p>
-        <a href="spirit_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 20 -->
-    <div class="survey-card">
-        <h2>Best Buy Survey</h2>
-        <p>Provide feedback on your recent purchase at Best Buy.</p>
-        <a href="best_buy_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 21 -->
-    <div class="survey-card">
-        <h2>Gucci Survey</h2>
-        <p>Share your thoughts on Gucci products.</p>
-        <a href="gucci_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 22 -->
-    <div class="survey-card">
-        <h2>Ralph Lauren Survey</h2>
-        <p>Tell us about your recent experience with Ralph Lauren.</p>
-        <a href="ralph_lauren_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 23 -->
-    <div class="survey-card">
-        <h2>Target Survey</h2>
-        <p>Provide feedback on your recent shopping experience at Target.</p>
-        <a href="target_survey.html">Start Survey</a>
-    </div>
 </div>
 
 <!-- Pagination -->
 <div class="pagination">
-    <a href="surveys.html">1</a>
+    <a href="surveys.html" class="active">1</a>
     <a href="surveys1.html">2</a>
     <a href="surveys2.html">3</a>
     <a href="surveys3.html">4</a>
