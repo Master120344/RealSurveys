@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys - Page 5</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -122,9 +120,31 @@
             background-color: #0056b3;
             border-color: #f5df4d;
         }
+
+        /* Pagination Styling */
+        .pagination {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .pagination a:hover,
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+        }
     </style>
 </head>
-
 <body>
 
     <!-- Navigation Tabs -->
@@ -206,8 +226,8 @@
         <a href="surveys3.html">3</a>
         <a href="surveys4.html">4</a>
         <a href="surveys5.html" class="active">5</a>
+        <a href="surveys6.html">Next &raquo;</a>
     </div>
 
 </body>
-
 </html>
