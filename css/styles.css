@@ -1,66 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to RealSurveys</title>
-    <!-- Link to the CSS file in the css folder -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1><a href="#">RealSurveys</a></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
 
-    <div class="hero">
-        <div class="hero-content">
-            <h2>Welcome to RealSurveys</h2>
-            <p>Your trusted partner in gathering real opinions</p>
-            <a href="#features" class="btn">Discover More</a>
-        </div>
-    </div>
+/* Navigation */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 0;
+}
 
-    <div class="content-wrapper">
-        <div class="features" id="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <i class="icon">&#128578;</i> <!-- Happy Emoji -->
-                    <h3>Quick and Easy Surveys</h3>
-                    <p>Surveys that are quick to set up and simple to complete.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="icon">&#128200;</i> <!-- Bar Chart Emoji -->
-                    <h3>Real-Time Analytics</h3>
-                    <p>Get instant insights with real-time analytics.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="icon">&#128176;</i> <!-- Money Bag Emoji -->
-                    <h3>Earn Rewards</h3>
-                    <p>Earn rewards for participating in surveys.</p>
-                </div>
-            </div>
-        </div>
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        <div class="daily-giveaways">
-            <h2>Daily Giveaways</h2>
-            <p>Participate in our daily giveaways and stand a chance to win exciting prizes!</p>
-        </div>
-    </div>
+header .logo h1 {
+    margin: 0;
+}
 
-    <footer>
-        <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #007bff;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.btn {
+    background-color: #f5df4d;
+    color: #007bff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #e4c037;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Features */
+.features {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.features h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.feature-item i {
+    font-size: 2em;
+    color: #007bff;
+}
+
+.feature-item h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.feature-item p {
+    color: #666;
+}
+
+/* Daily Giveaways */
+.daily-giveaways {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Footer */
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Survey Cards */
+.survey-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.survey-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+.survey-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.survey-card h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.survey-card p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.survey-card a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    display: inline-block;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.survey-card a:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Burger King Card Specific Styling */
+.burger-king-card {
+    background: url('assets/burgerkingcard.png') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    width: 300px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.burger-king-card a {
+    background-color: #007bff;
+    border: 1px solid #f5df4d;
+    padding: 10px 15px;
+}
+
+.burger-king-card a:hover {
+    background-color: #0056b3;
+    border-color: #f5df4d;
+}
