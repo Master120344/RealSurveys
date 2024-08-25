@@ -151,6 +151,17 @@
             background-color: #3a9f6f;
         }
 
+        #forgotPasswordLink {
+            color: #2e8b57;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #forgotPasswordLink:hover {
+            color: #1f6f4e;
+        }
+
         footer {
             background-color: #2e8b57;
             color: #fff;
@@ -207,10 +218,11 @@
                 <button type="submit">Reset Password</button>
             </form>
             <button id="backButton">Back to Login</button>
-            <div id="resetContainer">
-                <div class="checkmark"></div>
-                <div id="resetMessage"></div>
-            </div>
+        </div>
+
+        <div id="resetContainer">
+            <div class="checkmark"></div>
+            <div id="resetMessage"></div>
         </div>
     </div>
 </div>
@@ -254,6 +266,8 @@
         document.getElementById('loginContainer').style.display = 'none';
         document.getElementById('forgotPasswordContainer').style.display = 'block';
         document.getElementById('backButton').style.display = 'block';
+        document.getElementById('resetContainer').style.display = 'none';
+        document.getElementById('resetMessage').style.display = 'none';
     });
 
     document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
@@ -270,15 +284,14 @@
             alert('Failed to send password reset email. Please try again.');
         }
     });
-
-    document.getElementById('backButton').addEventListener('click', () => {
+document.getElementById('backButton').addEventListener('click', () => {
         document.getElementById('forgotPasswordContainer').style.display = 'none';
         document.getElementById('loginContainer').style.display = 'block';
         document.getElementById('backButton').style.display = 'none';
+        document.getElementById('resetContainer').style.display = 'none';
         document.getElementById('resetMessage').style.display = 'none';
     });
 </script>
 
 </body>
 </html>
-``
