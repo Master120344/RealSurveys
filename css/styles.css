@@ -1,15 +1,15 @@
-/* General Body Styles */
+/* General body styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
-/* Navigation */
+/* Header styling */
 header {
-    background-color: #007bff;
-    color: white;
+    background-color: #333;
+    color: #fff;
     padding: 10px 0;
 }
 
@@ -19,7 +19,6 @@ header .container {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 header .logo h1 {
@@ -34,129 +33,76 @@ header nav ul {
 }
 
 header nav ul li {
-    margin: 0 10px;
+    margin-left: 20px;
 }
 
 header nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
 
-header nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Hero Section */
+/* Hero section styling */
 .hero {
-    background-color: #007bff;
-    color: white;
+    background: #007bff;
+    color: #fff;
     padding: 50px 20px;
     text-align: center;
 }
 
 .hero-content h2 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
 .hero-content p {
+    margin: 10px 0;
     font-size: 1.2em;
-    margin: 20px 0;
 }
 
-.btn {
-    background-color: #f5df4d;
-    color: #007bff;
-    padding: 10px 20px;
+.hero-content .btn {
     text-decoration: none;
+    color: #fff;
+    background-color: #0056b3;
+    padding: 10px 20px;
     border-radius: 5px;
-    font-weight: bold;
 }
 
-.btn:hover {
-    background-color: #e4c037;
-}
-
-/* Content Wrapper */
+/* Content wrapper styling */
 .content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
 }
 
-/* Features */
+/* Features section styling */
 .features {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.features h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .feature-grid {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.feature-item {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    width: 30%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 10px;
-    box-sizing: border-box;
-}
-
-.feature-item i {
-    font-size: 2em;
-    color: #007bff;
-}
-
-.feature-item h3 {
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-.feature-item p {
-    color: #666;
-}
-
-/* Daily Giveaways */
-.daily-giveaways {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-/* Footer */
-footer {
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-/* Survey Cards */
-.survey-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
 }
 
+.feature-item {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Survey container styling */
+.survey-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Individual survey card styling */
 .survey-card {
     border: 1px solid #ddd;
     padding: 20px;
@@ -165,13 +111,7 @@ footer {
     background-color: #fff;
     border-radius: 8px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
     box-sizing: border-box;
-}
-
-.survey-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .survey-card h2 {
@@ -224,4 +164,39 @@ footer {
 .burger-king-card a:hover {
     background-color: #0056b3;
     border-color: #f5df4d;
+}
+
+/* Pagination styling */
+.pagination {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 10px 15px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.pagination .active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
 }
