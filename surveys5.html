@@ -60,26 +60,17 @@
             padding: 20px;
             width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
             border-radius: 8px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
         }
 
         .survey-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .survey-card h2 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .survey-card p {
-            margin-bottom: 15px;
-            color: #666;
         }
 
         .survey-card a {
@@ -98,33 +89,24 @@
             border-color: #0056b3;
         }
 
-        /* Burger King Card Specific Styling */
+        /* Burger King themed card */
         .burger-king-card {
-            background: url('assets/burgerkingcard.png') no-repeat center center;
+            background-image: url('assets/burgerkingcard.png');
             background-size: cover;
-            color: #fff;
+            background-position: center;
             border: none;
-            position: relative;
+            color: white;
         }
 
-        .burger-king-card h2 {
-            font-size: 1.6em;
-            margin-bottom: 15px;
+        .burger-king-card a {
+            background-color: #fbbd14;
+            color: #d62300;
+            font-weight: bold;
         }
 
-        .burger-king-card p {
-            color: #fff;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .burger-king-logo {
-            width: 80px;
-            height: auto;
-            margin-bottom: 15px;
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
+        .burger-king-card a:hover {
+            background-color: #d62300;
+            color: white;
         }
     </style>
 </head>
@@ -144,63 +126,42 @@
     <div class="survey-container">
         <!-- Survey 41 -->
         <div class="survey-card">
-            <h2>Chipotle</h2>
-            <p>Give us feedback on your recent visit to Chipotle.</p>
             <a href="chipotle_survey.html">Start Survey</a>
         </div>
         <!-- Survey 42 -->
         <div class="survey-card">
-            <h2>Whole Foods</h2>
-            <p>Share your shopping experience at Whole Foods.</p>
             <a href="wholefoods_survey.html">Start Survey</a>
         </div>
         <!-- Survey 43 -->
         <div class="survey-card">
-            <h2>Apple</h2>
-            <p>Tell us about your experience at the Apple Store.</p>
             <a href="applestore_survey.html">Start Survey</a>
         </div>
         <!-- Survey 44 -->
         <div class="survey-card">
-            <h2>Panera Bread</h2>
-            <p>Provide feedback on your recent visit to Panera Bread.</p>
             <a href="panera_survey.html">Start Survey</a>
         </div>
-        <!-- Survey 45 - Burger King -->
+        <!-- Survey 45 - Burger King Survey -->
         <div class="survey-card burger-king-card">
-            <img src="assets/burgerking_logo.png" alt="Burger King" class="burger-king-logo">
-            <h2>Burger King</h2>
-            <p>Share your experience at Burger King with us.</p>
             <a href="burgerking_survey.html">Start Survey</a>
         </div>
         <!-- Survey 46 -->
         <div class="survey-card">
-            <h2>Lowe's</h2>
-            <p>Tell us about your shopping experience at Lowe's.</p>
             <a href="lowes_survey.html">Start Survey</a>
         </div>
         <!-- Survey 47 -->
         <div class="survey-card">
-            <h2>Staples</h2>
-            <p>Share your thoughts on your recent visit to Staples.</p>
             <a href="staples_survey.html">Start Survey</a>
         </div>
         <!-- Survey 48 -->
         <div class="survey-card">
-            <h2>Sephora</h2>
-            <p>Tell us about your experience at Sephora.</p>
             <a href="sephora_survey.html">Start Survey</a>
         </div>
         <!-- Survey 49 -->
         <div class="survey-card">
-            <h2>Kroger</h2>
-            <p>Share your feedback on your recent shopping experience at Kroger.</p>
             <a href="kroger_survey.html">Start Survey</a>
         </div>
         <!-- Survey 50 -->
         <div class="survey-card">
-            <h2>Trader Joe's</h2>
-            <p>Tell us about your experience at Trader Joe's.</p>
             <a href="traderjoes_survey.html">Start Survey</a>
         </div>
     </div>
