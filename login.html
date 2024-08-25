@@ -3,227 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surveys</title>
+    <title>Login - RealSurveys</title>
     <style>
-        /* Container for the surveys */
-        .survey-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-bottom: 30px;
-        }
-
-        /* Individual survey card styling */
-        .survey-card {
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin: 10px;
-            width: 30%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            text-align: center;
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f9f9f9;
-            border-radius: 8px;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
 
-        .survey-card h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
+        header {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .survey-card p {
-            margin-bottom: 15px;
-        }
-
-        .survey-card a {
+        header h1 a {
             text-decoration: none;
-            color: #007bff;
-            background-color: #e7f0ff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #007bff;
+            color: #fff;
+            font-size: 36px;
         }
 
-        .survey-card a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        /* Pagination styling */
-        .pagination {
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
             display: flex;
             justify-content: center;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #3a9f6f;
+        }
+
+        .main-content {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .main-content h2 {
+            font-size: 36px;
+            color: #2e8b57;
+        }
+
+        .main-content p {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input, .form-container button {
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            background-color: #2e8b57;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #3a9f6f;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 18px;
             margin-top: 20px;
         }
 
-        .pagination a {
-            padding: 10px 15px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #007bff;
+        .error-message {
+            color: #dc3545;
+            font-size: 18px;
+            margin-top: 20px;
         }
 
-        .pagination a:hover {
-            background-color: #007bff;
-            color: white;
+        .forgot-password {
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
 
-<h1>Available Surveys</h1>
+<header>
+    <h1><a href="index.html">RealSurveys</a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
 
-<!-- Survey Container -->
-<div class="survey-container">
-    <!-- Survey 1 -->
-    <div class="survey-card">
-        <h2>Wendy's Survey</h2>
-        <p>Complete this survey to share your feedback on Wendy's services.</p>
-        <a href="wendys_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 2 -->
-    <div class="survey-card">
-        <h2>McDonald's Survey</h2>
-        <p>Help us improve McDonald's by sharing your experience.</p>
-        <a href="mcdonalds1_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 3 -->
-    <div class="survey-card">
-        <h2>Southwest Survey</h2>
-        <p>Tell us about your recent flight with Southwest Airlines.</p>
-        <a href="southwest_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 4 -->
-    <div class="survey-card">
-        <h2>Subway Survey</h2>
-        <p>Share your thoughts on your recent visit to Subway.</p>
-        <a href="subway-survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 5 -->
-    <div class="survey-card">
-        <h2>Taco Bell Survey</h2>
-        <p>Complete this survey and help Taco Bell serve you better.</p>
-        <a href="taco-bell-survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 6 -->
-    <div class="survey-card">
-        <h2>Walmart Survey</h2>
-        <p>Give your feedback on your recent shopping experience at Walmart.</p>
-        <a href="walmart_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 7 -->
-    <div class="survey-card">
-        <h2>Waffle House Survey</h2>
-        <p>Share your thoughts on your recent visit to Waffle House.</p>
-        <a href="waffle_house_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 8 -->
-    <div class="survey-card">
-        <h2>Canes Survey</h2>
-        <p>Help us improve Canes by sharing your experience.</p>
-        <a href="canes_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 9 -->
-    <div class="survey-card">
-        <h2>Home Depot Survey</h2>
-        <p>Give feedback on your recent experience at Home Depot.</p>
-        <a href="home_depot_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 10 -->
-    <div class="survey-card">
-        <h2>Netflix Survey</h2>
-        <p>Tell us about your Netflix viewing experience.</p>
-        <a href="netflix_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 11 -->
-    <div class="survey-card">
-        <h2>Hulu Survey</h2>
-        <p>Share your thoughts on your Hulu experience.</p>
-        <a href="hulu_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 12 -->
-    <div class="survey-card">
-        <h2>Costco Survey</h2>
-        <p>Help us improve Costco by providing your feedback.</p>
-        <a href="costco_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 13 -->
-    <div class="survey-card">
-        <h2>BJs Survey</h2>
-        <p>Give feedback on your recent shopping experience at BJs.</p>
-        <a href="bjs_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 14 -->
-    <div class="survey-card">
-        <h2>Pizza Hut Survey</h2>
-        <p>Share your feedback on your recent Pizza Hut order.</p>
-        <a href="pizza_hut_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 15 -->
-    <div class="survey-card">
-        <h2>IBM Survey</h2>
-        <p>Provide feedback on your experience with IBM.</p>
-        <a href="ibm_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 16 -->
-    <div class="survey-card">
-        <h2>Apple Survey</h2>
-        <p>Share your thoughts on your recent Apple purchase.</p>
-        <a href="apple_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 17 -->
-    <div class="survey-card">
-        <h2>Samsung Survey</h2>
-        <p>Help us improve Samsung products by providing feedback.</p>
-        <a href="samsung_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 18 -->
-    <div class="survey-card">
-        <h2>Lowes Survey</h2>
-        <p>Tell us about your recent shopping experience at Lowes.</p>
-        <a href="lowes_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 19 -->
-    <div class="survey-card">
-        <h2>Spirit Survey</h2>
-        <p>Share your experience with Spirit Airlines.</p>
-        <a href="spirit_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 20 -->
-    <div class="survey-card">
-        <h2>Best Buy Survey</h2>
-        <p>Provide feedback on your recent purchase at Best Buy.</p>
-        <a href="best_buy_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 21 -->
-    <div class="survey-card">
-        <h2>Gucci Survey</h2>
-        <p>Share your thoughts on Gucci products.</p>
-        <a href="gucci_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 22 -->
-    <div class="survey-card">
-        <h2>Ralph Lauren Survey</h2>
-        <p>Tell us about your recent experience with Ralph Lauren.</p>
-        <a href="ralph_lauren_survey.html">Start Survey</a>
-    </div>
-    <!-- Survey 23 -->
-    <div class="survey-card">
-        <h2>Target Survey</h2>
-        <p>Provide feedback on your recent shopping experience at Target.</p>
-        <a href="target_survey.html">Start Survey</a>
+<div class="main-content">
+    <h2>Login</h2>
+    <p>Log in to access your RealSurveys account.</p>
+    <div class="form-container">
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <div id="loginMessage" class="success-message" style="display: none;"></div>
+            <div id="forgotPasswordSection" class="forgot-password" style="display: none;">
+                <p>Forgot your password? Enter your email to reset it:</p>
+                <input type="email" id="resetEmail" placeholder="Enter your email">
+                <button id="resetPasswordBtn">Reset Password</button>
+                <div id="resetMessage" class="success-message" style="display: none;"></div>
+                <div id="resetError" class="error-message" style="display: none;"></div>
+            </div>
+        </form>
     </div>
 </div>
 
-<!-- Pagination -->
-<div class="pagination">
-    <a href="surveys.html">1</a>
-    <a href="surveys1.html">2</a>
-    <a href="surveys2.html">3</a>
-    <a href="surveys3.html">4</a>
-    <!-- Add more pages as needed -->
-</div>
+<footer>
+    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+</footer>
+
+<script type="module">
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+        authDomain: "real-surveys.firebaseapp.com",
+        projectId: "real-surveys",
+        storageBucket: "real-surveys.appspot.com",
+        messagingSenderId: "1024139519354",
+        appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const loginMessage = document.getElementById('loginMessage');
+        const forgotPasswordSection = document.getElementById('forgotPasswordSection');
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            loginMessage.textContent = 'Success! Redirecting...';
+            loginMessage.className = 'success-message';
+            loginMessage.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'welcome.html'; // Redirect to welcome page after login
+            }, 2000); // Delay redirection to show the success message
+        } catch (error) {
+            console.error('Login failed:', error);
+            loginMessage.textContent = '';
+            forgotPasswordSection.style.display = 'block';
+            const resetError = document.getElementById('resetError');
+            resetError.textContent = 'Invalid login credentials. Please try again.';
+            resetError.style.display = 'block';
+        }
+    });
+
+    document.getElementById('resetPasswordBtn').addEventListener('click', async () => {
+        const resetEmail = document.getElementById('resetEmail').value;
+        const resetMessage = document.getElementById('resetMessage');
+        const resetError = document.getElementById('resetError');
+
+        try {
+            await sendPasswordResetEmail(auth, resetEmail);
+            resetMessage.textContent = 'Password reset link sent to your email.';
+            resetMessage.className = 'success-message';
+            resetMessage.style.display = 'block';
+            resetError.style.display = 'none';
+        } catch (error) {
+            console.error('Password reset failed:', error);
+            resetMessage.style.display = 'none';
+            resetError.textContent = 'Failed to send password reset email. Please try again.';
+            resetError.className = 'error-message';
+            resetError.style.display = 'block';
+        }
+    });
+</script>
 
 </body>
 </html>
