@@ -103,11 +103,14 @@
             margin-bottom: 10px;
         }
 
-        .success-message {
+        .success-message, .error-message {
             display: none;
-            color: green;
-            font-size: 18px;
             margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .success-message {
+            color: green;
         }
 
         .success-message .checkmark {
@@ -124,10 +127,11 @@
         }
 
         .error-message {
-            display: none;
             color: red;
-            font-size: 18px;
-            margin: 20px 0;
+        }
+
+        .forgot-password-container button {
+            margin-top: 10px;
         }
 
         footer {
@@ -147,6 +151,15 @@
             header nav ul {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .form-container input, .form-container button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .forgot-password-container {
+                padding: 20px;
             }
         }
     </style>
