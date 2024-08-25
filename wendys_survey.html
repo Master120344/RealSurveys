@@ -3,117 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wendy's Survey</title>
+    <title>Wendy's Survey - RealSurveys</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url('background.jpg') no-repeat center center fixed;
+            background: url('wendys-background.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
             color: #333;
         }
+
         .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 20px;
-        }
-        .survey-box {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 20px auto;
             max-width: 800px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        h2 {
+
+        h1 {
             text-align: center;
-            color: #2e8b57;
+            color: #d04e4f; /* Wendy's red */
+        }
+
+        .question-container {
             margin-bottom: 20px;
         }
-        .question {
-            margin-bottom: 20px;
+
+        .question-container h2 {
+            font-size: 24px;
+            color: #d04e4f; /* Wendy's red */
         }
-        .question label {
+
+        .question-container label {
             display: block;
             margin-bottom: 10px;
             font-size: 18px;
         }
-        .question input[type="radio"] {
+
+        .question-container input[type="radio"], 
+        .question-container input[type="checkbox"] {
             margin-right: 10px;
         }
-        .question textarea {
+
+        .question-container textarea {
             width: 100%;
-            height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
-        .hidden {
-            display: none;
+
+        .question-container button {
+            background-color: #d04e4f; /* Wendy's red */
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
         }
-        #submitDiv {
-            text-align: center;
+
+        .question-container button:hover {
+            background-color: #b43f3f; /* Darker red */
         }
+
         .message {
-            text-align: center;
+            display: none;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 5px;
             margin-top: 20px;
         }
+
         .message.success {
-            color: #28a745; /* Green */
+            background-color: #d4edda;
+            color: #155724;
         }
+
         .message.error {
-            color: #dc3545; /* Red */
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .question-container h2 {
+                font-size: 20px;
+            }
+
+            .question-container label {
+                font-size: 16px;
+            }
+
+            .question-container button {
+                font-size: 16px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="survey-box">
-        <h2>Wendy's Survey</h2>
-        <form id="surveyForm">
-            <!-- Question 1 -->
-            <div class="question" id="q1">
-                <label>1. When was the last time you visited Wendy's?</label>
-                <input type="radio" name="q1" value="Today"> Today<br>
-                <input type="radio" name="q1" value="This week"> This week<br>
-                <input type="radio" name="q1" value="This month"> This month<br>
-                <input type="radio" name="q1" value="More than a month ago"> More than a month ago<br>
-            </div>
-            
-            <!-- Question 2 (shown based on answer to Question 1) -->
-            <div class="question hidden" id="q2">
-                <label>2. How satisfied were you with your most recent visit?</label>
-                <input type="radio" name="q2" value="Very satisfied"> Very satisfied<br>
-                <input type="radio" name="q2" value="Somewhat satisfied"> Somewhat satisfied<br>
-                <input type="radio" name="q2" value="Neutral"> Neutral<br>
-                <input type="radio" name="q2" value="Somewhat dissatisfied"> Somewhat dissatisfied<br>
-                <input type="radio" name="q2" value="Very dissatisfied"> Very dissatisfied<br>
-            </div>
-
-            <!-- Question 3 (example) -->
-            <div class="question hidden" id="q3">
-                <label>3. What was the main reason for your recent visit?</label>
-                <input type="radio" name="q3" value="New menu item"> New menu item<br>
-                <input type="radio" name="q3" value="Special promotion"> Special promotion<br>
-                <input type="radio" name="q3" value="Routine visit"> Routine visit<br>
-                <input type="radio" name="q3" value="Other"> Other<br>
-            </div>
-
-            <!-- Add more questions based on the survey logic -->
-
-            <!-- Submit Button -->
-            <div id="submitDiv" class="hidden">
-                <button type="button">Submit</button>
-            </div>
-
-            <!-- Success/Error Message -->
-            <div id="message" class="message hidden"></div>
-        </form>
+    <h1>Wendy's Survey</h1>
+    <div id="surveyForm">
+        <!-- Questions will be dynamically injected here by JavaScript -->
     </div>
+    <div id="message" class="message"></div>
 </div>
 
-<script src="wendeys_survey.js" type="module"></script>
+<script src="wendys_survey.js"></script>
 
 </body>
 </html>
