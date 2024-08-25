@@ -196,7 +196,7 @@
                 <button type="submit">Reset Password</button>
             </form>
             <p class="success-message" id="successMessage">
-                <span class="checkmark">&#10003;</span>Your password reset request was successful. Please check your email to reset your password.
+                <span class="checkmark">&#10003;</span>Password reset email sent to <span id="successEmail"></span>.
             </p>
             <p class="error-message" id="forgotPasswordMessage"></p>
             <button type="button" id="backToLoginButton">Back to Login</button>
@@ -247,6 +247,7 @@
             document.getElementById('forgotPasswordContainer').style.display = 'none';
             document.getElementById('successMessage').style.display = 'block';
             document.getElementById('forgotPasswordMessage').style.display = 'none';
+            document.getElementById('successEmail').innerText = email;
         } catch (error) {
             document.getElementById('forgotPasswordMessage').innerText = 'Failed to reset password. Please check your email and try again.';
             document.getElementById('forgotPasswordMessage').style.display = 'block';
@@ -267,6 +268,3 @@
         document.getElementById('forgotPasswordMessage').style.display = 'none'; // Hide error message when going back
     });
 </script>
-
-</body>
-</html>
