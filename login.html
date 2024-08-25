@@ -263,6 +263,8 @@
     document.getElementById('backToLoginButton').addEventListener('click', () => {
         document.getElementById('forgotPasswordContainer').style.display = 'none';
         document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none'; // Hide success message when going back
+        document.getElementById('forgotPasswordMessage').style.display = 'none'; // Hide error message when going back
     });
 </script>
 
