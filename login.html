@@ -81,6 +81,18 @@
             border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-container input {
+            width: 100%;
+            border: 2px solid #ddd;
+            transition: border-color 0.3s;
+        }
+
+        .form-container input:focus {
+            border-color: #2e8b57;
+            outline: none;
         }
 
         .form-container button {
@@ -88,36 +100,68 @@
             color: #fff;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .form-container button:hover {
             background-color: #3a9f6f;
         }
 
-        .success-message {
-            display: none;
-            font-size: 18px;
+        .forgot-password {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .forgot-password a {
             color: #2e8b57;
-            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
         }
 
-        .error-message {
-            display: none;
-            font-size: 18px;
-            color: #e74c3c;
-            margin-top: 20px;
+        .forgot-password a:hover {
+            text-decoration: underline;
         }
 
-        .forgot-password-container {
+        .reset-message {
             display: none;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #2e8b57;
+            background-color: #eafaf1;
+            border: 2px solid #2e8b57;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .reset-message .checkmark {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: #2e8b57;
+            border-radius: 50%;
+            color: white;
             text-align: center;
+            line-height: 24px;
+            font-size: 18px;
+            margin-right: 10px;
+            vertical-align: middle;
         }
 
-        .forgot-password-container input {
-            width: calc(100% - 32px);
-            margin: 0 auto;
+        .reset-message span {
+            vertical-align: middle;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #2e8b57;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
         }
 
         footer {
@@ -158,36 +202,21 @@
 <div class="main-content">
     <h2>Login</h2>
     <p>Log in to your account to access your surveys and rewards.</p>
-    
-    <!-- Login Form -->
-    <div class="form-container" id="loginFormContainer">
+    <div class="form-container">
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
-        </form>
-        <a href="#" id="forgotPasswordLink">Forgot Password?</a>
-    </div>
-
-    <!-- Forgot Password Form -->
-    <div class="forgot-password-container" id="forgotPasswordContainer">
-        <h2>Reset Password</h2>
-        <p>Enter your email address to receive a password reset link.</p>
-        <form id="forgotPasswordForm">
-            <input type="email" id="forgotEmail" placeholder="Email" required>
-            <button type="submit">Reset Password</button>
-        </form>
-        <button id="backToLoginButton">Back to Login</button>
-        <div class="success-message" id="successMessage">
-            <div style="display: flex; align-items: center; justify-content: center;">
-                <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #2e8b57; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
-                    <span style="color: #fff; font-size: 18px;">&#10003;</span>
-                </div>
-                <p>Your password reset link has been sent to <span id="successEmail"></span>. Please check your email.</p>
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink">Forgot Password?</a>
             </div>
-        </div>
-        <div class="error-message" id="forgotPasswordMessage"></div>
+        </form>
     </div>
+    <div class="reset-message" id="resetMessage">
+        <div class="checkmark">✔</div>
+        <span>Password reset email has been sent to your email.</span>
+    </div>
+    <a href="#" class="back-button" id="backButton" style="display: none;">Back to Login</a>
 </div>
 
 <footer>
@@ -224,36 +253,42 @@
         }
     });
 
-    document.getElementById('forgotPasswordForm').addEventListener('submit', async (e) => {
+    document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
         e.preventDefault();
-        const email = document.getElementById('forgotEmail').value;
+        document.querySelector('.form-container').style.display = 'none';
+        document.querySelector('#resetMessage').style.display = 'none';
+        document.querySelector('#backButton').style.display = 'block';
+        document.querySelector('#resetMessage').innerHTML = `
+            <div class="checkmark">✔</div>
+            <span>Enter your email address to reset your password:</span>
+            <input type="email" id="resetEmail" placeholder="Email" required>
+            <button id="resetButton">Send Reset Link</button>
+        `;
+    });
 
+    document.getElementById('resetButton').addEventListener('click', async () => {
+        const email = document.getElementById('resetEmail').value;
         try {
             await sendPasswordResetEmail(auth, email);
-            document.getElementById('loginFormContainer').style.display = 'none';
-            document.getElementById('forgotPasswordContainer').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('forgotPasswordMessage').style.display = 'none';
-            document.getElementById('successEmail').innerText = email;
+            document.querySelector('#resetMessage').style.display = 'block';
+            document.querySelector('#resetMessage').innerHTML = `
+                <div class="checkmark">✔</div>
+                <span>Password reset email has been sent to ${email}.</span>
+            `;
+            document.querySelector('#resetEmail').style.display = 'none';
+            document.querySelector('#resetButton').style.display = 'none';
         } catch (error) {
-            document.getElementById('forgotPasswordMessage').innerText = 'Failed to reset password. Please check your email and try again.';
-            document.getElementById('forgotPasswordMessage').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
+            console.error('Password reset failed:', error);
+            alert('Password reset failed. Please check the email address and try again.');
         }
     });
 
-    document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.getElementById('loginFormContainer').style.display = 'none';
-        document.getElementById('forgotPasswordContainer').style.display = 'block';
-    });
-
-    document.getElementById('backToLoginButton').addEventListener('click', () => {
-        document.getElementById('forgotPasswordContainer').style.display = 'none';
-        document.getElementById('loginFormContainer').style.display = 'block';
-        document.getElementById('successMessage').
-document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('forgotPasswordMessage').style.display = 'none';
+    document.getElementById('backButton').addEventListener('click', () => {
+        document.querySelector('.form
+document.getElementById('backButton').addEventListener('click', () => {
+        document.querySelector('.form-container').style.display = 'block';
+        document.querySelector('#resetMessage').style.display = 'none';
+        document.querySelector('#backButton').style.display = 'none';
     });
 </script>
 
