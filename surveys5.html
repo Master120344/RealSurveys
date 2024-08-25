@@ -103,28 +103,23 @@
             background: url('assets/burgerkingcard.png') no-repeat center center;
             background-size: cover;
             color: #fff;
+            width: 300px;
             border: none;
-            position: relative;
-            width: 300px; /* Original width */
-            height: 200px; /* Adjusted height to maintain aspect ratio */
-        }
-
-        .burger-king-logo {
-            width: 80px;
-            height: auto;
-            margin-bottom: 15px;
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         .burger-king-card a {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 1px solid #FFD700; /* Light yellow outline */
+            background-color: #007bff;
+            border: 1px solid #f5df4d;
+            padding: 10px 15px;
+        }
+
+        .burger-king-card a:hover {
+            background-color: #0056b3;
+            border-color: #f5df4d;
         }
     </style>
 </head>
@@ -168,7 +163,6 @@
         </div>
         <!-- Survey 45 - Burger King -->
         <div class="survey-card burger-king-card">
-            <img src="assets/burgerking_logo.png" alt="Burger King" class="burger-king-logo">
             <a href="burgerking_survey.html">Start Survey</a>
         </div>
         <!-- Survey 46 -->
