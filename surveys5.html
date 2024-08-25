@@ -5,150 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys - Page 5</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        /* Navigation tabs */
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .nav-tabs li {
-            margin: 0 15px;
-        }
-
-        .nav-tabs a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .nav-tabs a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        /* Container for the surveys */
-        .survey-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        /* Individual survey card styling */
-        .survey-card {
-            border: 1px solid #ddd;
-            padding: 20px;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .survey-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .survey-card h2 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .survey-card p {
-            margin-bottom: 15px;
-            color: #666;
-        }
-
-        .survey-card a {
-            text-decoration: none;
-            color: #fff;
-            background-color: #007bff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #007bff;
-            display: inline-block;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .survey-card a:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        /* Burger King Card Specific Styling */
-        .burger-king-card {
-            background: url('assets/burgerkingcard.png') no-repeat center center;
-            background-size: cover;
-            color: #fff;
-            border: 1px solid #ddd; /* Match border with other cards */
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 300px; /* Ensure width matches other cards */
-        }
-
-        .burger-king-card a {
-            background-color: #007bff;
-            border: 1px solid #f5df4d;
-            padding: 10px 15px;
-        }
-
-        .burger-king-card a:hover {
-            background-color: #0056b3;
-            border-color: #f5df4d;
-        }
-
-        /* Pagination Styling */
-        .pagination {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            color: #007bff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #007bff;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .pagination a:hover {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-
-        .pagination .active {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -190,6 +47,8 @@
         </div>
         <!-- Survey 45 - Burger King -->
         <div class="survey-card burger-king-card">
+            <h2>Burger King</h2>
+            <p>Give us feedback on your recent visit to Burger King.</p>
             <a href="burgerking_survey.html">Start Survey</a>
         </div>
         <!-- Survey 46 -->
