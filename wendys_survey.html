@@ -6,205 +6,114 @@
     <title>Wendy's Survey</title>
     <style>
         body {
-            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/wendys.jpg');
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #333;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .survey .container {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            margin: 50px auto;
-            text-align: center;
             color: #333;
-            position: relative;
         }
-
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .survey-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+        }
         h2 {
-            color: #C8102E; /* Wendy's red */
-            font-size: 24px;
+            text-align: center;
+            color: #2e8b57;
             margin-bottom: 20px;
         }
-
-        .survey-navigation button {
-            width: 100px;
-            padding: 10px;
-            font-size: 16px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007AC1; /* Wendy's blue for buttons */
-            color: white;
+        .question {
+            margin-bottom: 20px;
         }
-
-        .survey-navigation button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .survey-navigation {
-            margin-top: 20px;
-        }
-
-        #claim-reward {
-            margin-top: 20px;
-            padding: 10px 20px;
+        .question label {
+            display: block;
+            margin-bottom: 10px;
             font-size: 18px;
-            background-color: #C8102E; /* Wendy's red */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        }
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+        .question textarea {
+            width: 100%;
+            height: 80px;
+        }
+        .hidden {
             display: none;
         }
-
-        #claim-reward:hover {
-            background-color: #A61026; /* Darker red on hover */
+        #submitDiv {
+            text-align: center;
         }
-
-        /* Timer styles */
-        #timer {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: red;
+        .message {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .message.success {
+            color: #28a745; /* Green */
+        }
+        .message.error {
+            color: #dc3545; /* Red */
         }
     </style>
 </head>
 <body>
 
-<section class="survey">
-    <div class="container">
+<div class="container">
+    <div class="survey-box">
         <h2>Wendy's Survey</h2>
-        <div id="timer">10</div> <!-- Timer element -->
-        <div class="survey-question">
-            <p id="question"></p>
-            <div id="options"></div>
-        </div>
-        <div class="survey-navigation">
-            <button id="back" onclick="prevQuestion()" disabled>Back</button>
-            <button id="next" onclick="nextQuestion()" disabled>Next</button>
-        </div>
-        <button id="claim-reward" onclick="claimReward()">Claim Reward</button>
+        <form id="surveyForm">
+            <!-- Question 1 -->
+            <div class="question" id="q1">
+                <label>1. When was the last time you visited Wendy's?</label>
+                <input type="radio" name="q1" value="Today"> Today<br>
+                <input type="radio" name="q1" value="This week"> This week<br>
+                <input type="radio" name="q1" value="This month"> This month<br>
+                <input type="radio" name="q1" value="More than a month ago"> More than a month ago<br>
+            </div>
+            
+            <!-- Question 2 (shown based on answer to Question 1) -->
+            <div class="question hidden" id="q2">
+                <label>2. How satisfied were you with your most recent visit?</label>
+                <input type="radio" name="q2" value="Very satisfied"> Very satisfied<br>
+                <input type="radio" name="q2" value="Somewhat satisfied"> Somewhat satisfied<br>
+                <input type="radio" name="q2" value="Neutral"> Neutral<br>
+                <input type="radio" name="q2" value="Somewhat dissatisfied"> Somewhat dissatisfied<br>
+                <input type="radio" name="q2" value="Very dissatisfied"> Very dissatisfied<br>
+            </div>
+
+            <!-- Question 3 (example) -->
+            <div class="question hidden" id="q3">
+                <label>3. What was the main reason for your recent visit?</label>
+                <input type="radio" name="q3" value="New menu item"> New menu item<br>
+                <input type="radio" name="q3" value="Special promotion"> Special promotion<br>
+                <input type="radio" name="q3" value="Routine visit"> Routine visit<br>
+                <input type="radio" name="q3" value="Other"> Other<br>
+            </div>
+
+            <!-- Add more questions based on the survey logic -->
+
+            <!-- Submit Button -->
+            <div id="submitDiv" class="hidden">
+                <button type="button">Submit</button>
+            </div>
+
+            <!-- Success/Error Message -->
+            <div id="message" class="message hidden"></div>
+        </form>
     </div>
-</section>
+</div>
 
-<footer style="text-align:center; padding:20px 0;">
-    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-</footer>
+<script src="wendeys_survey.js" type="module"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
-<script>
-    const questions = [
-        {
-            question: "How often do you eat at Wendy's?",
-            options: ["Weekly", "Monthly", "Rarely", "Never"]
-        },
-        {
-            question: "What is your favorite item on Wendy's menu?",
-            options: ["Burgers", "Chicken Sandwiches", "Frosty", "Salads"]
-        },
-        {
-            question: "How satisfied are you with the quality of food at Wendy's?",
-            options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied"]
-        },
-        {
-            question: "Which of the following services do you appreciate the most?",
-            options: ["Fast Service", "Friendly Staff", "Cleanliness", "Value for Money"]
-        }
-    ];
-
-    let currentQuestion = 0;
-    let timerInterval;
-
-    function showQuestion(index) {
-        const questionElem = document.getElementById('question');
-        const optionsElem = document.getElementById('options');
-        questionElem.innerText = questions[index].question;
-        optionsElem.innerHTML = '';
-        questions[index].options.forEach(option => {
-            const optionElem = document.createElement('div');
-            optionElem.classList.add('option');
-            const input = document.createElement('input');
-            input.type = 'radio';
-            input.name = 'option';
-            input.value = option;
-            input.id = option;
-            const label = document.createElement('label');
-            label.setAttribute('for', option);
-            label.innerText = option;
-            optionElem.appendChild(input);
-            optionElem.appendChild(label);
-            optionsElem.appendChild(optionElem);
-        });
-
-        document.getElementById('back').disabled = index === 0;
-        document.getElementById('next').disabled = true; // Disable Next button initially
-        startTimer(); // Start the timer when a new question is shown
-    }
-
-    function nextQuestion() {
-        const selected = document.querySelector('input[name="option"]:checked');
-        if (selected && !document.getElementById('next').disabled) {
-            clearInterval(timerInterval); // Clear the timer when moving to the next question
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            } else {
-                showReward();
-            }
-        }
-    }
-
-    function prevQuestion() {
-        if (currentQuestion > 0) {
-            clearInterval(timerInterval); // Clear the timer when moving to the previous question
-            currentQuestion--;
-            showQuestion(currentQuestion);
-        }
-    }
-
-    function startTimer() {
-        let timeLeft = 10;
-        const timerElem = document.getElementById('timer');
-        timerElem.innerText = timeLeft;
-
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            timerElem.innerText = timeLeft;
-
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                document.getElementById('next').disabled = false; // Enable Next button only when the timer reaches 0
-            }
-        }, 1000);
-    }
-
-    function showReward() {
-        document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $8</p>';
-        document.getElementById('claim-reward').style.display = 'inline-block';
-        document.querySelector('.survey-navigation').style.display = 'none';
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    }
-
-    function claimReward() {
-        alert("You've claimed your $8 reward!");
-        window.location.href = 'surveys.html'; // Redirects to a page or link for rewards, adjust as needed
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        showQuestion(currentQuestion);
-    });
-</script>
 </body>
 </html>
