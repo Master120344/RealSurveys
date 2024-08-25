@@ -128,6 +128,43 @@
         .forgot-password input {
             margin-bottom: 10px;
         }
+
+        .forgot-password .back-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #2e8b57;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .forgot-password .back-button:hover {
+            background-color: #3a9f6f;
+        }
+
+        .success-message {
+            display: none;
+            font-size: 18px;
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .success-message::before {
+            content: '✔';
+            color: #28a745;
+            font-size: 24px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -145,24 +182,32 @@
 </header>
 
 <div class="main-content">
-    <h2>Login</h2>
-    <p>Log in to your account to access your surveys and rewards.</p>
-    <div class="form-container">
-        <form id="loginForm">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p><a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
-        <div id="forgotPassword" class="forgot-password">
-            <h3>Forgot Password</h3>
-            <p>Enter your email address to reset your password:</p>
-            <form id="forgotPasswordForm">
-                <input type="email" id="forgotEmail" placeholder="Email" required>
-                <button type="submit">Reset Password</button>
+    <div id="loginContainer">
+        <h2>Login</h2>
+        <p>Log in to your account to access your surveys and rewards.</p>
+        <div class="form-container">
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
             </form>
-            <p id="forgotPasswordMessage"></p>
+            <p><a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
         </div>
+    </div>
+
+    <div id="forgotPassword" class="forgot-password">
+        <h3>Forgot Password</h3>
+        <p>Enter your email address to reset your password:</p>
+        <form id="forgotPasswordForm">
+            <input type="email" id="forgotEmail" placeholder="Email" required>
+            <button type="submit">Reset Password</button>
+        </form>
+        <p id="forgotPasswordMessage"></p>
+        <a href="#" class="back-button" id="backToLogin">Back to Login</a>
+    </div>
+
+    <div id="successMessage" class="success-message">
+        Your password has been reset. Please check your email to reset your password.
     </div>
 </div>
 
@@ -202,7 +247,14 @@
 
     document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
         e.preventDefault();
+        document.getElementById('loginContainer').style.display = 'none';
         document.getElementById('forgotPassword').style.display = 'block';
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('forgotPassword').style.display = 'none';
+        document.getElementById('loginContainer').style.display = 'block';
     });
 
     document.getElementById('forgotPasswordForm').addEventListener('submit', async (e) => {
@@ -212,10 +264,15 @@
         try {
             await sendPasswordResetEmail(auth, forgotEmail);
             document.getElementById('forgotPasswordMessage').innerText = 'Your password has been reset. Please check your email to reset your password.';
+            document.getElementById('forgotPasswordMessage').style.display = 'block';
             document.getElementById('forgotEmail').value = '';
+            document.getElementById('successMessage').style.display = 'inline-flex';
         } catch (error) {
             console.error('Password reset failed:', error);
-            document.getElementById('forgotPasswordMessage').innerText = 'Failed to reset password. Please try again.';
+            document.getElementById
+document.getElementById('forgotPasswordMessage').innerText = 'Failed to reset password. Please check your email and try again.';
+            document.getElementById('forgotPasswordMessage').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
         }
     });
 </script>
