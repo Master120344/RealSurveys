@@ -103,12 +103,12 @@
             background: url('assets/burgerkingcard.png') no-repeat center center;
             background-size: cover;
             color: #fff;
-            width: 300px;
-            border: none;
+            border: 1px solid #ddd; /* Match border with other cards */
             text-align: center;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            width: 300px; /* Ensure width matches other cards */
         }
 
         .burger-king-card a {
@@ -120,6 +120,33 @@
         .burger-king-card a:hover {
             background-color: #0056b3;
             border-color: #f5df4d;
+        }
+
+        /* Pagination Styling */
+        .pagination {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
         }
     </style>
 </head>
