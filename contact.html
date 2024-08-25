@@ -124,6 +124,18 @@
                 padding: 15px;
             }
         }
+
+        /* Confirmation message styles */
+        .confirmation-message {
+            display: none;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            max-width: 600px;
+        }
     </style>
 </head>
 <body>
@@ -149,6 +161,9 @@
         <textarea id="message" placeholder="Your message" rows="5" required></textarea>
         <button type="submit">Send</button>
     </form>
+    <div id="confirmationMessage" class="confirmation-message">
+        Your message was sent successfully!
+    </div>
 </div>
 
 <footer>
@@ -176,6 +191,13 @@
         if (!user && window.location.pathname !== '/contact.html') {
             window.location.href = 'login.html';
         }
+    });
+
+    // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+        document.getElementById('confirmationMessage').style.display = 'block';
+        document.getElementById('contactForm').reset(); // Resets the form fields
     });
 </script>
 
