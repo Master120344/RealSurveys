@@ -89,6 +89,7 @@
             pointer-events: none;
             z-index: 9999;
             overflow: hidden;
+            display: none;
         }
 
         .confetti {
@@ -112,7 +113,7 @@
     </style>
 </head>
 <body>
-    <div id="confetti" class="hidden"></div>
+    <div id="confetti"></div>
     <div class="survey-container">
         <h1>Kroger Shopping Experience Survey</h1>
         <form id="survey-form" action="surveys.html" method="post">
@@ -151,6 +152,7 @@
             <button type="button" id="back-btn" class="hidden">Back</button>
             <button type="button" id="next-btn">Next</button>
         </form>
+        <div id="reward-message" class="hidden">Congratulations! You've earned $7 for completing this survey.</div>
     </div>
 
     <script>
@@ -162,6 +164,7 @@
         const nextBtn = document.getElementById('next-btn');
         const questionContainer = document.getElementById('question-container');
         const confettiCanvas = document.getElementById('confetti');
+        const rewardMessage = document.getElementById('reward-message');
 
         function showQuestion(index) {
             questions.forEach((question, i) => {
@@ -189,6 +192,7 @@
 
         function showConfetti() {
             confettiCanvas.innerHTML = ''; // Clear previous confetti
+            confettiCanvas.style.display = 'block';
             const colors = ['#ff0', '#0f0', '#f00', '#0ff', '#f0f'];
             for (let i = 0; i < 200; i++) {
                 const confetti = document.createElement('div');
@@ -199,7 +203,7 @@
                 confettiCanvas.appendChild(confetti);
             }
             setTimeout(() => {
-                confettiCanvas.classList.add('hidden');
+                confettiCanvas.style.display = 'none';
             }, 5000);
         }
 
@@ -209,6 +213,7 @@
                 showQuestion(currentQuestion + 1);
             } else {
                 showConfetti();
+                rewardMessage.classList.remove('hidden');
                 setTimeout(() => {
                     document.getElementById('survey-form').submit();
                 }, 2000);
