@@ -8,14 +8,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-image: url('https://github.com/Master120344/RealSurveys/blob/main/wallpapers/pizzahut.png?raw=true');
+            background-size: cover;
+            background-attachment: fixed;
             margin: 0;
             padding: 20px;
+            color: #fff; /* Ensures text is readable against the wallpaper */
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
             margin-bottom: 30px;
         }
 
@@ -72,12 +75,15 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Starbucks survey card with background image */
-        .starbucks-card {
-            background-image: url('https://github.com/Master120344/RealSurveys/blob/main/images/surveycards/starbucks.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
+        .survey-card h2 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .survey-card p {
+            margin-bottom: 15px;
+            color: #666;
         }
 
         .survey-card a {
@@ -94,6 +100,42 @@
         .survey-card a:hover {
             background-color: #0056b3;
             border-color: #0056b3;
+        }
+
+        /* Starbucks specific styling */
+        .starbucks-card img {
+            width: 100%;
+            height: 200px; /* Ensures the image fits well */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Pagination styling */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
         }
     </style>
 </head>
@@ -123,8 +165,9 @@
             <p>Share your shopping experience at Kohl's.</p>
             <a href="kohls_survey.html">Start Survey</a>
         </div>
-        <!-- Survey 33 (Starbucks) -->
+        <!-- Survey 33 - Starbucks -->
         <div class="survey-card starbucks-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/images/surveycards/starbucks.jpg?raw=true" alt="Starbucks Survey">
             <a href="starbucks_survey.html">Start Survey</a>
         </div>
         <!-- Survey 34 -->
