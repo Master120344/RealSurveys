@@ -78,10 +78,32 @@
         }
 
         /* Specific Kroger card styling */
+        .kroger-card {
+            position: relative;
+        }
+
         .kroger-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .start-survey-button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .start-survey-button:hover {
+            background-color: #0056b3;
         }
 
         /* Specific Burger King card styling */
@@ -186,9 +208,8 @@
         </div>
         <!-- Survey 49 - Kroger -->
         <div class="survey-card kroger-card">
-            <a href="kroger_survey.html">
-                <img src="assets/Kroger.png" alt="Kroger Survey">
-            </a>
+            <img src="assets/Kroger.png" alt="Kroger Survey">
+            <a href="kroger_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 50 -->
         <div class="survey-card">
