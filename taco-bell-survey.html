@@ -79,12 +79,6 @@
             z-index: 2;
         }
 
-        .content h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #702082;
-        }
-
         .content p {
             font-size: 18px;
             line-height: 1.6;
@@ -95,11 +89,11 @@
         .survey-question {
             margin-bottom: 20px;
             padding: 20px;
-            background-color: rgba(112, 32, 130, 0.8); /* Darker purple for better contrast */
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+            background-color: rgba(112, 32, 130, 0.8); /* Adjusted transparency */
+            border-radius: 12px; /* Increased border-radius for a smoother look */
+            border: 2px solid rgba(255, 255, 255, 0.5); /* Adjusted border for better visibility */
             position: relative;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for better depth */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added box shadow for depth */
         }
 
         .question-counter {
@@ -181,10 +175,6 @@
 
             .content {
                 padding: 20px;
-            }
-
-            .content h2 {
-                font-size: 24px;
             }
 
             .content p {
@@ -296,7 +286,7 @@
 <body>
     <header>
         <div class="container">
-            <h1><a href="index.html">RealSurveys</a></h1>
+            <!-- Removed RealSurveys title -->
         </div>
     </header>
 
@@ -306,14 +296,15 @@
 
     <section class="content">
         <div class="container">
-            <h2>Taco Bell Customer Satisfaction Survey</h2>
-            <p>Complete this survey to earn rewards. Your feedback is valuable to us!</p>
-<form id="tacoBellSurveyForm">
+            <!-- Removed "Taco Bell Customer Satisfaction Survey" -->
+            <p>Please just be honest or there's no way we can keep this survey website alive. Surveys are never long.</p>
+            <form id="tacoBellSurveyForm">
                 <div class="survey-question">
                     <div class="question-counter">1/5</div>
                     <label for="question1">How would you rate your overall experience at Taco Bell?</label>
                     <div class="options">
-                        <input type="radio" id="q1a" name="question1" value="Excellent">
+                        <label
+<input type="radio" id="q1a" name="question1" value="Excellent">
                         <label for="q1a">Excellent</label>
                         <input type="radio" id="q1b" name="question1" value="Good">
                         <label for="q1b">Good</label>
@@ -323,62 +314,54 @@
                         <label for="q1d">Poor</label>
                     </div>
                 </div>
-
                 <div class="survey-question">
                     <div class="question-counter">2/5</div>
-                    <label for="question2">How satisfied are you with the quality of the food?</label>
+                    <label for="question2">How likely are you to recommend Taco Bell to a friend?</label>
                     <div class="options">
-                        <input type="radio" id="q2a" name="question2" value="Very Satisfied">
-                        <label for="q2a">Very Satisfied</label>
-                        <input type="radio" id="q2b" name="question2" value="Satisfied">
-                        <label for="q2b">Satisfied</label>
-                        <input type="radio" id="q2c" name="question2" value="Neutral">
-                        <label for="q2c">Neutral</label>
-                        <input type="radio" id="q2d" name="question2" value="Dissatisfied">
-                        <label for="q2d">Dissatisfied</label>
+                        <input type="radio" id="q2a" name="question2" value="Very Likely">
+                        <label for="q2a">Very Likely</label>
+                        <input type="radio" id="q2b" name="question2" value="Likely">
+                        <label for="q2b">Likely</label>
+                        <input type="radio" id="q2c" name="question2" value="Unlikely">
+                        <label for="q2c">Unlikely</label>
+                        <input type="radio" id="q2d" name="question2" value="Very Unlikely">
+                        <label for="q2d">Very Unlikely</label>
                     </div>
                 </div>
-
                 <div class="survey-question">
                     <div class="question-counter">3/5</div>
-                    <label for="question3">How likely are you to recommend Taco Bell to a friend?</label>
+                    <label for="question3">How satisfied are you with the speed of service?</label>
                     <div class="options">
-                        <input type="radio" id="q3a" name="question3" value="Definitely">
-                        <label for="q3a">Definitely</label>
-                        <input type="radio" id="q3b" name="question3" value="Probably">
-                        <label for="q3b">Probably</label>
-                        <input type="radio" id="q3c" name="question3" value="Not Sure">
-                        <label for="q3c">Not Sure</label>
-                        <input type="radio" id="q3d" name="question3" value="Not Likely">
-                        <label for="q3d">Not Likely</label>
+                        <input type="radio" id="q3a" name="question3" value="Very Satisfied">
+                        <label for="q3a">Very Satisfied</label>
+                        <input type="radio" id="q3b" name="question3" value="Satisfied">
+                        <label for="q3b">Satisfied</label>
+                        <input type="radio" id="q3c" name="question3" value="Dissatisfied">
+                        <label for="q3c">Dissatisfied</label>
+                        <input type="radio" id="q3d" name="question3" value="Very Dissatisfied">
+                        <label for="q3d">Very Dissatisfied</label>
                     </div>
                 </div>
-
                 <div class="survey-question">
                     <div class="question-counter">4/5</div>
-                    <label for="question4">Was the service at Taco Bell friendly and efficient?</label>
+                    <label for="question4">Were the staff members friendly and helpful?</label>
                     <div class="options">
-                        <input type="radio" id="q4a" name="question4" value="Very Satisfied">
-                        <label for="q4a">Very Satisfied</label>
-                        <input type="radio" id="q4b" name="question4" value="Satisfied">
-                        <label for="q4b">Satisfied</label>
-                        <input type="radio" id="q4c" name="question4" value="Neutral">
-                        <label for="q4c">Neutral</label>
-                        <input type="radio" id="q4d" name="question4" value="Dissatisfied">
-                        <label for="q4d">Dissatisfied</label>
+                        <input type="radio" id="q4a" name="question4" value="Yes">
+                        <label for="q4a">Yes</label>
+                        <input type="radio" id="q4b" name="question4" value="No">
+                        <label for="q4b">No</label>
                     </div>
                 </div>
-
                 <div class="survey-question">
                     <div class="question-counter">5/5</div>
                     <label for="question5">Do you have any additional comments or suggestions?</label>
-                    <textarea id="question5" name="question5" rows="4" style="width: 100%; border-radius: 5px; padding: 10px;"></textarea>
+                    <textarea id="question5" name="question5" rows="4" cols="50"></textarea>
                 </div>
 
                 <div class="survey-nav">
                     <button type="button" id="prevButton" class="btn">Previous</button>
                     <button type="button" id="nextButton" class="btn">Next</button>
-                    <button type="submit" id="submitButton" class="btn" style="display: none;">Submit</button>
+                    <button type="submit" id="submitButton" class="btn">Submit</button>
                 </div>
             </form>
         </div>
