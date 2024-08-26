@@ -173,22 +173,6 @@
             margin: 0;
         }
 
-        footer .social {
-            margin-top: 10px;
-        }
-
-        footer .social a {
-            color: #ffc107;
-            margin: 0 10px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer .social a:hover {
-            color: #fff;
-        }
-
         @media (max-width: 768px) {
             header .container {
                 flex-direction: column;
@@ -326,6 +310,9 @@
             <form id="tacoBellSurveyForm">
                 <div class="survey-question">
                     <div class="question-counter">1/5</div>
+                    <label for="question1">How would you rate your overall experience at Taco Bell
+<div class="survey-question">
+                    <div class="question-counter">1/5</div>
                     <label for="question1">How would you rate your overall experience at Taco Bell?</label>
                     <div class="options">
                         <label><input type="radio" name="question1" value="excellent"> Excellent</label>
@@ -353,7 +340,24 @@
                     </div>
                 </div>
 
-                <!-- Add more questions here if needed -->
+                <div class="survey-question" style="display:none;">
+                    <div class="question-counter">4/5</div>
+                    <label for="question4">How satisfied are you with the customer service?</label>
+                    <div class="options">
+                        <label><input type="radio" name="question4" value="very_satisfied"> Very Satisfied</label>
+                        <label><input type="radio" name="question4" value="satisfied"> Satisfied</label>
+                        <label><input type="radio" name="question4" value="neutral"> Neutral</label>
+                        <label><input type="radio" name="question4" value="dissatisfied"> Dissatisfied</label>
+                    </div>
+                </div>
+
+                <div class="survey-question" style="display:none;">
+                    <div class="question-counter">5/5</div>
+                    <label for="question5">Do you have any additional comments or suggestions?</label>
+                    <div class="options">
+                        <textarea name="question5" rows="4" cols="50" placeholder="Your comments here..."></textarea>
+                    </div>
+                </div>
 
                 <div class="survey-nav">
                     <button type="button" id="prevButton" class="btn" style="display:none;">Previous</button>
@@ -367,12 +371,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-            <div class="social">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-            </div>
         </div>
     </footer>
 </body>
-</html>
+</html> 
