@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #333;
+            border: 1px solid #444;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #E50914; /* Netflix red */
+        }
+
+        .question-box {
+            border: 2px solid #E50914; /* Netflix red */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .timer {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #E50914;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #E50914;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button[disabled] {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        .back-button {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Netflix Survey</h1>
+        <div id="question-container">
+            <div class="question-box">
+                <p id="question-text">Question 1: How would you rate your overall experience with Netflix?</p>
+                <div>
+                    <input type="radio" name="question1" id="q1a" value="1"> 1 - Very Poor<br>
+                    <input type="radio" name="question1" id="q1b" value="2"> 2 - Poor<br>
+                    <input type="radio" name="question1" id="q1c" value="3"> 3 - Average<br>
+                    <input type="radio" name="question1" id="q1d" value="4"> 4 - Good<br>
+                    <input type="radio" name="question1" id="q1e" value="5"> 5 - Excellent<br>
+                </div>
+            </div>
+            <div class="timer">Time remaining: <span id="timer">10</span> seconds</div>
+        </div>
+
+        <div class="buttons">
+            <button class="back-button" onclick="goBack()">Back</button>
+            <button id="next-button" disabled onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 10;
+        let timeLeft = 10;
+        let timerInterval;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('next-button').disabled = false;
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            timeLeft = 10;
+            document.getElementById('timer').textContent = timeLeft;
+            document.getElementById('next-button').disabled = true;
+            startTimer();
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
+                resetTimer();
+            } else {
+                window.location.href = 'surveys.html';
+            }
+        }
+
+        function goBack() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
+                resetTimer();
+            }
+        }
+
+        function getQuestionText(questionNumber) {
+            const questions = [
+                "How would you rate your overall experience with Netflix?",
+                "How satisfied are you with the selection of movies and TV shows?",
+                "How likely are you to recommend Netflix to a friend?",
+                "How satisfied are you with the video quality on Netflix?",
+                "How easy is it to navigate the Netflix interface?",
+                "How satisfied are you with the Netflix mobile app?",
+                "How satisfied are you with the Netflix original content?",
+                "How satisfied are you with the customer service?",
+                "How satisfied are you with the price of Netflix?",
+                "Would you continue to subscribe to Netflix?"
+            ];
+            return questions[questionNumber - 1];
+        }
+
+        // Start the first question timer on page load
+        window.onload = resetTimer;
+    </script>
+</body>
+</html>
