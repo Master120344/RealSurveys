@@ -8,14 +8,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #000; /* Set background color to black */
             margin: 0;
             padding: 20px;
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff; /* Set text color to white for contrast */
             margin-bottom: 30px;
         }
 
@@ -63,23 +63,16 @@
             background-color: #fff;
             border-radius: 8px;
             text-align: center;
+            background-size: cover;
+            background-position: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            height: 300px; /* Ensure the height matches the content */
+            position: relative;
         }
 
         .survey-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .survey-card h2 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .survey-card p {
-            margin-bottom: 15px;
-            color: #666;
         }
 
         .survey-card a {
@@ -91,6 +84,10 @@
             border: 1px solid #007bff;
             display: inline-block;
             transition: background-color 0.3s, border-color 0.3s;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .survey-card a:hover {
@@ -141,65 +138,25 @@
 
     <!-- Survey Container -->
     <div class="survey-container">
-        <!-- Survey 11 -->
-        <div class="survey-card">
-            <h2>Amazon</h2>
-            <p>Share your feedback on your recent shopping experience at Amazon.</p>
+        <!-- Survey 1 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/amazon.png?raw=true');">
             <a href="amazon_survey.html">Start Survey</a>
         </div>
-        <!-- Survey 12 -->
-        <div class="survey-card">
-            <h2>Best Buy Survey</h2>
-            <p>Tell us about your experience at Best Buy.</p>
+        <!-- Survey 2 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true');">
             <a href="bestbuy_survey.html">Start Survey</a>
         </div>
-        <!-- Survey 13 -->
-        <div class="survey-card">
-            <h2>Target</h2>
-            <p>Give us feedback on your recent visit to Target.</p>
-            <a href="target_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 14 -->
-        <div class="survey-card">
-            <h2>Starbucks</h2>
-            <p>Let us know how your experience was at Starbucks.</p>
-            <a href="starbucks_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 15 -->
-        <div class="survey-card">
-            <h2>Costco</h2>
-            <p>Provide feedback on your shopping experience at Costco.</p>
-            <a href="costco_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 16 -->
-        <div class="survey-card">
-            <h2>Kroger</h2>
-            <p>Share your thoughts on your recent shopping experience at Kroger.</p>
-            <a href="kroger_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 17 -->
-        <div class="survey-card">
-            <h2>Apple</h2>
-            <p>Tell us about your experience with Apple products or services.</p>
-            <a href="apple_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 18 -->
-        <div class="survey-card">
-            <h2>HomeGoods</h2>
-            <p>Give feedback on your recent visit to HomeGoods.</p>
-            <a href="homegoods_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 19 -->
-        <div class="survey-card">
-            <h2>Dunkin'</h2>
-            <p>Share your experience at Dunkin' and help us improve.</p>
+        <!-- Survey 3 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/Dunkin'.jpg?raw=true');">
             <a href="dunkin_survey.html">Start Survey</a>
         </div>
-        <!-- Survey 20 -->
-        <div class="survey-card">
-            <h2>Office Depot</h2>
-            <p>Provide feedback on your recent shopping experience at Office Depot.</p>
+        <!-- Survey 4 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/office_depot.png?raw=true');">
             <a href="officedepot_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 5 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/target.png?raw=true');">
+            <a href="target_survey.html">Start Survey</a>
         </div>
     </div>
 
