@@ -67,6 +67,7 @@
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             overflow: hidden; /* Ensure any overflow content is hidden */
+            position: relative; /* For positioning the button */
         }
 
         .survey-card img {
@@ -78,11 +79,6 @@
         .survey-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Specific Kroger card styling */
-        .kroger-card {
-            position: relative;
         }
 
         .start-survey-button {
@@ -101,11 +97,6 @@
 
         .start-survey-button:hover {
             background-color: #0056b3;
-        }
-
-        /* Specific Burger King card styling */
-        .burger-king-card {
-            position: relative;
         }
 
         /* Pagination Styling */
@@ -150,62 +141,53 @@
     <div class="survey-container">
         <!-- Survey 41 -->
         <div class="survey-card">
-            <h2>Chipotle</h2>
-            <p>Give us feedback on your recent visit to Chipotle.</p>
-            <a href="chipotle_survey.html">Start Survey</a>
+            <img src="assets/chipotle.png" alt="Chipotle Survey">
+            <a href="chipotle_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 42 -->
         <div class="survey-card">
-            <h2>Whole Foods</h2>
-            <p>Share your shopping experience at Whole Foods.</p>
-            <a href="wholefoods_survey.html">Start Survey</a>
+            <img src="assets/wholefoods.png" alt="Whole Foods Survey">
+            <a href="wholefoods_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 43 -->
         <div class="survey-card">
-            <h2>Apple</h2>
-            <p>Tell us about your experience at the Apple Store.</p>
-            <a href="applestore_survey.html">Start Survey</a>
+            <img src="assets/apple.png" alt="Apple Survey">
+            <a href="applestore_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 44 -->
         <div class="survey-card">
-            <h2>Panera Bread</h2>
-            <p>Provide feedback on your recent visit to Panera Bread.</p>
-            <a href="panera_survey.html">Start Survey</a>
+            <img src="assets/panerabread.png" alt="Panera Bread Survey">
+            <a href="panera_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 45 - Burger King -->
-        <div class="survey-card burger-king-card">
-            <a href="burgerking_survey.html">
-                <img src="assets/burgerkingcard.png" alt="Burger King Survey">
-            </a>
+        <div class="survey-card">
+            <img src="assets/burgerkingcard.png" alt="Burger King Survey">
+            <a href="burgerking_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 46 -->
         <div class="survey-card">
-            <h2>Lowe's</h2>
-            <p>Tell us about your shopping experience at Lowe's.</p>
-            <a href="lowes_survey.html">Start Survey</a>
+            <img src="assets/lowes.png" alt="Lowe's Survey">
+            <a href="lowes_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 47 -->
         <div class="survey-card">
-            <h2>Staples</h2>
-            <p>Share your thoughts on your recent visit to Staples.</p>
-            <a href="staples_survey.html">Start Survey</a>
+            <img src="assets/staples.png" alt="Staples Survey">
+            <a href="staples_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 48 -->
         <div class="survey-card">
-            <h2>Sephora</h2>
-            <p>Tell us about your experience at Sephora.</p>
-            <a href="sephora_survey.html">Start Survey</a>
+            <img src="assets/sephora.png" alt="Sephora Survey">
+            <a href="sephora_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 49 - Kroger -->
-        <div class="survey-card kroger-card">
+        <div class="survey-card">
             <img src="assets/Kroger.png" alt="Kroger Survey">
             <a href="kroger_survey.html" class="start-survey-button">Start Survey</a>
         </div>
         <!-- Survey 50 -->
         <div class="survey-card">
-            <h2>Trader Joe's</h2>
-            <p>Tell us about your experience at Trader Joe's.</p>
-            <a href="traderjoes_survey.html">Start Survey</a>
+            <img src="assets/traderjoes.png" alt="Trader Joe's Survey">
+            <a href="traderjoes_survey.html" class="start-survey-button">Start Survey</a>
         </div>
     </div>
 
