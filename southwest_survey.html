@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/southwest.jpg'); /* Replace with a Southwest Airlines-themed image URL */
+            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/southwest.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -17,19 +17,19 @@
         }
 
         .survey .container {
-            background-color: #FFFFFF; /* White background */
+            background-color: #FFFFFF;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px; /* Adjusted for mobile compatibility */
+            max-width: 400px;
             margin: 50px auto;
             text-align: center;
             color: #333;
-            border: none; /* No border */
+            border: none;
         }
 
         h2 {
-            color: #E11383; /* Southwest Airlines magenta/pink */
+            color: #E11383;
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -41,8 +41,9 @@
             margin: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #007AC1; /* Southwest Airlines blue */
+            background-color: #007AC1;
             color: white;
+            cursor: pointer;
         }
 
         .survey-navigation button:disabled {
@@ -58,12 +59,12 @@
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 18px;
-            background-color: #C8102E; /* Southwest Airlines red */
+            background-color: #C8102E;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none; /* Hidden initially */
+            display: none;
         }
 
         #claim-reward:hover {
@@ -146,14 +147,11 @@
     }
 
     function nextQuestion() {
-        const selected = document.querySelector('input[name="option"]:checked');
-        if (selected) {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            } else {
-                showReward();
-            }
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        } else {
+            showReward();
         }
     }
 
@@ -173,7 +171,7 @@
 
     function claimReward() {
         alert("You've claimed your $8 reward!");
-        window.location.href = 'surveys.html'; // Redirects to a page or link for rewards, adjust as needed
+        window.location.href = 'surveys.html';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
