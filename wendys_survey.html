@@ -82,7 +82,9 @@
 </head>
 <body>
     <div class="container">
-        <div id="questionContainer" class="question"></div>
+        <div id="questionContainer" class="question">
+            <!-- JavaScript will inject content here -->
+        </div>
         <div class="button-container">
             <button id="backButton" class="back-button" style="display:none;">Back</button>
             <button id="nextButton">Next</button>
@@ -90,6 +92,79 @@
         <div id="message" class="message"></div>
     </div>
 
-    <script src="wendys_survey.js"></script>
+    <script>
+        // Add this JavaScript code to ensure your HTML works as expected
+        const questions = [
+            {
+                question: "How would you rate your overall experience at Wendy's?",
+                answers: ["Excellent", "Good", "Average", "Poor"]
+            },
+            {
+                question: "Was the staff friendly and helpful?",
+                answers: ["Yes", "No", "Somewhat"]
+            },
+            {
+                question: "How satisfied were you with the cleanliness of the restaurant?",
+                answers: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied"]
+            },
+            {
+                question: "Would you visit Wendy's again?",
+                answers: ["Definitely", "Maybe", "Not sure", "No"]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const questionContainer = document.getElementById('questionContainer');
+            const questionObj = questions[currentQuestionIndex];
+
+            let questionHtml = `<h2>${questionObj.question}</h2>`;
+
+            questionObj.answers.forEach(answer => {
+                questionHtml += `
+                    <label>
+                        <input type="radio" name="answer" value="${answer}">
+                        ${answer}
+                    </label>
+                `;
+            });
+
+            questionContainer.innerHTML = questionHtml;
+
+            document.getElementById('backButton').style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+        }
+
+        function nextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (!selectedAnswer) {
+                alert('Please select an answer before proceeding.');
+                return;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById('questionContainer').style.display = 'none';
+                document.getElementById('nextButton').style.display = 'none';
+                document.getElementById('backButton').style.display = 'none';
+                document.getElementById('message').innerHTML = '<p>Thank you for completing the survey!</p>';
+            }
+        }
+
+        function goBack() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        document.getElementById('nextButton').addEventListener('click', nextQuestion);
+        document.getElementById('backButton').addEventListener('click', goBack);
+
+        displayQuestion(); // Initial call to display the first question
+    </script>
 </body>
 </html>
