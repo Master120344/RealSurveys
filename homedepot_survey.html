@@ -118,8 +118,7 @@
                 document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
                 resetTimer();
             } else {
-                alert('Survey Complete! Thank you for your feedback.');
-                // Optionally, redirect to a "Thank You" page or submission handler
+                window.location.href = 'surveys.html';
             }
         }
 
