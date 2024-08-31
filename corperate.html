@@ -8,11 +8,17 @@
     <script defer src="script.js"></script>
 </head>
 <body>
+    <header>
+        <h1>RealSurveys Corporate Partnership Program</h1>
+        <ul class="nav-tabs">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </header>
+    
     <div class="container">
-        <header>
-            <h1>RealSurveys Corporate Partnership Program</h1>
-            <p>Welcome! Join our innovative survey platform that values transparency and user engagement.</p>
-        </header>
         <section class="form-section">
             <h2>Register Your Company</h2>
             <form id="corporate-form">
@@ -41,8 +47,25 @@
                     <textarea id="company-message" name="company-message" rows="4" placeholder="Share your thoughts or specific needs here."></textarea>
                 </div>
                 <button type="submit">Submit</button>
+                <p id="form-message"></p>
             </form>
-            <p id="form-message"></p>
+        </section>
+        
+        <section class="survey-section">
+            <h2>Take Our Survey</h2>
+            <form id="survey-form">
+                <div class="survey-question">
+                    <p>Question 1: What is your favorite fast food restaurant?</p>
+                    <input type="radio" id="q1a1" name="q1" value="McDonald's">
+                    <label for="q1a1">McDonald's</label><br>
+                    <input type="radio" id="q1a2" name="q1" value="Taco Bell">
+                    <label for="q1a2">Taco Bell</label>
+                </div>
+                <!-- Add more questions as needed -->
+                <button type="button" id="prevButton">Previous</button>
+                <button type="button" id="nextButton">Next</button>
+                <button type="button" id="submitButton">Claim Reward</button>
+            </form>
         </section>
     </div>
 </body>
