@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/popeyes.jpg');
+            background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/popeyes.jpg?raw=true');
             background-size: cover;
             background-position: center;
             margin: 0;
@@ -42,7 +42,8 @@
             margin-bottom: 10px;
         }
 
-        .question input[type="radio"], .question input[type="checkbox"] {
+        .question input[type="radio"],
+        .question input[type="checkbox"] {
             margin-right: 10px;
         }
 
@@ -84,64 +85,12 @@
 
 <body>
     <div class="container">
-        <div id="questionContainer" class="question">
-            <h2>Popeyes Customer Survey</h2>
-            <form id="surveyForm">
-                <!-- Question 1 -->
-                <div class="question">
-                    <label for="question1">How often do you visit Popeyes?</label>
-                    <input type="radio" id="daily" name="visitFrequency" value="Daily">
-                    <label for="daily">Daily</label><br>
-                    <input type="radio" id="weekly" name="visitFrequency" value="Weekly">
-                    <label for="weekly">Weekly</label><br>
-                    <input type="radio" id="monthly" name="visitFrequency" value="Monthly">
-                    <label for="monthly">Monthly</label><br>
-                    <input type="radio" id="rarely" name="visitFrequency" value="Rarely">
-                    <label for="rarely">Rarely</label>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="question">
-                    <label for="question2">What menu items do you order the most?</label>
-                    <input type="checkbox" id="chicken" name="menuItem" value="Chicken">
-                    <label for="chicken">Chicken</label><br>
-                    <input type="checkbox" id="biscuits" name="menuItem" value="Biscuits">
-                    <label for="biscuits">Biscuits</label><br>
-                    <input type="checkbox" id="fries" name="menuItem" value="Fries">
-                    <label for="fries">Fries</label><br>
-                    <input type="checkbox" id="drinks" name="menuItem" value="Drinks">
-                    <label for="drinks">Drinks</label>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="question">
-                    <label for="question3">How satisfied are you with the quality of the food?</label>
-                    <input type="radio" id="verySatisfied" name="foodQuality" value="Very Satisfied">
-                    <label for="verySatisfied">Very Satisfied</label><br>
-                    <input type="radio" id="satisfied" name="foodQuality" value="Satisfied">
-                    <label for="satisfied">Satisfied</label><br>
-                    <input type="radio" id="neutral" name="foodQuality" value="Neutral">
-                    <label for="neutral">Neutral</label><br>
-                    <input type="radio" id="dissatisfied" name="foodQuality" value="Dissatisfied">
-                    <label for="dissatisfied">Dissatisfied</label><br>
-                    <input type="radio" id="veryDissatisfied" name="foodQuality" value="Very Dissatisfied">
-                    <label for="veryDissatisfied">Very Dissatisfied</label>
-                </div>
-
-                <!-- Question 4 -->
-                <div class="question">
-                    <label for="question4">Do you have any suggestions for improving our service?</label>
-                    <textarea id="suggestions" name="suggestions" rows="4" cols="50"></textarea>
-                </div>
-
-                <!-- Buttons -->
-                <div class="button-container">
-                    <button type="button" id="backButton" class="back-button" style="display:none;">Back</button>
-                    <button type="submit" id="nextButton">Submit Survey</button>
-                </div>
-            </form>
-            <div id="message" class="message"></div>
+        <div id="questionContainer" class="question"></div>
+        <div class="button-container">
+            <button type="button" id="backButton" class="back-button" style="display:none;">Back</button>
+            <button type="button" id="nextButton">Next</button>
         </div>
+        <div id="message" class="message"></div>
     </div>
 
     <script src="popeyes_survey.js"></script>
