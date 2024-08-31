@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surveys</title>
+    <title>Surveys - Page 2</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000; /* Set background to black */
+            background-color: #000; /* Set background color to black */
             margin: 0;
             padding: 20px;
             color: #fff;
@@ -16,7 +16,7 @@
 
         h1 {
             text-align: center;
-            color: #fff;
+            color: #fff; /* Set text color to white for contrast */
             margin-bottom: 30px;
         }
 
@@ -124,10 +124,14 @@
             border: 1px solid #007bff;
         }
     </style>
+</head>
+
+<body>
+
+    <!-- Firebase Authentication -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -144,82 +148,53 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Check if user is logged in
+        // Redirect to login page if not authenticated
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                // If the user is not logged in, redirect to login page
                 window.location.href = 'login.html';
             }
         });
-
-        // Logout function
-        function logout() {
-            signOut(auth).then(() => {
-                window.location.href = 'login.html';
-            }).catch((error) => {
-                console.error('Sign Out Error', error);
-            });
-        }
     </script>
-</head>
-
-<body>
 
     <!-- Navigation Tabs -->
     <ul class="nav-tabs">
         <li><a href="contact.html">Contact</a></li>
         <li><a href="balance.html">Balance</a></li>
         <li><a href="surveys.html">Surveys</a></li>
-        <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
 
-    <h1>Available Surveys</h1>
+    <h1>Available Surveys - Page 2</h1>
 
     <!-- Survey Container -->
     <div class="survey-container">
         <!-- Survey 1 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/homedepot.jpg?raw=true');">
-            <a href="home_depot_survey.html">Start Survey</a>
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/amazon.png?raw=true');">
+            <a href="amazon_survey.html">Start Survey</a>
         </div>
         <!-- Survey 2 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/mcdonalds.png?raw=true');">
-            <a href="mcdonalds1_survey.html">Start Survey</a>
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true');">
+            <a href="bestbuy_survey.html">Start Survey</a>
         </div>
         <!-- Survey 3 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/netflix.jpg?raw=true');">
-            <a href="netflix_survey.html">Start Survey</a>
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/dunkin.jpg?raw=true');">
+            <a href="dunkin_survey.html">Start Survey</a>
         </div>
         <!-- Survey 4 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/raisingcanes.jpg?raw=true');">
-            <a href="canes_survey.html">Start Survey</a>
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/office_depot.png?raw=true');">
+            <a href="officedepot_survey.html">Start Survey</a>
         </div>
         <!-- Survey 5 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/southwest.jpg?raw=true');">
-            <a href="southwest_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 6 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/subway.png?raw=true');">
-            <a href="subway-survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 7 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/tacobell.jpg?raw=true');">
-            <a href="taco-bell-survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 8 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/wafflehouse.jpg?raw=true');">
-            <a href="waffle_house_survey.html">Start Survey</a>
-        </div>
-        <!-- Survey 9 -->
-        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/wendys.png?raw=true');">
-            <a href="wendys_survey.html">Start Survey</a>
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/target.png?raw=true');">
+            <a href="target_survey.html">Start Survey</a>
         </div>
     </div>
 
     <!-- Pagination -->
     <div class="pagination">
-        <a href="surveys.html" class="active">1</a>
-        <a href="surveys2.html">2</a>
-        <a href="surveys2.html">Next &raquo;</a>
+        <a href="surveys.html">&laquo; Previous</a>
+        <a href="surveys.html">1</a>
+        <a href="surveys2.html" class="active">2</a>
+        <a href="surveys3.html">Next &raquo;</a>
     </div>
 
 </body>
