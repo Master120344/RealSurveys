@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealSurveys Corporate Partnership</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RealSurveys Corporate Partnership Program</h1>
+            <p>Welcome! Join our innovative survey platform that values transparency and user engagement.</p>
+        </header>
+        <section class="form-section">
+            <h2>Register Your Company</h2>
+            <form id="corporate-form">
+                <div class="form-group">
+                    <label for="company-name">Company Name:</label>
+                    <input type="text" id="company-name" name="company-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-name">Contact Name:</label>
+                    <input type="text" id="contact-name" name="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Contact Email:</label>
+                    <input type="email" id="contact-email" name="contact-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Contact Phone Number:</label>
+                    <input type="tel" id="contact-phone" name="contact-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="donation-amount">Donation Amount ($100 minimum):</label>
+                    <input type="number" id="donation-amount" name="donation-amount" min="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="company-message">Message to Us:</label>
+                    <textarea id="company-message" name="company-message" rows="4" placeholder="Share your thoughts or specific needs here."></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p id="form-message"></p>
+        </section>
+    </div>
+</body>
+</html>
