@@ -41,7 +41,8 @@
             color: #ddd;
         }
 
-        .question input[type="radio"] {
+        .question input[type="radio"],
+        .question textarea {
             margin-right: 10px;
         }
 
@@ -171,6 +172,7 @@
 
             document.getElementById('questionContainer').innerHTML = html;
             startTimer();
+            document.getElementById('backButton').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
         }
 
         function nextQuestion() {
