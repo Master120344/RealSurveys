@@ -3,70 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealSurveys Corporate Partnership</title>
+    <title>Corporate Partnership - RealSurveys</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 36px;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #3a9f6f;
+        }
+
+        .main-content {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .main-content h2 {
+            font-size: 36px;
+            color: #2e8b57;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h3 {
+            font-size: 28px;
+            color: #2e8b57;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #2e8b57;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #3a9f6f;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>RealSurveys Corporate Partnership Program</h1>
-        <ul class="nav-tabs">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Register</a></li>
+
+<header>
+    <h1><a href="index.html">RealSurveys</a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="corporate.html">Corporate</a></li>
         </ul>
-    </header>
-    
-    <div class="container">
-        <section class="form-section">
-            <h2>Register Your Company</h2>
-            <form id="corporate-form">
-                <div class="form-group">
-                    <label for="company-name">Company Name:</label>
-                    <input type="text" id="company-name" name="company-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-name">Contact Name:</label>
-                    <input type="text" id="contact-name" name="contact-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-email">Contact Email:</label>
-                    <input type="email" id="contact-email" name="contact-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-phone">Contact Phone Number:</label>
-                    <input type="tel" id="contact-phone" name="contact-phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="donation-amount">Donation Amount ($100 minimum):</label>
-                    <input type="number" id="donation-amount" name="donation-amount" min="100" required>
-                </div>
-                <div class="form-group">
-                    <label for="company-message">Message to Us:</label>
-                    <textarea id="company-message" name="company-message" rows="4" placeholder="Share your thoughts or specific needs here."></textarea>
-                </div>
-                <button type="submit">Submit</button>
-                <p id="form-message"></p>
-            </form>
-        </section>
-        
-        <section class="survey-section">
-            <h2>Take Our Survey</h2>
-            <form id="survey-form">
-                <div class="survey-question">
-                    <p>Question 1: What is your favorite fast food restaurant?</p>
-                    <input type="radio" id="q1a1" name="q1" value="McDonald's">
-                    <label for="q1a1">McDonald's</label><br>
-                    <input type="radio" id="q1a2" name="q1" value="Taco Bell">
-                    <label for="q1a2">Taco Bell</label>
-                </div>
-                <!-- Add more questions as needed -->
-                <button type="button" id="prevButton">Previous</button>
-                <button type="button" id="nextButton">Next</button>
-                <button type="button" id="submitButton">Claim Reward</button>
-            </form>
-        </section>
+    </nav>
+</header>
+
+<div class="main-content">
+    <h2>Corporate Partnership</h2>
+    <p>Thank you for your interest in partnering with RealSurveys. Please fill out the form below to get started. We are excited to work with you and provide valuable insights to help your business thrive.</p>
+
+    <div class="form-container">
+        <h3>Corporate Registration Form</h3>
+        <form action="/submit-corporate-form" method="post">
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" name="companyName" required>
+            </div>
+            <div class="form-group">
+                <label for="contactName">Contact Person</label>
+                <input type="text" id="contactName" name="contactName" required>
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">Contact Email</label>
+                <input type="email" id="contactEmail" name="contactEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="contactPhone">Contact Phone</label>
+                <input type="tel" id="contactPhone" name="contactPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="companyWebsite">Company Website</label>
+                <input type="url" id="companyWebsite" name="companyWebsite">
+            </div>
+            <div class="form-group">
+                <label for="companyMessage">Message</label>
+                <textarea id="companyMessage" name="companyMessage" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
     </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
