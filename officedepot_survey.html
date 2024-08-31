@@ -40,8 +40,7 @@
             margin-bottom: 10px;
         }
 
-        .question input[type="radio"],
-        .question input[type="checkbox"] {
+        .question input[type="radio"] {
             margin-right: 10px;
         }
 
@@ -73,6 +72,12 @@
             background-color: #ff4f40;
         }
 
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
         .message {
             text-align: center;
             font-size: 18px;
@@ -86,6 +91,9 @@
         <div id="questionContainer" class="question">
             <!-- Survey questions will be dynamically inserted here -->
         </div>
+        <div class="timer">
+            Time remaining: <span id="timer">10</span> seconds
+        </div>
         <div class="button-container">
             <button id="backButton" class="back-button" style="display:none;">Back</button>
             <button id="nextButton">Next</button>
@@ -95,13 +103,34 @@
 
     <script>
         const questions = [
-            "Question 1: How satisfied are you with the range of office supplies available at Office Depot?",
-            "Question 2: How would you rate the quality of customer service at Office Depot?",
-            "Question 3: How easy was it to navigate the Office Depot website?",
-            "Question 4: How do you rate the pricing of products at Office Depot?",
-            "Question 5: Were you satisfied with the delivery speed of your purchase?",
-            "Question 6: How likely are you to shop at Office Depot again?",
-            "Question 7: What improvements would you suggest for Office Depot?"
+            {
+                question: "How satisfied are you with the range of office supplies available at Office Depot?",
+                options: ["Very Dissatisfied", "Dissatisfied", "Neutral", "Satisfied", "Very Satisfied"]
+            },
+            {
+                question: "How would you rate the quality of customer service at Office Depot?",
+                options: ["Very Poor", "Poor", "Average", "Good", "Excellent"]
+            },
+            {
+                question: "How easy was it to navigate the Office Depot website?",
+                options: ["Very Difficult", "Difficult", "Neutral", "Easy", "Very Easy"]
+            },
+            {
+                question: "How do you rate the pricing of products at Office Depot?",
+                options: ["Very Poor", "Poor", "Average", "Good", "Excellent"]
+            },
+            {
+                question: "Were you satisfied with the delivery speed of your purchase?",
+                options: ["Very Unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"]
+            },
+            {
+                question: "How likely are you to shop at Office Depot again?",
+                options: ["Very Unlikely", "Unlikely", "Neutral", "Likely", "Very Likely"]
+            },
+            {
+                question: "What improvements would you suggest for Office Depot?",
+                options: ["More Product Variety", "Faster Delivery", "Better Website Navigation", "Improved Customer Service", "Other"]
+            }
         ];
 
         let currentQuestion = 0;
@@ -128,8 +157,22 @@
                 document.getElementById('backButton').style.display = 'none';
                 return;
             }
-            document.getElementById('questionContainer').innerHTML = `<h2>${questions[currentQuestion]}</h2>`;
+
+            const q = questions[currentQuestion];
+            let optionsHtml = q.options.map((option, index) => `
+                <label>
+                    <input type="radio" name="question" value="${index}">
+                    ${option}
+                </label>
+            `).join('<br>');
+
+            document.getElementById('questionContainer').innerHTML = `
+                <h2>${q.question}</h2>
+                ${optionsHtml}
+            `;
+
             startTimer();
+            document.getElementById('backButton').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
         }
 
         function nextQuestion() {
