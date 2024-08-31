@@ -32,6 +32,7 @@
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 5px;
+            text-align: left;
         }
 
         .timer {
@@ -52,6 +53,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
+            margin: 0 5px;
         }
 
         button[disabled] {
@@ -118,7 +120,7 @@
                 document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
                 resetTimer();
             } else {
-                window.location.href = 'surveys.html';
+                window.location.href = 'surveys.html'; // Redirect when survey is complete
             }
         }
 
