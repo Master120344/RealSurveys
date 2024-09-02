@@ -115,6 +115,11 @@
             background: #3a9f6f;
         }
 
+        .welcome button:disabled, .welcome a.btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
         .welcome input[type="file"],
         .welcome input[type="text"] {
             background: #f9f9f9;
@@ -193,7 +198,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#" id="logoutBtn">Logout</a></li> <!-- Logout button added -->
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -208,7 +213,7 @@
             <p id="username"></p>
             <p id="email"></p>
             <p id="balance"></p>
-            <a href="surveys.html" class="btn">Go to Surveys</a>
+            <a href="surveys.html" class="btn" id="goToSurveysBtn" disabled>Go to Surveys</a>
             <div id="timer" class="timer">30 seconds remaining...</div>
         </div>
     </section>
@@ -224,14 +229,16 @@
         </div>
     </footer>
     <script>
-        // JavaScript for the timer
+        // JavaScript for the timer and button functionality
         const timerElement = document.getElementById('timer');
+        const goToSurveysBtn = document.getElementById('goToSurveysBtn');
         let timeRemaining = 30; // Time in seconds
 
         function updateTimer() {
             if (timeRemaining <= 0) {
                 clearInterval(timerInterval);
-                window.location.href = 'surveys.html'; // Redirect after timer ends
+                timerElement.textContent = "You can now go to surveys!";
+                goToSurveysBtn.removeAttribute('disabled'); // Enable button after 30 seconds
                 return;
             }
             timerElement.textContent = `${timeRemaining} seconds remaining...`;
