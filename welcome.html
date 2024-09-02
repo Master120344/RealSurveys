@@ -9,19 +9,18 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            overflow-x: hidden;
+            background-color: #ffffff;
+            color: #333333;
         }
 
         header {
-            background-color: #2e8b57; /* Matches the green theme color */
-            color: #e0e0e0;
+            background-color: #2e8b57;
+            color: #ffffff;
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -36,11 +35,10 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ffffff;
         }
 
         header h1 a {
-            color: inherit;
+            color: #ffffff;
             text-decoration: none;
         }
 
@@ -52,84 +50,78 @@
             gap: 15px;
         }
 
-        header nav ul li {
-            margin: 0;
-        }
-
         header nav ul li a {
             color: #ffffff;
             text-decoration: none;
             font-size: 14px;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         header nav ul li a:hover {
             background-color: #3a9f6f;
-            transform: scale(1.05);
         }
 
         .welcome {
             max-width: 800px;
             margin: 50px auto;
-            padding: 20px;
-            background: #1c1c1c;
+            padding: 40px;
+            background: #f7f7f7;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         .welcome h2 {
-            color: #2e8b57; /* Green accent color */
+            color: #2e8b57;
+            font-size: 32px;
         }
 
         .important-message {
             margin-bottom: 20px;
-            padding: 15px;
-            background: #2e8b57;
-            color: #ffffff;
+            padding: 20px;
+            background: #e6f4ea;
+            color: #333333;
+            border-left: 4px solid #2e8b57;
             border-radius: 5px;
             font-size: 16px;
         }
 
         .welcome p {
             margin-bottom: 20px;
-        }
-
-        .welcome button, .welcome a.btn {
-            background: #2e8b57; /* Green button color */
-            color: #fff;
-            padding: 15px;
             font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-decoration: none;
         }
 
-        .welcome button:hover, .welcome a.btn:hover {
-            background: #3a9f6f; /* Slightly lighter green for hover */
+        .welcome a.btn {
+            display: inline-block;
+            background: #2e8b57;
+            color: #ffffff;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .welcome a.btn:hover {
+            background: #3a9f6f;
         }
 
         .timer {
             margin: 20px 0;
             padding: 15px;
-            background: #333;
+            background: #ffefd5;
             border-radius: 5px;
             font-size: 18px;
-            color: #ff6347; /* Red color for timer text */
+            color: #ff4500;
         }
 
         footer {
             background-color: #2e8b57;
-            color: #e0e0e0;
+            color: #ffffff;
             padding: 20px 0;
             text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
         }
 
         footer .container {
@@ -147,11 +139,11 @@
         }
 
         footer .social a {
-            color: #e0e0e0;
+            color: #ffffff;
             margin: 0 10px;
             font-size: 18px;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         footer .social a:hover {
@@ -173,7 +165,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="index.html">Logout</a></li> <!-- Added Logout Link -->
+                    <li><a href="index.html">Logout</a></li> <!-- Logout link added -->
                 </ul>
             </nav>
         </div>
@@ -205,20 +197,22 @@
     </footer>
     <script>
         // JavaScript for the timer
-        const timerElement = document.getElementById('timer');
-        let timeRemaining = 30; // Time in seconds
+        document.addEventListener('DOMContentLoaded', function () {
+            const timerElement = document.getElementById('timer');
+            let timeRemaining = 30; // Time in seconds
 
-        function updateTimer() {
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                window.location.href = 'surveys.html'; // Redirect after timer ends
-                return;
+            function updateTimer() {
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    window.location.href = 'surveys.html'; // Redirect after timer ends
+                    return;
+                }
+                timerElement.textContent = `${timeRemaining} seconds remaining...`;
+                timeRemaining--;
             }
-            timerElement.textContent = `${timeRemaining} seconds remaining...`;
-            timeRemaining--;
-        }
 
-        const timerInterval = setInterval(updateTimer, 1000); // Update every second
+            const timerInterval = setInterval(updateTimer, 1000); // Update every second
+        });
     </script>
 </body>
 </html>
