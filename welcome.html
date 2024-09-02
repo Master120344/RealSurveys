@@ -15,7 +15,7 @@
         }
 
         header {
-            background-color: #1a1a1a;
+            background-color: #2e8b57; /* Matches the green theme color */
             color: #e0e0e0;
             padding: 20px 0;
             position: sticky;
@@ -36,7 +36,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #ff6347;
+            color: #ffffff;
         }
 
         header h1 a {
@@ -49,16 +49,15 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            gap: 15px;
         }
 
         header nav ul li {
-            margin: 0 10px;
+            margin: 0;
         }
 
         header nav ul li a {
-            color: #e0e0e0;
+            color: #ffffff;
             text-decoration: none;
             font-size: 14px;
             padding: 10px 20px;
@@ -67,7 +66,7 @@
         }
 
         header nav ul li a:hover {
-            background-color: #ff6347;
+            background-color: #3a9f6f;
             transform: scale(1.05);
         }
 
@@ -82,15 +81,16 @@
         }
 
         .welcome h2 {
-            color: #ff6347;
+            color: #2e8b57; /* Green accent color */
         }
 
         .important-message {
             margin-bottom: 20px;
             padding: 15px;
-            background: #333;
+            background: #2e8b57;
+            color: #ffffff;
             border-radius: 5px;
-            border: 1px solid #ff6347;
+            font-size: 16px;
         }
 
         .welcome p {
@@ -98,7 +98,7 @@
         }
 
         .welcome button, .welcome a.btn {
-            background: #ff6347;
+            background: #2e8b57; /* Green button color */
             color: #fff;
             padding: 15px;
             font-size: 18px;
@@ -110,28 +110,20 @@
         }
 
         .welcome button:hover, .welcome a.btn:hover {
-            background: #ff7f50;
+            background: #3a9f6f; /* Slightly lighter green for hover */
         }
 
-        .welcome input[type="file"],
-        .welcome input[type="text"] {
+        .timer {
+            margin: 20px 0;
+            padding: 15px;
             background: #333;
-            color: #e0e0e0;
-            border: 1px solid #444;
-            padding: 10px;
-            font-size: 16px;
             border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .welcome input[type="file"]:focus,
-        .welcome input[type="text"]:focus {
-            border-color: #ff6347;
-            outline: none;
+            font-size: 18px;
+            color: #ff6347; /* Red color for timer text */
         }
 
         footer {
-            background-color: #1a1a1a;
+            background-color: #2e8b57;
             color: #e0e0e0;
             padding: 20px 0;
             text-align: center;
@@ -165,16 +157,6 @@
         footer .social a:hover {
             color: #ff6347;
         }
-
-        /* Timer Styles */
-        .timer {
-            margin: 20px 0;
-            padding: 15px;
-            background: #333;
-            border-radius: 5px;
-            font-size: 18px;
-            color: #ff6347;
-        }
     </style>
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
@@ -191,6 +173,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html">Logout</a></li> <!-- Added Logout Link -->
                 </ul>
             </nav>
         </div>
