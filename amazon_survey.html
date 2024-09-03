@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Customer Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://example.com/amazon_background.jpg'); /* Replace with your Amazon theme image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container .back-button {
+            background-color: #ff6f61;
+        }
+
+        .button-container .back-button:hover {
+            background-color: #ff4f40;
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="questionContainer" class="question">
+            <!-- Survey questions will be dynamically inserted here -->
+        </div>
+        <div class="timer">
+            Time remaining: <span id="timer">10</span> seconds
+        </div>
+        <div class="button-container">
+            <button id="backButton" class="back-button" style="display:none;">Back</button>
+            <button id="nextButton">Next</button>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "How satisfied are you with the variety of products on Amazon?",
+                options: ["Very Dissatisfied", "Dissatisfied", "Neutral", "Satisfied", "Very Satisfied"]
+            },
+            {
+                question: "How would you rate the shipping speed for your orders?",
+                options: ["Very Poor", "Poor", "Average", "Good", "Excellent"]
+            },
+            {
+                question: "How easy was it to navigate the Amazon website?",
+                options: ["Very Difficult", "Difficult", "Neutral", "Easy", "Very Easy"]
+            },
+            {
+                question: "Were you satisfied with the customer service you received?",
+                options: ["Very Unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"]
+            },
+            {
+                question: "How likely are you to recommend Amazon to others?",
+                options: ["Very Unlikely", "Unlikely", "Neutral", "Likely", "Very Likely"]
+            },
+            {
+                question: "How do you feel about the return and refund process?",
+                options: ["Very Negative", "Negative", "Neutral", "Positive", "Very Positive"]
+            },
+            {
+                question: "What improvements would you suggest for Amazon?",
+                options: ["More Product Variety", "Faster Shipping", "Better Website Navigation", "Improved Customer Service", "Other"]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let timer;
+
+        function startTimer() {
+            let timeLeft = 10;
+            document.getElementById('timer').innerText = timeLeft;
+            document.getElementById('nextButton').disabled = true;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('nextButton').disabled = false;
+                }
+            }, 1000);
+        }
+
+        function displayQuestion() {
+            if (currentQuestion >= questions.length) {
+                document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
+                document.getElementById('nextButton').style.display = 'none';
+                document.getElementById('backButton').style.display = 'none';
+                return;
+            }
+
+            const q = questions[currentQuestion];
+            let optionsHtml = q.options.map((option, index) => `
+                <label>
+                    <input type="radio" name="question" value="${index}">
+                    ${option}
+                </label>
+            `).join('<br>');
+
+            document.getElementById('questionContainer').innerHTML = `
+                <h2>${q.question}</h2>
+                ${optionsHtml}
+            `;
+
+            startTimer();
+            document.getElementById('backButton').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        function goBack() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        document.getElementById('nextButton').addEventListener('click', nextQuestion);
+        document.getElementById('backButton').addEventListener('click', goBack);
+
+        displayQuestion();
+    </script>
+</body>
+
+</html>

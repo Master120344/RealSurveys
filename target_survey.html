@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Customer Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://example.com/target_background.jpg'); /* Replace with your Target theme image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+
+        .question input[type="radio"],
+        .question textarea {
+            margin-right: 10px;
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            margin: 10px 0;
+            color: #ff0000;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #ff0000; /* Target's signature red */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #cc0000;
+        }
+
+        .button-container .back-button {
+            background-color: #007bff;
+        }
+
+        .button-container .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="timer" id="timer">10</div>
+        <div id="questionContainer" class="question">
+            <!-- Survey questions will be dynamically inserted here -->
+        </div>
+        <div class="button-container">
+            <button id="backButton" class="back-button" style="display:none;">Back</button>
+            <button id="nextButton">Next</button>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "How satisfied are you with the range of products available at Target?",
+                options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"]
+            },
+            {
+                question: "How would you rate the quality of customer service at Target?",
+                options: ["Excellent", "Good", "Average", "Poor", "Very Poor"]
+            },
+            {
+                question: "How easy was it to find what you were looking for at Target?",
+                options: ["Very Easy", "Easy", "Neutral", "Difficult", "Very Difficult"]
+            },
+            {
+                question: "How do you rate the pricing of products at Target?",
+                options: ["Excellent", "Good", "Average", "Expensive", "Very Expensive"]
+            },
+            {
+                question: "Were you satisfied with the cleanliness of the Target store?",
+                options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"]
+            },
+            {
+                question: "How likely are you to recommend Target to others?",
+                options: ["Very Likely", "Likely", "Neutral", "Unlikely", "Very Unlikely"]
+            },
+            {
+                question: "What improvements would you suggest for Target?",
+                options: [] // Free text answer
+            }
+        ];
+
+        let currentQuestion = 0;
+        let timer;
+
+        function startTimer() {
+            let timeLeft = 10;
+            document.getElementById('timer').innerText = timeLeft;
+            document.getElementById('nextButton').disabled = true;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('nextButton').disabled = false;
+                }
+            }, 1000);
+        }
+
+        function displayQuestion() {
+            if (currentQuestion >= questions.length) {
+                document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
+                document.getElementById('nextButton').style.display = 'none';
+                document.getElementById('backButton').style.display = 'none';
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            let html = `<h2>${question.question}</h2>`;
+
+            if (question.options.length > 0) {
+                question.options.forEach((option, index) => {
+                    html += `<label><input type="radio" name="answer" value="${option}" required> ${option}</label><br>`;
+                });
+            } else {
+                html += `<label><textarea name="answer" rows="4" placeholder="Enter your suggestions here..."></textarea></label>`;
+            }
+
+            document.getElementById('questionContainer').innerHTML = html;
+            startTimer();
+            document.getElementById('backButton').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        function goBack() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        document.getElementById('nextButton').addEventListener('click', nextQuestion);
+        document.getElementById('backButton').addEventListener('click', goBack);
+
+        displayQuestion();
+    </script>
+</body>
+
+</html>

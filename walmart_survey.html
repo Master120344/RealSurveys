@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Survey</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/walmart.jpg'); /* Replace with Walmart-themed image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .survey .container {
+            background-color: #FFFFFF; /* White background */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+            color: #333;
+            border: none; /* No border */
+            position: relative;
+        }
+
+        h2 {
+            color: #0071CE; /* Walmart blue */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .survey-navigation button {
+            width: 100px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FFC20E; /* Walmart yellow */
+            color: white;
+        }
+
+        .survey-navigation button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .survey-navigation {
+            margin-top: 20px;
+        }
+
+        #claim-reward {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #0071CE; /* Walmart blue */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Hidden initially */
+        }
+
+        #claim-reward:hover {
+            background-color: #0059A2;
+        }
+
+        /* Timer styles */
+        #timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<section class="survey">
+    <div class="container">
+        <h2>Walmart Survey</h2>
+        <div id="timer">10</div> <!-- Timer element -->
+        <div class="survey-question">
+            <p id="question"></p>
+            <div id="options"></div>
+        </div>
+        <div class="survey-navigation">
+            <button id="back" onclick="prevQuestion()" disabled>Back</button>
+            <button id="next" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+        <button id="claim-reward" onclick="claimReward()">Claim Reward</button>
+    </div>
+</section>
+
+<footer style="text-align:center; padding:20px 0;">
+    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
+<script>
+    const questions = [
+        {
+            question: "How often do you shop at Walmart?",
+            options: ["Weekly", "Monthly", "Rarely", "Never"]
+        },
+        {
+            question: "What is your favorite department at Walmart?",
+            options: ["Grocery", "Electronics", "Clothing", "Home Goods"]
+        },
+        {
+            question: "How satisfied are you with the quality of products at Walmart?",
+            options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied"]
+        },
+        {
+            question: "Which of the following services do you appreciate the most?",
+            options: ["Low Prices", "Wide Selection", "Customer Service", "Convenience"]
+        }
+    ];
+
+    let currentQuestion = 0;
+    let timerInterval;
+
+    function showQuestion(index) {
+        const questionElem = document.getElementById('question');
+        const optionsElem = document.getElementById('options');
+        questionElem.innerText = questions[index].question;
+        optionsElem.innerHTML = '';
+        questions[index].options.forEach(option => {
+            const optionElem = document.createElement('div');
+            optionElem.classList.add('option');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'option';
+            input.value = option;
+            input.id = option;
+            const label = document.createElement('label');
+            label.setAttribute('for', option);
+            label.innerText = option;
+            optionElem.appendChild(input);
+            optionElem.appendChild(label);
+            optionsElem.appendChild(optionElem);
+        });
+
+        document.getElementById('back').disabled = index === 0;
+        document.getElementById('next').disabled = true; // Disable Next button initially
+        startTimer(); // Start the timer when a new question is shown
+    }
+
+    function nextQuestion() {
+        const selected = document.querySelector('input[name="option"]:checked');
+        if (selected && document.getElementById('next').disabled === false) {
+            clearInterval(timerInterval); // Clear the timer when moving to the next question
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                showReward();
+            }
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQuestion > 0) {
+            clearInterval(timerInterval); // Clear the timer when moving to the previous question
+            currentQuestion--;
+            showQuestion(currentQuestion);
+        }
+    }
+
+    function startTimer() {
+        let timeLeft = 10;
+        const timerElem = document.getElementById('timer');
+        timerElem.innerText = timeLeft;
+        timerElem.style.color = 'red'; // Start with red color
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElem.innerText = timeLeft;
+
+            // Gradually change color from red to yellow to green
+            if (timeLeft > 6) {
+                timerElem.style.color = 'red'; // Red
+            } else if (timeLeft > 3) {
+                timerElem.style.color = 'yellow'; // Yellow
+            } else {
+                timerElem.style.color = 'green'; // Green
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('next').disabled = false; // Enable Next button only when the timer reaches 0
+            }
+        }, 1000);
+    }
+
+    function showReward() {
+        document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $8</p>';
+        document.getElementById('claim-reward').style.display = 'inline-block';
+        document.querySelector('.survey-navigation').style.display = 'none';
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
+
+    function claimReward() {
+        alert("You've claimed your $8 reward!");
+        window.location.href = 'surveys.html'; // Redirects to a page or link for rewards, adjust as needed
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showQuestion(currentQuestion);
+    });
+</script>
+</body>
+</html>
