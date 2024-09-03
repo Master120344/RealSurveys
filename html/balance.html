@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance</title>
+    <link rel="stylesheet" href="css/balance.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+            authDomain: "real-surveys.firebaseapp.com",
+            projectId: "real-surveys",
+            storageBucket: "real-surveys.appspot.com",
+            messagingSenderId: "1024139519354",
+            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Redirect to login page if user is not authenticated
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="surveys.html">Surveys</a></li>
+                    <li><a href="#">Giveaways</a></li>
+                    <li><a href="logout.html">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="hero">
+        <h2>Your Balance</h2>
+    </div>
+    <div class="balance-container">
+        <h3>Your Current Balance:</h3>
+        <div class="balance-info">
+            <p class="balance-amount" id="current-balance">$20.00</p>
+        </div>
+        <div class="cashout-options">
+            <div id="cashout-step-1" class="cashout-step">
+                <h3>Step 1: Enter Amount</h3>
+                <input type="number" id="cashout-amount" placeholder="Enter amount to cash out" oninput="calculateNetAmount()" />
+                <p id="net-amount" class="net-amount"></p>
+                <button class="cashout-btn" id="cashout-btn">Next</button>
+            </div>
+            <div id="cashout-step-2" class="cashout-step hidden">
+                <h3>Step 2: Choose Payment Method</h3>
+                <div id="payment-section">
+                    <form id="payment-form">
+                        <div id="card-element">
+                            <!-- A Stripe Element will be inserted here. -->
+                        </div>
+                        <div id="card-errors" role="alert"></div>
+                        <button type="submit" id="pay-button">Cash Out</button>
+                    </form>
+                </div>
+                <p id="fee-info">A 10% processing fee will be deducted.</p>
+            </div>
+            <div id="cashout-step-3" class="cashout-step hidden">
+                <h3>Step 3: Confirmation</h3>
+                <p id="confirmation-message"></p>
+                <p>Money will be instantly deposited within a few minutes or less.</p>
+            </div>
+        </div>
+        <div class="error-message"></div>
+        <div class="success-message"></div>
+    </div>
+    <footer>
+        <p>Powered by <a href="https://stripe.com" target="_blank">Stripe</a> - The payment processor.</p>
+        <img src="https://github.com/Master120344/RealSurveys/raw/main/assets/untitled-3.gif" alt="Stripe Logo" class="stripe-logo" style="width:100px; height:auto;">
+    </footer>
+    <script src="js/balance.js"></script>
+    <script>
+        function calculateNetAmount() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount)) {
+                const netAmount = amount * 0.9;
+                document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('net-amount').innerText = '';
+            }
+        }
+
+        document.getElementById('cashout-btn').addEventListener('click', function() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount) && amount > 0) {
+                const netAmount = amount * 0.9;
+                const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
+                if (amount <= currentBalance) {
+                    const newBalance = currentBalance - amount;
+                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+                    document.getElementById('confirmation-message').innerText = `Your money is on the way and will arrive within a few minutes or less.`;
+                    document.getElementById('cashout-step-1').classList.add('hidden');
+                    document.getElementById('cashout-step-3').classList.remove('hidden');
+                } else {
+                    alert('Insufficient balance.');
+                }
+            } else {
+                alert('Please enter a valid amount.');
+            }
+        });
+    </script>
+</body>
+</html>

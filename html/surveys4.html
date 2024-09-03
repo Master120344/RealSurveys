@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surveys - Page 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Changed background to black */
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff; /* White color for the heading text */
+            margin-bottom: 30px;
+        }
+
+        /* Navigation tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-tabs li {
+            margin: 0 15px;
+        }
+
+        .nav-tabs a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-tabs a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Container for the surveys */
+        .survey-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Individual survey card styling */
+        .survey-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 200px; /* Adjust height as needed */
+        }
+
+        .survey-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .survey-card h2 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #333;
+            visibility: hidden; /* Hide title */
+        }
+
+        .survey-card p {
+            margin-bottom: 15px;
+            color: #666;
+            visibility: hidden; /* Hide text */
+        }
+
+        .survey-card a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            display: inline-block;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .survey-card a:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Pagination styling */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Firebase Authentication -->
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+            authDomain: "real-surveys.firebaseapp.com",
+            databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
+            projectId: "real-surveys",
+            storageBucket: "real-surveys.appspot.com",
+            messagingSenderId: "1024139519354",
+            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Redirect to login page if not authenticated
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav-tabs">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="balance.html">Balance</a></li>
+        <li><a href="surveys.html">Surveys</a></li>
+    </ul>
+
+    <h1>Available Surveys - Page 4</h1>
+
+    <!-- Survey Container -->
+    <div class="survey-container">
+        <!-- Survey 31 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/Starbucks.PNG?raw=true');">
+            <a href="starbucks_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 32 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/Walmart.PNG?raw=true');">
+            <a href="walmart_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 33 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/costco.jpg?raw=true');">
+            <a href="costco_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 34 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/spectrum.jpg?raw=true');">
+            <a href="spectrum_survey.html">Start Survey</a>
+        </div>
+        <!-- Survey 35 -->
+        <div class="survey-card" style="background-image: url('https://github.com/Master120344/RealSurveys/blob/main/surveycards/target.png?raw=true');">
+            <a href="target_survey.html">Start Survey</a>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a href="surveys3.html">&laquo; Previous</a>
+        <a href="surveys.html">1</a>
+        <a href="surveys2.html">2</a>
+        <a href="surveys3.html">3</a>
+        <a href="surveys4.html" class="active">4</a>
+        <a href="surveys5.html">Next &raquo;</a>
+    </div>
+
+</body>
+
+</html>

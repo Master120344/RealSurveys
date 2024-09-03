@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - RealSurveys</title>
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: #ffffff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header h1 a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #3a9f6f;
+            transform: scale(1.05);
+        }
+
+        .welcome {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .welcome h2 {
+            color: #2e8b57;
+        }
+
+        .important-message {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 5px;
+            border: 1px solid #2e8b57;
+            color: #2e8b57;
+        }
+
+        .welcome p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #666666;
+        }
+
+        .welcome button, .welcome a.btn {
+            background: #2e8b57;
+            color: #ffffff;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .welcome button:hover, .welcome a.btn:hover {
+            background: #3a9f6f;
+        }
+
+        .welcome button:disabled, .welcome a.btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .welcome input[type="file"],
+        .welcome input[type="text"] {
+            background: #f9f9f9;
+            color: #333333;
+            border: 1px solid #cccccc;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .welcome input[type="file"]:focus,
+        .welcome input[type="text"]:focus {
+            border-color: #2e8b57;
+            outline: none;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            margin-top: 10px;
+        }
+
+        footer .social a {
+            color: #ffffff;
+            margin: 0 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #e8f5e9;
+        }
+
+        /* Timer Styles */
+        .timer {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #2e8b57;
+        }
+    </style>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">RealSurveys</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="welcome">
+        <div class="container">
+            <h2>Welcome to RealSurveys</h2>
+            <div class="important-message">
+                To keep this survey site alive, we need real answers. These are quick surveys, so all we ask is for you to answer them truthfully. Your honest feedback is crucial to our success.
+            </div>
+            <p>Your time and opinions are valuable. Join us and earn rewards for sharing your insights.</p>
+            <p id="username"></p>
+            <p id="email"></p>
+            <p id="balance"></p>
+            <a href="surveys.html" class="btn" id="goToSurveysBtn" disabled>Go to Surveys</a>
+            <div id="timer" class="timer">30 seconds remaining...</div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // JavaScript for the timer and button functionality
+        const timerElement = document.getElementById('timer');
+        const goToSurveysBtn = document.getElementById('goToSurveysBtn');
+        let timeRemaining = 30; // Time in seconds
+
+        function updateTimer() {
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = "You can now go to surveys!";
+                goToSurveysBtn.removeAttribute('disabled'); // Enable button after 30 seconds
+                return;
+            }
+            timerElement.textContent = `${timeRemaining} seconds remaining...`;
+            timeRemaining--;
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000); // Update every second
+
+        // JavaScript for logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Your Firebase sign-out logic here
+            getAuth().signOut().then(() => {
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error('Error signing out:', error);
+            });
+        });
+    </script>
+    <!-- Include your JS file -->
+    <script src="welcome.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger King Customer Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://example.com/burgerking_background.jpg'); /* Replace with your Burger King theme image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .question input[type="radio"],
+        .question input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #f7e400; /* Burger King's signature yellow */
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #f5d600;
+        }
+
+        .button-container .back-button {
+            background-color: #007bff;
+        }
+
+        .button-container .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="questionContainer" class="question">
+            <!-- Survey questions will be dynamically inserted here -->
+        </div>
+        <div class="button-container">
+            <button id="backButton" class="back-button" style="display:none;">Back</button>
+            <button id="nextButton">Next</button>
+        </div>
+        <div id="message" class="message"></div>
+        <div id="timer" class="message">10</div>
+    </div>
+
+    <script>
+        const questions = [
+            "Question 1: How satisfied are you with the quality of food at Burger King?",
+            "Question 2: How would you rate the customer service at Burger King?",
+            "Question 3: How clean and comfortable is the Burger King location you visited?",
+            "Question 4: How do you rate the pricing of the menu items at Burger King?",
+            "Question 5: How likely are you to visit Burger King again?",
+            "Question 6: How easy was it to place your order at Burger King?",
+            "Question 7: What improvements would you suggest for Burger King?"
+        ];
+
+        let currentQuestion = 0;
+        let timer;
+
+        function startTimer() {
+            let timeLeft = 10;
+            document.getElementById('timer').innerText = timeLeft;
+            document.getElementById('nextButton').disabled = true;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('nextButton').disabled = false;
+                }
+            }, 1000);
+        }
+
+        function displayQuestion() {
+            if (currentQuestion >= questions.length) {
+                document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
+                document.getElementById('nextButton').style.display = 'none';
+                document.getElementById('backButton').style.display = 'none';
+                return;
+            }
+            document.getElementById('questionContainer').innerHTML = `<h2>${questions[currentQuestion]}</h2>`;
+            startTimer();
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        function goBack() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        document.getElementById('nextButton').addEventListener('click', nextQuestion);
+        document.getElementById('backButton').addEventListener('click', goBack);
+
+        displayQuestion();
+    </script>
+</body>
+
+</html>

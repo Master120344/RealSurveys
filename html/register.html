@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - RealSurveys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 36px;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #3a9f6f;
+        }
+
+        .main-content {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .main-content h2 {
+            font-size: 36px;
+            color: #2e8b57;
+        }
+
+        .main-content p {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input, .form-container button {
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            background-color: #2e8b57;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #3a9f6f;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><a href="index.html">RealSurveys</a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="main-content">
+    <h2>Register</h2>
+    <p>Create an account to start earning rewards with RealSurveys.</p>
+    <div class="form-container">
+        <form id="registerForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+            <div id="message" class="success-message" style="display: none;"></div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
+</footer>
+
+<script type="module">
+    import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+        authDomain: "real-surveys.firebaseapp.com",
+        projectId: "real-surveys",
+        storageBucket: "real-surveys.appspot.com",
+        messagingSenderId: "1024139519354",
+        appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const messageElement = document.getElementById('message');
+
+        if (password !== confirmPassword) {
+            messageElement.textContent = 'Passwords do not match.';
+            messageElement.className = 'error-message';
+            messageElement.style.display = 'block';
+            return;
+        }
+
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            messageElement.textContent = 'Success! Redirecting...';
+            messageElement.className = 'success-message';
+            messageElement.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'welcome.html'; // Redirect to welcome page after registration
+            }, 2000); // Delay redirection to show the success message
+        } catch (error) {
+            console.error('Registration failed:', error);
+            messageElement.textContent = 'Registration failed. Please try again.';
+            messageElement.className = 'error-message';
+            messageElement.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>
