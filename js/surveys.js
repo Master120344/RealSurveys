@@ -1,34 +1,23 @@
-import { getDatabase, ref, set, update, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+// Import Firebase modules
+import { getDatabase, ref, update, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
-    apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
-    authDomain: 'real-surveys.firebaseapp.com',
-    databaseURL: 'https://real-surveys-default-rtdb.firebaseio.com',
-    projectId: 'real-surveys',
-    storageBucket: 'real-surveys.appspot.com',
-    messagingSenderId: '1024139519354',
-    appId: '1:1024139519354:web:a0b11a5a0560ab02ee22c3'
+    apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
+    authDomain: "real-surveys.firebaseapp.com",
+    databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
+    projectId: "real-surveys",
+    storageBucket: "real-surveys.appspot.com",
+    messagingSenderId: "1024139519354",
+    appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
-const usersRef = ref(db, 'users');  // Reference to the 'users' node in your Firebase Realtime Database
-
-// Check authentication state
-let userId = null;
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        userId = user.uid;  // Get the authenticated user's ID
-    } else {
-        // Redirect to login if no user is authenticated
-        window.location.href = 'login.html';
-    }
-});
 
 // Survey navigation
 let currentQuestion = 1;
@@ -65,11 +54,13 @@ document.getElementById('prevButton').addEventListener('click', () => {
 document.getElementById('surveyForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // Check if user is logged in
-    if (!userId) {
-        alert('User is not authenticated.');
+    // Get user ID from authentication
+    const user = auth.currentUser;
+    if (!user) {
+        alert('User not authenticated.');
         return;
     }
+    const userId = user.uid;
 
     // Handle form submission
     const answers = {
@@ -81,18 +72,20 @@ document.getElementById('surveyForm').addEventListener('submit', async (event) =
     };
 
     if (Object.values(answers).every(answer => answer || answer === "")) {  // Handle empty answers for textarea
-        try {
-            // Update user's balance in Firebase
-            const userSnapshot = await get(ref(usersRef, userId));
-            const userData = userSnapshot.val();
+        // Update user's balance in Firebase
+        const userRef = ref(db, 'users/' + userId);
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
             const currentBalance = userData?.balance || 0;
             const newBalance = currentBalance + 10;  // Reward amount
 
-            await update(ref(usersRef, userId), { balance: newBalance });
+            await update(userRef, { balance: newBalance });
+
             alert('Survey completed! Your balance has been updated.');
-            window.location.href = 'reward.html';  // Redirect to reward page
-        } catch (error) {
-            console.error('Error updating balance:', error);
+            window.location.href = 'balance.html';  // Redirect to balance page
+        } else {
+            console.error('User data not found.');
         }
     } else {
         alert('Please answer all questions before submitting.');
