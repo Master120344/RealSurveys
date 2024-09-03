@@ -72,12 +72,8 @@
         <div id="question-container">
             <div class="question-box">
                 <p id="question-text">Question 1: How would you rate your overall experience with Home Depot?</p>
-                <div>
-                    <input type="radio" name="question1" id="q1a" value="1"> 1 - Very Poor<br>
-                    <input type="radio" name="question1" id="q1b" value="2"> 2 - Poor<br>
-                    <input type="radio" name="question1" id="q1c" value="3"> 3 - Average<br>
-                    <input type="radio" name="question1" id="q1d" value="4"> 4 - Good<br>
-                    <input type="radio" name="question1" id="q1e" value="5"> 5 - Excellent<br>
+                <div id="question-options">
+                    <!-- Options will be populated by JavaScript -->
                 </div>
             </div>
             <div class="timer">Time remaining: <span id="timer">10</span> seconds</div>
@@ -89,67 +85,6 @@
         </div>
     </div>
 
-    <script>
-        let currentQuestion = 1;
-        const totalQuestions = 10;
-        let timeLeft = 10;
-        let timerInterval;
-
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').textContent = timeLeft;
-
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    document.getElementById('next-button').disabled = false;
-                }
-            }, 1000);
-        }
-
-        function resetTimer() {
-            timeLeft = 10;
-            document.getElementById('timer').textContent = timeLeft;
-            document.getElementById('next-button').disabled = true;
-            startTimer();
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
-                resetTimer();
-            } else {
-                window.location.href = 'surveys.html'; // Redirect when survey is complete
-            }
-        }
-
-        function goBack() {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
-                resetTimer();
-            }
-        }
-
-        function getQuestionText(questionNumber) {
-            const questions = [
-                "How would you rate your overall experience with Home Depot?",
-                "How satisfied are you with the quality of products?",
-                "How likely are you to recommend Home Depot to a friend?",
-                "How was the customer service during your visit?",
-                "Did you find everything you were looking for?",
-                "How satisfied are you with the prices at Home Depot?",
-                "How clean and organized was the store?",
-                "How easy was it to navigate the store?",
-                "How satisfied are you with the Home Depot website?",
-                "Would you shop at Home Depot again?"
-            ];
-            return questions[questionNumber - 1];
-        }
-
-        // Start the first question timer on page load
-        window.onload = resetTimer;
-    </script>
+    <script src="homedepot_survey.js"></script>
 </body>
 </html>
