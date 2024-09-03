@@ -1,20 +1,34 @@
-// Firebase configuration
+import { getDatabase, ref, set, update, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
+    authDomain: 'real-surveys.firebaseapp.com',
+    databaseURL: 'https://real-surveys-default-rtdb.firebaseio.com',
+    projectId: 'real-surveys',
+    storageBucket: 'real-surveys.appspot.com',
+    messagingSenderId: '1024139519354',
+    appId: '1:1024139519354:web:a0b11a5a0560ab02ee22c3'
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+const usersRef = ref(db, 'users');  // Reference to the 'users' node in your Firebase Realtime Database
 
-// Reference to the Firebase database
-const db = firebase.database();
-const usersRef = db.ref('users');  // Reference to the 'users' node in your Firebase Realtime Database
+// Check authentication state
+let userId = null;
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        userId = user.uid;  // Get the authenticated user's ID
+    } else {
+        // Redirect to login if no user is authenticated
+        window.location.href = 'login.html';
+    }
+});
 
 // Survey navigation
 let currentQuestion = 1;
@@ -48,11 +62,14 @@ document.getElementById('prevButton').addEventListener('click', () => {
 });
 
 // Form submission
-document.getElementById('mcdonaldsSurveyForm').addEventListener('submit', (event) => {
+document.getElementById('surveyForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // Get user ID (this could come from user authentication or local storage)
-    const userId = 'exampleUserId';  // Replace with actual user ID
+    // Check if user is logged in
+    if (!userId) {
+        alert('User is not authenticated.');
+        return;
+    }
 
     // Handle form submission
     const answers = {
@@ -64,21 +81,19 @@ document.getElementById('mcdonaldsSurveyForm').addEventListener('submit', (event
     };
 
     if (Object.values(answers).every(answer => answer || answer === "")) {  // Handle empty answers for textarea
-        // Update user's balance in Firebase
-        usersRef.child(userId).once('value').then(snapshot => {
-            const userData = snapshot.val();
+        try {
+            // Update user's balance in Firebase
+            const userSnapshot = await get(ref(usersRef, userId));
+            const userData = userSnapshot.val();
             const currentBalance = userData?.balance || 0;
             const newBalance = currentBalance + 10;  // Reward amount
 
-            usersRef.child(userId).update({ balance: newBalance }).then(() => {
-                alert('Survey completed! Your balance has been updated.');
-                window.location.href = 'reward.html';  // Redirect to reward page
-            }).catch(error => {
-                console.error('Error updating balance:', error);
-            });
-        }).catch(error => {
-            console.error('Error fetching user data:', error);
-        });
+            await update(ref(usersRef, userId), { balance: newBalance });
+            alert('Survey completed! Your balance has been updated.');
+            window.location.href = 'reward.html';  // Redirect to reward page
+        } catch (error) {
+            console.error('Error updating balance:', error);
+        }
     } else {
         alert('Please answer all questions before submitting.');
     }
