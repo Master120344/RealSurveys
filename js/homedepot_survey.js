@@ -1,37 +1,7 @@
-let currentQuestionIndex = 0;
-const totalQuestions = 100; // Update this to match the number of questions you have
+let currentQuestion = 1;
+const totalQuestions = 10;
 let timeLeft = 10;
 let timerInterval;
-
-// Define your questions and possible options
-const questions = [
-    {
-        text: "Have you ever been to Home Depot before?",
-        options: [
-            { text: "Yes", next: 1 },
-            { text: "No", next: 2 }
-        ]
-    },
-    {
-        text: "How would you rate your overall experience with Home Depot?",
-        options: [
-            { text: "1 - Very Poor", next: 3 },
-            { text: "2 - Poor", next: 3 },
-            { text: "3 - Average", next: 3 },
-            { text: "4 - Good", next: 3 },
-            { text: "5 - Excellent", next: 3 }
-        ]
-    },
-    {
-        text: "What could Home Depot do to improve your experience?",
-        options: [
-            { text: "Better customer service", next: 4 },
-            { text: "Lower prices", next: 4 },
-            { text: "More product variety", next: 4 }
-        ]
-    },
-    // Add more questions here, and specify branching logic as needed
-];
 
 function startTimer() {
     timerInterval = setInterval(() => {
@@ -53,44 +23,66 @@ function resetTimer() {
 }
 
 function nextQuestion() {
-    currentQuestionIndex = getNextQuestionIndex();
-    if (currentQuestionIndex < totalQuestions) {
-        displayQuestion(currentQuestionIndex);
+    if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
         resetTimer();
     } else {
-        window.location.href = 'surveys.html'; // Redirect when survey is complete
+        submitSurvey(); // Submit the survey when completed
     }
 }
 
 function goBack() {
-    // Add logic for going back if needed
+    if (currentQuestion > 1) {
+        currentQuestion--;
+        document.getElementById('question-text').textContent = `Question ${currentQuestion}: ` + getQuestionText(currentQuestion);
+        resetTimer();
+    }
 }
 
-function displayQuestion(index) {
-    const question = questions[index];
-    document.getElementById('question-text').textContent = `Question ${index + 1}: ${question.text}`;
-    
-    const optionsContainer = document.getElementById('question-options');
-    optionsContainer.innerHTML = ''; // Clear previous options
+function getQuestionText(questionNumber) {
+    const questions = [
+        "How would you rate your overall experience with Home Depot?",
+        "How satisfied are you with the quality of products?",
+        "How likely are you to recommend Home Depot to a friend?",
+        "How was the customer service during your visit?",
+        "Did you find everything you were looking for?",
+        "How satisfied are you with the prices at Home Depot?",
+        "How clean and organized was the store?",
+        "How easy was it to navigate the store?",
+        "How satisfied are you with the Home Depot website?",
+        "Would you shop at Home Depot again?"
+    ];
+    return questions[questionNumber - 1];
+}
 
-    question.options.forEach((option, i) => {
-        const optionElement = document.createElement('div');
-        optionElement.innerHTML = `<input type="radio" name="question${index}" id="q${index}a${i}" value="${i}"> ${option.text}<br>`;
-        optionsContainer.appendChild(optionElement);
+function submitSurvey() {
+    const email = document.getElementById('email').value;
+    const answers = Array.from(document.querySelectorAll('input[type="radio"]:checked')).map(input => input.value);
+    
+    fetch('/complete-survey', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: email,
+            surveyAnswers: answers,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Survey submitted successfully!');
+            window.location.href = 'surveys.html'; // Redirect after submission
+        } else {
+            alert('Error submitting survey.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 }
 
-function getNextQuestionIndex() {
-    const selectedOption = document.querySelector('input[name="question' + currentQuestionIndex + '"]:checked');
-    if (selectedOption) {
-        const nextQuestion = questions[currentQuestionIndex].options[selectedOption.value].next;
-        return nextQuestion;
-    }
-    return currentQuestionIndex; // Stay on current question if no option is selected
-}
-
-// Initialize the first question on page load
-window.onload = function() {
-    displayQuestion(currentQuestionIndex);
-    resetTimer();
-};
+// Start the first question timer on page load
+window.onload = resetTimer;
