@@ -69,20 +69,31 @@
 <body>
     <div class="container">
         <h1>Home Depot Survey</h1>
-        <div id="question-container">
-            <div class="question-box">
-                <p id="question-text">Question 1: How would you rate your overall experience with Home Depot?</p>
-                <div id="question-options">
-                    <!-- Options will be populated by JavaScript -->
+        <form id="survey-form">
+            <div id="question-container">
+                <div class="question-box">
+                    <p id="question-text">Question 1: How would you rate your overall experience with Home Depot?</p>
+                    <div>
+                        <input type="radio" name="question1" id="q1a" value="1"> 1 - Very Poor<br>
+                        <input type="radio" name="question1" id="q1b" value="2"> 2 - Poor<br>
+                        <input type="radio" name="question1" id="q1c" value="3"> 3 - Average<br>
+                        <input type="radio" name="question1" id="q1d" value="4"> 4 - Good<br>
+                        <input type="radio" name="question1" id="q1e" value="5"> 5 - Excellent<br>
+                    </div>
                 </div>
+                <div class="timer">Time remaining: <span id="timer">10</span> seconds</div>
             </div>
-            <div class="timer">Time remaining: <span id="timer">10</span> seconds</div>
-        </div>
 
-        <div class="buttons">
-            <button class="back-button" onclick="goBack()">Back</button>
-            <button id="next-button" disabled onclick="nextQuestion()">Next</button>
-        </div>
+            <div class="question-box">
+                <label for="email">Your Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="buttons">
+                <button class="back-button" type="button" onclick="goBack()">Back</button>
+                <button id="next-button" type="button" disabled onclick="nextQuestion()">Next</button>
+            </div>
+        </form>
     </div>
 
     <script src="homedepot_survey.js"></script>
