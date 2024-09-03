@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
 const Stripe = require('stripe');
-const nodemailer = require('nodemailer'); // Add Nodemailer for sending emails
+const nodemailer = require('nodemailer'); // For sending emails
 require('dotenv').config(); // Load environment variables
 
 // Initialize Firebase Admin SDK
@@ -22,10 +22,10 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Initialize Nodemailer transporter
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // Replace with your email service provider
+    service: 'gmail', // Use Gmail or another email service provider
     auth: {
-        user: process.env.EMAIL_USER, // Your email address
-        pass: process.env.EMAIL_PASS  // Your email password or app password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
@@ -73,27 +73,20 @@ app.post('/create-payment-intent', async (req, res) => {
 
 // Route to handle survey completion
 app.post('/complete-survey', async (req, res) => {
-    const { userId, surveyAnswers } = req.body;
+    const { email, surveyAnswers } = req.body;
 
     try {
-        const userSnapshot = await usersRef.child(userId).once('value');
-        const userData = userSnapshot.val();
-        const currentBalance = userData?.balance || 0;
-        const newBalance = currentBalance - (surveyAnswers.length * 5); // Example logic
-
-        await usersRef.child(userId).update({ balance: newBalance });
-
-        // Send email with survey responses
+        // Send email with survey data
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: 'realsurveydata@gmail.com', // Email address where you want to receive the data
-            subject: 'New Survey Response',
-            text: `Survey response from user ID: ${userId}\n\nAnswers:\n${surveyAnswers.map((answer, index) => `Question ${index + 1}: ${answer}`).join('\n')}`
+            to: 'realsurveydata@gmail.com', // The recipient email address
+            subject: 'New Survey Submission',
+            text: `Survey completed by: ${email}\n\nAnswers:\n${surveyAnswers.join('\n')}`
         };
 
         await transporter.sendMail(mailOptions);
 
-        res.json({ success: true, newBalance });
+        res.json({ success: true });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
