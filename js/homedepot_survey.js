@@ -3,6 +3,9 @@ const totalQuestions = 10;
 let timeLeft = 10;
 let timerInterval;
 
+// Assume Firebase authentication is already initialized
+// Initialize Firebase and get the current user
+
 function startTimer() {
     timerInterval = setInterval(() => {
         timeLeft--;
@@ -57,31 +60,35 @@ function getQuestionText(questionNumber) {
 }
 
 function submitSurvey() {
-    const email = document.getElementById('email').value;
-    const answers = Array.from(document.querySelectorAll('input[type="radio"]:checked')).map(input => input.value);
-    
-    fetch('/complete-survey', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email: email,
-            surveyAnswers: answers,
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Survey submitted successfully!');
-            window.location.href = 'surveys.html'; // Redirect after submission
-        } else {
-            alert('Error submitting survey.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    // Get the current user from Firebase Authentication
+    firebase.auth().currentUser.getIdToken(true)
+        .then(token => {
+            fetch('/complete-survey', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Include the token for authentication
+                },
+                body: JSON.stringify({
+                    surveyAnswers: Array.from(document.querySelectorAll('input[type="radio"]:checked')).map(input => input.value)
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Survey submitted successfully!');
+                    window.location.href = 'surveys.html'; // Redirect after submission
+                } else {
+                    alert('Error submitting survey.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        })
+        .catch(error => {
+            console.error('Error getting user token:', error);
+        });
 }
 
 // Start the first question timer on page load
