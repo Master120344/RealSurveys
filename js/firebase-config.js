@@ -1,9 +1,9 @@
 // js/firebase-config.js
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js';
-import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
+import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
@@ -14,9 +14,43 @@ const firebaseConfig = {
   appId: '1:1024139519354:web:a0b11a5a0560ab02ee22c3'
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const storage = getStorage(app);
 const database = getDatabase(app);
 
-export { auth, storage, database };
+// Authentication functions
+function signIn(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+function signOutUser() {
+  return signOut(auth);
+}
+
+// Check user authentication state
+function onAuthStateChanged(callback) {
+  return onAuthStateChanged(auth, callback);
+}
+
+// Database functions
+function writeUserData(userId, name, email) {
+  return set(ref(database, 'users/' + userId), {
+    username: name,
+    email: email
+  });
+}
+
+function readUserData(userId) {
+  const userRef = ref(database, 'users/' + userId);
+  return get(userRef).then(snapshot => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      throw new Error('No data available');
+    }
+  });
+}
+
+export { auth, storage, database, signIn, signOutUser, onAuthStateChanged, writeUserData, readUserData };
