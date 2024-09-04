@@ -63,12 +63,17 @@
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
+            overflow: hidden;
+            position: relative;
         }
 
         .survey-card img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
+            display: block;
             border-radius: 5px;
+            object-fit: cover;
+            max-height: 150px; /* Adjust this value to control the height */
         }
 
         .survey-card h3 {
@@ -161,7 +166,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="#">Giveaways</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="logout.html">Log Out</a></li>
                 </ul>
             </nav>
@@ -174,206 +179,200 @@
     <div class="surveys-container">
         <!-- Survey Cards -->
         <div class="survey-card">
-            <img src="images/amazon.jpg" alt="Amazon Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/amazon.png?raw=true" alt="Amazon Survey">
             <h3>Amazon Survey</h3>
             <p>Earn $7 for completing this survey.</p>
             <a href="amazon_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/apple.jpg" alt="Apple Survey">
-            <h3>Apple Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
-            <a href="apple_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/bestbuy.jpg" alt="Best Buy Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true" alt="Best Buy Survey">
             <h3>Best Buy Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
+            <p>Earn $6 for completing this survey.</p>
             <a href="bestbuy_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/burgerking.jpg" alt="Burger King Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/burger_king.png?raw=true" alt="Burger King Survey">
             <h3>Burger King Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
+            <p>Earn $5 for completing this survey.</p>
             <a href="burgerking_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/chasebank.jpg" alt="Chase Bank Survey">
-            <h3>Chase Bank Survey</h3>
-            <p>Earn $8 for completing this survey.</p>
-            <a href="chasebank_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/chipotle.jpg" alt="Chipotle Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chipotle.jpg?raw=true" alt="Chipotle Survey">
             <h3>Chipotle Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
+            <p>Earn $6 for completing this survey.</p>
             <a href="chipotle_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/costco.jpg" alt="Costco Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/costco.jpg?raw=true" alt="Costco Survey">
             <h3>Costco Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
+            <p>Earn $7 for completing this survey.</p>
             <a href="costco_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/gamestop.jpg" alt="GameStop Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/gamestop.jpg?raw=true" alt="GameStop Survey">
             <h3>GameStop Survey</h3>
-            <p>Earn $7 for completing this survey.</p>
+            <p>Earn $5 for completing this survey.</p>
             <a href="gamestop_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/homedepot.jpg" alt="Home Depot Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/homedepot.jpg?raw=true" alt="Home Depot Survey">
             <h3>Home Depot Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
+            <p>Earn $6 for completing this survey.</p>
             <a href="homedepot_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/ihop.jpg" alt="IHop Survey">
-            <h3>IHop Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
-            <a href="ihop_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/kroger.jpg" alt="Kroger Survey">
-            <h3>Kroger Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
-            <a href="kroger_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/lowes.jpg" alt="Lowe's Survey">
-            <h3>Lowe's Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
-            <a href="lowes_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/mcdonalds.jpg" alt="McDonald's Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/mcdonalds.png?raw=true" alt="McDonald's Survey">
             <h3>McDonald's Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
+            <p>Earn $5 for completing this survey.</p>
             <a href="mcdonalds1_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/netflix.jpg" alt="Netflix Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/netflix.jpg?raw=true" alt="Netflix Survey">
             <h3>Netflix Survey</h3>
-            <p>Earn $7 for completing this survey.</p>
+            <p>Earn $8 for completing this survey.</p>
             <a href="netflix_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/officedepot.jpg" alt="Office Depot Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/office_depot.png?raw=true" alt="Office Depot Survey">
             <h3>Office Depot Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
+            <p>Earn $6 for completing this survey.</p>
             <a href="officedepot_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/panera.jpg" alt="Panera Survey">
-            <h3>Panera Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
-            <a href="panera_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/petsmart.jpg" alt="PetSmart Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/petsmart.jpg?raw=true" alt="PetSmart Survey">
             <h3>PetSmart Survey</h3>
             <p>Earn $5 for completing this survey.</p>
             <a href="petsmart_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/popeyes.jpg" alt="Popeyes Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/popeys.jpg?raw=true" alt="Popeyes Survey">
             <h3>Popeyes Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
+            <p>Earn $5 for completing this survey.</p>
             <a href="popeyes_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/raisingcanes.jpg" alt="Raising Cane's Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/raisingcanes.jpg?raw=true" alt="Raising Cane's Survey">
             <h3>Raising Cane's Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
+            <p>Earn $6 for completing this survey.</p>
             <a href="raisingcanes_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/sephora.jpg" alt="Sephora Survey">
-            <h3>Sephora Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
-            <a href="sephora_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/southwest.jpg" alt="Southwest Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/southwest.jpg?raw=true" alt="Southwest Survey">
             <h3>Southwest Survey</h3>
             <p>Earn $7 for completing this survey.</p>
             <a href="southwest_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/spectrum.jpg" alt="Spectrum Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/spectrum.jpg?raw=true" alt="Spectrum Survey">
             <h3>Spectrum Survey</h3>
             <p>Earn $6 for completing this survey.</p>
             <a href="spectrum_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/staples.jpg" alt="Staples Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Staples.jpg?raw=true" alt="Staples Survey">
             <h3>Staples Survey</h3>
             <p>Earn $5 for completing this survey.</p>
             <a href="staples_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/starbucks.jpg" alt="Starbucks Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Starbucks.PNG?raw=true" alt="Starbucks Survey">
             <h3>Starbucks Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
+            <p>Earn $5 for completing this survey.</p>
             <a href="starbucks_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/subway.jpg" alt="Subway Survey">
-            <h3>Subway Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
-            <a href="subway-survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/taco-bell.jpg" alt="Taco Bell Survey">
-            <h3>Taco Bell Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
-            <a href="taco-bell-survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/target.jpg" alt="Target Survey">
-            <h3>Target Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
-            <a href="target_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/traderjoes.jpg" alt="Trader Joe's Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Trader_Joes.jpg?raw=true" alt="Trader Joe's Survey">
             <h3>Trader Joe's Survey</h3>
-            <p>Earn $7 for completing this survey.</p>
+            <p>Earn $6 for completing this survey.</p>
             <a href="traderjoes_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/wafflehouse.jpg" alt="Waffle House Survey">
-            <h3>Waffle House Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
-            <a href="wafflehouse_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/walgreens.jpg" alt="Walgreens Survey">
-            <h3>Walgreens Survey</h3>
-            <p>Earn $5 for completing this survey.</p>
-            <a href="walgreens_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="images/walmart.jpg" alt="Walmart Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Walmart.PNG?raw=true" alt="Walmart Survey">
             <h3>Walmart Survey</h3>
-            <p>Earn $6 for completing this survey.</p>
+            <p>Earn $7 for completing this survey.</p>
             <a href="walmart_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/wendys.jpg" alt="Wendy's Survey">
-            <h3>Wendy's Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
-            <a href="wendys_survey.html" class="survey-link">Take Survey</a>
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Whole_Foods.jpg?raw=true" alt="Whole Foods Survey">
+            <h3>Whole Foods Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="wholefoods_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="images/wholefoods.jpg" alt="Whole Foods Survey">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Apple.jpg?raw=true" alt="Apple Survey">
+            <h3>Apple Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="apple_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Dunkin.jpg?raw=true" alt="Dunkin' Survey">
+            <h3>Dunkin' Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="dunkin_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/IHOP.png?raw=true" alt="IHOP Survey">
+            <h3>IHOP Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="ihop_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Kroger.png?raw=true" alt="Kroger Survey">
+            <h3>Kroger Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="kroger_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Lowes-logo.jpg?raw=true" alt="Lowe's Survey">
+            <h3>Lowe's Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="lowes_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Panera.jpg?raw=true" alt="Panera Survey">
+            <h3>Panera Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="panera_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Sephora.jpg?raw=true" alt="Sephora Survey">
+            <h3>Sephora Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="sephora_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Staples.jpg?raw=true" alt="Staples Survey">
+            <h3>Staples Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="staples_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Starbucks.PNG?raw=true" alt="Starbucks Survey">
+            <h3>Starbucks Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="starbucks_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Trader_Joes.jpg?raw=true" alt="Trader Joe's Survey">
+            <h3>Trader Joe's Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="traderjoes_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Walmart.PNG?raw=true" alt="Walmart Survey">
+            <h3>Walmart Survey</h3>
+            <p>Earn $7 for completing this survey.</p>
+            <a href="walmart_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Whole_Foods.jpg?raw=true" alt="Whole Foods Survey">
             <h3>Whole Foods Survey</h3>
             <p>Earn $6 for completing this survey.</p>
             <a href="wholefoods_survey.html" class="survey-link">Take Survey</a>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Your Survey Company. All rights reserved.</p>
+        <p>&copy; 2024 Real Surveys | <a href="privacy.html">Privacy Policy</a></p>
     </footer>
 </body>
 </html>
