@@ -1,7 +1,7 @@
 // js/firebase-config.js
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged as onAuthStateChangedFn, signOut } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js';
 import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 
@@ -31,7 +31,7 @@ function signOutUser() {
 
 // Check user authentication state
 function onAuthStateChanged(callback) {
-  return onAuthStateChanged(auth, callback);
+  return onAuthStateChangedFn(auth, callback);
 }
 
 // Database functions
