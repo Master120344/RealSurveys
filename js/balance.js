@@ -79,22 +79,23 @@ form.addEventListener('submit', async (event) => {
 
 // Function to update user's balance in Firebase
 async function updateBalance(amount) {
-    const userId = (await firebase.auth().currentUser).uid;
-    const userRef = firebase.database().ref('users/' + userId);
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const userId = user.uid;
+        const userRef = firebase.database().ref('users/' + userId);
 
-    userRef.once('value').then((snapshot) => {
-        if (snapshot.exists()) {
-            const currentBalance = snapshot.val().balance;
-            const newBalance = currentBalance - amount;
-            userRef.update({ balance: newBalance })
-                .then(() => {
-                    console.log('Balance updated successfully.');
-                })
-                .catch((error) => {
-                    console.error('Error updating balance:', error);
-                });
+        try {
+            const snapshot = await userRef.once('value');
+            if (snapshot.exists()) {
+                const currentBalance = snapshot.val().balance;
+                const newBalance = currentBalance - amount;
+                await userRef.update({ balance: newBalance });
+                console.log('Balance updated successfully.');
+            }
+        } catch (error) {
+            console.error('Error fetching or updating user data:', error);
         }
-    }).catch((error) => {
-        console.error('Error fetching user data:', error);
-    });
+    } else {
+        console.error('No user is currently authenticated.');
+    }
 }
