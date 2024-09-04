@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys</title>
+    <link rel="stylesheet" href="balance.css">
     <style>
         /* Existing styles */
         /* Add or modify styles for the balance display if needed */
@@ -35,6 +36,28 @@
         const auth = getAuth(app);
         const database = getDatabase(app);
 
+        // Function to populate surveys
+        function populateSurveys() {
+            const surveysRef = ref(database, 'surveys');
+            onValue(surveysRef, (snapshot) => {
+                const surveys = snapshot.val();
+                const surveyContainer = document.querySelector('.survey-container');
+                surveyContainer.innerHTML = ''; // Clear existing surveys
+
+                for (const [key, survey] of Object.entries(surveys)) {
+                    const surveyCard = document.createElement('div');
+                    surveyCard.className = 'survey-card';
+                    surveyCard.style.backgroundImage = `url('https://example.com/${key}.jpg')`; // Placeholder image URL
+                    surveyCard.innerHTML = `
+                        <h2>${survey.title}</h2>
+                        <p>Reward: $${survey.reward}</p>
+                        <a href="${survey.link}">Start Survey</a>
+                    `;
+                    surveyContainer.appendChild(surveyCard);
+                }
+            });
+        }
+
         // Check if user is logged in
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -49,6 +72,9 @@
                     const balance = snapshot.val();
                     document.getElementById('user-balance').textContent = `Balance: $${balance}`;
                 });
+
+                // Populate surveys
+                populateSurveys();
             } else {
                 // If the user is not logged in, redirect to login page
                 window.location.href = 'login.html';
@@ -84,8 +110,7 @@
 
     <!-- Survey Container -->
     <div class="survey-container">
-        <!-- Survey Cards -->
-        <!-- ... Existing survey cards ... -->
+        <!-- Survey Cards will be populated here -->
     </div>
 
     <!-- Pagination -->
