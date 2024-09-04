@@ -20,37 +20,41 @@ const auth = getAuth(app);
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('register-form');
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm-password').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
 
-        if (password !== confirmPassword) {
-            alert('Passwords do not match.');
-            return;
-        }
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
 
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            window.location.href = 'welcome.html'; // Redirect to the welcome page
-        } catch (error) {
-            console.error('Error registering:', error);
-            alert('Registration failed. Please try again.');
-        }
-    });
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                window.location.href = 'welcome.html'; // Redirect to the welcome page
+            } catch (error) {
+                console.error('Error registering:', error);
+                alert('Registration failed. Please try again.');
+            }
+        });
+    }
 
     // Theme switching logic
     const themeSwitcher = document.getElementById('theme-switcher');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.classList.add(savedTheme);
+    if (themeSwitcher) {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.classList.add(savedTheme);
 
-    themeSwitcher.addEventListener('click', () => {
-        const currentTheme = document.body.classList.contains('light') ? 'light' : 'dark';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.body.classList.remove(currentTheme);
-        document.body.classList.add(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
+        themeSwitcher.addEventListener('click', () => {
+            const currentTheme = document.body.classList.contains('light') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.classList.remove(currentTheme);
+            document.body.classList.add(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
 });
