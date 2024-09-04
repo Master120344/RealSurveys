@@ -15,11 +15,12 @@ const cardErrors = document.getElementById('card-errors');
 const confirmationMessage = document.getElementById('confirmation-message');
 
 // Cash out button click event
-cashoutBtn.addEventListener('click', () => {
+cashoutBtn.addEventListener('click', async () => {
     const amount = parseFloat(document.getElementById('cashout-amount').value);
     if (!isNaN(amount) && amount > 0) {
         const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
         if (amount <= currentBalance) {
+            // Proceed to payment step
             step1.classList.add('hidden');
             step2.classList.remove('hidden');
         } else {
@@ -36,30 +37,64 @@ form.addEventListener('submit', async (event) => {
 
     const amount = parseFloat(document.getElementById('cashout-amount').value) * 100; // Convert to cents
 
-    // Create a payment intent
-    const response = await fetch('/create-payment-intent', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount }),
-    });
+    try {
+        // Create a payment intent
+        const response = await fetch('/create-payment-intent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount }),
+        });
 
-    const { clientSecret } = await response.json();
-
-    // Confirm the payment
-    const { error } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    });
 
-    if (error) {
-        cardErrors.textContent = error.message;
-    } else {
-        cardErrors.textContent = '';
-        step2.classList.add('hidden');
-        step3.classList.remove('hidden');
-        confirmationMessage.textContent = `Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.`;
+        const { clientSecret } = await response.json();
+
+        // Confirm the payment
+        const { error } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+            }
+        });
+
+        if (error) {
+            cardErrors.textContent = error.message;
+        } else {
+            cardErrors.textContent = '';
+            step2.classList.add('hidden');
+            step3.classList.remove('hidden');
+            confirmationMessage.textContent = `Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.`;
+
+            // Update user's balance in Firebase
+            updateBalance(amount / 100);
+        }
+    } catch (error) {
+        console.error('Error during payment:', error);
+        cardErrors.textContent = 'An error occurred. Please try again.';
     }
 });
+
+// Function to update user's balance in Firebase
+async function updateBalance(amount) {
+    const userId = (await firebase.auth().currentUser).uid;
+    const userRef = firebase.database().ref('users/' + userId);
+
+    userRef.once('value').then((snapshot) => {
+        if (snapshot.exists()) {
+            const currentBalance = snapshot.val().balance;
+            const newBalance = currentBalance - amount;
+            userRef.update({ balance: newBalance })
+                .then(() => {
+                    console.log('Balance updated successfully.');
+                })
+                .catch((error) => {
+                    console.error('Error updating balance:', error);
+                });
+        }
+    }).catch((error) => {
+        console.error('Error fetching user data:', error);
+    });
+}
