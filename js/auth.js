@@ -18,9 +18,19 @@ const auth = getAuth(app);
 // Function to check if the user is authenticated
 function checkAuth() {
     onAuthStateChanged(auth, (user) => {
-        // Redirect only if user is not authenticated and not on the login page
-        if (!user && window.location.pathname !== '/login.html') {
-            window.location.href = '/login.html'; // Redirect to login page
+        try {
+            if (!user) {
+                if (window.location.pathname !== '/login.html') {
+                    window.location.href = '/login.html'; // Redirect to login page
+                }
+            }
+            // Optionally handle authenticated users trying to access login page
+            // if (user && window.location.pathname === '/login.html') {
+            //     window.location.href = '/home.html'; // Redirect to home or dashboard
+            // }
+        } catch (error) {
+            console.error('Authentication check error:', error);
+            // Optionally handle errors, e.g., display an error message
         }
     });
 }
