@@ -1,10 +1,10 @@
-// js/firebase-config.js
-
+// Import Firebase modules
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged as onAuthStateChangedFn, signOut } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js';
 import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 
+// Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
   authDomain: 'real-surveys.firebaseapp.com',
@@ -53,4 +53,5 @@ function readUserData(userId) {
   });
 }
 
+// Exporting functions and instances
 export { auth, storage, database, signIn, signOutUser, onAuthStateChanged, writeUserData, readUserData };
