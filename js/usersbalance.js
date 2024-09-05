@@ -1,8 +1,8 @@
 // Import Firebase modules
 import { getDatabase, ref, get, update } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getAuth, initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 
-// Initialize Firebase
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
     authDomain: "real-surveys.firebaseapp.com",
@@ -13,6 +13,7 @@ const firebaseConfig = {
     appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
@@ -56,7 +57,7 @@ async function updateUserBalance(amount) {
         try {
             const snapshot = await get(userRef);
             if (snapshot.exists()) {
-                const currentBalance = snapshot.val().balance;
+                const currentBalance = snapshot.val().balance || 0; // Default to 0 if balance is undefined
                 const newBalance = currentBalance + amount;
                 await update(userRef, { balance: newBalance });
                 console.log('Balance updated successfully.');
