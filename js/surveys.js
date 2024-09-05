@@ -2,17 +2,7 @@
 import { getDatabase, ref, update, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-    authDomain: "real-surveys.firebaseapp.com",
-    databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
-    projectId: "real-surveys",
-    storageBucket: "real-surveys.appspot.com",
-    messagingSenderId: "1024139519354",
-    appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-};
+import { firebaseConfig } from './firebase-config.js'; // Assuming firebase-config.js exports the config
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -72,20 +62,26 @@ document.getElementById('surveyForm').addEventListener('submit', async (event) =
     };
 
     if (Object.values(answers).every(answer => answer || answer === "")) {  // Handle empty answers for textarea
-        // Update user's balance in Firebase
-        const userRef = ref(db, 'users/' + userId);
-        const snapshot = await get(userRef);
-        if (snapshot.exists()) {
-            const userData = snapshot.val();
-            const currentBalance = userData?.balance || 0;
-            const newBalance = currentBalance + 10;  // Reward amount
+        try {
+            // Update user's balance in Firebase
+            const userRef = ref(db, 'users/' + userId);
+            const snapshot = await get(userRef);
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                const currentBalance = userData?.balance || 0;
+                const newBalance = currentBalance + 10;  // Reward amount
 
-            await update(userRef, { balance: newBalance });
+                await update(userRef, { balance: newBalance });
 
-            alert('Survey completed! Your balance has been updated.');
-            window.location.href = 'balance.html';  // Redirect to balance page
-        } else {
-            console.error('User data not found.');
+                alert('Survey completed! Your balance has been updated.');
+                window.location.href = 'balance.html';  // Redirect to balance page
+            } else {
+                console.error('User data not found.');
+                alert('Failed to retrieve user data.');
+            }
+        } catch (error) {
+            console.error('Error updating balance:', error);
+            alert('An error occurred while updating your balance. Please try again.');
         }
     } else {
         alert('Please answer all questions before submitting.');
