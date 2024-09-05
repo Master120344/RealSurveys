@@ -1,34 +1,56 @@
-// Import the necessary Firebase functions from your firebase-config.js
-import { auth, onAuthStateChanged, signOutUser } from './js/firebase-config.js';
+// js/firebase-config.js
 
-// Ensure elements exist before operating on them
-document.addEventListener('DOMContentLoaded', () => {
-    const userMenu = document.getElementById('user-menu'); // Container for user info and logout
-    const loginLink = document.getElementById('login-link'); // Link to login page
-    const logoutButton = document.getElementById('logout-button'); // Button to log out
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged as onAuthStateChangedFn, signOut } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js';
+import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
 
-    // Check authentication state
-    onAuthStateChanged(user => {
-        if (user) {
-            // User is signed in
-            userMenu.innerHTML = `Logged in as ${user.email} <button id="logout-button">Log Out</button>`;
-            if (loginLink) loginLink.style.display = 'none'; // Hide login link
-        } else {
-            // No user is signed in
-            userMenu.innerHTML = '';
-            if (loginLink) loginLink.style.display = 'inline'; // Show login link
-        }
-    });
+const firebaseConfig = {
+  apiKey: 'AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4',
+  authDomain: 'real-surveys.firebaseapp.com',
+  projectId: 'real-surveys',
+  storageBucket: 'real-surveys.appspot.com',
+  messagingSenderId: '1024139519354',
+  appId: '1:1024139519354:web:a0b11a5a0560ab02ee22c3'
+};
 
-    // Handle logout
-    document.addEventListener('click', event => {
-        if (event.target && event.target.id === 'logout-button') {
-            signOutUser().then(() => {
-                window.location.href = 'index.html'; // Redirect to home page after logout
-            }).catch(error => {
-                console.error('Error signing out:', error);
-                alert('Logout failed. Please try again.');
-            });
-        }
-    });
-});
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const storage = getStorage(app);
+const database = getDatabase(app);
+
+// Authentication functions
+function signIn(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+function signOutUser() {
+  return signOut(auth);
+}
+
+// Check user authentication state
+function onAuthStateChanged(callback) {
+  return onAuthStateChangedFn(auth, callback);
+}
+
+// Database functions
+function writeUserData(userId, name, email) {
+  return set(ref(database, 'users/' + userId), {
+    username: name,
+    email: email
+  });
+}
+
+function readUserData(userId) {
+  const userRef = ref(database, 'users/' + userId);
+  return get(userRef).then(snapshot => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      throw new Error('No data available');
+    }
+  });
+}
+
+export { auth, storage, database, signIn, signOutUser, onAuthStateChanged, writeUserData, readUserData };
