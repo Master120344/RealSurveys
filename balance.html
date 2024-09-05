@@ -46,6 +46,27 @@
                 });
             }
         });
+
+        // Stripe Elements initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Replace with your actual publishable key
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+
+            const form = document.getElementById('payment-form');
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const { token, error } = await stripe.createToken(cardElement);
+                if (error) {
+                    document.getElementById('card-errors').innerText = error.message;
+                } else {
+                    // Process the token with your server
+                    console.log('Token:', token);
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -102,7 +123,6 @@
         <p>Powered by <a href="https://stripe.com" target="_blank">Stripe</a> - The payment processor.</p>
         <img src="https://github.com/Master120344/RealSurveys/raw/main/assets/untitled-3.gif" alt="Stripe Logo" class="stripe-logo" style="width:100px; height:auto;">
     </footer>
-    <script src="js/balance.js"></script>
     <script>
         function calculateNetAmount() {
             const amount = parseFloat(document.getElementById('cashout-amount').value);
