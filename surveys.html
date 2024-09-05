@@ -115,50 +115,7 @@
             text-decoration: underline;
         }
     </style>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
-    <script type="module">
-        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-        import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-            authDomain: "real-surveys.firebaseapp.com",
-            databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
-            projectId: "real-surveys",
-            storageBucket: "real-surveys.appspot.com",
-            messagingSenderId: "1024139519354",
-            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const database = getDatabase(app);
-
-        // Redirect to login page if user is not authenticated
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                window.location.href = 'login.html';
-            } else {
-                // Load user data and update balance
-                const userId = user.uid;
-                const userRef = ref(database, 'users/' + userId);
-                get(userRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        document.getElementById('current-balance').innerText = $${userData.balance.toFixed(2)};
-                    } else {
-                        console.error("No user data found.");
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching user data: ", error);
-                });
-            }
-        });
-    </script>
+    <script type="module" src="./js/auth.js" defer></script>
 </head>
 <body>
     <header>
@@ -168,7 +125,8 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="logout.html">Log Out</a></li>
+                    <li><a href="login.html" id="login-link">Log In</a></li>
+                    <li><div id="user-menu"></div></li>
                 </ul>
             </nav>
         </div>
@@ -178,7 +136,6 @@
         <p>Your current balance: <span id="current-balance">$20.00</span></p>
     </div>
     <div class="surveys-container">
-        <!-- Survey Cards -->
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Apple.jpg?raw=true" alt="Apple Survey">
             <h3>Apple Survey</h3>
@@ -234,28 +191,11 @@
             <a href="fandango_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/foodlion.jpg?raw=true" alt="Food Lion Survey">
-            <h3>Food Lion Survey</h3>
-            <p>Earn $1 for completing this survey.</p>
-            <a href="foodlion_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/nike.jpg?raw=true" alt="Nike Survey">
-            <h3>Nike Survey</h3>
-            <p>Earn $4 for completing this survey.</p>
-            <a href="nike_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/pizzahut.jpg?raw=true" alt="Pizza Hut Survey">
-            <h3>Pizza Hut Survey</h3>
-            <p>Earn $5.50 for completing this survey.</p>
-            <a href="pizzahut_survey.html" class="survey-link">Take Survey</a>
-        </div>
-        <div class="survey-card">
-            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/tacobell.jpg?raw=true" alt="Taco Bell Survey">
-            <h3>Taco Bell Survey</h3>
-            <p>Earn $2 for completing this survey.</p>
-            <a href="tacobell_survey.html" class="survey-link">Take Survey</a>
+            <img src="https://github.com/Master120344/RealSurveys/blob/main
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/target.png?raw=true" alt="Target Survey">
+            <h3>Target Survey</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="target_survey.html" class="survey-link">Take Survey</a>
         </div>
     </div>
     <footer>
