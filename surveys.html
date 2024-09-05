@@ -41,11 +41,6 @@
             text-decoration: none;
         }
 
-        .user-email {
-            color: #fff;
-            font-weight: bold;
-        }
-
         .hero {
             background: #007bff;
             color: #fff;
@@ -154,8 +149,7 @@
                 get(userRef).then((snapshot) => {
                     if (snapshot.exists()) {
                         const userData = snapshot.val();
-                        document.getElementById('current-balance').innerText = `$${userData.balance.toFixed(2)}`;
-                        document.getElementById('user-email').innerText = user.email; // Display user email
+                        document.getElementById('current-balance').innerText = $${userData.balance.toFixed(2)};
                     } else {
                         console.error("No user data found.");
                     }
@@ -177,7 +171,6 @@
                     <li><a href="logout.html">Log Out</a></li>
                 </ul>
             </nav>
-            <div class="user-email" id="user-email"></div> <!-- Placeholder for user email -->
         </div>
     </header>
     <div class="hero">
@@ -225,20 +218,44 @@
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chipotle.jpg?raw=true" alt="Chipotle Survey">
             <h3>Chipotle Survey</h3>
-            <p>Earn $3.00 for completing this survey.</p>
+            <p>Earn $7.13 for completing this survey.</p>
             <a href="chipotle_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/CVS.jpg?raw=true" alt="CVS Survey">
-            <h3>CVS Survey</h3>
-            <p>Earn $7.00 for completing this survey.</p>
-            <a href="cvs_survey.html" class="survey-link">Take Survey</a>
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/costco.jpg?raw=true" alt="Costco Survey">
+            <h3>Costco Survey</h3>
+            <p>Earn $1.75 for completing this survey.</p>
+            <a href="costco_survey.html" class="survey-link">Take Survey</a>
         </div>
         <div class="survey-card">
-            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/dollar_general.png?raw=true" alt="Dollar General Survey">
-            <h3>Dollar General Survey</h3>
-            <p>Earn $4.50 for completing this survey.</p>
-            <a href="dollargeneral_survey.html" class="survey-link">Take Survey</a>
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/fandango.jpg?raw=true" alt="Fandango Survey">
+            <h3>Fandango Survey</h3>
+            <p>Earn $3.15 for completing this survey.</p>
+            <a href="fandango_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/foodlion.jpg?raw=true" alt="Food Lion Survey">
+            <h3>Food Lion Survey</h3>
+            <p>Earn $1 for completing this survey.</p>
+            <a href="foodlion_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/nike.jpg?raw=true" alt="Nike Survey">
+            <h3>Nike Survey</h3>
+            <p>Earn $4 for completing this survey.</p>
+            <a href="nike_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/pizzahut.jpg?raw=true" alt="Pizza Hut Survey">
+            <h3>Pizza Hut Survey</h3>
+            <p>Earn $5.50 for completing this survey.</p>
+            <a href="pizzahut_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/tacobell.jpg?raw=true" alt="Taco Bell Survey">
+            <h3>Taco Bell Survey</h3>
+            <p>Earn $2 for completing this survey.</p>
+            <a href="tacobell_survey.html" class="survey-link">Take Survey</a>
         </div>
     </div>
     <footer>
