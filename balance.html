@@ -3,69 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balance</title>
-    <link rel="stylesheet" href="css/balance.css">
-    <script src="https://js.stripe.com/v3/"></script>
-    <script type="module">
-        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-        import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
-            authDomain: "real-surveys.firebaseapp.com",
-            databaseURL: "https://real-surveys-default-rtdb.firebaseio.com",
-            projectId: "real-surveys",
-            storageBucket: "real-surveys.appspot.com",
-            messagingSenderId: "1024139519354",
-            appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
-        };
+    <title>Surveys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const database = getDatabase(app);
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
 
-        // Redirect to login page if user is not authenticated
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                window.location.href = 'login.html';
-            } else {
-                // Load user data and update balance
-                const userId = user.uid;
-                const userRef = ref(database, 'users/' + userId);
-                get(userRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        document.getElementById('current-balance').innerText = `$${userData.balance.toFixed(2)}`;
-                    } else {
-                        console.error("No user data found.");
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching user data: ", error);
-                });
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-menu span {
+            margin-right: 10px;
+        }
+
+        .hero {
+            background: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero a:hover {
+            text-decoration: underline;
+        }
+
+        .surveys-container {
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-image: linear-gradient(to bottom right, #e0f7fa, #b9fbc0);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .survey-card {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .survey-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .survey-card h3 {
+            margin: 10px 0;
+        }
+
+        .survey-card p {
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        .survey-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .survey-link:hover {
+            background: #218838;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script type="module" src="./js/auth.js" defer></script>
+    <script type="module" src="./js/userbalance.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const { getUserBalance } = await import('./js/userbalance.js');
+                const balance = await getUserBalance();
+                document.getElementById('current-balance').innerText = `$${balance.toFixed(2)}`;
+            } catch (error) {
+                console.error('Error fetching balance:', error);
+                document.getElementById('current-balance').innerText = '$0.00';
             }
-        });
-
-        // Stripe Elements initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Replace with your actual publishable key
-            const elements = stripe.elements();
-            const cardElement = elements.create('card');
-            cardElement.mount('#card-element');
-
-            const form = document.getElementById('payment-form');
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault();
-
-                const { token, error } = await stripe.createToken(cardElement);
-                if (error) {
-                    document.getElementById('card-errors').innerText = error.message;
-                } else {
-                    // Process the token with your server
-                    console.log('Token:', token);
-                }
-            });
         });
     </script>
 </head>
@@ -76,82 +153,86 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="surveys.html">Surveys</a></li>
-                    <li><a href="#">Giveaways</a></li>
-                    <li><a href="logout.html">Log Out</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" id="login-link">Log In</a></li>
                 </ul>
             </nav>
+            <div class="user-menu" id="user-menu">
+                <!-- User email will be injected here -->
+                <button id="logout-button" style="display: none;">Log Out</button>
+            </div>
         </div>
     </header>
     <div class="hero">
-        <h2>Your Balance</h2>
+        <h2>Available Surveys</h2>
+        <p>Your current balance: <a href="balance.html" id="current-balance">$0.00</a></p>
     </div>
-    <div class="balance-container">
-        <h3>Your Current Balance:</h3>
-        <div class="balance-info">
-            <p class="balance-amount" id="current-balance">$20.00</p>
+    <div class="surveys-container">
+        <!-- Survey cards restored -->
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Apple.jpg?raw=true" alt="Apple Survey">
+            <h3>Apple Survey</h3>
+            <p>Earn $8 for completing this survey.</p>
+            <a href="apple_survey.html" class="survey-link">Take Survey</a>
         </div>
-        <div class="cashout-options">
-            <div id="cashout-step-1" class="cashout-step">
-                <h3>Step 1: Enter Amount</h3>
-                <input type="number" id="cashout-amount" placeholder="Enter amount to cash out" oninput="calculateNetAmount()" />
-                <p id="net-amount" class="net-amount"></p>
-                <button class="cashout-btn" id="cashout-btn">Next</button>
-            </div>
-            <div id="cashout-step-2" class="cashout-step hidden">
-                <h3>Step 2: Choose Payment Method</h3>
-                <div id="payment-section">
-                    <form id="payment-form">
-                        <div id="card-element">
-                            <!-- A Stripe Element will be inserted here. -->
-                        </div>
-                        <div id="card-errors" role="alert"></div>
-                        <button type="submit" id="pay-button">Cash Out</button>
-                    </form>
-                </div>
-                <p id="fee-info">A 10% processing fee will be deducted.</p>
-            </div>
-            <div id="cashout-step-3" class="cashout-step hidden">
-                <h3>Step 3: Confirmation</h3>
-                <p id="confirmation-message"></p>
-                <p>Money will be instantly deposited within a few minutes or less.</p>
-            </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/amazon.png?raw=true" alt="Amazon Survey">
+            <h3>Amazon Survey</h3>
+            <p>Earn $1 for completing this survey.</p>
+            <a href="amazon_survey.html" class="survey-link">Take Survey</a>
         </div>
-        <div class="error-message"></div>
-        <div class="success-message"></div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true" alt="Best Buy Survey">
+            <h3>Best Buy Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="bestbuy_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Dunkin.jpg?raw=true" alt="Dunkin Survey">
+            <h3>Dunkin Survey</h3>
+            <p>Earn $5.11 for completing this survey.</p>
+            <a href="dunkin_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Lowes-logo.jpg?raw=true" alt="Lowe's Survey">
+            <h3>Lowe's Survey</h3>
+            <p>Earn $9 for completing this survey.</p>
+            <a href="lowes_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chase.png?raw=true" alt="Chase Bank Survey">
+            <h3>Chase Bank Survey</h3>
+            <p>Earn $2.20 for completing this survey.</p>
+            <a href="chasebank_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chipotle.jpg?raw=true" alt="Chipotle Survey">
+            <h3>Chipotle Survey</h3>
+            <p>Earn $7.13 for completing this survey.</p>
+            <a href="chipotle_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/costco.jpg?raw=true" alt="Costco Survey">
+            <h3>Costco Survey</h3>
+            <p>Earn $1.75 for completing this survey.</p>
+            <a href="costco_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/fandango.jpg?raw=true" alt="Fandango Survey">
+            <h3>Fandango Survey</h3>
+            <p>Earn $3.15 for completing this survey.</p>
+            <a href="fandango_survey.html" class="survey-link">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/foodlion.png?raw=true" alt="Food Lion Survey">
+            <h3>Food Lion Survey</h3>
+            <p>Earn $4.80 for completing this survey.</p>
+            <a href="foodlion_survey.html" class="survey-link">Take Survey</a>
+        </div>
     </div>
     <footer>
+        <p>&copy; 2024 Real Surveys. All rights reserved.</p>
         <p>Powered by <a href="https://stripe.com" target="_blank">Stripe</a> - The payment processor.</p>
-        <img src="https://github.com/Master120344/RealSurveys/raw/main/assets/untitled-3.gif" alt="Stripe Logo" class="stripe-logo" style="width:100px; height:auto;">
     </footer>
-    <script>
-        function calculateNetAmount() {
-            const amount = parseFloat(document.getElementById('cashout-amount').value);
-            if (!isNaN(amount)) {
-                const netAmount = amount * 0.9;
-                document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
-            } else {
-                document.getElementById('net-amount').innerText = '';
-            }
-        }
-
-        document.getElementById('cashout-btn').addEventListener('click', function() {
-            const amount = parseFloat(document.getElementById('cashout-amount').value);
-            if (!isNaN(amount) && amount > 0) {
-                const netAmount = amount * 0.9;
-                const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
-                if (amount <= currentBalance) {
-                    const newBalance = currentBalance - amount;
-                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
-                    document.getElementById('confirmation-message').innerText = `Your money is on the way and will arrive within a few minutes or less.`;
-                    document.getElementById('cashout-step-1').classList.add('hidden');
-                    document.getElementById('cashout-step-3').classList.remove('hidden');
-                } else {
-                    alert('Insufficient balance.');
-                }
-            } else {
-                alert('Please enter a valid amount.');
-            }
-        });
-    </script>
 </body>
 </html>
