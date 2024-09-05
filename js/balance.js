@@ -1,6 +1,6 @@
 // Import Firebase modules
 import { getDatabase, ref, update, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { getAuth, initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -88,7 +88,7 @@ form.addEventListener('submit', async (event) => {
             confirmationMessage.textContent = `Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.`;
 
             // Update user's balance in Firebase
-            updateBalance(amount / 100);
+            await updateBalance(amount / 100); // Convert back to dollars
         }
     } catch (error) {
         console.error('Error during payment:', error);
