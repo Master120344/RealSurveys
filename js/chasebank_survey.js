@@ -58,6 +58,8 @@ function nextQuestion() {
         } else {
             showReward();
         }
+    } else {
+        alert("Please select an option before proceeding.");
     }
 }
 
