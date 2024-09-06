@@ -153,26 +153,6 @@
                 document.getElementById('current-balance').innerText = '$0.00';
             }
         });
-
-        // Simulate updating the balance after a survey is completed
-        function updateBalance(amount) {
-            const balanceElement = document.getElementById('current-balance');
-            let currentBalance = parseFloat(balanceElement.innerText.replace('$', ''));
-            currentBalance += amount;
-            balanceElement.innerText = `$${currentBalance.toFixed(2)}`;
-        }
-
-        // Example survey completion simulation
-        document.addEventListener('click', (event) => {
-            if (event.target.classList.contains('survey-link')) {
-                event.preventDefault();
-                const amount = parseFloat(event.target.dataset.amount);
-                updateBalance(amount);
-                setTimeout(() => {
-                    window.location.href = event.target.href; // Redirect to the survey page
-                }, 500); // Delay redirect to show balance update
-            }
-        });
     </script>
 </head>
 <body>
