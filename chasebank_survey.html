@@ -3,183 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chase Bank Survey</title>
+    <title>Taco Bell Survey - RealSurveys</title>
     <link rel="stylesheet" href="css/example.css"> <!-- Correct path to CSS -->
-    <script src="js/chasebank_survey.js" defer></script> <!-- Correct path to JS -->
+    <script src="js/tacobell_survey.js" defer></script> <!-- Correct path to JS -->
     <style>
-        body {
-            background-image: url('https://github.com/Master120344/RealSurveys/raw/main/assets/chasebank.jpg'); /* Replace with appropriate image URL */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        .survey .container {
-            background-color: #FFFFFF; /* White background */
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 400px; /* Adjusted for mobile compatibility */
-            margin: 50px auto;
-            text-align: center;
-            color: #333;
-            border: none; /* No border */
-        }
-
-        h2 {
-            color: #0074A5; /* Chase blue */
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .survey-navigation button {
-            width: 100px;
-            padding: 10px;
-            font-size: 16px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #0074A5; /* Chase blue */
-            color: white;
-        }
-
-        .survey-navigation button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .survey-navigation {
-            margin-top: 20px;
-        }
-
-        #claim-reward {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #0074A5; /* Chase blue */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: none; /* Hidden initially */
-        }
-
-        #claim-reward:hover {
-            background-color: #005c7e;
-        }
+        /* Inline CSS if needed, or remove if included in example.css */
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <!-- Removed RealSurveys title -->
+        </div>
+    </header>
 
-<section class="survey">
-    <div class="container">
-        <h2>Chase Bank Survey</h2>
-        <div class="survey-question">
-            <p id="question"></p>
-            <div id="options"></div>
-        </div>
-        <div class="survey-navigation">
-            <button id="back" onclick="prevQuestion()" disabled>Back</button>
-            <button id="next" onclick="nextQuestion()" disabled>Next</button>
-        </div>
-        <button id="claim-reward" onclick="claimReward()">Claim Reward</button>
+    <div class="hero">
+        <h2>Taco Bell Survey</h2>
     </div>
-</section>
 
-<footer style="text-align:center; padding:20px 0;">
-    <p>&copy; 2024 RealSurveys. All rights reserved.</p>
-</footer>
+    <section class="content">
+        <div class="container">
+            <p>Please just be honest or there's no way we can keep this survey website alive. Surveys are never long.</p>
+            <form id="tacoBellSurveyForm">
+                <div class="survey-question">
+                    <div class="question-counter">1/5</div>
+                    <label for="question1">How would you rate your overall experience at Taco Bell?</label>
+                    <div class="options">
+                        <input type="radio" id="q1a" name="question1" value="Excellent">
+                        <label for="q1a">Excellent</label>
+                        <input type="radio" id="q1b" name="question1" value="Good">
+                        <label for="q1b">Good</label>
+                        <input type="radio" id="q1c" name="question1" value="Average">
+                        <label for="q1c">Average</label>
+                        <input type="radio" id="q1d" name="question1" value="Poor">
+                        <label for="q1d">Poor</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">2/5</div>
+                    <label for="question2">How likely are you to recommend Taco Bell to a friend?</label>
+                    <div class="options">
+                        <input type="radio" id="q2a" name="question2" value="Very Likely">
+                        <label for="q2a">Very Likely</label>
+                        <input type="radio" id="q2b" name="question2" value="Likely">
+                        <label for="q2b">Likely</label>
+                        <input type="radio" id="q2c" name="question2" value="Unlikely">
+                        <label for="q2c">Unlikely</label>
+                        <input type="radio" id="q2d" name="question2" value="Very Unlikely">
+                        <label for="q2d">Very Unlikely</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">3/5</div>
+                    <label for="question3">How satisfied are you with the speed of service?</label>
+                    <div class="options">
+                        <input type="radio" id="q3a" name="question3" value="Very Satisfied">
+                        <label for="q3a">Very Satisfied</label>
+                        <input type="radio" id="q3b" name="question3" value="Satisfied">
+                        <label for="q3b">Satisfied</label>
+                        <input type="radio" id="q3c" name="question3" value="Dissatisfied">
+                        <label for="q3c">Dissatisfied</label>
+                        <input type="radio" id="q3d" name="question3" value="Very Dissatisfied">
+                        <label for="q3d">Very Dissatisfied</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">4/5</div>
+                    <label for="question4">Were the staff members friendly and helpful?</label>
+                    <div class="options">
+                        <input type="radio" id="q4a" name="question4" value="Yes">
+                        <label for="q4a">Yes</label>
+                        <input type="radio" id="q4b" name="question4" value="No">
+                        <label for="q4b">No</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">5/5</div>
+                    <label for="question5">Do you have any additional comments or suggestions?</label>
+                    <textarea id="question5" name="question5" rows="4" cols="50"></textarea>
+                </div>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
-<script>
-    const questions = [
-        {
-            question: "How often do you use Chase Bank services?",
-            options: ["Daily", "Weekly", "Monthly", "Rarely"]
-        },
-        {
-            question: "What type of account do you hold with Chase Bank?",
-            options: ["Checking Account", "Savings Account", "Credit Card", "Loan Account"]
-        },
-        {
-            question: "How satisfied are you with Chase Bank's customer service?",
-            options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied"]
-        },
-        {
-            question: "Which of the following services do you use most often?",
-            options: ["Online Banking", "Mobile App", "In-branch Services", "ATMs"]
-        }
-    ];
+                <div class="survey-nav">
+                    <button type="button" id="prevButton" class="btn">Previous</button>
+                    <button type="button" id="nextButton" class="btn">Next</button>
+                    <button type="submit" id="submitButton" class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-    let currentQuestion = 0;
-
-    function showQuestion(index) {
-        const questionElem = document.getElementById('question');
-        const optionsElem = document.getElementById('options');
-        questionElem.innerText = questions[index].question;
-        optionsElem.innerHTML = '';
-        questions[index].options.forEach(option => {
-            const optionElem = document.createElement('div');
-            optionElem.classList.add('option');
-            const input = document.createElement('input');
-            input.type = 'radio';
-            input.name = 'option';
-            input.value = option;
-            input.id = option;
-            input.onclick = enableNextButton;
-            const label = document.createElement('label');
-            label.setAttribute('for', option);
-            label.innerText = option;
-            optionElem.appendChild(input);
-            optionElem.appendChild(label);
-            optionsElem.appendChild(optionElem);
-        });
-
-        document.getElementById('back').disabled = index === 0;
-        document.getElementById('next').disabled = true;
-    }
-
-    function enableNextButton() {
-        document.getElementById('next').disabled = false;
-    }
-
-    function nextQuestion() {
-        const selected = document.querySelector('input[name="option"]:checked');
-        if (selected) {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            } else {
-                showReward();
-            }
-        }
-    }
-
-    function prevQuestion() {
-        if (currentQuestion > 0) {
-            currentQuestion--;
-            showQuestion(currentQuestion);
-        }
-    }
-
-    function showReward() {
-        document.querySelector('.survey-question').innerHTML = '<h3>Congratulations! You have completed the survey.</h3><p>Your reward: $8</p>';
-        document.getElementById('claim-reward').style.display = 'inline-block';
-        document.querySelector('.survey-navigation').style.display = 'none';
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    }
-
-    function claimReward() {
-        alert("You've claimed your $8 reward!");
-        window.location.href = 'chasebank_survey.html'; // Redirects to the same page or adjust as needed
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        showQuestion(currentQuestion);
-    });
-</script>
-</body>
-</html>
+    <footer>
+        <div class="container">
+           
