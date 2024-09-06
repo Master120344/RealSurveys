@@ -1,5 +1,3 @@
-// chasebank_survey.js
-
 const questions = [
     {
         question: "How often do you use Chase Bank services?",
@@ -20,20 +18,6 @@ const questions = [
 ];
 
 let currentQuestion = 0;
-
-async function updateBalance(amount) {
-    try {
-        const response = await fetch('/updateBalance', { // Endpoint should be set up in your backend
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amount })
-        });
-        if (!response.ok) throw new Error('Failed to update balance');
-        console.log('Balance updated successfully');
-    } catch (error) {
-        console.error('Error updating balance:', error);
-    }
-}
 
 function showQuestion(index) {
     const questionElem = document.getElementById('question');
@@ -91,8 +75,7 @@ function showReward() {
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
 }
 
-async function claimReward() {
-    await updateBalance(8); // Add balance amount here
+function claimReward() {
     alert("You've claimed your $8 reward!");
     window.location.href = 'surveys.html'; // Redirects to a page or link for rewards, adjust as needed
 }
