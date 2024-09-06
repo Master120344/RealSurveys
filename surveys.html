@@ -130,6 +130,15 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        #balance-link {
+            color: #fff; /* Match the text color to your theme */
+            text-decoration: none; /* Remove underline */
+        }
+
+        #balance-link:hover {
+            text-decoration: underline; /* Underline on hover for better UX */
+        }
     </style>
     <script type="module" src="./js/auth.js" defer></script>
     <script type="module" src="./js/userbalance.js" defer></script>
@@ -142,6 +151,26 @@
             } catch (error) {
                 console.error('Error fetching balance:', error);
                 document.getElementById('current-balance').innerText = '$0.00';
+            }
+        });
+
+        // Simulate updating the balance after a survey is completed
+        function updateBalance(amount) {
+            const balanceElement = document.getElementById('current-balance');
+            let currentBalance = parseFloat(balanceElement.innerText.replace('$', ''));
+            currentBalance += amount;
+            balanceElement.innerText = `$${currentBalance.toFixed(2)}`;
+        }
+
+        // Example survey completion simulation
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('survey-link')) {
+                event.preventDefault();
+                const amount = parseFloat(event.target.dataset.amount);
+                updateBalance(amount);
+                setTimeout(() => {
+                    window.location.href = event.target.href; // Redirect to the survey page
+                }, 500); // Delay redirect to show balance update
             }
         });
     </script>
@@ -165,68 +194,68 @@
     </header>
     <div class="hero">
         <h2>Available Surveys</h2>
-        <p>Your current balance: <span id="current-balance">$0.00</span></p>
+        <p>Your current balance: <a href="balance.html" id="balance-link"><span id="current-balance">$0.00</span></a></p>
     </div>
     <div class="surveys-container">
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Apple.jpg?raw=true" alt="Apple Survey">
             <h3>Apple Survey</h3>
             <p>Earn $8 for completing this survey.</p>
-            <a href="apple_survey.html" class="survey-link">Take Survey</a>
+            <a href="apple_survey.html" class="survey-link" data-amount="8">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/amazon.png?raw=true" alt="Amazon Survey">
             <h3>Amazon Survey</h3>
             <p>Earn $1 for completing this survey.</p>
-            <a href="amazon_survey.html" class="survey-link">Take Survey</a>
+            <a href="amazon_survey.html" class="survey-link" data-amount="1">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true" alt="Best Buy Survey">
             <h3>Best Buy Survey</h3>
             <p>Earn $5 for completing this survey.</p>
-            <a href="bestbuy_survey.html" class="survey-link">Take Survey</a>
+            <a href="bestbuy_survey.html" class="survey-link" data-amount="5">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Dunkin.jpg?raw=true" alt="Dunkin Survey">
             <h3>Dunkin Survey</h3>
             <p>Earn $5.11 for completing this survey.</p>
-            <a href="dunkin_survey.html" class="survey-link">Take Survey</a>
+            <a href="dunkin_survey.html" class="survey-link" data-amount="5.11">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Lowes-logo.jpg?raw=true" alt="Lowe's Survey">
             <h3>Lowe's Survey</h3>
             <p>Earn $9 for completing this survey.</p>
-            <a href="lowes_survey.html" class="survey-link">Take Survey</a>
+            <a href="lowes_survey.html" class="survey-link" data-amount="9">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chase.png?raw=true" alt="Chase Bank Survey">
             <h3>Chase Bank Survey</h3>
             <p>Earn $2.20 for completing this survey.</p>
-            <a href="chasebank_survey.html" class="survey-link">Take Survey</a>
+            <a href="chasebank_survey.html" class="survey-link" data-amount="2.20">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chipotle.jpg?raw=true" alt="Chipotle Survey">
             <h3>Chipotle Survey</h3>
             <p>Earn $7.13 for completing this survey.</p>
-            <a href="chipotle_survey.html" class="survey-link">Take Survey</a>
+            <a href="chipotle_survey.html" class="survey-link" data-amount="7.13">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/costco.jpg?raw=true" alt="Costco Survey">
             <h3>Costco Survey</h3>
             <p>Earn $1.75 for completing this survey.</p>
-            <a href="costco_survey.html" class="survey-link">Take Survey</a>
+            <a href="costco_survey.html" class="survey-link" data-amount="1.75">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/fandango.jpg?raw=true" alt="Fandango Survey">
             <h3>Fandango Survey</h3>
             <p>Earn $3.15 for completing this survey.</p>
-            <a href="fandango_survey.html" class="survey-link">Take Survey</a>
+            <a href="fandango_survey.html" class="survey-link" data-amount="3.15">Take Survey</a>
         </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/foodlion.png?raw=true" alt="Food Lion Survey">
             <h3>Food Lion Survey</h3>
             <p>Earn $7.09 for completing this survey.</p>
-            <a href="foodlion_survey.html" class="survey-link">Take Survey</a>
+            <a href="foodlion_survey.html" class="survey-link" data-amount="7.09">Take Survey</a>
         </div>
     </div>
     <footer>
