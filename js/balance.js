@@ -1,7 +1,3 @@
-import { getDatabase, ref, update, get } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
-import { getAuth, initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
-import { Stripe } from 'https://js.stripe.com/v3/';
-
 // Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
@@ -13,70 +9,101 @@ const firebaseConfig = {
     appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
 };
 
-initializeApp(firebaseConfig);
-const db = getDatabase();
-const auth = getAuth();
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+// Initialize Stripe with your public key
 const stripe = Stripe('pk_live_51PGUR0P8M9Pgb8qZmxBX8zhH2i9ZhtSP9RNGmD1dgbsPDiW0zDcmRnNxVACAcBLzhz12YlKLMv9BvMrTUF69YlWS002ZqQ9Pey');
 const elements = stripe.elements();
+
+// Create an instance of the card Element
 const card = elements.create('card');
 card.mount('#card-element');
 
-// Event Listeners
-document.getElementById('cashout-btn').addEventListener('click', validateAmount);
-document.getElementById('payment-form').addEventListener('submit', handlePayment);
+const step1 = document.getElementById('cashout-step-1');
+const step2 = document.getElementById('cashout-step-2');
+const step3 = document.getElementById('cashout-step-3');
+const cashoutBtn = document.getElementById('cashout-btn');
+const form = document.getElementById('payment-form');
+const cardErrors = document.getElementById('card-errors');
+const confirmationMessage = document.getElementById('confirmation-message');
 
-// Functions
-async function validateAmount() {
+// Cash out button click event
+cashoutBtn.addEventListener('click', () => {
     const amount = parseFloat(document.getElementById('cashout-amount').value);
     if (!isNaN(amount) && amount > 0) {
-        const balance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
-        if (amount <= balance) {
-            toggleVisibility('cashout-step-1', 'cashout-step-2');
+        const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
+        if (amount <= currentBalance) {
+            // Proceed to payment step
+            step1.classList.add('hidden');
+            step2.classList.remove('hidden');
         } else {
             alert('Insufficient balance.');
         }
     } else {
         alert('Please enter a valid amount.');
     }
-}
+});
 
-async function handlePayment(event) {
+// Payment form submission
+form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const amount = parseFloat(document.getElementById('cashout-amount').value) * 100;
+
+    const amount = parseFloat(document.getElementById('cashout-amount').value) * 100; // Convert to cents
 
     try {
+        // Create a payment intent
         const response = await fetch('/create-payment-intent', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amount })
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount }),
         });
 
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
         const { clientSecret } = await response.json();
 
-        const { error } = await stripe.confirmCardPayment(clientSecret, { payment_method: { card } });
+        // Confirm the payment
+        const { error } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+            }
+        });
+
         if (error) {
-            document.getElementById('card-errors').textContent = error.message;
+            cardErrors.textContent = error.message;
         } else {
-            document.getElementById('card-errors').textContent = '';
-            toggleVisibility('cashout-step-2', 'cashout-step-3');
-            document.getElementById('confirmation-message').textContent = `Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.`;
-            await updateBalance(amount / 100);
+            cardErrors.textContent = '';
+            step2.classList.add('hidden');
+            step3.classList.remove('hidden');
+            confirmationMessage.textContent = Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.;
+
+            // Update user's balance in Firebase
+            await updateBalance(amount / 100); // Convert back to dollars
         }
     } catch (error) {
         console.error('Error during payment:', error);
-        document.getElementById('card-errors').textContent = 'An error occurred. Please try again.';
+        cardErrors.textContent = 'An error occurred. Please try again.';
     }
-}
+});
 
+// Function to update user's balance in Firebase
 async function updateBalance(amount) {
     const user = auth.currentUser;
     if (user) {
-        const userRef = ref(db, `users/${user.uid}`);
+        const userId = user.uid;
+        const userRef = ref(db, 'users/' + userId);
+
         try {
             const snapshot = await get(userRef);
             if (snapshot.exists()) {
-                const newBalance = (snapshot.val().balance || 0) - amount;
+                const currentBalance = snapshot.val().balance;
+                const newBalance = currentBalance - amount;
                 await update(userRef, { balance: newBalance });
                 console.log('Balance updated successfully.');
             } else {
@@ -88,9 +115,4 @@ async function updateBalance(amount) {
     } else {
         console.error('No user is currently authenticated.');
     }
-}
-
-function toggleVisibility(hiddenId, visibleId) {
-    document.getElementById(hiddenId).classList.add('hidden');
-    document.getElementById(visibleId).classList.remove('hidden');
 }
