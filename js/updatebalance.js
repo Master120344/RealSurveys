@@ -22,12 +22,12 @@ function updateBalance(amount) {
           let newBalance = currentBalance + amount;
           
           // Update the balance in the database
-          await update(userRef, newBalance);
+          await update(userRef, { balance: newBalance });
           console.log(`Balance for user ${userId} updated to ${newBalance}`);
         } else {
           console.log("No data available for the given user ID.");
           // Optionally initialize balance if it doesn't exist
-          await update(userRef, amount);
+          await update(userRef, { balance: amount });
           console.log(`Balance for user ${userId} initialized to ${amount}`);
         }
       } catch (error) {
