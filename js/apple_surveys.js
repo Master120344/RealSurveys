@@ -1,9 +1,9 @@
 // Questions for the survey
 const questions = [
-    "Question 1: Do you like android or apple devices better?",
+    "Question 1: Do you like Android or Apple devices better?",
     "Question 2: How would you rate the customer service provided by Apple?",
-    "Question 3: Will you be intrested in purchasing the new iPhone when it releases?",
-    "Question 4: What do you think about the pricing of apple devices?",
+    "Question 3: Will you be interested in purchasing the new iPhone when it releases?",
+    "Question 4: What do you think about the pricing of Apple devices?",
     "Question 5: Were you satisfied with the ease of purchasing from Apple's website or store?",
     "Question 6: How likely are you to recommend Apple products to others?",
     "Question 7: What improvements would you suggest for Apple products or services?"
@@ -53,7 +53,7 @@ function displayQuestion() {
 
 // Function to move to the next question
 function nextQuestion() {
-    if (timeLeft <= 0) { // Ensure time has expired before moving to next question
+    if (timeLeft <= 0) { // Ensure time has expired before moving to the next question
         currentQuestion++;
         displayQuestion();
     }
