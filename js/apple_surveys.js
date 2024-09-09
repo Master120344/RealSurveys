@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Array of survey questions
     const questions = [
         "Question 1: Do you like Android or Apple devices better?",
         "Question 2: How would you rate the customer service provided by Apple?",
