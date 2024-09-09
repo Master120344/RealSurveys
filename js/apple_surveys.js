@@ -10,11 +10,13 @@ const questions = [
 
 let currentQuestion = 0;
 let timer;
+let timeLeft = 10;
 
 function startTimer() {
-    let timeLeft = 10;
+    timeLeft = 10;
     document.getElementById('timer').innerText = timeLeft;
     document.getElementById('nextButton').disabled = true;
+    clearInterval(timer); // Clear any previous timer to avoid multiple intervals
     timer = setInterval(() => {
         timeLeft--;
         document.getElementById('timer').innerText = timeLeft;
@@ -33,14 +35,18 @@ function displayQuestion() {
         document.getElementById('message').innerHTML = "Congratulations! You've earned a reward. <a href='surveys.html'>Go back to surveys</a>";
         return;
     }
-    document.getElementById('questionContainer').innerHTML = `<h2>${questions[currentQuestion]}</h2>`;
+
+    const questionText = questions[currentQuestion];
+    document.getElementById('questionContainer').innerHTML = `<h2>${questionText}</h2>`;
     startTimer();
-    document.getElementById('backButton').style.display = currentQuestion === 0 ? 'none' : 'block';
+    document.getElementById('backButton').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
 }
 
 function nextQuestion() {
-    currentQuestion++;
-    displayQuestion();
+    if (timeLeft > 0) { // Prevent moving to the next question if the time hasn't expired
+        currentQuestion++;
+        displayQuestion();
+    }
 }
 
 function goBack() {
