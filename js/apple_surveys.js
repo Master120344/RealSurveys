@@ -16,7 +16,7 @@ function startTimer() {
     timeLeft = 10;
     document.getElementById('timer').innerText = timeLeft;
     document.getElementById('nextButton').disabled = true;
-    clearInterval(timer); // Clear any previous timer to avoid multiple intervals
+    clearInterval(timer); // Clear any previous timer
     timer = setInterval(() => {
         timeLeft--;
         document.getElementById('timer').innerText = timeLeft;
@@ -43,7 +43,7 @@ function displayQuestion() {
 }
 
 function nextQuestion() {
-    if (timeLeft > 0) { // Prevent moving to the next question if the time hasn't expired
+    if (timeLeft <= 0) { // Ensure time has expired before moving to next question
         currentQuestion++;
         displayQuestion();
     }
