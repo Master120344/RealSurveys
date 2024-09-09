@@ -1,9 +1,9 @@
 // Questions for the survey
 const questions = [
-    "Question 1: How satisfied are you with the performance of your Apple device?",
+    "Question 1: Do you like android or apple devices better?",
     "Question 2: How would you rate the customer service provided by Apple?",
-    "Question 3: How easy is it to use the Apple ecosystem of products and services?",
-    "Question 4: How do you rate the value for money of Apple products?",
+    "Question 3: Will you be intrested in purchasing the new iPhone when it releases?",
+    "Question 4: What do you think about the pricing of apple devices?",
     "Question 5: Were you satisfied with the ease of purchasing from Apple's website or store?",
     "Question 6: How likely are you to recommend Apple products to others?",
     "Question 7: What improvements would you suggest for Apple products or services?"
