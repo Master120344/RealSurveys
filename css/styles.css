@@ -49,6 +49,18 @@ header h1 {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.message {
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
 .form-section,
 .survey-section {
     margin-top: 20px;
@@ -145,4 +157,28 @@ button:hover {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
+}
+
+/* NEW STYLES FOR apple_survey.html */
+
+#timer {
+    font-size: 24px;
+    color: #d9534f;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.question {
+    font-size: 20px;
+    text-align: center;
+    color: #333;
+    padding: 20px;
+}
+
+.back-button {
+    background-color: #f0ad4e;
+}
+
+.back-button:hover {
+    background-color: #ec971f;
 }
