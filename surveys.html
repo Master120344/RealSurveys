@@ -7,89 +7,137 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4; /* Light gray background */
-            color: #333; /* Dark gray text */
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
+
         header {
-            background-color: #003366; /* Dark blue background for header */
-            color: white;
+            background: #333;
+            color: #fff;
             padding: 10px 0;
         }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
         nav ul {
             list-style: none;
-            padding: 0;
             margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: center;
         }
+
         nav ul li {
-            margin: 0 15px;
+            margin-right: 20px;
         }
+
         nav ul li a {
-            color: white;
+            color: #fff;
             text-decoration: none;
         }
-        .hero {
-            background-color: #009966; /* Green background for hero section */
-            color: white;
-            text-align: center;
-            padding: 20px 0;
+
+        .user-menu {
+            display: flex;
+            align-items: center;
         }
+
+        .user-menu span {
+            margin-right: 10px;
+        }
+
+        .hero {
+            background: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero a:hover {
+            text-decoration: underline;
+        }
+
         .surveys-container {
             padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-image: linear-gradient(to bottom right, #e0f7fa, #b9fbc0);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            justify-content: center;
         }
+
         .survey-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            width: 300px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
         }
+
         .survey-card img {
             width: 100%;
-            border-radius: 8px;
+            height: 150px;
+            object-fit: cover;
         }
+
         .survey-card h3 {
             margin: 10px 0;
         }
+
         .survey-card p {
-            color: #555;
+            margin: 10px;
+            font-size: 16px;
         }
+
         .survey-link {
-            display: block;
-            text-align: center;
-            padding: 10px;
-            background-color: #003366; /* Dark blue background for link */
-            color: white;
+            display: inline-block;
+            padding: 10px 20px;
+            background: #28a745;
+            color: #fff;
             text-decoration: none;
-            border-radius: 4px;
-            margin-top: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
+
         .survey-link:hover {
-            background-color: #002244; /* Darker blue on hover */
+            background: #218838;
         }
+
         footer {
-            background-color: #003366; /* Dark blue background for footer */
-            color: white;
-            text-align: center;
+            background: #333;
+            color: #fff;
             padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            text-align: center;
         }
-        #current-balance {
-            font-weight: bold;
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
         }
-        .balance-link {
-            color: white;
+
+        footer a:hover {
             text-decoration: underline;
+        }
+
+        #balance-link {
+            color: #fff; /* Match the text color to your theme */
+            text-decoration: none; /* Remove underline */
+        }
+
+        #balance-link:hover {
+            text-decoration: underline; /* Underline on hover for better UX */
         }
     </style>
     <script type="module" src="./js/auth.js" defer></script>
@@ -99,20 +147,10 @@
             try {
                 const { getUserBalance } = await import('./js/userbalance.js');
                 const balance = await getUserBalance();
-                document.getElementById('current-balance').innerHTML = `<a href="balance.html" class="balance-link">$${balance.toFixed(2)}</a>`;
+                document.getElementById('current-balance').innerText = `$${balance.toFixed(2)}`;
             } catch (error) {
                 console.error('Error fetching balance:', error);
-                document.getElementById('current-balance').innerHTML = '<a href="balance.html" class="balance-link">$0.00</a>';
-            }
-
-            // Load survey cards
-            try {
-                const response = await fetch('RealSurveys/survey_cards.html'); // Correct path
-                const surveyCardsHtml = await response.text();
-                document.getElementById('surveys-container').innerHTML = surveyCardsHtml;
-            } catch (error) {
-                console.error('Error loading survey cards:', error);
-                document.getElementById('surveys-container').innerHTML = '<p>Unable to load survey cards at the moment.</p>';
+                document.getElementById('current-balance').innerText = '$0.00';
             }
         });
     </script>
@@ -136,13 +174,266 @@
     </header>
     <div class="hero">
         <h2>Available Surveys</h2>
-        <p>Your current balance: <span id="current-balance"><a href="balance.html" class="balance-link">$0.00</a></span></p>
+        <p>Your current balance: <a href="balance.html" id="balance-link"><span id="current-balance">$0.00</span></a></p>
     </div>
-    <div class="surveys-container" id="surveys-container">
-        <!-- Survey cards will be dynamically inserted here -->
+    <div class="surveys-container">
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Apple.jpg?raw=true" alt="Apple Survey">
+            <h3>Apple Survey</h3>
+            <p>Earn $8 for completing this survey.</p>
+            <a href="apple_survey.html" class="survey-link" data-amount="8">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/burger_king.png?raw=true" alt="Burger King Survey">
+            <h3>Burger King</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="burgerking_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/amazon.png?raw=true" alt="Amazon Survey">
+            <h3>Amazon Survey</h3>
+            <p>Earn $1 for completing this survey.</p>
+            <a href="amazon_survey.html" class="survey-link" data-amount="1">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true" alt="Best Buy Survey">
+            <h3>Best Buy Survey</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="bestbuy_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Dunkin.jpg?raw=true" alt="Dunkin Survey">
+            <h3>Dunkin Survey</h3>
+            <p>Earn $5.11 for completing this survey.</p>
+            <a href="dunkin_survey.html" class="survey-link" data-amount="5.11">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Lowes-logo.jpg?raw=true" alt="Lowe's Survey">
+            <h3>Lowe's Survey</h3>
+            <p>Earn $9 for completing this survey.</p>
+            <a href="lowes_survey.html" class="survey-link" data-amount="9">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chase.png?raw=true" alt="Chase Bank Survey">
+            <h3>Chase Bank Survey</h3>
+            <p>Earn $2.20 for completing this survey.</p>
+            <a href="chasebank_survey.html" class="survey-link" data-amount="2.20">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/chipotle.jpg?raw=true" alt="Chipotle Survey">
+            <h3>Chipotle Survey</h3>
+            <p>Earn $7.13 for completing this survey.</p>
+            <a href="chipotle_survey.html" class="survey-link" data-amount="7.13">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/costco.jpg?raw=true" alt="Costco Survey">
+            <h3>Costco Survey</h3>
+            <p>Earn $4 for completing this survey.</p>
+            <a href="costco_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/dell.jpg?raw=true" alt="Dell Survey">
+            <h3>Dell Survey</h3>
+            <p>Earn $3 for completing this survey.</p>
+            <a href="dell_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+        </div>
+        <!-- Add all remaining survey cards here in the same format -->
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/gamestop.jpg?raw=true" alt="GameStop">
+            <h3>GameStop</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="gamestop_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/homedepot.jpg?raw=true" alt="HomeDepot">
+            <h3>HomeDepot</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="homedepot_survey.html" class="survey-link" data-amount="6">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/IHOP.png?raw=true" alt="iHop">
+            <h3>iHop</h3>
+            <p>Earn $4 for completing this survey.</p>
+            <a href="ihop_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Kroger.png?raw=true" alt="Kroger">
+            <h3>Kroger</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="kroger_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/mcdonalds.png?raw=true" alt="McDonald's">
+            <h3>McDonald's</h3>
+            <p>Earn $3 for completing this survey.</p>
+            <a href="mcdonalds_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/netflix.jpg?raw=true" alt="Netflix">
+            <h3>Netflix</h3>
+            <p>Earn $9 for completing this survey.</p>
+            <a href="netflix_survey.html" class="survey-link" data-amount="9">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/office_depot.png?raw=true" alt="Office Depot">
+            <h3>Office Depot</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="officedepot_survey.html" class="survey-link" data-amount="6">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Panera.jpg?raw=true" alt="Panera">
+            <h3>Panera</h3>
+            <p>Earn $4 for completing this survey.</p>
+            <a href="panera_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/petsmart.jpg?raw=true" alt="Petsmart">
+            <h3>Petsmart</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="petsmart_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/wallpapers/popeyes.jpg?raw=true" alt="Popeyes">
+            <h3>Popeyes</h3>
+            <p>Earn $3 for completing this survey.</p>
+            <a href="popeyes_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/raisingcanes.jpg?raw=true" alt="Raising Canes">
+            <h3>Raising Canes</h3>
+            <p>Earn $6 for completing this survey.</p>
+            <a href="raisingcanes_survey.html" class="survey-link" data-amount="6">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/spectrum.jpg?raw=true" alt="Spectrum">
+            <h3>Spectrum</h3>
+            <p>Earn $4.50 for completing this survey.</p>
+            <a href="spectrum_survey.html" class="survey-link" data-amount="4.50">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Staples.jpg?raw=true" alt="Staples">
+            <h3>Staples</h3>
+            <p>Earn $3.25 for completing this survey.</p>
+            <a href="staples_survey.html" class="survey-link" data-amount="3.25">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Starbucks.png?raw=true" alt="Starbucks">
+            <h3>Starbucks</h3>
+            <p>Earn $4 for completing this survey.</p>
+            <a href="starbucks_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/tacobell.jpg?raw=true" alt="Taco Bell">
+            <h3>Taco Bell</h3>
+            <p>Earn $5 for completing this survey.</p>
+            <a href="tacobell_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/target.png?raw=true" alt="Target">
+            <h3>Target</h3>
+            <p>Earn $1 for completing this survey.</p>
+            <a href="target_survey.html" class="survey-link" data-amount="1">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Trader_Joes.jpg?raw=true" alt="Trader Joe's">
+            <h3>Trader Joe's</h3>
+            <p>Earn $2.25 for completing this survey.</p>
+            <a href="traderjoes_survey.html" class="survey-link" data-amount="2.25">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/assets/Southwest.jpg?raw=true" alt="Southwest">
+            <h3>Southwest</h3>
+            <p>Earn $3 for completing this survey.</p>
+            <a href="southwest_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/wafflehouse.jpg?raw=true" alt="Wafflehouse">
+            <h3>Wafflehouse</h3>
+            <p>Earn $1.75 for completing this survey.</p>
+            <a href="wafflehouse_survey.html" class="survey-link" data-amount="1.75">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Walmart.png?raw=true" alt="Walmart">
+            <h3>Walmart</h3>
+            <p>Earn $1.15 for completing this survey.</p>
+            <a href="walmart_survey.html" class="survey-link" data-amount="1.15">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/assets/wendys.jpg?raw=true" alt="Wendys">
+            <h3>Wendys</h3>
+            <p>Earn $8 for completing this survey.</p>
+            <a href="wendys_survey.html" class="survey-link" data-amount="8">Take Survey</a>
+        </div>
+        <div class="survey-card">
+            <img src="https://github.com/Master120344/RealSurveys/blob/main/assets/wendys.jpg?raw=true" alt="Whole Foods">
+            <h3>Whole Foods</h3>
+            <p>Earn $3 for completing this survey.</p>
+            <a href="wholefoods_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2024 Your Company</p>
-    </footer>
-</body>
-</html>
+    <div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Costco.jpg?raw=true" alt="Costco">
+    <h3>Costco</h3>
+    <p>Earn $4 for completing this survey.</p>
+    <a href="costco_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/dell.jpg?raw=true" alt="Dell">
+    <h3>Dell</h3>
+    <p>Earn $3 for completing this survey.</p>
+    <a href="dell_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/BestBuy.jpg?raw=true" alt="Best Buy">
+    <h3>Best Buy</h3>
+    <p>Earn $5 for completing this survey.</p>
+    <a href="bestbuy_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Chipotle.jpg?raw=true" alt="Chipotle">
+    <h3>Chipotle</h3>
+    <p>Earn $4.50 for completing this survey.</p>
+    <a href="chipotle_survey.html" class="survey-link" data-amount="4.50">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Costco.jpg?raw=true" alt="Costco">
+    <h3>Costco</h3>
+    <p>Earn $4 for completing this survey.</p>
+    <a href="costco_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Gap.jpg?raw=true" alt="Gap">
+    <h3>Gap</h3>
+    <p>Earn $2 for completing this survey.</p>
+    <a href="gap_survey.html" class="survey-link" data-amount="2">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Marriott.jpg?raw=true" alt="Marriott">
+    <h3>Marriott</h3>
+    <p>Earn $7 for completing this survey.</p>
+    <a href="marriott_survey.html" class="survey-link" data-amount="7">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/OfficeMax.jpg?raw=true" alt="OfficeMax">
+    <h3>OfficeMax</h3>
+    <p>Earn $5 for completing this survey.</p>
+    <a href="officemax_survey.html" class="survey-link" data-amount="5">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Sephora.jpg?raw=true" alt="Sephora">
+    <h3>Sephora</h3>
+    <p>Earn $4 for completing this survey.</p>
+    <a href="sephora_survey.html" class="survey-link" data-amount="4">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/Verizon.jpg?raw=true" alt="Verizon">
+    <h3>Verizon</h3>
+    <p>Earn $6 for completing this survey.</p>
+    <a href="verizon_survey.html" class="survey-link" data-amount="6">Take Survey</a>
+</div>
+<div class="survey-card">
+    <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/WholeFoods.jpg?raw=true" alt="Whole Foods">
+    <h3>Whole Foods</h3>
+    <p>Earn $3 for completing this survey.</p>
+    <a href="wholefoods_survey.html" class="survey-link" data-amount="3">Take Survey</a>
+</div>
