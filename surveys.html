@@ -22,7 +22,7 @@
             
             // Load survey cards
             try {
-                const response = await fetch('survey-cards.html');
+                const response = await fetch('survey_cards.html');
                 const surveyCardsHtml = await response.text();
                 document.getElementById('surveys-container').innerHTML = surveyCardsHtml;
             } catch (error) {
