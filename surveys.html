@@ -107,11 +107,12 @@
 
             // Load survey cards
             try {
-                const response = await fetch('survey-cards.html');
+                const response = await fetch('RealSurveys/survey_cards.html'); // Correct path
                 const surveyCardsHtml = await response.text();
                 document.getElementById('surveys-container').innerHTML = surveyCardsHtml;
             } catch (error) {
                 console.error('Error loading survey cards:', error);
+                document.getElementById('surveys-container').innerHTML = '<p>Unable to load survey cards at the moment.</p>';
             }
         });
     </script>
