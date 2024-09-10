@@ -5,7 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surveys</title>
     <style>
-        /* Your existing CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            color: #333; /* Dark gray text */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF; /* Blue background for header */
+            color: white;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .hero {
+            background-color: #28A745; /* Green background for hero section */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .surveys-container {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .survey-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .survey-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .survey-card h3 {
+            margin: 10px 0;
+        }
+        .survey-card p {
+            color: #555;
+        }
+        .survey-link {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .survey-link:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #007BFF; /* Blue background for footer */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        #current-balance {
+            font-weight: bold;
+        }
     </style>
     <script type="module" src="./js/auth.js" defer></script>
     <script type="module" src="./js/userbalance.js" defer></script>
@@ -19,10 +100,10 @@
                 console.error('Error fetching balance:', error);
                 document.getElementById('current-balance').innerText = '$0.00';
             }
-            
+
             // Load survey cards
             try {
-                const response = await fetch('survey_cards.html');
+                const response = await fetch('survey-cards.html');
                 const surveyCardsHtml = await response.text();
                 document.getElementById('surveys-container').innerHTML = surveyCardsHtml;
             } catch (error) {
@@ -50,10 +131,10 @@
     </header>
     <div class="hero">
         <h2>Available Surveys</h2>
-        <p>Your current balance: <a href="balance.html" id="balance-link"><span id="current-balance">$0.00</span></a></p>
+        <p>Your current balance: <span id="current-balance">$0.00</span></p>
     </div>
-    <div id="surveys-container" class="surveys-container">
-        <!-- Survey cards will be loaded here -->
+    <div class="surveys-container" id="surveys-container">
+        <!-- Survey cards will be dynamically inserted here -->
     </div>
     <footer>
         <p>&copy; 2024 Your Company</p>
