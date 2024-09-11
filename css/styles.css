@@ -13,6 +13,7 @@ header {
     color: white;
     padding: 10px 0;
     text-align: center;
+    position: relative;
 }
 
 header h1 {
@@ -227,9 +228,10 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    position: relative; /* Change from fixed to relative */
     width: 100%;
     bottom: 0;
+    margin-top: auto; /* Ensure footer stays at the bottom */
 }
 
 #current-balance {
