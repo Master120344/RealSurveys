@@ -13,7 +13,6 @@ header {
     color: white;
     padding: 10px 0;
     text-align: center;
-    position: relative;
 }
 
 header h1 {
@@ -170,7 +169,7 @@ button:hover {
 /* Specific styles for surveys.html */
 
 .hero {
-    background-color: #009966; /* Green background for hero section */
+    background-color: #007bff; /* Blue background for hero section */
     color: white;
     text-align: center;
     padding: 20px 0;
@@ -178,25 +177,27 @@ button:hover {
 
 .surveys-container {
     padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
     gap: 20px;
     justify-content: center;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .survey-card {
     background: white;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
-    width: 300px; /* Adjust width as necessary */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
 }
 
 .survey-card img {
     width: 100%;
-    border-radius: 8px;
+    height: 150px;
+    object-fit: cover;
 }
 
 .survey-card h3 {
@@ -208,19 +209,17 @@ button:hover {
 }
 
 .survey-link {
-    display: block;
-    text-align: center;
-    padding: 10px;
-    background-color: #003366; /* Dark blue background for link */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green background for link */
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-top: 10px;
-    transition: background-color 0.3s;
 }
 
 .survey-link:hover {
-    background-color: #002244; /* Darker blue on hover */
+    background-color: #218838; /* Darker green on hover */
 }
 
 footer {
@@ -228,10 +227,18 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; /* Change from fixed to relative */
+    position: relative;
     width: 100%;
-    bottom: 0;
-    margin-top: auto; /* Ensure footer stays at the bottom */
+    margin-top: auto;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 #current-balance {
