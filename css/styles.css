@@ -1,19 +1,23 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Adjusted for consistency with surveys.html */
+    background-color: #f4f4f4; /* Consistent background color */
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #003366; /* Dark blue background for header */
+    background-color: #003366; /* Dark blue background */
     color: white;
     padding: 10px 0;
     text-align: center;
 }
 
 header h1 {
-    color: #fff; /* White text color for header */
+    color: #fff;
+    margin: 0;
 }
 
 .nav-tabs {
@@ -43,12 +47,13 @@ header h1 {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1200px; /* Increase max-width for more spacious layout */
     margin: auto;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    flex: 1;
 }
 
 .button-container {
@@ -183,8 +188,9 @@ button:hover {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
-    width: 300px;
+    width: 300px; /* Adjust width as necessary */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .survey-card img {
@@ -209,6 +215,7 @@ button:hover {
     text-decoration: none;
     border-radius: 4px;
     margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 .survey-link:hover {
