@@ -10,12 +10,16 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
-            background: #333;
+            background: #003366; /* Dark blue background */
             color: #fff;
             padding: 10px 0;
+            position: relative;
         }
 
         .container {
@@ -23,6 +27,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         nav ul {
@@ -51,7 +57,7 @@
         }
 
         .hero {
-            background: #007bff;
+            background: #009966; /* Green background */
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -76,6 +82,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         .survey-card {
@@ -116,10 +124,13 @@
         }
 
         footer {
-            background: #333;
+            background: #003366; /* Dark blue background */
             color: #fff;
             padding: 10px 0;
             text-align: center;
+            position: relative;
+            width: 100%;
+            margin-top: auto;
         }
 
         footer a {
@@ -196,6 +207,7 @@
             <p>Earn $1 for completing this survey.</p>
             <a href="amazon_survey.html" class="survey-link" data-amount="1">Take Survey</a>
         </div>
+    </div>
         <div class="survey-card">
             <img src="https://github.com/Master120344/RealSurveys/blob/main/surveycards/bestbuy.jpg?raw=true" alt="Best Buy Survey">
             <h3>Best Buy Survey</h3>
