@@ -1,3 +1,7 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+
 // Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
@@ -81,7 +85,7 @@ form.addEventListener('submit', async (event) => {
             cardErrors.textContent = '';
             step2.classList.add('hidden');
             step3.classList.remove('hidden');
-            confirmationMessage.textContent = Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.;
+            confirmationMessage.textContent = `Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.`;
 
             // Update user's balance in Firebase
             await updateBalance(amount / 100); // Convert back to dollars
