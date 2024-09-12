@@ -60,6 +60,55 @@
         });
 
         window.addEventListener('load', setupStripe);
+
+        function calculateNetAmount() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount)) {
+                const netAmount = amount * 0.9;
+                document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('net-amount').innerText = '';
+            }
+        }
+
+        document.getElementById('cashout-btn').addEventListener('click', function() {
+            const amount = parseFloat(document.getElementById('cashout-amount').value);
+            if (!isNaN(amount) && amount > 0) {
+                const netAmount = amount * 0.9;
+                const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
+                if (amount <= currentBalance) {
+                    const newBalance = currentBalance - amount;
+                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+                    document.getElementById('cashout-step-1').classList.add('hidden');
+                    document.getElementById('cashout-step-2').classList.remove('hidden');
+                } else {
+                    alert('Insufficient balance.');
+                }
+            } else {
+                alert('Please enter a valid amount.');
+            }
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const {token, error} = await stripe.createToken(cardElement);
+            if (error) {
+                document.getElementById('card-errors').textContent = error.message;
+            } else {
+                // Process the payment with the token
+                // Example code to send the token to your server for processing
+                // await fetch('/your-server-endpoint', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify({token: token.id}),
+                // });
+                document.getElementById('confirmation-message').innerText = 'Processing your cashout request...';
+                document.getElementById('cashout-step-2').classList.add('hidden');
+                document.getElementById('cashout-step-3').classList.remove('hidden');
+            }
+        });
     </script>
 </head>
 <body>
@@ -117,55 +166,5 @@
         <img src="https://github.com/Master120344/RealSurveys/raw/main/assets/untitled-3.gif" alt="Stripe Logo" class="stripe-logo" style="width:100px; height:auto;">
     </footer>
     <script src="js/balance.js"></script>
-    <script>
-        function calculateNetAmount() {
-            const amount = parseFloat(document.getElementById('cashout-amount').value);
-            if (!isNaN(amount)) {
-                const netAmount = amount * 0.9;
-                document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
-            } else {
-                document.getElementById('net-amount').innerText = '';
-            }
-        }
-
-        document.getElementById('cashout-btn').addEventListener('click', function() {
-            const amount = parseFloat(document.getElementById('cashout-amount').value);
-            if (!isNaN(amount) && amount > 0) {
-                const netAmount = amount * 0.9;
-                const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
-                if (amount <= currentBalance) {
-                    const newBalance = currentBalance - amount;
-                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
-                    document.getElementById('cashout-step-1').classList.add('hidden');
-                    document.getElementById('cashout-step-2').classList.remove('hidden');
-                } else {
-                    alert('Insufficient balance.');
-                }
-            } else {
-                alert('Please enter a valid amount.');
-            }
-        });
-
-        document.getElementById('payment-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const {token, error} = await stripe.createToken(cardElement);
-            if (error) {
-                document.getElementById('card-errors').textContent = error.message;
-            } else {
-                // Process the payment with the token
-                // Example code to send the token to your server for processing
-                // await fetch('/your-server-endpoint', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify({token: token.id}),
-                // });
-                document.getElementById('confirmation-message').innerText = 'Processing your cashout request...';
-                document.getElementById('cashout-step-2').classList.add('hidden');
-                document.getElementById('cashout-step-3').classList.remove('hidden');
-            }
-        });
-    </script>
 </body>
 </html>
