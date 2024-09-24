@@ -70,7 +70,8 @@
             if (!isNaN(amount) && amount > 0) {
                 const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
                 if (amount <= currentBalance) {
-                    document.getElementById('current-balance').innerText = `$${(currentBalance - amount).toFixed(2)}`;
+                    const newBalance = currentBalance - amount;
+                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
                     document.getElementById('cashout-step-1').classList.add('hidden');
                     document.getElementById('cashout-step-2').classList.remove('hidden');
                 } else {
@@ -90,6 +91,7 @@
                 document.getElementById('confirmation-message').innerText = 'Processing your cashout request...';
                 document.getElementById('cashout-step-2').classList.add('hidden');
                 document.getElementById('cashout-step-3').classList.remove('hidden');
+                // Additional processing with token here if needed
             }
         });
     </script>
