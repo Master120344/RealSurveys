@@ -11,7 +11,6 @@
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
         import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
-        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA7GP-4bnijUNXGBti2nCOJF9iwusuL7c4",
             authDomain: "real-surveys.firebaseapp.com",
@@ -22,28 +21,23 @@
             appId: "1:1024139519354:web:a0b11a5a0560ab02ee22c3"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
 
-        // Initialize Stripe
         const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Replace with your actual Stripe key
         const elements = stripe.elements();
         let cardElement;
 
-        // Load the card element
         function setupStripe() {
             cardElement = elements.create('card');
             cardElement.mount('#card-element');
         }
 
-        // Redirect to login page if user is not authenticated
         onAuthStateChanged(auth, (user) => {
             if (!user) {
                 window.location.href = 'login.html';
             } else {
-                // Load user data and update balance
                 const userId = user.uid;
                 const userRef = ref(database, 'users/' + userId);
                 get(userRef).then((snapshot) => {
@@ -74,11 +68,9 @@
         document.getElementById('cashout-btn').addEventListener('click', function() {
             const amount = parseFloat(document.getElementById('cashout-amount').value);
             if (!isNaN(amount) && amount > 0) {
-                const netAmount = amount * 0.9;
                 const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
                 if (amount <= currentBalance) {
-                    const newBalance = currentBalance - amount;
-                    document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+                    document.getElementById('current-balance').innerText = `$${(currentBalance - amount).toFixed(2)}`;
                     document.getElementById('cashout-step-1').classList.add('hidden');
                     document.getElementById('cashout-step-2').classList.remove('hidden');
                 } else {
@@ -95,15 +87,6 @@
             if (error) {
                 document.getElementById('card-errors').textContent = error.message;
             } else {
-                // Process the payment with the token
-                // Example code to send the token to your server for processing
-                // await fetch('/your-server-endpoint', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify({token: token.id}),
-                // });
                 document.getElementById('confirmation-message').innerText = 'Processing your cashout request...';
                 document.getElementById('cashout-step-2').classList.add('hidden');
                 document.getElementById('cashout-step-3').classList.remove('hidden');
@@ -143,9 +126,7 @@
                 <h3>Step 2: Choose Payment Method</h3>
                 <div id="payment-section">
                     <form id="payment-form">
-                        <div id="card-element">
-                            <!-- A Stripe Element will be inserted here. -->
-                        </div>
+                        <div id="card-element"></div>
                         <div id="card-errors" role="alert"></div>
                         <button type="submit" id="pay-button">Cash Out</button>
                     </form>
