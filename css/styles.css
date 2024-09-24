@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,13 +9,15 @@ body {
     min-height: 100vh;
 }
 
+/* Header Styles */
 header {
     background: #003366; /* Dark blue background */
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
 }
 
+/* Container Styles */
 .container {
     display: flex;
     flex-direction: column;
@@ -24,11 +27,15 @@ header {
     margin: auto;
 }
 
+/* Hero Section Styles */
 .hero {
-    background: #009966; /* Green background */
+    background: url('aper.jpg') no-repeat center center; /* Background image */
+    background-size: cover;
     color: #fff;
-    padding: 20px;
+    padding: 40px;
     text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero a {
@@ -41,6 +48,7 @@ header {
     text-decoration: underline;
 }
 
+/* Surveys Container Styles */
 .surveys-container {
     padding: 20px;
     background: #fff;
@@ -49,16 +57,20 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
     gap: 20px;
-    max-width: 800px;
-    margin: auto;
 }
 
+/* Survey Card Styles */
 .survey-card {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.survey-card:hover {
+    transform: scale(1.05); /* Scale on hover */
 }
 
 .survey-card img {
@@ -76,6 +88,7 @@ header {
     font-size: 16px;
 }
 
+/* Survey Link Styles */
 .survey-link {
     display: inline-block;
     padding: 10px 20px;
@@ -84,18 +97,19 @@ header {
     text-decoration: none;
     border-radius: 5px;
     margin-bottom: 10px;
+    transition: background 0.3s; /* Smooth background transition */
 }
 
 .survey-link:hover {
     background: #218838;
 }
 
+/* Footer Styles */
 footer {
     background: #003366; /* Dark blue background */
     color: #fff;
     padding: 10px 0;
     text-align: center;
-    position: relative;
     width: 100%;
     margin-top: auto;
 }
@@ -109,8 +123,9 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Balance Link Styles */
 #balance-link {
-    color: #fff; /* Match the text color to your theme */
+    color: #fff;
     text-decoration: none; /* Remove underline */
 }
 
@@ -118,6 +133,7 @@ footer a:hover {
     text-decoration: underline; /* Underline on hover for better UX */
 }
 
+/* Question Styles */
 .question {
     background: #fff; /* White background for question box */
     border-radius: 10px;
@@ -127,12 +143,14 @@ footer a:hover {
     width: 100%; /* Make it responsive */
 }
 
+/* Timer Styles */
 .timer {
     font-size: 1.5em;
     text-align: center;
     color: #ff3b30; /* Red for urgency */
 }
 
+/* Input Styles */
 input[type="radio"],
 select,
 textarea {
@@ -144,11 +162,13 @@ textarea {
     box-sizing: border-box;
 }
 
+/* Textarea Styles */
 textarea {
     resize: none; /* Prevent resizing */
     height: 80px; /* Fixed height for consistency */
 }
 
+/* Button Styles */
 .back-button,
 .next-button {
     padding: 10px 20px;
@@ -159,6 +179,7 @@ textarea {
     font-size: 16px;
     cursor: pointer;
     margin: 10px 5px;
+    transition: background 0.3s; /* Smooth background transition */
 }
 
 .back-button:hover,
@@ -166,6 +187,7 @@ textarea {
     background-color: #005bb5; /* Darker blue on hover */
 }
 
+/* Button Container Styles */
 .button-container {
     display: flex;
     justify-content: space-between;
