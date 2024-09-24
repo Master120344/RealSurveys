@@ -17,31 +17,54 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-// Initialize Stripe with your public key
-const stripe = Stripe('pk_live_51PGUR0P8M9Pgb8qZmxBX8zhH2i9ZhtSP9RNGmD1dgbsPDiW0zDcmRnNxVACAcBLzhz12YlKLMv9BvMrTUF69YlWS002ZqQ9Pey');
+const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Replace with your actual Stripe key
 const elements = stripe.elements();
+let cardElement;
 
-// Create an instance of the card Element
-const card = elements.create('card');
-card.mount('#card-element');
+function setupStripe() {
+    cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+}
 
-const step1 = document.getElementById('cashout-step-1');
-const step2 = document.getElementById('cashout-step-2');
-const step3 = document.getElementById('cashout-step-3');
-const cashoutBtn = document.getElementById('cashout-btn');
-const form = document.getElementById('payment-form');
-const cardErrors = document.getElementById('card-errors');
-const confirmationMessage = document.getElementById('confirmation-message');
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = 'login.html';
+    } else {
+        const userId = user.uid;
+        const userRef = ref(db, 'users/' + userId);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                document.getElementById('current-balance').innerText = `$${userData.balance.toFixed(2)}`;
+            } else {
+                console.error("No user data found.");
+            }
+        }).catch((error) => {
+            console.error("Error fetching user data: ", error);
+        });
+    }
+});
 
-// Cash out button click event
-cashoutBtn.addEventListener('click', () => {
+window.addEventListener('load', setupStripe);
+
+function calculateNetAmount() {
+    const amount = parseFloat(document.getElementById('cashout-amount').value);
+    if (!isNaN(amount)) {
+        const netAmount = amount * 0.9;
+        document.getElementById('net-amount').innerText = `You will receive: $${netAmount.toFixed(2)}`;
+    } else {
+        document.getElementById('net-amount').innerText = '';
+    }
+}
+
+document.getElementById('cashout-btn').addEventListener('click', function() {
     const amount = parseFloat(document.getElementById('cashout-amount').value);
     if (!isNaN(amount) && amount > 0) {
         const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
         if (amount <= currentBalance) {
-            // Proceed to payment step
-            step1.classList.add('hidden');
-            step2.classList.remove('hidden');
+            document.getElementById('current-balance').innerText = `$${(currentBalance - amount).toFixed(2)}`;
+            document.getElementById('cashout-step-1').classList.add('hidden');
+            document.getElementById('cashout-step-2').classList.remove('hidden');
         } else {
             alert('Insufficient balance.');
         }
@@ -50,73 +73,14 @@ cashoutBtn.addEventListener('click', () => {
     }
 });
 
-// Payment form submission
-form.addEventListener('submit', async (event) => {
+document.getElementById('payment-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-
-    const amount = parseFloat(document.getElementById('cashout-amount').value) * 100; // Convert to cents
-
-    try {
-        // Create a payment intent
-        const response = await fetch('/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ amount }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const { clientSecret } = await response.json();
-
-        // Confirm the payment
-        const { error } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-            }
-        });
-
-        if (error) {
-            cardErrors.textContent = error.message;
-        } else {
-            cardErrors.textContent = '';
-            step2.classList.add('hidden');
-            step3.classList.remove('hidden');
-            confirmationMessage.textContent = `Congratulations! Your payment of $${(amount / 100).toFixed(2)} is on its way. Your new balance will be updated shortly.`;
-
-            // Update user's balance in Firebase
-            await updateBalance(amount / 100); // Convert back to dollars
-        }
-    } catch (error) {
-        console.error('Error during payment:', error);
-        cardErrors.textContent = 'An error occurred. Please try again.';
+    const {token, error} = await stripe.createToken(cardElement);
+    if (error) {
+        document.getElementById('card-errors').textContent = error.message;
+    } else {
+        document.getElementById('confirmation-message').innerText = 'Processing your cashout request...';
+        document.getElementById('cashout-step-2').classList.add('hidden');
+        document.getElementById('cashout-step-3').classList.remove('hidden');
     }
 });
-
-// Function to update user's balance in Firebase
-async function updateBalance(amount) {
-    const user = auth.currentUser;
-    if (user) {
-        const userId = user.uid;
-        const userRef = ref(db, 'users/' + userId);
-
-        try {
-            const snapshot = await get(userRef);
-            if (snapshot.exists()) {
-                const currentBalance = snapshot.val().balance;
-                const newBalance = currentBalance - amount;
-                await update(userRef, { balance: newBalance });
-                console.log('Balance updated successfully.');
-            } else {
-                console.error('User data not found.');
-            }
-        } catch (error) {
-            console.error('Error fetching or updating user data:', error);
-        }
-    } else {
-        console.error('No user is currently authenticated.');
-    }
-}
