@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let timer;
     let timeLeft = 10;
 
+    // Function to start the timer
     function startTimer() {
         timeLeft = 10;
         document.getElementById('timer').innerText = timeLeft;
@@ -43,10 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 document.getElementById('nextButton').disabled = false;
+                document.getElementById('message').innerText = "Time's up! Please proceed.";
             }
         }, 1000);
     }
 
+    // Function to display the current question
     function displayQuestion() {
         if (currentQuestion >= questions.length) {
             completeSurvey();
@@ -59,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('backButton').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
     }
 
+    // Function to proceed to the next question
     function nextQuestion() {
         if (timeLeft <= 0) {
             currentQuestion++;
@@ -66,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to go back to the previous question
     function goBack() {
         if (currentQuestion > 0) {
             currentQuestion--;
@@ -73,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to handle the completion of the survey
     async function completeSurvey() {
         document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
         document.getElementById('nextButton').style.display = 'none';
@@ -80,8 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('message').innerHTML = "Congratulations! You've earned $4.00.";
 
         await updateBalance(4.00);
+        
+        // Redirect back to surveys.html after a short delay
+        setTimeout(() => {
+            window.location.href = "surveys.html";
+        }, 3000); // Redirects after 3 seconds
     }
 
+    // Function to update the user's balance in Firebase
     async function updateBalance(amount) {
         const user = auth.currentUser;
         if (user) {
@@ -106,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Event listeners for navigation buttons
     document.getElementById('nextButton').addEventListener('click', nextQuestion);
     document.getElementById('backButton').addEventListener('click', goBack);
     displayQuestion();
