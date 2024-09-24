@@ -13,19 +13,20 @@ const questions = [
     },
     {
         question: "How do you rate the pricing of the menu items at Burger King?",
-        options: ["Very Fair", "Fair", "Average", "Expensive", "Very Expensive"]
+        options: ["Very Reasonable", "Reasonable", "Average", "Expensive", "Very Expensive"]
     },
     {
         question: "How likely are you to visit Burger King again?",
-        options: ["Very Likely", "Likely", "Neutral", "Unlikely", "Very Unlikely"]
+        options: ["Very Likely", "Likely", "Unsure", "Unlikely", "Very Unlikely"]
     },
     {
         question: "How easy was it to place your order at Burger King?",
-        options: ["Very Easy", "Easy", "Average", "Difficult", "Very Difficult"]
+        options: ["Very Easy", "Easy", "Neutral", "Difficult", "Very Difficult"]
     },
     {
         question: "What improvements would you suggest for Burger King?",
-        options: ["More Menu Options", "Lower Prices", "Better Service", "Cleaner Environment", "Other"]
+        options: [], // Text box for suggestions
+        isTextBox: true
     }
 ];
 
@@ -47,25 +48,28 @@ function startTimer() {
 }
 
 function displayQuestion() {
-    if (currentQuestion >= questions.length) {
-        document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
-        document.getElementById('nextButton').style.display = 'none';
-        document.getElementById('backButton').style.display = 'none';
-        rewardUser();
-        return;
-    }
-    const { question, options } = questions[currentQuestion];
-    const optionsHtml = options.map((option, index) =>
-        `<label><input type="radio" name="question${currentQuestion}" value="${option}"> ${option}</label>`
-    ).join('');
-    
-    document.getElementById('questionContainer').innerHTML = `<h2>${question}</h2>${optionsHtml}`;
+    const questionData = questions[currentQuestion];
+    document.getElementById('questionContainer').innerHTML = `
+        <h2>${questionData.question}</h2>
+        ${questionData.options.map((option, index) => `
+            <label>
+                <input type="${questionData.isTextBox ? 'text' : 'radio'}" name="question${currentQuestion}" value="${option}" />
+                ${option}
+            </label>
+        `).join('')}
+        ${questionData.isTextBox ? '<textarea placeholder="Your suggestions..."></textarea>' : ''}
+    `;
     startTimer();
+    document.getElementById('backButton').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
 }
 
 function nextQuestion() {
     currentQuestion++;
-    displayQuestion();
+    if (currentQuestion < questions.length) {
+        displayQuestion();
+    } else {
+        endSurvey();
+    }
 }
 
 function goBack() {
@@ -75,10 +79,18 @@ function goBack() {
     }
 }
 
+function endSurvey() {
+    clearInterval(timer);
+    document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
+    document.getElementById('nextButton').style.display = 'none';
+    document.getElementById('backButton').style.display = 'none';
+    rewardUser();
+}
+
 function rewardUser() {
-    // This function assumes you have a balance.js module to update the balance
-    // Call to a hypothetical updateBalance function
-    updateBalance(2); // Adds $2 to the user's balance
+    const rewardAmount = 2; // Amount to reward
+    console.log(`Rewarding $${rewardAmount} to the user.`);
+    // Call to balance.js to add the reward, e.g., addReward(rewardAmount);
 }
 
 document.getElementById('nextButton').addEventListener('click', nextQuestion);
