@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -62,7 +62,8 @@ document.getElementById('cashout-btn').addEventListener('click', function() {
     if (!isNaN(amount) && amount > 0) {
         const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
         if (amount <= currentBalance) {
-            document.getElementById('current-balance').innerText = `$${(currentBalance - amount).toFixed(2)}`;
+            const newBalance = currentBalance - amount;
+            document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
             document.getElementById('cashout-step-1').classList.add('hidden');
             document.getElementById('cashout-step-2').classList.remove('hidden');
         } else {
@@ -82,5 +83,6 @@ document.getElementById('payment-form').addEventListener('submit', async (event)
         document.getElementById('confirmation-message').innerText = 'Processing your cashout request...';
         document.getElementById('cashout-step-2').classList.add('hidden');
         document.getElementById('cashout-step-3').classList.remove('hidden');
+        // Additional processing with token here if needed
     }
 });
