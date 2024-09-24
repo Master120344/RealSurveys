@@ -34,10 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayQuestion() {
         // If all questions have been answered
         if (currentQuestion >= questions.length) {
-            document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
-            document.getElementById('nextButton').style.display = 'none'; // Hide the next button
-            document.getElementById('backButton').style.display = 'none'; // Hide the back button
-            document.getElementById('message').innerHTML = "Congratulations! You've earned a reward. <a href='surveys.html'>Go back to surveys</a>";
+            completeSurvey();
             return; // Exit the function
         }
 
@@ -62,6 +59,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show or hide the back button depending on the current question
         document.getElementById('backButton').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+    }
+
+    // Function to handle survey completion
+    function completeSurvey() {
+        document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
+        document.getElementById('nextButton').style.display = 'none'; // Hide the next button
+        document.getElementById('backButton').style.display = 'none'; // Hide the back button
+        document.getElementById('message').innerHTML = "Congratulations! You've earned a reward. <a href='surveys.html'>Go back to surveys</a>";
+
+        // Update the user's balance in real-time
+        updateBalance();
+    }
+
+    // Function to update the user's balance
+    function updateBalance() {
+        // Assuming you have a Firebase function to update the balance
+        const userId = getCurrentUserId(); // Replace with your method to get the logged-in user's ID
+        const rewardAmount = 10; // Set the reward amount
+
+        // Firebase update logic (assuming you have a function for this)
+        firebase.database().ref('users/' + userId).once('value').then(snapshot => {
+            let currentBalance = snapshot.val().balance || 0;
+            currentBalance += rewardAmount;
+
+            // Update the balance in Firebase
+            firebase.database().ref('users/' + userId).update({ balance: currentBalance })
+                .then(() => {
+                    // Optionally, you can redirect or update the balance in real-time
+                    updateBalanceDisplay(currentBalance); // Update balance display on balance.html
+                });
+        });
     }
 
     // Function to move to the next question
