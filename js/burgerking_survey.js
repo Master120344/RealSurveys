@@ -1,118 +1,72 @@
+import { updateBalance } from './update_balance.js'; // Adjust the path as necessary
+
 const questions = [
     {
         question: "How would you rate your overall experience at Burger King?",
-        options: [
-            "Excellent",
-            "Very Good",
-            "Good",
-            "Fair",
-            "Poor"
-        ],
-        isTextBox: false
+        options: ["Excellent", "Very Good", "Good", "Fair", "Poor"],
+        isTextBox: false,
     },
     {
         question: "Which Burger King menu items do you enjoy the most? (Select all that apply)",
-        options: [
-            "Whopper",
-            "Chicken Sandwich",
-            "French Fries",
-            "Onion Rings",
-            "Salads",
-            "Beverages",
-            "Desserts"
-        ],
+        options: ["Whopper", "Chicken Sandwich", "French Fries", "Onion Rings", "Salads", "Beverages", "Desserts"],
         isTextBox: false,
-        multiSelect: true
+        multiSelect: true,
     },
     {
         question: "How often do you visit Burger King?",
-        options: [
-            "Daily",
-            "Weekly",
-            "Monthly",
-            "Rarely",
-            "Never"
-        ],
-        isTextBox: false
+        options: ["Daily", "Weekly", "Monthly", "Rarely", "Never"],
+        isTextBox: false,
     },
     {
         question: "How satisfied are you with the variety of menu items?",
-        options: [
-            "Very Satisfied",
-            "Satisfied",
-            "Neutral",
-            "Dissatisfied",
-            "Very Dissatisfied"
-        ],
-        isTextBox: false
+        options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+        isTextBox: false,
     },
     {
         question: "How would you rate the cleanliness of the restaurant?",
-        options: [
-            "Always Clean",
-            "Usually Clean",
-            "Sometimes Clean",
-            "Rarely Clean",
-            "Never Clean"
-        ],
-        isTextBox: false
+        options: ["Always Clean", "Usually Clean", "Sometimes Clean", "Rarely Clean", "Never Clean"],
+        isTextBox: false,
     },
     {
         question: "What aspects of our customer service stood out to you?",
         options: [],
-        isTextBox: true
+        isTextBox: true,
     },
     {
         question: "Rate the speed of service you received:",
-        options: [
-            "Very Fast",
-            "Fast",
-            "Average",
-            "Slow",
-            "Very Slow"
-        ],
-        isTextBox: false
+        options: ["Very Fast", "Fast", "Average", "Slow", "Very Slow"],
+        isTextBox: false,
     },
     {
         question: "How do our prices compare to other fast food restaurants?",
-        options: [
-            "Much Lower",
-            "Lower",
-            "About the Same",
-            "Higher",
-            "Much Higher"
-        ],
-        isTextBox: false
+        options: ["Much Lower", "Lower", "About the Same", "Higher", "Much Higher"],
+        isTextBox: false,
     },
     {
         question: "What improvements would you suggest for Burger King?",
         options: [],
-        isTextBox: true
+        isTextBox: true,
     },
     {
         question: "Would you like to receive promotions and special offers from Burger King?",
-        options: [
-            "Yes, definitely!",
-            "Maybe, depending on the offer.",
-            "No, thank you."
-        ],
-        isTextBox: false
+        options: ["Yes, definitely!", "Maybe, depending on the offer.", "No, thank you."],
+        isTextBox: false,
     },
     {
         question: "How likely are you to recommend Burger King to friends or family?",
         options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
-        isTextBox: false
+        isTextBox: false,
     },
     {
         question: "What other fast food chains do you frequently visit? (Please specify)",
         options: [],
-        isTextBox: true
+        isTextBox: true,
     },
     {
         question: "Any additional comments or feedback?",
         options: [],
-        isTextBox: true
-    }
+        isTextBox: true,
+    },
 ];
 
 let currentQuestion = 0;
@@ -215,8 +169,7 @@ function endSurvey() {
 function rewardUser() {
     const rewardAmount = 2; // Amount to reward
     console.log(`Rewarding $${rewardAmount} to the user.`);
-    // Implement the reward logic here
-    // e.g., addReward(rewardAmount);
+    updateBalance(rewardAmount); // Update balance after completing the survey
 }
 
 document.getElementById('nextButton').addEventListener('click', nextQuestion);
