@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -21,32 +21,40 @@ const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Replace with your actua
 const elements = stripe.elements();
 let cardElement;
 
+// Function to set up Stripe Elements
 function setupStripe() {
     cardElement = elements.create('card');
     cardElement.mount('#card-element');
 }
 
+// Check authentication state and fetch user balance
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         window.location.href = 'login.html';
     } else {
-        const userId = user.uid;
-        const userRef = ref(db, 'users/' + userId);
-        get(userRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-                document.getElementById('current-balance').innerText = `$${userData.balance.toFixed(2)}`;
-            } else {
-                console.error("No user data found.");
-            }
-        }).catch((error) => {
-            console.error("Error fetching user data: ", error);
-        });
+        fetchUserBalance(user.uid);
     }
 });
 
+// Function to fetch user balance from Firebase
+async function fetchUserBalance(userId) {
+    const userRef = ref(db, 'users/' + userId);
+    try {
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            document.getElementById('current-balance').innerText = `$${userData.balance.toFixed(2)}`;
+        } else {
+            console.error("No user data found.");
+        }
+    } catch (error) {
+        console.error("Error fetching user data: ", error);
+    }
+}
+
 window.addEventListener('load', setupStripe);
 
+// Calculate net amount for cashout
 function calculateNetAmount() {
     const amount = parseFloat(document.getElementById('cashout-amount').value);
     if (!isNaN(amount)) {
@@ -57,13 +65,13 @@ function calculateNetAmount() {
     }
 }
 
+// Handle cashout button click
 document.getElementById('cashout-btn').addEventListener('click', function() {
     const amount = parseFloat(document.getElementById('cashout-amount').value);
     if (!isNaN(amount) && amount > 0) {
         const currentBalance = parseFloat(document.getElementById('current-balance').innerText.replace('$', ''));
         if (amount <= currentBalance) {
-            const newBalance = currentBalance - amount;
-            document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+            updateBalance(currentBalance - amount);
             document.getElementById('cashout-step-1').classList.add('hidden');
             document.getElementById('cashout-step-2').classList.remove('hidden');
         } else {
@@ -74,6 +82,19 @@ document.getElementById('cashout-btn').addEventListener('click', function() {
     }
 });
 
+// Function to update user balance in Firebase
+async function updateBalance(newBalance) {
+    const userId = auth.currentUser.uid;
+    const userRef = ref(db, 'users/' + userId + '/balance');
+    try {
+        await update(userRef, { balance: newBalance });
+        document.getElementById('current-balance').innerText = `$${newBalance.toFixed(2)}`;
+    } catch (error) {
+        console.error("Error updating balance: ", error);
+    }
+}
+
+// Handle payment form submission
 document.getElementById('payment-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     const {token, error} = await stripe.createToken(cardElement);
