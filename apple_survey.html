@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple Customer Survey</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/apple_surveys.js" type="module" defer></script>
+    <title>Apple Survey</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header>
-        <h1>Apple Customer Survey</h1>
+        <h1>Apple Survey</h1>
     </header>
+
     <div class="container">
-        <div id="questionContainer" class="question">
-            <!-- Survey questions will be dynamically inserted here -->
-        </div>
+        <div id="timer" class="timer"></div>
+        <div id="questionContainer" class="question"></div>
         <div class="button-container">
-            <button id="backButton" class="back-button" style="display:none;">Back</button>
+            <button id="backButton" class="back-button" style="display: none;">Back</button>
             <button id="nextButton" class="next-button">Next</button>
         </div>
-        <div id="message" class="message"></div>
-        <div id="timer" class="timer">10</div>
+        <div id="message"></div>
     </div>
+
     <footer>
         <p>&copy; 2024 Apple Inc. All rights reserved.</p>
     </footer>
-</body>
 
+    <script src="apple_surveys.js"></script>
+</body>
 </html>
