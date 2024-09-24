@@ -98,62 +98,7 @@
         <div id="timer" class="message">10</div>
     </div>
 
-    <script>
-        const questions = [
-            "Question 1: How satisfied are you with the quality of food at Burger King?",
-            "Question 2: How would you rate the customer service at Burger King?",
-            "Question 3: How clean and comfortable is the Burger King location you visited?",
-            "Question 4: How do you rate the pricing of the menu items at Burger King?",
-            "Question 5: How likely are you to visit Burger King again?",
-            "Question 6: How easy was it to place your order at Burger King?",
-            "Question 7: What improvements would you suggest for Burger King?"
-        ];
-
-        let currentQuestion = 0;
-        let timer;
-
-        function startTimer() {
-            let timeLeft = 10;
-            document.getElementById('timer').innerText = timeLeft;
-            document.getElementById('nextButton').disabled = true;
-            timer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    document.getElementById('nextButton').disabled = false;
-                }
-            }, 1000);
-        }
-
-        function displayQuestion() {
-            if (currentQuestion >= questions.length) {
-                document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
-                document.getElementById('nextButton').style.display = 'none';
-                document.getElementById('backButton').style.display = 'none';
-                return;
-            }
-            document.getElementById('questionContainer').innerHTML = `<h2>${questions[currentQuestion]}</h2>`;
-            startTimer();
-        }
-
-        function nextQuestion() {
-            currentQuestion++;
-            displayQuestion();
-        }
-
-        function goBack() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                displayQuestion();
-            }
-        }
-
-        document.getElementById('nextButton').addEventListener('click', nextQuestion);
-        document.getElementById('backButton').addEventListener('click', goBack);
-
-        displayQuestion();
-    </script>
+    <script src="JS/burgerking_survey.js"></script>
 </body>
 
 </html>
