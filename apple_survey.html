@@ -3,35 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apple Inc. product and customer experience survey">
     <title>Apple Survey</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Ensure this file exists -->
-    <style>
-        /* Inline styles to add the wallpaper */
-        body {
-            background: url('https://github.com/Master120344/RealSurveys/raw/main/wallpapers/apple_wallpaper.jpg') no-repeat center center fixed; 
-            background-size: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="css/apple.css"> <!-- Updated to point to apple.css -->
 </head>
 <body>
     <header>
-        <h1>Apple Survey</h1>
+        <h1 class="survey-title">Apple Customer Survey</h1>
     </header>
 
-    <div class="container">
-        <div id="timer" class="timer"></div>
-        <div id="questionContainer" class="question"></div>
-        <div class="button-container">
-            <button id="backButton" class="back-button" style="display: none;">Back</button>
-            <button id="nextButton" class="next-button">Next</button>
-        </div>
-        <div id="message"></div>
-    </div>
+    <main class="survey-container">
+        <section id="timer" class="timer"></section>
+        <section id="questionContainer" class="question"></section>
+        <section class="navigation-buttons">
+            <button id="backButton" class="btn back-button" aria-label="Go to previous question" style="display: none;">Back</button>
+            <button id="nextButton" class="btn next-button" aria-label="Go to next question">Next</button>
+        </section>
+        <section id="message" class="survey-message"></section>
+    </main>
 
-    <footer>
+    <footer class="survey-footer">
         <p>&copy; 2024 Apple Inc. All rights reserved.</p>
     </footer>
 
-    <script src="js/apple_survey.js"></script> <!-- Updated path to js folder -->
+    <script src="js/apple_survey.js"></script>
 </body>
 </html>
