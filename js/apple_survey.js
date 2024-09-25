@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const questions = [
         {
-            text: "Do you like Android or Apple devices better?",
+            text: "Do you prefer iPhone over android?",
             options: ["Android", "Apple"],
             type: "multiple-choice"
         },
         {
-            text: "How would you rate the customer service provided by Apple?",
+            text: "How would you rate the quality of your iPhone?",
             options: ["1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"],
             type: "multiple-choice"
         },
         {
-            text: "Will you be interested in purchasing the new iPhone when it releases?",
+            text: "Will you be interested in purchasing the new iPhone?",
             options: ["Yes", "No", "Maybe"],
             type: "multiple-choice"
         },
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "text"
         },
         {
-            text: "Were you satisfied with the ease of purchasing from Apple's website or store?",
+            text: "Does the prices of new apple products steer you away from their products?",
             options: ["Yes", "No"],
             type: "multiple-choice"
         },
