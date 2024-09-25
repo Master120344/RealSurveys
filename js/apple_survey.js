@@ -39,10 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerInterval;
     let timeLeft = 10;
 
-    // Initialize the survey display
+    // Initialize the survey
     displayQuestion();
+    updateProgressBar();
 
-    // Start the timer for the current question
+    // Timer for each question
     function startTimer() {
         timeLeft = 10;
         updateTimerDisplay();
@@ -59,17 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    // Update the timer display
+    // Update timer display
     function updateTimerDisplay() {
-        document.getElementById('timer').innerText = timeLeft;
+        document.getElementById('timer').innerText = `Time left: ${timeLeft}s`;
     }
 
-    // Enable or disable the Next button
+    // Toggle next button enable/disable
     function toggleNextButton(state) {
         document.getElementById('nextButton').disabled = !state;
     }
 
-    // Display the current question
+    // Display current question
     function displayQuestion() {
         if (currentQuestionIndex >= questions.length) {
             endSurvey();
@@ -79,11 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const question = questions[currentQuestionIndex];
         const questionHTML = createQuestionHTML(question);
         document.getElementById('questionContainer').innerHTML = questionHTML;
+
         startTimer();
         document.getElementById('backButton').style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
     }
 
-    // Create HTML for the question and its options
+    // Create HTML for question
     function createQuestionHTML(question) {
         let html = `<h2>${question.text}</h2>`;
         
@@ -96,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>`;
             });
         } else if (question.type === "text") {
-            html += `<textarea placeholder="Your answer here..."></textarea>`;
+            html += `<textarea id="textAnswer" placeholder="Your answer here..."></textarea>`;
         }
-        
+
         return html;
     }
 
-    // Handle the end of the survey
+    // End the survey and show the completion message
     function endSurvey() {
         document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
         toggleNextButton(false);
@@ -114,23 +116,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // Move to the next question
+    // Move to next question
     function nextQuestion() {
-        if (timeLeft <= 0) {
+        if (validateAnswer()) {
             currentQuestionIndex++;
             displayQuestion();
+            updateProgressBar();
+        } else {
+            alert("Please answer the question before proceeding.");
         }
     }
 
-    // Go back to the previous question
+    // Go back to previous question
     function goBack() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
             displayQuestion();
+            updateProgressBar();
         }
     }
 
-    // Event listeners for buttons
+    // Validate if the user has answered the question
+    function validateAnswer() {
+        const question = questions[currentQuestionIndex];
+        if (question.type === "multiple-choice") {
+            return document.querySelector('input[name="answer"]:checked') !== null;
+        } else if (question.type === "text") {
+            return document.getElementById('textAnswer').value.trim() !== "";
+        }
+        return false;
+    }
+
+    // Update the progress bar
+    function updateProgressBar() {
+        const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+    }
+
+    // Event listeners
     document.getElementById('nextButton').addEventListener('click', nextQuestion);
     document.getElementById('backButton').addEventListener('click', goBack);
 });
