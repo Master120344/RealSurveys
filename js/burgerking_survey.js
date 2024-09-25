@@ -97,7 +97,7 @@ function displayQuestion() {
     if (questionData.isTextBox) {
         questionContainer.innerHTML += `<textarea placeholder="Your answer..." required></textarea>`;
     } else {
-        questionData.options.forEach((option, index) => {
+        questionData.options.forEach((option) => {
             if (questionData.multiSelect) {
                 questionContainer.innerHTML += `
                     <label>
