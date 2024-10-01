@@ -4,26 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Apple Inc. product and customer experience survey">
-    <title>Apple Survey</title>
-    <link rel="stylesheet" href="css/apple.css"> <!-- Updated to point to apple.css -->
+    <title>Apple Customer Survey</title>
+    <link rel="stylesheet" href="css/apple.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Inline styles for demonstration purposes; ideally, they should be in a CSS file */
+        body {
+            background: url('../images/apple_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .survey-container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 2em;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .navigation-buttons {
+            margin-top: 1.5em;
+        }
+
+        button {
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-link {
+            color: #007aff;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1 class="survey-title">Apple Customer Survey</h1>
+        <p class="survey-description">Your feedback is invaluable in helping us enhance our products and services. Thank you for participating!</p>
     </header>
 
     <main class="survey-container">
-        <section id="timer" class="timer"></section>
-        <section id="questionContainer" class="question"></section>
-        <section class="navigation-buttons">
-            <button id="backButton" class="btn back-button" aria-label="Go to previous question" style="display: none;">Back</button>
-            <button id="nextButton" class="btn next-button" aria-label="Go to next question">Next</button>
-        </section>
-        <section id="message" class="survey-message"></section>
+        <section id="timer" class="timer" aria-live="polite"></section>
+        <section id="questionContainer" class="question" aria-labelledby="currentQuestion"></section>
+        <div class="navigation-buttons">
+            <button id="backButton" class="btn back-button" aria-label="Go to previous question" style="display: none;">&#9664; Back</button>
+            <button id="nextButton" class="btn next-button" aria-label="Go to next question">Next &#9654;</button>
+        </div>
+        <section id="message" class="survey-message" aria-live="assertive"></section>
     </main>
 
     <footer class="survey-footer">
-        <p>&copy; 2024 Apple Inc. All rights reserved.</p>
+        <p>&copy; 2024 Apple Inc. All rights reserved. | <a href="#" class="footer-link">Privacy Policy</a></p>
     </footer>
 
     <script src="js/apple_survey.js"></script>
