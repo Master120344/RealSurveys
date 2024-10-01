@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const questions = [
         {
-            text: "Do you prefer iPhone over android?",
+            text: "Do you prefer iPhone over Android?",
             options: ["Android", "Apple"],
-            type: "multiple-choice"
+            type: "multiple-choice",
+            followUp: {
+                Android: "What do you find most appealing about Android devices?",
+                Apple: "What features do you love most about your iPhone?"
+            }
         },
         {
             text: "How would you rate the quality of your iPhone?",
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "text"
         },
         {
-            text: "Does the prices of new apple products steer you away from their products?",
+            text: "Does the pricing of new Apple products steer you away from their products?",
             options: ["Yes", "No"],
             type: "multiple-choice"
         },
@@ -38,12 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     let timerInterval;
     let timeLeft = 10;
+    const userResponses = {};
 
-    // Initialize the survey
     displayQuestion();
     updateProgressBar();
 
-    // Timer for each question
     function startTimer() {
         timeLeft = 10;
         updateTimerDisplay();
@@ -56,21 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
                 toggleNextButton(true);
+                document.getElementById('message').innerText = "Time is up! Please select an answer.";
             }
         }, 1000);
     }
 
-    // Update timer display
     function updateTimerDisplay() {
         document.getElementById('timer').innerText = `Time left: ${timeLeft}s`;
     }
 
-    // Toggle next button enable/disable
     function toggleNextButton(state) {
-        document.getElementById('nextButton').disabled = !state;
+        const nextButton = document.getElementById('nextButton');
+        nextButton.disabled = !state;
+        nextButton.classList.toggle('enabled', state);
     }
 
-    // Display current question
     function displayQuestion() {
         if (currentQuestionIndex >= questions.length) {
             endSurvey();
@@ -79,16 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const question = questions[currentQuestionIndex];
         const questionHTML = createQuestionHTML(question);
-        document.getElementById('questionContainer').innerHTML = questionHTML;
+        const questionContainer = document.getElementById('questionContainer');
 
-        startTimer();
-        document.getElementById('backButton').style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
+        // Add fade out effect
+        questionContainer.classList.add('fade-out');
+        setTimeout(() => {
+            questionContainer.innerHTML = questionHTML;
+            questionContainer.classList.remove('fade-out');
+            startTimer();
+            document.getElementById('backButton').style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
+            document.getElementById('message').innerText = ''; // Clear previous messages
+        }, 500);
     }
 
-    // Create HTML for question
     function createQuestionHTML(question) {
         let html = `<h2>${question.text}</h2>`;
-        
+
         if (question.type === "multiple-choice") {
             question.options.forEach(option => {
                 html += `
@@ -104,30 +113,57 @@ document.addEventListener('DOMContentLoaded', () => {
         return html;
     }
 
-    // End the survey and show the completion message
     function endSurvey() {
+        clearInterval(timerInterval); // Stop the timer
         document.getElementById('questionContainer').innerHTML = "<p>Thank you for completing the survey!</p>";
         toggleNextButton(false);
         document.getElementById('backButton').style.display = 'none';
-        document.getElementById('message').innerHTML = "You've earned a reward! Redirecting...";
-        
+        document.getElementById('message').innerText = "You've earned a reward! Redirecting...";
+
+        // Store responses in local storage
+        localStorage.setItem('userResponses', JSON.stringify(userResponses));
+
         setTimeout(() => {
             window.location.href = 'surveys.html'; // Redirect to surveys page
         }, 3000);
     }
 
-    // Move to next question
     function nextQuestion() {
         if (validateAnswer()) {
+            recordUserResponse();
+
+            const question = questions[currentQuestionIndex];
+
+            // Check for follow-up questions based on responses
+            if (question.followUp) {
+                const selectedOption = document.querySelector('input[name="answer"]:checked').value;
+                if (selectedOption in question.followUp) {
+                    questions.splice(currentQuestionIndex + 1, 0, {
+                        text: question.followUp[selectedOption],
+                        type: "text"
+                    });
+                }
+            }
+
             currentQuestionIndex++;
             displayQuestion();
             updateProgressBar();
         } else {
-            alert("Please answer the question before proceeding.");
+            document.getElementById('message').innerText = "Please answer the question before proceeding.";
         }
     }
 
-    // Go back to previous question
+    function recordUserResponse() {
+        const question = questions[currentQuestionIndex];
+        if (question.type === "multiple-choice") {
+            const selectedOption = document.querySelector('input[name="answer"]:checked').value;
+            userResponses[question.text] = selectedOption;
+        } else if (question.type === "text") {
+            const textAnswer = document.getElementById('textAnswer').value.trim();
+            userResponses[question.text] = textAnswer;
+        }
+    }
+
     function goBack() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
@@ -136,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Validate if the user has answered the question
     function validateAnswer() {
         const question = questions[currentQuestionIndex];
         if (question.type === "multiple-choice") {
@@ -147,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // Update the progress bar
     function updateProgressBar() {
         const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
         document.getElementById('progressBar').style.width = `${progress}%`;
