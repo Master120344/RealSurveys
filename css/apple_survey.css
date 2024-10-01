@@ -4,56 +4,42 @@ body, html {
     padding: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     color: #fff;
-    background: url('../images/apple_background.jpg') no-repeat center center fixed;
+    background: url('https://github.com/Master120344/RealSurveys/raw/main/wallpapers/apple_wallpaper.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-h1 {
+header {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
     font-size: 3rem;
-    color: #fff;
-    margin: 0.5em 0;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    color: #fff;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 1em;
-    color: #ddd;
-    text-align: center;
-}
-
-/* Container for the survey */
 .survey-container {
     background: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 2em;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.survey-container:hover {
-    transform: scale(1.02);
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+    color: #ddd;
 }
 
-/* Timer */
-.timer {
-    font-size: 1.5rem;
-    margin-bottom: 1.5em;
-    font-weight: bold;
-    color: #ff6f61;
-}
-
-/* Textarea */
 textarea {
     width: 100%;
     height: 120px;
@@ -64,15 +50,12 @@ textarea {
     border-radius: 8px;
     color: #fff;
     font-size: 1rem;
-    transition: border 0.3s;
 }
 
-textarea:focus {
-    border-color: #007aff;
-    outline: none;
+textarea::placeholder {
+    color: #ccc;
 }
 
-/* Options */
 .option {
     margin: 10px 0;
 }
@@ -84,21 +67,26 @@ input[type="radio"] {
 label {
     font-size: 1.2rem;
     color: #bbb;
-    transition: color 0.3s;
 }
 
-label:hover {
-    color: #fff;
+.timer {
+    font-size: 1.5rem;
+    margin-bottom: 1.5em;
+    font-weight: bold;
+    color: #ff6f61;
 }
 
-/* Buttons */
+.navigation-buttons {
+    margin-top: 1.5em;
+}
+
 button {
     padding: 0.8em 1.5em;
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.3s;
 }
 
 #nextButton {
@@ -108,7 +96,6 @@ button {
 
 #nextButton:hover {
     background-color: #005ecb;
-    transform: translateY(-2px);
 }
 
 #backButton {
@@ -119,10 +106,8 @@ button {
 
 #backButton:hover {
     background-color: #444;
-    transform: translateY(-2px);
 }
 
-/* Footer */
 footer {
     text-align: center;
     margin-top: 2em;
@@ -130,7 +115,6 @@ footer {
     color: #aaa;
 }
 
-/* Progress Bar */
 #progressBar {
     height: 10px;
     background-color: #007aff;
@@ -147,7 +131,7 @@ footer {
     }
 
     h2 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     button {
@@ -162,19 +146,5 @@ footer {
 
     textarea {
         height: 100px;
-    }
-}
-
-/* Fade Out Effect */
-.fade-out {
-    animation: fadeOut 0.5s forwards;
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
     }
 }
