@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MyRealSurveys (Desktop)</title>
+    <link rel="stylesheet" href="css/login_desktop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="js/login_desktop.js" defer></script>
+    <script type="module" src="js/ticker.js" defer></script>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="parallax-header">
+        <div class="header-overlay">
+            <div class="ticker-container">
+                <div id="survey-ticker" class="survey-ticker">Loading survey platform insights... <a href="survey-news.html" class="ticker-link">Learn More</a></div>
+            </div>
+            <div class="header-content">
+                <img src="assets/logo.png" alt="MyRealSurveys Logo" class="logo" id="logo">
+                <h1 class="header-title">MyRealSurveys</h1>
+            </div>
+            <div id="particles-js" class="particles-bg"></div>
+        </div>
+    </header>
+
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <div class="nav-menu">
+                <button class="nav-btn" data-href="index_desktop.html">Home</button>
+                <button class="nav-btn" data-href="contact_desktop.html">Contact</button>
+                <button class="nav-btn" data-href="giveaways_desktop.html">Giveaways</button>
+                <button class="nav-btn" data-href="register_desktop.html">Register</button>
+                <button class="nav-btn" data-href="login_desktop.html">Login</button>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content" data-aos="fade-up">
+        <div class="form-container">
+            <div id="loginSection">
+                <h2>Login</h2>
+                <p>Sign in to start earning.</p>
+                <form id="loginForm">
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required aria-label="Password">
+                    <button type="submit" class="submit-btn">Login</button>
+                    <a href="#" id="forgotPasswordLink" class="form-link">Forgot Password?</a>
+                    <div id="loginMessage" class="message" style="display: none;" aria-live="polite"></div>
+                </form>
+            </div>
+
+            <div id="forgotPasswordSection" class="forgot-password-section" style="display: none;">
+                <h2>Reset Password</h2>
+                <p>Enter your email to receive a reset link.</p>
+                <div class="reset-form-container">
+                    <label for="resetEmail" class="sr-only">Email for password reset</label>
+                    <input type="email" id="resetEmail" name="resetEmail" placeholder="Your Email" required aria-label="Email for password reset">
+                    <button type="button" id="resetPasswordBtn" class="submit-btn">Send Reset Link</button>
+                    <a href="#" id="backToLoginLink" class="form-link back-to-login">Back to Login</a>
+                    <div id="resetMessage" class="message success" style="display: none;" aria-live="polite"></div>
+                    <div id="resetError" class="message error" style="display: none;" aria-live="polite"></div>
+                </div>
+            </div>
+            <div id="particles-form" class="particles-form-bg"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 MyRealSurveys. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

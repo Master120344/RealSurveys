@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share your feedback about your Best Buy experience.">
+    <title>Best Buy Feedback - RealSurveys</title>
+    <!-- Google Fonts (e.g., Lato or Open Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="css/bestbuy_survey.css">
+    <!-- Canvas Confetti for completion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="background-element"></div> <!-- Optional background -->
+
+    <main class="survey-container">
+        <header class="survey-header">
+            <!-- Best Buy Logo Placeholder -->
+            <img src="assets/bestbuy_logo.png" alt="Best Buy Logo" class="logo"> <!-- Assumes logo in assets folder -->
+            <h1>Your Experience Matters</h1>
+        </header>
+
+        <div id="survey-content-wrapper" class="survey-content-wrapper">
+
+            <!-- 1. Welcome Screen (Initially Visible) -->
+            <div id="welcome-screen" class="survey-step">
+                <h2>Help Us Improve Your Best Buy Experience</h2>
+                <p>Thank you for taking a few moments to provide feedback on your recent interactions with Best Buy, whether online or in-store.</p>
+                <p class="estimated-time">Estimated time: 3-5 minutes.</p>
+                <button id="startButton" class="btn btn-primary btn-start">Start Survey <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- 2. Question Area (Initially Hidden) -->
+            <form id="bestbuySurveyForm" class="survey-step" style="display: none;">
+                 <div id="timer-progress-container">
+                     <div id="timer" class="timer">Time Left: <span id="timeLeft">00:10</span></div>
+                     <div class="progress-bar-container">
+                         <div id="progressBar" class="progress-bar"></div>
+                     </div>
+                 </div>
+                <div id="question-container" class="question-container">
+                    <!-- Question content loads here -->
+                </div>
+                 <div id="survey-navigation" class="survey-navigation">
+                     <button type="button" id="backButton" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                     <button type="button" id="nextButton" class="btn btn-primary">Next <i class="fas fa-arrow-right"></i></button>
+                 </div>
+            </form>
+
+            <!-- 3. Feedback Section (Initially Hidden) -->
+            <div id="feedback-section" class="survey-step feedback-section" style="display: none;">
+                <h2>Any Additional Comments? (Optional)</h2>
+                <p>Do you have any other feedback about our products, services, website, stores, or Geek Squad?</p>
+                <div class="textarea-wrapper">
+                    <textarea id="finalFeedback" name="finalFeedback" rows="5" maxlength="500" placeholder="Share your detailed feedback..."></textarea>
+                    <div id="char-count" class="char-count">0 / 500 characters</div>
+                </div>
+                <div class="feedback-actions">
+                    <button type="button" id="skipFeedbackButton" class="btn btn-secondary">Skip</button>
+                    <button type="button" id="submitSurveyButton" class="btn btn-primary">Complete Survey</button>
+                </div>
+            </div>
+
+            <!-- 4. Completion Screen (Initially Hidden) -->
+            <div id="completion-screen" class="survey-step completion-screen" style="display: none;">
+                <!-- Using a checkmark or tag icon -->
+                <i class="fas fa-tag completion-icon"></i>
+                <h2>Thank You!</h2>
+                <p>Your feedback helps us provide a better technology shopping experience.</p>
+                <p id="completion-message">Processing your submission...</p>
+                <div class="spinner"></div>
+                 <p class="redirect-notice">You will be redirected shortly.</p>
+            </div>
+
+        </div> <!-- /survey-content-wrapper -->
+
+        <footer class="survey-footer">
+            <p>© 2024 RealSurveys. All rights reserved. Not affiliated with Best Buy Co., Inc.</p>
+        </footer>
+    </main>
+
+    <!-- Link to External JavaScript -->
+    <script src="js/bestbuy_survey.js" defer></script>
+</body>
+</html>

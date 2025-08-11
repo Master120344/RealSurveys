@@ -1,0 +1,194 @@
+/* --- CSS Variables (Office Depot Theme) --- */
+:root {
+    --officedepot-red: #CC0000;    /* Office Depot Red */
+    --officedepot-black: #222222;  /* Dark Charcoal/Black */
+    --officedepot-grey: #F8F8F8;   /* Very Light Grey Background */
+    --officedepot-medium-grey: #E5E5E5; /* Medium Grey for borders/accents */
+    --officedepot-light-grey: #CCCCCC; /* Lighter Grey */
+    --officedepot-text-dark: #333333; /* Standard Dark Text */
+    --officedepot-text-light: #FFFFFF;/* White Text */
+    --officedepot-error: #D93025;   /* Standard Error Red */
+
+    --font-primary: 'Roboto', sans-serif; /* Standard, versatile */
+    --font-secondary: 'Arial', sans-serif;
+    --border-radius-standard: 4px;  /* Squared corners */
+    --border-radius-buttons: 4px;   /* Match standard */
+    --transition-speed: 0.2s;
+    --max-width: 680px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; height: 100%; }
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--officedepot-grey);
+    color: var(--officedepot-text-dark);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Elements */
+.background-element {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--officedepot-medium-grey), var(--officedepot-grey));
+    opacity: 0.5;
+    z-index: -1;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--officedepot-red); text-decoration: none; transition: color var(--transition-speed) ease; font-weight: 700; }
+a:hover { color: #990000; text-decoration: underline; }
+
+/* --- Survey Container --- */
+.survey-container {
+    background: var(--officedepot-text-light);
+    border-radius: var(--border-radius-standard);
+    padding: 0;
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Simple shadow */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--officedepot-medium-grey);
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+.survey-header {
+    background-color: var(--officedepot-red);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-header .logo {
+    height: 30px; /* Adjust size */
+    width: auto;
+    /* Assuming the logo has white parts or needs inversion */
+    filter: brightness(0) invert(1);
+}
+
+.survey-header h1 { display: none; }
+
+.survey-content-wrapper { padding: 30px 35px; }
+.survey-step { width: 100%; animation: stepFadeIn 0.3s ease-out; }
+@keyframes stepFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Welcome Screen --- */
+#welcome-screen h2 { font-family: var(--font-primary); font-size: 1.8rem; font-weight: 700; color: var(--officedepot-black); margin-bottom: 15px; }
+#welcome-screen p { color: var(--officedepot-text-dark); margin-bottom: 10px; font-size: 1.05rem; }
+#welcome-screen .estimated-time { font-size: 0.9rem; margin-bottom: 30px; color: #555; }
+
+/* --- Timer & Progress --- */
+#timer-progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; gap: 15px; background-color: var(--officedepot-grey); padding: 8px 12px; border-radius: var(--border-radius-standard); border: 1px solid var(--officedepot-medium-grey); }
+#timer { font-size: 0.9rem; font-weight: 700; color: var(--officedepot-text-dark); white-space: nowrap; }
+#timer span { font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 4px; }
+#timer.low-time span { color: var(--officedepot-red); animation: pulse 0.8s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.progress-bar-container { flex-grow: 1; height: 8px; background-color: rgba(204, 0, 0, 0.15); border-radius: 4px; overflow: hidden; }
+#progressBar { height: 100%; background: linear-gradient(to right, #ff6666, var(--officedepot-red)); width: 0%; transition: width var(--transition-speed) ease-out; border-radius: 4px; }
+
+/* --- Question Area --- */
+.question-container { margin-bottom: 30px; min-height: 150px; text-align: left; }
+.question-card { margin-bottom: 20px; }
+.question-card legend { font-family: var(--font-primary); font-size: 1.2rem; font-weight: 700; color: var(--officedepot-black); margin-bottom: 20px; line-height: 1.5; }
+
+.options-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; } /* Tighter gap */
+.options-list li label { display: flex; align-items: center; padding: 12px 18px; border-radius: var(--border-radius-buttons); border: 1px solid var(--officedepot-light-grey); cursor: pointer; transition: all var(--transition-speed) ease; color: var(--officedepot-text-dark); font-size: 1rem; font-weight: 400; background-color: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.options-list li label:hover { background-color: var(--officedepot-grey); border-color: var(--officedepot-red); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.07); }
+
+/* Custom Radio/Checkbox */
+.options-list li input[type="radio"], .options-list li input[type="checkbox"] { appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 18px; height: 18px; border: 2px solid var(--officedepot-black); border-radius: 50%; margin-right: 12px; position: relative; cursor: pointer; transition: all var(--transition-speed) ease; flex-shrink: 0; background-color: #fff; vertical-align: middle; top: -1px; }
+.options-list li input[type="checkbox"] { border-radius: 3px; } /* More square */
+.options-list li input[type="radio"]:checked, .options-list li input[type="checkbox"]:checked { border-color: var(--officedepot-red); background-color: var(--officedepot-red); }
+/* White Dot/Checkmark */
+.options-list li input[type="radio"]:checked::after { content: ''; display: block; width: 6px; height: 6px; background: var(--officedepot-text-light); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.options-list li input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--officedepot-text-light); font-size: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* Style label when checked */
+.options-list li label:has(input:checked) { border-color: var(--officedepot-red); background-color: #ffeeee; /* Very light red */ box-shadow: 0 0 0 1px var(--officedepot-red); /* Thinner focus */ transform: scale(1.01); }
+.checkbox-help-text { font-size: 0.85em; color: #555; margin-top: 10px; font-weight: 400;}
+
+/* --- Navigation & Buttons --- */
+.survey-navigation, .feedback-actions { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--officedepot-medium-grey); gap: 15px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 28px; border: 1px solid transparent; /* Base border */ border-radius: var(--border-radius-buttons); font-size: 1rem; font-weight: 700; font-family: var(--font-primary); cursor: pointer; transition: all var(--transition-speed) ease; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+
+/* Primary Button (Office Depot Red) */
+.btn-primary { background-color: var(--officedepot-red); color: var(--officedepot-text-light); border-color: var(--officedepot-red); }
+.btn-primary:hover:not(:disabled) { background-color: #990000; border-color: #990000; transform: translateY(-1px); box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); }
+.btn-primary:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); }
+
+/* Secondary Button (Grey with Red Border) */
+.btn-secondary { background-color: var(--officedepot-grey); color: var(--officedepot-red); border-color: var(--officedepot-red); box-shadow: none; }
+.btn-secondary:hover:not(:disabled) { background-color: var(--officedepot-medium-grey); border-color: #990000; color: #990000; transform: translateY(-1px); }
+.btn-secondary:active:not(:disabled) { transform: translateY(0); }
+
+.btn-start { font-size: 1.1rem; padding: 12px 35px; }
+
+.btn:disabled { opacity: 0.6; cursor: not-allowed; background-color: #cccccc; color: #777777; border-color: #cccccc; box-shadow: none; transform: none; }
+.btn i { font-size: 0.9em; }
+#backButton { visibility: hidden; opacity: 0; transition: visibility 0s var(--transition-speed), opacity var(--transition-speed) ease; }
+#backButton.visible { visibility: visible; opacity: 1; transition-delay: 0s; }
+
+/* --- Final Feedback Section --- */
+.feedback-section h2 { font-family: var(--font-primary); font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; color: var(--officedepot-black); text-align: left; }
+.feedback-section p { color: var(--officedepot-text-dark); margin-bottom: 20px; text-align: left; font-size: 1rem; }
+.textarea-wrapper { position: relative; margin-bottom: 15px; }
+.feedback-section textarea { width: 100%; padding: 10px 12px; border-radius: var(--border-radius-standard); border: 1px solid var(--officedepot-light-grey); resize: vertical; min-height: 90px; background: var(--officedepot-grey); color: var(--officedepot-text-dark); font-family: var(--font-secondary); font-size: 1rem; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
+.feedback-section textarea:focus { outline: none; border-color: var(--officedepot-red); box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.2); }
+.char-count { text-align: right; font-size: 0.8rem; color: #555; margin-top: 5px; font-weight: 400; }
+.char-count.limit-exceeded { color: var(--officedepot-error); }
+
+/* --- Completion Screen --- */
+.completion-screen { padding: 40px 20px; }
+.completion-icon { font-size: 3.5rem; color: var(--officedepot-red); margin-bottom: 20px; animation: bounce 1s infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+.completion-screen h2 { font-family: var(--font-primary); font-size: 1.8rem; font-weight: 700; color: var(--officedepot-black); margin-bottom: 15px; }
+.completion-screen p { color: var(--officedepot-text-dark); margin-bottom: 10px; font-size: 1.05rem; }
+.completion-screen .redirect-notice { font-size: 0.9em; margin-top: 25px; color: #555; }
+
+/* Spinner */
+.spinner { border: 3px solid rgba(204, 0, 0, 0.2); width: 28px; height: 28px; border-radius: 50%; border-left-color: var(--officedepot-red); animation: spin 1s linear infinite; margin: 25px auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* --- Footer --- */
+.survey-footer { background-color: var(--officedepot-black); text-align: center; padding: 15px 30px; }
+.survey-footer p { font-size: 0.85rem; color: var(--officedepot-text-light); opacity: 0.9; }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .survey-content-wrapper { padding: 25px; }
+    .survey-header { padding: 12px 20px; }
+    .survey-header .logo { height: 25px; }
+    #welcome-screen h2, .completion-screen h2 { font-size: 1.6rem; }
+    #timer-progress-container { padding: 6px 10px; gap: 10px; }
+    .question-card legend { font-size: 1.1rem; }
+    .options-list li label { font-size: 0.95rem; padding: 10px 15px; }
+    .btn { font-size: 0.9rem; padding: 10px 22px; } /* Adjusted padding */
+}
+
+@media (max-width: 480px) {
+    body { padding: 0; align-items: flex-start; }
+    .survey-container { border-radius: 0; border: none; box-shadow: none; min-height: 100vh; }
+    .survey-content-wrapper { padding: 20px 15px; flex-grow: 1; }
+    .survey-header { padding: 10px 15px; }
+    .survey-header .logo { height: 20px; }
+    /* Stack nav buttons */
+    .survey-navigation, .feedback-actions { flex-direction: column-reverse; align-items: stretch; }
+    .btn { width: 100%; }
+    .feedback-section textarea { min-height: 80px; }
+    .survey-footer { padding: 10px 15px; }
+}

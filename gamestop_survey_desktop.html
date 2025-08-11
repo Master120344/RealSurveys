@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStop Customer Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://github.com/Master120344/RealSurveys/blob/main/assets/gamestop_background.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            font-size: 24px;
+            color: #1e90ff;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #4682b4;
+        }
+
+        .button-container .back-button {
+            background-color: #ff6347;
+        }
+
+        .button-container .back-button:hover {
+            background-color: #ff4500;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="questionContainer" class="question"></div>
+        <div class="button-container">
+            <button id="backButton" class="back-button" style="display:none;">Back</button>
+            <button id="nextButton">Next</button>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="gamestop_survey.js"></script>
+</body>
+
+</html>

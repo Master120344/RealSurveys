@@ -1,0 +1,191 @@
+/* --- CSS Variables (Staples Theme) --- */
+:root {
+    --staples-red: #D50032;      /* Staples Red */
+    --staples-grey-light: #F8F8F8; /* Background */
+    --staples-grey-medium: #E0E0E0;/* Borders */
+    --staples-grey-dark: #666666;  /* Darker Grey Text/Accent */
+    --staples-black: #222222;     /* Near Black */
+    --staples-white: #FFFFFF;
+    --staples-error: #D50032;      /* Brand Red for Errors */
+
+    --font-primary: 'Open Sans', sans-serif; /* Clean, standard */
+    --font-secondary: 'Arial', sans-serif;
+    --border-radius-standard: 3px;  /* Slightly less round */
+    --border-radius-buttons: 3px;
+    --transition-speed: 0.2s;
+    --max-width: 680px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; height: 100%; }
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--staples-grey-light);
+    color: var(--staples-black);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Elements */
+.background-element {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--staples-grey-medium), var(--staples-grey-light));
+    opacity: 0.5;
+    z-index: -1;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--staples-red); text-decoration: none; transition: color var(--transition-speed) ease; font-weight: 700; }
+a:hover { color: #a70028; text-decoration: underline; }
+
+/* --- Survey Container --- */
+.survey-container {
+    background: var(--staples-white);
+    border-radius: var(--border-radius-standard);
+    padding: 0;
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--staples-grey-medium);
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+.survey-header {
+    background-color: var(--staples-red);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-header .logo {
+    height: 30px; /* Adjust */
+    width: auto;
+     filter: brightness(0) invert(1); /* Make white logo */
+}
+
+.survey-header h1 { display: none; }
+
+.survey-content-wrapper { padding: 30px 35px; }
+.survey-step { width: 100%; animation: stepFadeIn 0.3s ease-out; }
+@keyframes stepFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Welcome Screen --- */
+#welcome-screen h2 { font-family: var(--font-primary); font-size: 1.8rem; font-weight: 700; color: var(--staples-black); margin-bottom: 15px; }
+#welcome-screen p { color: var(--staples-grey-dark); margin-bottom: 10px; font-size: 1.05rem; }
+#welcome-screen .estimated-time { font-size: 0.9rem; margin-bottom: 30px; color: var(--staples-grey-dark); }
+
+/* --- Timer & Progress --- */
+#timer-progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; gap: 15px; background-color: var(--staples-grey-light); padding: 8px 12px; border-radius: var(--border-radius-standard); border: 1px solid var(--staples-grey-medium); }
+#timer { font-size: 0.9rem; font-weight: 700; color: var(--staples-grey-dark); white-space: nowrap; }
+#timer span { font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 4px; }
+#timer.low-time span { color: var(--staples-red); animation: pulse 0.8s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.progress-bar-container { flex-grow: 1; height: 6px; background-color: rgba(213, 0, 50, 0.15); border-radius: 3px; overflow: hidden; }
+#progressBar { height: 100%; background: var(--staples-red); width: 0%; transition: width var(--transition-speed) ease-out; border-radius: 3px; }
+
+/* --- Question Area --- */
+.question-container { margin-bottom: 30px; min-height: 150px; text-align: left; }
+.question-card { margin-bottom: 20px; }
+.question-card legend { font-family: var(--font-primary); font-size: 1.2rem; font-weight: 700; color: var(--staples-black); margin-bottom: 20px; line-height: 1.5; }
+
+.options-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.options-list li label { display: flex; align-items: center; padding: 12px 18px; border-radius: var(--border-radius-buttons); border: 1px solid var(--staples-grey-medium); cursor: pointer; transition: all var(--transition-speed) ease; color: var(--staples-black); font-size: 1rem; font-weight: 400; background-color: var(--staples-white); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.options-list li label:hover { background-color: var(--staples-grey-light); border-color: var(--staples-red); }
+
+/* Custom Radio/Checkbox */
+.options-list li input[type="radio"], .options-list li input[type="checkbox"] { appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 18px; height: 18px; border: 2px solid var(--staples-grey-dark); border-radius: 50%; margin-right: 12px; position: relative; cursor: pointer; transition: all var(--transition-speed) ease; flex-shrink: 0; background-color: var(--staples-white); vertical-align: middle; top: -1px; }
+.options-list li input[type="checkbox"] { border-radius: 3px; }
+.options-list li input[type="radio"]:checked, .options-list li input[type="checkbox"]:checked { border-color: var(--staples-red); background-color: var(--staples-red); }
+/* White Dot/Checkmark */
+.options-list li input[type="radio"]:checked::after { content: ''; display: block; width: 6px; height: 6px; background: var(--staples-white); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.options-list li input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--staples-white); font-size: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* Style label when checked */
+.options-list li label:has(input:checked) { border-color: var(--staples-red); background-color: #ffeeee; box-shadow: 0 0 0 1px var(--staples-red); }
+.checkbox-help-text { font-size: 0.85em; color: var(--staples-grey-dark); margin-top: 10px; font-weight: 400;}
+
+/* --- Navigation & Buttons --- */
+.survey-navigation, .feedback-actions { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--staples-grey-medium); gap: 15px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 30px; border: 1px solid transparent; border-radius: var(--border-radius-buttons); font-size: 1rem; font-weight: 700; font-family: var(--font-primary); cursor: pointer; transition: all var(--transition-speed) ease; white-space: nowrap; text-transform: none; /* Normal case */ letter-spacing: 0.2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+
+/* Primary Button (Staples Red) */
+.btn-primary { background-color: var(--staples-red); color: var(--staples-white); border-color: var(--staples-red); }
+.btn-primary:hover:not(:disabled) { background-color: #a70028; border-color: #a70028; transform: translateY(-1px); box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); }
+.btn-primary:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); }
+
+/* Secondary Button (Light Grey with Dark Grey Border) */
+.btn-secondary { background-color: var(--staples-grey-light); color: var(--staples-black); border-color: var(--staples-grey-dark); box-shadow: none; }
+.btn-secondary:hover:not(:disabled) { background-color: var(--staples-grey-medium); border-color: var(--staples-black); }
+.btn-secondary:active:not(:disabled) { background-color: #cccccc; }
+
+.btn-start { font-size: 1.1rem; padding: 13px 38px; }
+
+.btn:disabled { opacity: 0.6; cursor: not-allowed; background-color: #cccccc; color: #777777; border-color: #cccccc; box-shadow: none; transform: none; }
+.btn i { font-size: 0.9em; }
+#backButton { visibility: hidden; opacity: 0; transition: visibility 0s var(--transition-speed), opacity var(--transition-speed) ease; }
+#backButton.visible { visibility: visible; opacity: 1; transition-delay: 0s; }
+
+/* --- Final Feedback Section --- */
+.feedback-section h2 { font-family: var(--font-primary); font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; color: var(--staples-black); text-align: left; }
+.feedback-section p { color: var(--staples-grey-dark); margin-bottom: 20px; text-align: left; font-size: 1rem; }
+.textarea-wrapper { position: relative; margin-bottom: 15px; }
+.feedback-section textarea { width: 100%; padding: 10px 12px; border-radius: var(--border-radius-standard); border: 1px solid var(--staples-grey-medium); resize: vertical; min-height: 90px; background: var(--staples-grey-light); color: var(--staples-black); font-family: var(--font-secondary); font-size: 1rem; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
+.feedback-section textarea:focus { outline: none; border-color: var(--staples-red); box-shadow: 0 0 0 2px rgba(213, 0, 50, 0.2); }
+.char-count { text-align: right; font-size: 0.8rem; color: var(--staples-grey-dark); margin-top: 5px; font-weight: 400; }
+.char-count.limit-exceeded { color: var(--staples-error); }
+
+/* --- Completion Screen --- */
+.completion-screen { padding: 40px 20px; }
+.completion-icon { font-size: 3.5rem; color: var(--staples-red); margin-bottom: 20px; animation: bounce 1s infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+.completion-screen h2 { font-family: var(--font-primary); font-size: 1.8rem; font-weight: 700; color: var(--staples-black); margin-bottom: 15px; }
+.completion-screen p { color: var(--staples-grey-dark); margin-bottom: 10px; font-size: 1.05rem; }
+.completion-screen .redirect-notice { font-size: 0.9em; margin-top: 25px; color: var(--staples-grey-dark); }
+
+/* Spinner */
+.spinner { border: 3px solid rgba(213, 0, 50, 0.2); width: 28px; height: 28px; border-radius: 50%; border-left-color: var(--staples-red); animation: spin 1s linear infinite; margin: 25px auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* --- Footer --- */
+.survey-footer { background-color: var(--staples-black); text-align: center; padding: 15px 30px; }
+.survey-footer p { font-size: 0.85rem; color: var(--staples-white); opacity: 0.9; }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .survey-content-wrapper { padding: 25px; }
+    .survey-header { padding: 12px 20px; }
+    .survey-header .logo { height: 26px; }
+    #welcome-screen h2, .completion-screen h2 { font-size: 1.6rem; }
+    #timer-progress-container { padding: 6px 10px; gap: 10px; }
+    .question-card legend { font-size: 1.1rem; }
+    .options-list li label { font-size: 0.95rem; padding: 10px 15px; }
+    .btn { font-size: 0.95rem; padding: 10px 25px; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 0; align-items: flex-start; }
+    .survey-container { border-radius: 0; border: none; box-shadow: none; min-height: 100vh; }
+    .survey-content-wrapper { padding: 20px 15px; flex-grow: 1; }
+    .survey-header { padding: 10px 15px; }
+    .survey-header .logo { height: 24px; }
+    .survey-navigation, .feedback-actions { flex-direction: column-reverse; align-items: stretch; }
+    .btn { width: 100%; }
+    .feedback-section textarea { min-height: 80px; }
+    .survey-footer { padding: 10px 15px; }
+}

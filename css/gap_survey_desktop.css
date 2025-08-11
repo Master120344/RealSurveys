@@ -1,0 +1,269 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // --- DOM Elements ---
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const startButton = document.getElementById('startButton');
+    const surveyForm = document.getElementById('gapSurveyForm');
+    const questionContainer = document.getElementById('question-container');
+    const backButton = document.getElementById('backButton');
+    const nextButton = document.getElementById('nextButton');
+    const timerDisplay = document.getElementById('timeLeft');
+    const timerContainer = document.getElementById('timer');
+    const progressBar = document.getElementById('progressBar');
+    const feedbackSection = document.getElementById('feedback-section');
+    const finalFeedbackInput = document.getElementById('finalFeedback');
+    const charCountDisplay = document.getElementById('char-count');
+    const skipFeedbackButton = document.getElementById('skipFeedbackButton');
+    const submitSurveyButton = document.getElementById('submitSurveyButton');
+    const completionScreen = document.getElementById('completion-screen');
+    const completionMessage = document.getElementById('completion-message');
+
+    // --- Config & State ---
+    const TIME_PER_QUESTION = 10;
+    const MAX_FEEDBACK_CHARS = 500;
+    const SURVEY_ID = 'gapSurvey'; // Unique identifier for local storage
+    let currentQuestionId = null;
+    let userAnswers = {};
+    let questionHistory = [];
+    let timerInterval = null;
+    let timeLeft = TIME_PER_QUESTION;
+    let surveyStartTime = null;
+    let hasTakenSurvey = localStorage.getItem(`${SURVEY_ID}_taken`) === 'true';
+
+    // --- Survey Questions (Gap Focus) ---
+    const surveyQuestions = {
+        'START': { next: 'Q1_SHOPPING_METHOD' },
+        'Q1_SHOPPING_METHOD': {
+            text: "How did you shop with us today?",
+            type: 'radio',
+            required: true,
+            options: [
+                { value: 'in_store', label: 'In a Gap store' },
+                { value: 'online', label: 'Online at Gap.com' },
+                { value: 'both', label: 'Both in store and online' }
+            ],
+            next: 'Q2_PRODUCT_SELECTION'
+        },
+        'Q2_PRODUCT_SELECTION': {
+            text: "How satisfied were you with the product selection?",
+            type: 'rating',
+            required: true,
+            options: [
+                { value: 5, label: 'Very Satisfied' },
+                { value: 4, label: 'Satisfied' },
+                { value: 3, label: 'Neutral' },
+                { value: 2, label: 'Dissatisfied' },
+                { value: 1, label: 'Very Dissatisfied' }
+            ],
+            next: 'Q3_CLOTHING_FIT'
+        },
+        'Q3_CLOTHING_FIT': {
+            text: "How satisfied were you with the fit of the clothing you purchased?",
+            type: 'rating',
+            required: true,
+            options: [
+                { value: 5, label: 'Very Satisfied' },
+                { value: 4, label: 'Satisfied' },
+                { value: 3, label: 'Neutral' },
+                { value: 2, label: 'Dissatisfied' },
+                { value: 1, label: 'Very Dissatisfied' }
+            ],
+            next: 'Q4_STORE_ATMOSPHERE'
+        },
+        'Q4_STORE_ATMOSPHERE': {
+            text: "If you shopped in-store, how would you rate the store atmosphere?",
+            type: 'rating',
+            required: function(answers) { return answers['Q1_SHOPPING_METHOD'] !== 'online'; }, // Required if not online only
+            options: [
+                { value: 5, label: 'Excellent' },
+                { value: 4, label: 'Good' },
+                { value: 3, label: 'Okay' },
+                { value: 2, label: 'Poor' },
+                { value: 1, label: 'Terrible' },
+                { value: 0, label: 'N/A - Did not shop in store' }
+            ],
+            next: 'Q5_STAFF_FRIENDLINESS'
+        },
+        'Q5_STAFF_FRIENDLINESS': {
+            text: "How would you rate the friendliness of the staff?",
+            type: 'rating',
+            required: function(answers) { return answers['Q1_SHOPPING_METHOD'] !== 'online'; }, // Required if not online only
+            options: [
+                { value: 5, label: 'Very Friendly' },
+                { value: 4, label: 'Friendly' },
+                { value: 3, label: 'Neutral' },
+                { value: 2, label: 'Unfriendly' },
+                { value: 1, label: 'Very Unfriendly' },
+                { value: 0, label: 'N/A - Did not shop in store' }
+            ],
+            next: 'Q6_EASE_OF_WEBSITE'
+        },
+        'Q6_EASE_OF_WEBSITE': {
+            text: "If you shopped online, how easy was it to navigate the website?",
+            type: 'rating',
+            required: function(answers) { return answers['Q1_SHOPPING_METHOD'] !== 'in_store'; }, // Required if not in store only
+            options: [
+                { value: 5, label: 'Very Easy' },
+                { value: 4, label: 'Easy' },
+                { value: 3, label: 'Neutral' },
+                { value: 2, label: 'Difficult' },
+                { value: 1, label: 'Very Difficult' },
+                { value: 0, label: 'N/A - Did not shop online' }
+            ],
+            next: 'Q7_LIKELIHOOD_TO_RETURN'
+        },
+        'Q7_LIKELIHOOD_TO_RETURN': {
+            text: "How likely are you to shop at Gap again in the future?",
+            type: 'rating',
+            required: true,
+            options: [
+                { value: 5, label: 'Very Likely' },
+                { value: 4, label: 'Likely' },
+                { value: 3, label: 'Neutral' },
+                { value: 2, label: 'Unlikely' },
+                { value: 1, label: 'Very Unlikely' }
+            ],
+            next: 'FEEDBACK'
+        },
+        'FEEDBACK': { type: 'textarea', next: 'COMPLETE' },
+        'COMPLETE': { type: 'completion' }
+    };
+
+     // --- Helper Functions ---
+    function log(message, ...args) { console.log(`[Gap Survey]: ${message}`, ...args); }
+    function error(message, ...args) { console.error(`[Gap Survey] ERROR: ${message}`, ...args); }
+
+    // --- Timer Functions ---
+    function startTimer() {
+        stopTimer();
+        timeLeft = TIME_PER_QUESTION;
+        updateTimerDisplay();
+        timerContainer?.classList.remove('low-time');
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+            if (timeLeft <= 3 && timerContainer) timerContainer.classList.add('low-time');
+            if (timeLeft <= 0) {
+                stopTimer();
+                handleAutoAdvance();
+            }
+        }, 1000);
+        log("Timer started.");
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerContainer?.classList.remove('low-time');
+        log("Timer stopped.");
+    }
+
+    function updateTimerDisplay() {
+        if (!timerDisplay) {
+            error("Timer display element not found.");
+            return;
+        }
+        timerDisplay.textContent = `00:${String(timeLeft).padStart(2, '0')}`;
+    }
+
+    function handleAutoAdvance() {
+        log(`Auto-advancing: ${currentQuestionId}`);
+        collectAnswer(currentQuestionId);
+        handleNextQuestion(true);
+    }
+
+    // --- Rendering Functions ---
+    function renderQuestion(questionId) {
+        log(`Rendering question: ${questionId}`);
+        const question = surveyQuestions[questionId];
+
+        if (!question) {
+            error(`Invalid question ID: ${questionId}`);
+            showFeedbackSection();
+            return;
+        }
+
+        if (question.type === 'textarea' || question.type === 'completion') {
+            error(`Attempted to render non-question type: ${question.type}`);
+            showFeedbackSection();
+            return;
+        }
+
+        if (!questionContainer) {
+            error("Question container element not found.");
+            return;
+        }
+
+        stopTimer();
+        questionContainer.innerHTML = ''; // Clear previous question
+
+        const fieldset = document.createElement('fieldset');
+        fieldset.id = `q_${questionId}`;
+        fieldset.classList.add('question-card');
+        fieldset.setAttribute('aria-labelledby', `legend_${questionId}`);
+
+        const legend = document.createElement('legend');
+        legend.id = `legend_${questionId}`;
+        legend.innerHTML = question.text;
+        fieldset.appendChild(legend);
+
+        const optionsList = document.createElement('ul');
+        optionsList.classList.add('options-list');
+
+        if (question.type === 'radio' || question.type === 'rating') {
+            optionsList.setAttribute('role', 'radiogroup');
+        } else if (question.type === 'checkbox') {
+            optionsList.setAttribute('role', 'group');
+            if (question.maxSelection) optionsList.setAttribute('aria-describedby', `info_${questionId}`);
+        }
+
+        if (question.options) {
+            question.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                const id = `q_${questionId}_opt${index}`;
+                const input = document.type === 'checkbox' ? 'checkbox' : 'radio';
+                input.id = id;
+                input.name = `q_${questionId}`;
+                input.value = option.value;
+
+                // Check if the answer was previously given
+                const ans = userAnswers[questionId];
+                if (ans) {
+                    if (input.type === 'radio' && String(ans) === String(option.value)) {
+                        input.checked = true;
+                    } else if (input.type === 'checkbox' && Array.isArray(ans) && ans.includes(String(option.value))) {
+                        input.checked = true;
+                    }
+                }
+
+                const label = document.createElement('label');
+                label.htmlFor = id;
+                const span = document.textContent = option.label;
+                label.appendChild(input);
+                label.appendChild(span);
+
+                input.addEventListener('change', (e) => handleInputChange(questionId, question, e));
+                li.appendChild(label);
+                optionsList.appendChild(li);
+            });
+
+            fieldset.appendChild(optionsList);
+
+            if (question.type === 'checkbox' && question.maxSelection) {
+                const help = document.createElement('p');
+                help.id = `info_${questionId}`;
+                help.classList.add('checkbox-help-text');
+                help.textContent = `(Select up to ${question.maxSelection})`;
+                fieldset.appendChild(help);
+            }
+        }
+
+        questionContainer.appendChild(fieldset);
+        updateNavigationButtons();
+        updateProgressBar();
+        validateCurrentQuestion();
+        startTimer();
+        log(`Question ${questionId} rendered successfully.`);
+    }
+
+    // --- Input Handling and Validation ---
+    function handleInputChange(questionId, questionDef, event =

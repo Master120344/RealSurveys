@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share your feedback about your Starbucks experience.">
+    <title>Starbucks Feedback - RealSurveys</title>
+    <!-- Google Fonts (e.g., SoDo Sans - Starbucks uses this, or a fallback like Lato) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"> <!-- Fallback font -->
+    <!-- Note: SoDo Sans might need specific licensing or self-hosting -->
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="css/starbucks_survey.css">
+    <!-- Canvas Confetti for completion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="background-element"></div>
+
+    <main class="survey-container">
+        <header class="survey-header">
+            <!-- Starbucks Logo Placeholder -->
+            <img src="assets/starbucks_logo.png" alt="Starbucks Logo" class="logo"> <!-- Assumes logo in assets -->
+            <h1>Share Your Starbucks Experience</h1>
+        </header>
+
+        <div id="survey-content-wrapper" class="survey-content-wrapper">
+
+            <!-- 1. Welcome Screen -->
+            <div id="welcome-screen" class="survey-step">
+                <h2>How Was Your Visit?</h2>
+                <p>Your feedback helps us craft the perfect experience. Tell us about your recent Starbucks visit.</p>
+                <p class="estimated-time">Takes about 3-5 minutes.</p>
+                <button id="startButton" class="btn btn-primary btn-start">Start Survey <i class="fas fa-coffee"></i></button>
+                <!-- Explicit message area for initialization issues -->
+                <p id="initErrorMessage" style="color: var(--starbucks-error, #D50032); margin-top: 15px; font-weight: bold; display: none; text-align: center;"></p>
+            </div>
+
+            <!-- 2. Question Area -->
+            <form id="starbucksSurveyForm" class="survey-step" style="display: none;">
+                 <div id="timer-progress-container">
+                     <div id="timer" class="timer">Time Left: <span id="timeLeft">00:10</span></div>
+                     <div class="progress-bar-container">
+                         <div id="progressBar" class="progress-bar"></div>
+                     </div>
+                 </div>
+                <div id="question-container" class="question-container">
+                    <!-- Questions load here -->
+                </div>
+                 <div id="survey-navigation" class="survey-navigation">
+                     <button type="button" id="backButton" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                     <button type="button" id="nextButton" class="btn btn-primary">Next <i class="fas fa-arrow-right"></i></button>
+                 </div>
+            </form>
+
+            <!-- 3. Feedback Section -->
+            <div id="feedback-section" class="survey-step feedback-section" style="display: none;">
+                <h2>Anything Else to Share? (Optional)</h2>
+                <p>We value all your comments, suggestions, or concerns.</p>
+                <div class="textarea-wrapper">
+                    <textarea id="finalFeedback" name="finalFeedback" rows="5" maxlength="500" placeholder="Share your thoughts here..."></textarea>
+                    <div id="char-count" class="char-count">0 / 500 characters</div>
+                </div>
+                <div class="feedback-actions">
+                    <button type="button" id="skipFeedbackButton" class="btn btn-secondary">Skip</button>
+                    <button type="button" id="submitSurveyButton" class="btn btn-primary">Complete Survey</button>
+                </div>
+            </div>
+
+            <!-- 4. Completion Screen -->
+            <div id="completion-screen" class="survey-step completion-screen" style="display: none;">
+                <i class="fas fa-check-circle completion-icon"></i>
+                <h2>Thanks a Latte!</h2>
+                <p>Your feedback helps make every cup better.</p>
+                <p id="completion-message">Processing your submission...</p>
+                <div class="spinner"></div>
+                 <p class="redirect-notice">You will be redirected shortly.</p>
+            </div>
+
+        </div> <!-- /survey-content-wrapper -->
+
+        <footer class="survey-footer">
+            <p>© 2024 RealSurveys. All rights reserved. Not affiliated with Starbucks Corporation.</p>
+        </footer>
+    </main>
+
+    <!-- Link to External JavaScript -->
+    <script src="js/starbucks_survey.js" defer></script>
+</body>
+</html>

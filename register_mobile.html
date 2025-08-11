@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Register - MyRealSurveys</title>               <link rel="stylesheet" href="css/register_mobile.css">                                                      <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">                                                    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">                                             <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">                                     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="js/register_mobile.js" defer></script>
+</head>
+<body>
+
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <div class="nav-toggle-container">
+                <button class="nav-toggle"><i class="fas fa-ellipsis-v"></i> Menu</button>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-btn" data-href="index_mobile.html">Home</button>
+                <button class="nav-btn" data-href="contact_mobile.html">Contact</button>
+                <button class="nav-btn" data-href="giveaways_mobile.html">Giveaways</button>
+                <button class="nav-btn" data-href="register_mobile.html">Register</button>
+                <button class="nav-btn" data-href="login_mobile.html">Login</button>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content" data-aos="fade-up">
+        <div class="form-container">
+            <h2>Register</h2>
+            <p>Create an account to start earning.</p>
+            <form id="registerForm">
+                <label for="email" class="sr-only">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email">
+
+                <div class="password-container">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required aria-label="Password">
+                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div id="password-strength" class="strength-bar">
+                    <div class="strength-level"></div>
+                </div>
+                <div id="password-feedback" class="feedback-message"></div>
+
+                <div class="password-container">
+                    <label for="confirmPassword" class="sr-only">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required aria-label="Confirm Password">
+                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div id="confirm-password-feedback" class="feedback-message"></div>
+
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <div id="registerMessage" class="message" style="display: none;" aria-live="polite"></div>
+            </form>
+            <p class="login-link">Already have an account? <a href="login_mobile.html">Login here</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="terms_mobile.html">Terms and Conditions</a>
+            <a href="privacy_mobile.html">Privacy Policy</a>
+        </div>
+        <p>© 2025 MyRealSurveys. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

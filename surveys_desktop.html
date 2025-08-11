@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surveys - MyRealSurveys (Desktop)</title>
+    <link rel="stylesheet" href="css/surveys_desktop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="js/surveys_desktop.js" defer></script>
+</head>
+<body>
+    <header class="parallax-header">
+        <div class="header-overlay">
+            <div class="header-content">
+                <img src="assets/logo.png" alt="MyRealSurveys Logo" class="logo" id="logo">
+                <h1 class="header-title">MyRealSurveys</h1>
+            </div>
+            <div id="particles-js" class="particles-bg"></div>
+        </div>
+    </header>
+
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            <div class="nav-menu">
+                <span id="user-email">Loading...</span>
+                <button class="nav-btn" data-href="index.html">Home</button>
+                <button class="nav-btn" data-href="surveys_desktop.html">Surveys</button>
+                <button class="nav-btn" data-href="contact.html">Contact</button>
+                <button class="nav-btn" data-href="balance_desktop.html">Balance</button>
+                <button id="logout-btn" class="nav-btn logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content" data-aos="fade-up">
+        <section class="surveys-section">
+            <h2>Available Surveys</h2>
+            <p class="balance-info">Balance: <a href="balance_desktop.html" id="balance-link">$<span id="current-balance">...</span></a></p>
+            <div class="surveys-container" data-aos="fade-up" data-aos-delay="100">
+                <!-- Surveys will be dynamically loaded here -->
+            </div>
+            <div class="pagination" data-aos="fade-up" data-aos-delay="200">
+                <!-- Pagination will be dynamically generated -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 MyRealSurveys. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

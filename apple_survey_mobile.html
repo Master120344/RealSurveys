@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Share your feedback about your Amazon experience.">
+    <title>Amazon Feedback - RealSurveys</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to Mobile CSS -->
+    <link rel="stylesheet" href="css/amazon_survey_mobile.css">
+    <!-- Canvas Confetti for completion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="background-element"></div>
+
+    <main class="survey-container">
+        <header class="survey-header">
+            <img src="assets/amazon_logo.png" alt="Amazon Logo" class="logo">
+            <h1>Tell Us About Your Experience</h1>
+        </header>
+
+        <div id="survey-content-wrapper" class="survey-content-wrapper">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="survey-step">
+                <h2>Help Us Improve Your Amazon Experience</h2>
+                <p>Your feedback is valuable. Please take a few minutes to answer some questions about your recent interactions with Amazon.</p>
+                <p class="estimated-time">Estimated time: 3-5 minutes.</p>
+                <button id="startButton" class="btn btn-primary btn-start">Start Survey <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Question Area -->
+            <form id="amazonSurveyForm" class="survey-step" style="display: none;">
+                <div id="timer-progress-container">
+                    <div id="timer" class="timer">Time Left: <span id="timeLeft">00:10</span></div>
+                    <div class="progress-bar-container">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+                </div>
+                <div id="question-container" class="question-container"></div>
+                <div id="survey-navigation" class="survey-navigation">
+                    <button type="button" id="backButton" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" id="nextButton" class="btn btn-primary">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </form>
+
+            <!-- Feedback Section -->
+            <div id="feedback-section" class="survey-step feedback-section" style="display: none;">
+                <h2>Any other feedback? (Optional)</h2>
+                <p>Is there anything else you'd like to share about shopping on Amazon, deliveries, returns, or other services?</p>
+                <div class="textarea-wrapper">
+                    <textarea id="finalFeedback" name="finalFeedback" rows="5" maxlength="500" placeholder="Share your thoughts here..."></textarea>
+                    <div id="char-count" class="char-count">0 / 500 characters</div>
+                </div>
+                <div class="feedback-actions">
+                    <button type="button" id="skipFeedbackButton" class="btn btn-secondary">Skip</button>
+                    <button type="button" id="submitSurveyButton" class="btn btn-primary">Complete Survey</button>
+                </div>
+            </div>
+
+            <!-- Completion Screen -->
+            <div id="completion-screen" class="survey-step completion-screen" style="display: none;">
+                <i class="fas fa-box-check completion-icon"></i>
+                <h2>Thank You!</h2>
+                <p>Your feedback has been submitted successfully.</p>
+                <p id="completion-message">Processing your submission...</p>
+                <div class="spinner"></div>
+                <p class="redirect-notice">You will be redirected shortly.</p>
+            </div>
+        </div>
+
+        <footer class="survey-footer">
+            <p>© 2024 RealSurveys. All rights reserved. This survey is not affiliated with or endorsed by Amazon.com, Inc.</p>
+        </footer>
+    </main>
+
+    <!-- Link to Mobile JavaScript -->
+    <script src="js/amazon_survey_mobile.js" defer></script>
+</body>
+</html>

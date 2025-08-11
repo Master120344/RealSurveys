@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's Guest Feedback - RealSurveys</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Optional but recommended for polish) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="css/mcdonalds_survey.css">
+    <!-- Confetti Library (kept for completion effect) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <!-- Logo Added Here -->
+            <img src="assets/mcdonalds_logo.webp" alt="McDonald's Logo" class="logo">
+            <h1><a href="index.html">RealSurveys <span class="header-subtitle">- McDonald's Feedback</span></a></h1>
+            <!-- Maybe add navigation if needed -->
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+             <!-- Optional: Add a subtle background image related to McD -->
+             <!-- <img src="images/mcd-background-subtle.jpg" alt="" class="hero-bg"> -->
+            <div class="container hero-content">
+                <h2>Your Opinion Matters!</h2>
+                <p>Help us improve your McDonald's experience.</p>
+            </div>
+        </section>
+
+        <section class="survey-section">
+            <div class="container">
+                <div id="survey-wrapper" class="survey-wrapper">
+                    <!-- Initial Loading/Welcome Message -->
+                    <div id="welcome-message" class="welcome-message">
+                        <h2>Welcome to the McDonald's Feedback Survey!</h2>
+                        <p>This survey should take approximately 5-7 minutes. Your honest feedback is appreciated.</p>
+                        <button id="startButton" class="btn btn-primary btn-start">Start Survey <i class="fas fa-arrow-right"></i></button>
+                    </div>
+
+                    <!-- Dynamic Survey Content Area -->
+                    <form id="mcdonaldsSurveyForm" style="display: none;">
+                        <div id="question-progress" class="question-progress"></div>
+                        <div id="question-container">
+                            <!-- Questions will be dynamically loaded here by JavaScript -->
+                        </div>
+
+                        <!-- Final Feedback Section (Initially Hidden) -->
+                        <div id="feedback-section" class="feedback-section" style="display: none;">
+                            <h2>Any final thoughts? (Optional)</h2>
+                            <p>Share any other comments, suggestions, or experiences you'd like McDonald's to know about.</p>
+                            <div class="textarea-wrapper">
+                                <textarea id="finalFeedback" name="finalFeedback" rows="6" maxlength="500" placeholder="Type your feedback here..."></textarea>
+                                <div id="char-count" class="char-count">0 / 500 characters</div>
+                            </div>
+                            <div class="feedback-actions">
+                                <button type="button" id="skipFeedbackButton" class="btn btn-secondary">Skip</button>
+                                <button type="button" id="submitSurveyButton" class="btn btn-primary">Complete Survey</button>
+                            </div>
+                        </div>
+
+                         <!-- Navigation Buttons Container -->
+                         <div id="survey-navigation" class="survey-navigation" style="display: none;">
+                             <!-- <button type="button" id="prevButton" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Previous</button> --> <!-- Removed Previous for simplicity -->
+                             <button type="button" id="nextButton" class="btn btn-primary">Next <i class="fas fa-arrow-right"></i></button>
+                         </div>
+                    </form>
+
+                    <!-- Completion Screen (Initially Hidden) -->
+                    <div id="completion-screen" class="completion-screen" style="display: none;">
+                        <i class="fas fa-check-circle completion-icon"></i>
+                        <h2>Thank You!</h2>
+                        <p>Your feedback has been submitted successfully.</p>
+                        <p>You are now being redirected back to the main surveys page...</p>
+                        <!-- Optional: Add reward info here -->
+                        <!-- <p>Your account has been credited with [Reward Amount].</p> -->
+                         <div class="spinner"></div>
+                    </div>
+                </div>
+                 <!-- Placeholder for potential ad or image -->
+                 <div class="sidebar-image">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png" alt="McDonald's promotional image placeholder">
+                     <!-- Consider replacing the placeholder URL above with a real image URL or local file -->
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p>© 2024 RealSurveys. All rights reserved. Not affiliated with McDonald's Corporation.</p>
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link to External JavaScript (defer loading) -->
+    <script src="js/mcdonalds_survey.js" defer></script>
+</body>
+</html>

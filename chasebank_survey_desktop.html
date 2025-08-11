@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taco Bell Survey - RealSurveys</title>
+    <link rel="stylesheet" href="css/example.css"> <!-- Correct path to CSS -->
+    <script src="js/tacobell_survey.js" defer></script> <!-- Correct path to JS -->
+    <style>
+        /* Inline CSS if needed, or remove if included in example.css */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Removed RealSurveys title -->
+        </div>
+    </header>
+
+    <div class="hero">
+        <h2>Taco Bell Survey</h2>
+    </div>
+
+    <section class="content">
+        <div class="container">
+            <p>Please just be honest or there's no way we can keep this survey website alive. Surveys are never long.</p>
+            <form id="tacoBellSurveyForm">
+                <div class="survey-question">
+                    <div class="question-counter">1/5</div>
+                    <label for="question1">How would you rate your overall experience at Taco Bell?</label>
+                    <div class="options">
+                        <input type="radio" id="q1a" name="question1" value="Excellent">
+                        <label for="q1a">Excellent</label>
+                        <input type="radio" id="q1b" name="question1" value="Good">
+                        <label for="q1b">Good</label>
+                        <input type="radio" id="q1c" name="question1" value="Average">
+                        <label for="q1c">Average</label>
+                        <input type="radio" id="q1d" name="question1" value="Poor">
+                        <label for="q1d">Poor</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">2/5</div>
+                    <label for="question2">How likely are you to recommend Taco Bell to a friend?</label>
+                    <div class="options">
+                        <input type="radio" id="q2a" name="question2" value="Very Likely">
+                        <label for="q2a">Very Likely</label>
+                        <input type="radio" id="q2b" name="question2" value="Likely">
+                        <label for="q2b">Likely</label>
+                        <input type="radio" id="q2c" name="question2" value="Unlikely">
+                        <label for="q2c">Unlikely</label>
+                        <input type="radio" id="q2d" name="question2" value="Very Unlikely">
+                        <label for="q2d">Very Unlikely</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">3/5</div>
+                    <label for="question3">How satisfied are you with the speed of service?</label>
+                    <div class="options">
+                        <input type="radio" id="q3a" name="question3" value="Very Satisfied">
+                        <label for="q3a">Very Satisfied</label>
+                        <input type="radio" id="q3b" name="question3" value="Satisfied">
+                        <label for="q3b">Satisfied</label>
+                        <input type="radio" id="q3c" name="question3" value="Dissatisfied">
+                        <label for="q3c">Dissatisfied</label>
+                        <input type="radio" id="q3d" name="question3" value="Very Dissatisfied">
+                        <label for="q3d">Very Dissatisfied</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">4/5</div>
+                    <label for="question4">Were the staff members friendly and helpful?</label>
+                    <div class="options">
+                        <input type="radio" id="q4a" name="question4" value="Yes">
+                        <label for="q4a">Yes</label>
+                        <input type="radio" id="q4b" name="question4" value="No">
+                        <label for="q4b">No</label>
+                    </div>
+                </div>
+                <div class="survey-question">
+                    <div class="question-counter">5/5</div>
+                    <label for="question5">Do you have any additional comments or suggestions?</label>
+                    <textarea id="question5" name="question5" rows="4" cols="50"></textarea>
+                </div>
+
+                <div class="survey-nav">
+                    <button type="button" id="prevButton" class="btn">Previous</button>
+                    <button type="button" id="nextButton" class="btn">Next</button>
+                    <button type="submit" id="submitButton" class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+           

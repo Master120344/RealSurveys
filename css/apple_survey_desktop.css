@@ -1,0 +1,600 @@
+/* --- CSS Variables --- */
+:root {
+    --apple-blue: #007aff;
+    --apple-grey-dark: #1d1d1f; /* Typical dark mode background */
+    --apple-grey-medium: #86868b; /* Secondary text */
+    --apple-grey-light: #f5f5f7; /* Light mode background / element bg */
+    --apple-grey-divider: #d2d2d7;
+    --apple-text-light: #ffffff;
+    --apple-text-dark: #1d1d1f;
+    --apple-error-red: #ff3b30;
+    --apple-green: #34c759;
+
+    --font-primary: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Using Open Sans as primary fallback */
+    --border-radius-standard: 12px; /* Apple uses rounded corners extensively */
+    --border-radius-buttons: 8px;
+    --transition-speed: 0.3s;
+    --max-width: 700px; /* Constrained width for focus */
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: #000; /* Fallback */
+    /* IMPORTANT: Replace this URL with your actual image path */
+    /* background: url('../assets/apple_background.jpg') no-repeat center center fixed; */
+    /* Example using a dark gradient as fallback if image fails/not set */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), radial-gradient(circle, #333, #000);
+    background-size: cover;
+    color: var(--apple-text-light);
+    line-height: 1.6;
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    min-height: 100vh;
+    padding: 20px; /* Add padding around the container */
+    position: relative;
+}
+
+/* Semi-transparent overlay for better text contrast */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35); /* Adjust opacity as needed */
+    z-index: -1; /* Place it behind the content */
+    /* Optional backdrop filter for a frosted glass effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--apple-blue);
+    text-decoration: none;
+    transition: opacity var(--transition-speed) ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* --- Survey Container --- */
+.survey-container {
+    background: rgba(25, 25, 27, 0.75); /* Dark, slightly transparent background */
+    border-radius: var(--border-radius-standard);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* Removed fixed height, let content determine height */
+    /* height: 100vh; */
+    animation: fadeIn 0.6s ease-out;
+    position: relative; /* Needed for absolute positioned elements inside if any */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.survey-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.survey-header .logo {
+    height: 45px; /* Adjust as needed */
+    width: auto;
+    margin: 0 auto 15px auto; /* Center logo */
+    filter: brightness(0) invert(1); /* Make logo white if it's black */
+}
+
+.survey-header h1 {
+    font-size: 1.8rem; /* Slightly smaller title */
+    font-weight: 600;
+    color: var(--apple-text-light);
+}
+
+.survey-content-wrapper {
+    /* Allows switching between steps */
+    position: relative;
+}
+
+.survey-step {
+    /* Basic styling for steps, transitions can be added */
+    width: 100%;
+    animation: stepFadeIn 0.4s ease-out;
+}
+
+@keyframes stepFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* --- Welcome Screen --- */
+#welcome-screen h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--apple-text-light);
+    margin-bottom: 15px;
+}
+
+#welcome-screen p {
+    color: var(--apple-grey-medium);
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+#welcome-screen .estimated-time {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* --- Timer & Progress --- */
+#timer-progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+#timer {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--apple-grey-medium);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+#timer span {
+    color: var(--apple-text-light);
+    font-variant-numeric: tabular-nums; /* Ensures numbers don't jump */
+}
+/* Style timer when time is low */
+#timer.low-time span {
+    color: var(--apple-error-red);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+
+.progress-bar-container {
+    flex-grow: 1;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#progressBar {
+    height: 100%;
+    background-color: var(--apple-blue);
+    width: 0%; /* Initial width */
+    transition: width var(--transition-speed) ease-out;
+    border-radius: 3px;
+}
+
+/* --- Question Area --- */
+.question-container {
+    margin-bottom: 30px;
+    min-height: 150px; /* Ensure space for content loading */
+    text-align: left; /* Align question text left */
+}
+
+.question-card { /* Used within JS */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.08); /* Subtle background */
+    border-radius: var(--border-radius-standard);
+    margin-bottom: 20px; /* Space below question text/options */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.question-card legend { /* The question text */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--apple-text-light);
+    margin-bottom: 25px; /* Space below question text */
+    line-height: 1.4;
+    display: block; /* Ensure it takes full width */
+    text-align: left;
+}
+
+.options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Space between options */
+}
+
+/* Styling for Radio/Checkbox Options */
+.options-list li label {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 12px 18px;
+    border-radius: var(--border-radius-buttons);
+    border: 1px solid transparent; /* Placeholder for selected state */
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    color: var(--apple-grey-light); /* Lighter grey text for options */
+    font-size: 1rem;
+}
+
+.options-list li label:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Custom Radio/Checkbox Appearance */
+.options-list li input[type="radio"],
+.options-list li input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--apple-grey-medium);
+    border-radius: 50%; /* Round for radio */
+    margin-right: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: transparent;
+}
+
+.options-list li input[type="checkbox"] {
+    border-radius: 4px; /* Square for checkbox */
+}
+
+.options-list li input[type="radio"]:checked,
+.options-list li input[type="checkbox"]:checked {
+    border-color: var(--apple-blue);
+    background-color: var(--apple-blue);
+}
+
+/* Checkmark/Dot inside */
+.options-list li input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.options-list li input[type="checkbox"]:checked::after {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: white;
+    font-size: 11px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Style for the selected label */
+.options-list li input[type="radio"]:checked + span, /* Assuming label text is in a span */
+.options-list li input[type="checkbox"]:checked + span {
+     /* Optional: change text color or weight when selected */
+     /* color: var(--apple-blue); */
+     /* font-weight: 600; */
+}
+/* Style the whole label container when selected */
+.options-list li input[type="radio"]:checked ~ label, /* If label wraps input */
+.options-list li input[type="checkbox"]:checked ~ label,
+/* If input is inside label */
+.options-list li label input[type="radio"]:checked,
+.options-list li label input[type="checkbox"]:checked {
+    /* This might not work depending on structure, target label directly */
+}
+/* Better: Target the label when the input *inside* it is checked */
+.options-list li label:has(input:checked) {
+     background-color: rgba(0, 122, 255, 0.15); /* Blue tinted background */
+     border-color: var(--apple-blue);
+     color: var(--apple-text-light); /* Ensure text is still readable */
+}
+
+/* Help text for checkboxes */
+.checkbox-help-text {
+    font-size: 0.9em;
+    color: var(--apple-grey-medium);
+    margin-top: 15px;
+    text-align: left;
+}
+
+
+/* --- Navigation --- */
+.survey-navigation, .feedback-actions {
+    display: flex;
+    justify-content: space-between; /* Space out Back and Next/Submit */
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    gap: 15px;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 25px; /* Slightly smaller padding */
+    border: none;
+    border-radius: var(--border-radius-buttons);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform 0.15s ease, opacity var(--transition-speed) ease;
+    white-space: nowrap;
+    min-width: 100px; /* Ensure minimum width */
+}
+
+.btn-primary {
+    background-color: var(--apple-blue);
+    color: var(--apple-text-light);
+}
+.btn-primary:hover:not(:disabled) {
+    background-color: #0056b3; /* Darker blue */
+    transform: scale(1.03);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--apple-text-light);
+}
+.btn-secondary:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
+}
+
+.btn-start { /* Specific style for the start button */
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    /* Make it stand out */
+    background-color: var(--apple-text-light);
+    color: var(--apple-text-dark);
+}
+.btn-start:hover:not(:disabled) {
+     background-color: #e0e0e0;
+     transform: scale(1.03);
+}
+
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn i { /* Icon styling */
+   font-size: 0.9em;
+   margin-top: -1px; /* Fine-tune alignment */
+}
+
+/* Hide Back button initially */
+#backButton {
+    /* display: none; -- JS handles display */
+    visibility: hidden; /* Use visibility to maintain layout space */
+    opacity: 0;
+    transition: visibility 0s var(--transition-speed), opacity var(--transition-speed) ease;
+}
+#backButton.visible {
+    visibility: visible;
+    opacity: 1;
+     transition-delay: 0s;
+}
+
+
+/* --- Final Feedback Section --- */
+.feedback-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--apple-text-light);
+}
+
+.feedback-section p {
+    color: var(--apple-grey-medium);
+    margin-bottom: 20px;
+}
+
+.textarea-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.feedback-section textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: var(--border-radius-buttons);
+    border: 1px solid var(--apple-grey-divider);
+    resize: vertical; /* Allow vertical resize */
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+    color: var(--apple-text-light);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+.feedback-section textarea:focus {
+    outline: none;
+    border-color: var(--apple-blue);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+}
+
+.char-count {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--apple-grey-medium);
+    margin-top: 5px;
+}
+.char-count.limit-exceeded {
+    color: var(--apple-error-red);
+    font-weight: 600;
+}
+
+/* --- Completion Screen --- */
+.completion-screen {
+    padding: 40px 20px;
+}
+
+.completion-icon {
+    font-size: 3.5rem;
+    color: var(--apple-green);
+    margin-bottom: 20px;
+}
+
+.completion-screen h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--apple-text-light);
+    margin-bottom: 15px;
+}
+
+.completion-screen p {
+    color: var(--apple-grey-medium);
+    margin-bottom: 10px;
+}
+.completion-screen .redirect-notice {
+     font-size: 0.9em;
+     margin-top: 25px;
+}
+
+/* Spinner for redirection indication */
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border-left-color: var(--apple-blue);
+    animation: spin 1s linear infinite;
+    margin: 25px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Footer --- */
+.survey-footer {
+    text-align: center;
+    margin-top: 30px; /* Space above footer */
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.survey-footer p {
+    font-size: 0.85rem;
+    color: var(--apple-grey-medium);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+     .survey-container {
+        padding: 25px;
+     }
+     .survey-header h1 {
+        font-size: 1.6rem;
+    }
+    .survey-header .logo {
+        height: 35px;
+    }
+    #welcome-screen h2 {
+         font-size: 1.8rem;
+    }
+     #timer-progress-container {
+        flex-direction: column;
+        align-items: stretch; /* Make items full width */
+        gap: 10px;
+    }
+    #timer {
+         text-align: center; /* Center timer text */
+    }
+     .question-card legend {
+         font-size: 1.15rem;
+     }
+     .options-list li label {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+         padding: 10px; /* Reduce padding on very small screens */
+    }
+     .survey-container {
+        padding: 20px 15px;
+        border-radius: 10px; /* Slightly less rounding */
+    }
+     .survey-header h1 {
+        font-size: 1.4rem;
+    }
+     .survey-header .logo {
+        height: 30px;
+         margin-bottom: 10px;
+    }
+     .btn {
+        font-size: 0.95rem;
+        padding: 10px 18px;
+         min-width: 80px;
+    }
+     .btn-start {
+         font-size: 1rem;
+     }
+     /* Stack nav buttons */
+     .survey-navigation {
+        flex-direction: column-reverse; /* Next on bottom */
+        align-items: stretch;
+    }
+    .feedback-actions {
+         flex-direction: column-reverse; /* Submit on bottom */
+         align-items: stretch;
+    }
+     .feedback-section textarea {
+         min-height: 80px;
+     }
+}

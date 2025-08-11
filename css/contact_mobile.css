@@ -1,0 +1,474 @@
+/* ==========================================================================
+   MyRealSurveys - Contact Page Specific Styles
+   (Assumes index_mobile.css or a global.css with theme variables is loaded first)
+   ========================================================================== */
+
+/*
+    If index_mobile.css (or a global stylesheet) is NOT loaded first,
+    you would need to uncomment and adapt these core variables here.
+    For now, we assume they are available from a shared CSS file.
+
+:root {
+    --font-primary: 'Poppins', sans-serif;
+    --font-display: 'Orbitron', sans-serif;
+    --spacing-unit: 8px;
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.35s;
+    --transition-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-radius-small: 5px;
+    --border-radius-medium: 10px;
+    --border-radius-large: 15px;
+    --border-radius-pill: 50px;
+    --border-width: 2px;
+    --border-width-thick: 4px;
+
+    --color-bg-primary: #050c1a;
+    --color-bg-secondary: #0f1a30;
+    --color-bg-tertiary: #142545;
+    --color-text-primary: #edf2ff;
+    --color-text-secondary: #a0b3d1;
+    --color-accent-primary: #00f7ff;
+    --color-accent-secondary: #00d1ff;
+    --color-accent-hover: #5fffff;
+    --color-border: rgba(0, 247, 255, 0.15);
+    --color-border-strong: rgba(0, 247, 255, 0.3);
+    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-shadow-soft: rgba(0, 0, 0, 0.25);
+    --color-shadow-accent: rgba(0, 247, 255, 0.1);
+    --color-shadow-accent-strong: rgba(0, 247, 255, 0.2);
+    --color-error: #ff4d4f;  /* Define error color if not in global */
+    --color-success: #52c41a; /* Define success color if not in global */
+    --gradient-accent: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
+}
+*/
+
+/* Active page link styling (can be in global CSS too if used on multiple pages) */
+.nav-link.active-page,
+.footer-link.active-page {
+    color: var(--color-accent-primary) !important;
+    font-weight: 700;
+    background-color: rgba(0, 247, 255, 0.08) !important; /* Subtle highlight, ensure it overrides */
+    pointer-events: none; /* Not clickable if current page */
+}
+.nav-link.active-page {
+    padding-left: calc(var(--spacing-unit) * 3.5) !important; /* Keep consistent with hover */
+}
+.nav-link.active-page i {
+    color: var(--color-accent-primary) !important;
+    transform: scale(1.1) rotate(-5deg) !important; /* Match hover */
+}
+.footer-link.active-page::after {
+    width: 100% !important; /* Keep underline for active footer link */
+    background-color: var(--color-accent-primary) !important;
+}
+.footer-link.active-page { /* Lift active footer link to match hover */
+    transform: translateY(-2px);
+}
+
+
+/* Main Content Area for Contact Page */
+.contact-page-main {
+    /* Uses shared quantum-main-content, section paddings from index_mobile.css */
+}
+
+.contact-form-section {
+    /* Uses shared section styling from index_mobile.css */
+    padding-top: calc(var(--spacing-unit) * 6);
+    padding-bottom: calc(var(--spacing-unit) * 6);
+}
+.contact-form-section .section-subtitle {
+    margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+}
+
+.contact-wrapper {
+    background-color: var(--color-bg-tertiary);
+    padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2.5); /* 24px 20px */
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 25px var(--color-shadow-soft), 0 0 15px var(--color-shadow-accent) inset;
+    border: 1px solid var(--color-border);
+    max-width: 600px;
+    margin: 0 auto;
+    transform-style: preserve-3d; /* For 3D effects if desired */
+}
+
+@media (min-width: 768px) {
+    .contact-wrapper {
+        padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 4); /* 40px 32px */
+    }
+}
+
+/* Quantum Form Styling */
+.quantum-form .form-group {
+    margin-bottom: calc(var(--spacing-unit) * 2.5); /* 20px */
+    text-align: left;
+    position: relative;
+}
+
+.quantum-form .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-unit);
+    color: var(--color-text-secondary);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quantum-form .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.quantum-form .form-icon {
+    position: absolute;
+    left: calc(var(--spacing-unit) * 1.75); /* 14px */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent-secondary);
+    opacity: 0.7;
+    font-size: 1.1em;
+    pointer-events: none;
+    transition: color var(--transition-speed-fast) var(--transition-easing),
+                opacity var(--transition-speed-fast) var(--transition-easing);
+}
+.quantum-form .textarea-icon {
+    top: calc(var(--spacing-unit) * 2); /* Adjust for textarea top padding */
+    transform: none; /* Reset transform if needed */
+}
+
+.quantum-form .form-input,
+.quantum-form .form-textarea {
+    width: 100%;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-medium);
+    padding: calc(var(--spacing-unit) * 1.75); /* 14px */
+    padding-left: calc(var(--spacing-unit) * 5); /* Space for icon: 14px icon + 14px padding + ~12px spacing */
+    font-family: var(--font-primary);
+    font-size: 1em;
+    transition: border-color var(--transition-speed-normal) var(--transition-easing),
+                box-shadow var(--transition-speed-normal) var(--transition-easing);
+    caret-color: var(--color-accent-primary);
+}
+.quantum-form .form-textarea {
+    padding-top: calc(var(--spacing-unit) * 1.75); /* Consistent padding */
+    padding-left: calc(var(--spacing-unit) * 5);
+    resize: vertical;
+    min-height: 120px;
+}
+
+.quantum-form .form-input::placeholder,
+.quantum-form .form-textarea::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+}
+
+.quantum-form .form-input:focus,
+.quantum-form .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 3px var(--color-shadow-accent), 0 0 10px var(--color-shadow-accent-strong);
+}
+
+.quantum-form .input-wrapper:focus-within .form-icon {
+    color: var(--color-accent-primary);
+    opacity: 1;
+}
+
+/* Form Validation Messages */
+.quantum-form .form-error-message {
+    display: block;
+    color: var(--color-error, #ff4d4f); /* Fallback red */
+    font-size: 0.85em;
+    margin-top: calc(var(--spacing-unit) * 0.5);
+    min-height: 1.2em; /* Prevent layout shift, ensure text fits */
+    visibility: hidden; /* Controlled by JS */
+    opacity: 0;
+    transition: opacity var(--transition-speed-fast) ease, visibility 0s linear var(--transition-speed-fast);
+}
+.quantum-form .form-error-message.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--transition-speed-fast) ease, visibility 0s linear 0s;
+}
+
+.quantum-form .form-input.is-invalid,
+.quantum-form .form-textarea.is-invalid {
+    border-color: var(--color-error, #ff4d4f) !important; /* Ensure override */
+    box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.2) !important;
+}
+.quantum-form .form-input.is-invalid:focus,
+.quantum-form .form-textarea.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.4), 0 0 10px rgba(255, 77, 79, 0.3) !important;
+}
+.quantum-form .form-input.is-valid,
+.quantum-form .form-textarea.is-valid {
+    border-color: var(--color-success, #52c41a) !important;
+}
+
+.quantum-form .form-submit-btn {
+    width: 100%;
+    margin-top: var(--spacing-unit);
+    font-size: 1.1em; /* Match primary CTA */
+}
+.quantum-form .form-submit-btn:disabled {
+    background: var(--color-text-secondary) !important; /* Ensure override */
+    border-color: var(--color-text-secondary) !important;
+    color: var(--color-bg-tertiary) !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+    transform: none;
+}
+.quantum-form .form-submit-btn:disabled::before { /* Disable shine effect */
+    display: none;
+}
+
+.form-submission-message {
+    margin-top: calc(var(--spacing-unit) * 2);
+    padding: calc(var(--spacing-unit) * 1.5);
+    border-radius: var(--border-radius-medium);
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--transition-speed-normal) ease, transform var(--transition-speed-normal) ease;
+}
+.form-submission-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.form-submission-message.success {
+    background-color: rgba(82, 196, 26, 0.15);
+    color: var(--color-success, #52c41a);
+    border: 1px solid var(--color-success, #52c41a);
+}
+.form-submission-message.error {
+    background-color: rgba(255, 77, 79, 0.15);
+    color: var(--color-error, #ff4d4f);
+    border: 1px solid var(--color-error, #ff4d4f);
+}
+
+/* Live Chat Widget Styling */
+.live-chat-widget {
+    position: fixed;
+    bottom: calc(var(--spacing-unit) * 2.5); /* 20px */
+    right: calc(var(--spacing-unit) * 2.5);
+    z-index: var(--z-index-navigation); /* Ensure it's above most content but can be below nav dropdown */
+}
+
+.chat-toggle-btn {
+    background: var(--gradient-accent);
+    color: var(--color-bg-primary);
+    border: none;
+    border-radius: var(--border-radius-pill);
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5); /* 12px 20px */
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
+    box-shadow: 0 5px 15px var(--color-shadow-accent-strong);
+    transition: transform var(--transition-speed-normal) var(--transition-easing),
+                box-shadow var(--transition-speed-normal) var(--transition-easing);
+}
+.chat-toggle-btn:hover,
+.chat-toggle-btn:focus-visible {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px var(--color-shadow-accent-strong);
+}
+.chat-toggle-btn i {
+    font-size: 1.2em;
+}
+.chat-badge-indicator {
+    background-color: var(--color-error, #ff4d4f);
+    color: var(--color-text-primary);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: calc(var(--spacing-unit) * 0.5);
+    font-weight: bold;
+    box-shadow: 0 0 5px var(--color-error, #ff4d4f);
+}
+
+.chat-popup-window {
+    background-color: var(--color-bg-secondary);
+    width: clamp(280px, 80vw, 350px);
+    max-height: 450px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 10px 30px var(--color-shadow);
+    border: 1px solid var(--color-border-strong);
+    display: none; /* JS will toggle to 'flex' */
+    flex-direction: column;
+    overflow: hidden; /* For border-radius on children */
+    position: absolute;
+    bottom: calc(100% + var(--spacing-unit) * 1.5); /* Appears above toggle, with space */
+    right: 0;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    visibility: hidden;
+    transition: opacity var(--transition-speed-normal) var(--transition-easing),
+                transform var(--transition-speed-normal) var(--transition-easing),
+                visibility 0s linear var(--transition-speed-normal);
+}
+.chat-popup-window.visible {
+    display: flex; /* Show with flex */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.chat-popup-header {
+    background: var(--gradient-accent);
+    color: var(--color-bg-primary);
+    padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 1.75); /* 10px 14px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+.chat-popup-header h3 {
+    font-size: 1em;
+    margin: 0;
+    font-family: var(--font-display);
+    text-shadow: none; /* Override default heading shadow */
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
+}
+.chat-minimize-button {
+    background: none;
+    border: none;
+    color: var(--color-bg-primary);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: calc(var(--spacing-unit) * 0.5);
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity var(--transition-speed-fast) ease;
+}
+.chat-minimize-button:hover {
+    opacity: 1;
+}
+
+.chat-messages-container {
+    flex-grow: 1;
+    padding: var(--spacing-unit);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-unit);
+    background-color: var(--color-bg-primary); /* Slightly different from popup window for depth */
+}
+/* Custom scrollbar for chat */
+.chat-messages-container::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-messages-container::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+    border-radius: 3px;
+}
+.chat-messages-container::-webkit-scrollbar-thumb {
+    background: var(--color-accent-secondary);
+    border-radius: 3px;
+}
+.chat-messages-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-primary);
+}
+
+.chat-message {
+    padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 1.5); /* 8px 12px */
+    border-radius: var(--border-radius-medium);
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-size: 0.9em;
+    opacity: 0; /* For animation */
+    transform: translateY(10px); /* For animation */
+    animation: chatMessageFadeIn 0.3s var(--transition-easing) forwards;
+}
+@keyframes chatMessageFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.chat-message.user-message {
+    background-color: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    align-self: flex-end;
+    border-bottom-right-radius: var(--border-radius-small); /* Bubble tail effect */
+}
+.chat-message.support-message {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    align-self: flex-start;
+    border-bottom-left-radius: var(--border-radius-small);
+}
+.chat-message p { /* Remove default margins from p tags inside */
+    margin: 0;
+    padding: 0;
+}
+
+.chat-input-form {
+    display: flex;
+    padding: var(--spacing-unit);
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg-secondary); /* Match popup window base */
+}
+.chat-input-field {
+    flex-grow: 1;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-pill);
+    padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 1.75); /* 10px 14px */
+    font-size: 0.9em;
+    margin-right: var(--spacing-unit);
+    transition: border-color var(--transition-speed-fast) ease;
+    caret-color: var(--color-accent-primary);
+}
+.chat-input-field:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+}
+.chat-send-button {
+    background: var(--gradient-accent);
+    color: var(--color-bg-primary);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform var(--transition-speed-fast) var(--transition-easing),
+                box-shadow var(--transition-speed-fast) var(--transition-easing);
+}
+.chat-send-button:hover,
+.chat-send-button:focus-visible {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--color-shadow-accent-strong);
+}
+.chat-send-button i {
+    font-size: 1.1em;
+}
+
+/* Animation for fa-beat if not already defined in index_mobile.css or global.css */
+@keyframes fa-beat {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(0.9); }
+  20%, 40%, 60%, 80% { transform: scale(1.1); }
+  50%, 70%, 90% { transform: scale(1); }
+}

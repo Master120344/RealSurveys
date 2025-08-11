@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHOP Customer Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e90ff;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .question input[type="radio"], .question input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #4682b4;
+        }
+
+        .button-container .back-button {
+            background-color: #ff6347;
+        }
+
+        .button-container .back-button:hover {
+            background-color: #ff4500;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>IHOP Customer Survey</h1>
+        
+        <form id="surveyForm">
+            <!-- Question 1 -->
+            <div class="question">
+                <h2>1. How often do you visit IHOP?</h2>
+                <label><input type="radio" name="visitFrequency" value="Daily"> Daily</label>
+                <label><input type="radio" name="visitFrequency" value="Weekly"> Weekly</label>
+                <label><input type="radio" name="visitFrequency" value="Monthly"> Monthly</label>
+                <label><input type="radio" name="visitFrequency" value="Rarely"> Rarely</label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <h2>2. How satisfied are you with the quality of food?</h2>
+                <label><input type="radio" name="foodQuality" value="Very Satisfied"> Very Satisfied</label>
+                <label><input type="radio" name="foodQuality" value="Satisfied"> Satisfied</label>
+                <label><input type="radio" name="foodQuality" value="Neutral"> Neutral</label>
+                <label><input type="radio" name="foodQuality" value="Dissatisfied"> Dissatisfied</label>
+                <label><input type="radio" name="foodQuality" value="Very Dissatisfied"> Very Dissatisfied</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <h2>3. Would you recommend IHOP to others?</h2>
+                <label><input type="radio" name="recommendation" value="Yes"> Yes</label>
+                <label><input type="radio" name="recommendation" value="No"> No</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <h2>4. What improvements would you like to see?</h2>
+                <label><input type="checkbox" name="improvements" value="Menu Variety"> Menu Variety</label>
+                <label><input type="checkbox" name="improvements" value="Service Speed"> Service Speed</label>
+                <label><input type="checkbox" name="improvements" value="Pricing"> Pricing</label>
+                <label><input type="checkbox" name="improvements" value="Cleanliness"> Cleanliness</label>
+                <label><input type="checkbox" name="improvements" value="Other"> Other (please specify)</label>
+                <input type="text" name="otherImprovements" placeholder="Specify other improvements" style="width: 100%; margin-top: 10px;">
+            </div>
+
+            <div class="button-container">
+                <button type="button" id="backButton" class="back-button" style="display:none;">Back</button>
+                <button type="submit" id="submitButton">Submit</button>
+            </div>
+        </form>
+        
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Example JavaScript for form handling
+        document.getElementById('surveyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('message').innerText = 'Thank you for your feedback!';
+        });
+    </script>
+</body>
+
+</html>

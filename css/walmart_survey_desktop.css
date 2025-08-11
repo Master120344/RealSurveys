@@ -1,0 +1,169 @@
+/* walmart.css */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Background Styling */
+body {
+    background-image: url('../wallpapers/walmart.jpg'); /* Ensure the background image is in the correct folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+/* Main Survey Container */
+.survey {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95); /* Slight transparency for readability */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+/* Heading and Instructions */
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0071CE; /* Walmart's blue */
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Timer Styling */
+#timer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+}
+
+/* Survey Question Section */
+.survey-question {
+    margin: 30px 0;
+}
+
+/* Options Styling */
+#options .option {
+    margin: 10px 0;
+    text-align: left;
+    font-size: 18px;
+}
+
+.option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.option input[type="text"] {
+    padding: 5px;
+    width: 80%;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+/* Navigation Buttons Styling */
+.survey-navigation button {
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 15px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFC20E; /* Walmart's yellow */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.survey-navigation button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.survey-navigation button:hover:not(:disabled) {
+    background-color: #FFB400;
+}
+
+/* Claim Reward Button */
+#claim-reward {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #0071CE; /* Walmart's blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none; /* Hidden initially */
+    transition: background-color 0.3s ease;
+}
+
+#claim-reward:hover {
+    background-color: #0059A2;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    #timer {
+        font-size: 20px;
+    }
+
+    .survey-navigation button {
+        width: 100px;
+    }
+
+    #claim-reward {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+}

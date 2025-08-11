@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taco Bell Survey - MyRealSurveys</title>
+    <link rel="stylesheet" href="css/tacobell_survey.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="js/tacobell_survey.js" defer></script>
+</head>
+<body>
+    <!-- Parallax Header -->
+    <header class="parallax-header">
+        <div class="header-overlay">
+            <div class="header-content">
+                <img src="assets/Taco_Bell_logo.png" alt="Taco Bell Logo" class="logo" id="logo">
+                <h1 class="header-title">Taco Bell Survey</h1>
+                <p class="header-subtitle">Your Feedback = $5 Instant Rewards</p>
+            </div>
+            <div id="particles-js" class="particles-bg"></div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <button class="nav-btn" data-href="index.html">Home</button>
+            <button class="nav-btn" data-href="surveys.html">Surveys</button>
+            <button class="nav-btn" data-href="balance.html">Balance</button>
+            <button class="nav-btn" data-href="contact.html">Contact</button>
+            <div class="user-info">
+                <span id="user-email">Loading...</span>
+                <button id="logout-btn" class="nav-btn logout-btn">Logout</button>
+            </div>
+            <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" data-aos="fade-up">
+        <section class="survey-section">
+            <h2>Survey</h2>
+            <div class="survey-container" data-aos="zoom-in">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+                <div id="surveyForm">
+                    <div id="questionContainer"></div>
+                    <div class="button-group">
+                        <button id="nextBtn" class="submit-btn">Next</button>
+                        <button id="submitBtn" class="submit-btn" style="display: none;">Submit</button>
+                    </div>
+                </div>
+                <div id="thankYouMessage" style="display: none;">
+                    <h3>Gracias, Amigo!</h3>
+                    <p>You’ve earned $2! Redirecting to more surveys in 3...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 MyRealSurveys x Taco Bell. Crunching Feedback, Serving Rewards.</p>
+    </footer>
+</body>
+</html>

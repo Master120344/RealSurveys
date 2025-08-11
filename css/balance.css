@@ -1,0 +1,353 @@
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1e1e2f;
+    color: #d0d0d5;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: all 0.5s ease;
+}
+
+body.light-mode {
+    background: #f0f4f8;
+    color: #333;
+}
+
+/* Parallax Header */
+.parallax-header {
+    height: 100vh;
+    background: url('../assets/header-bg.jpg') no-repeat center/cover fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(46, 125, 50, 0.9), rgba(27, 94, 32, 0.95));
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+}
+
+.logo {
+    width: clamp(200px, 25vw, 300px);
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+    animation: glow 2s infinite alternate;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(36px, 8vw, 72px);
+    color: #e0e0e0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 25px rgba(46, 125, 50, 0.7);
+}
+
+/* Particles Background */
+.particles-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Navigation */
+.sticky-nav {
+    background: rgba(46, 125, 50, 0.95);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+}
+
+.nav-btn:hover {
+    background: #1b5e20;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logout-btn {
+    background: #d32f2f;
+}
+
+.logout-btn:hover {
+    background: #b71c1c;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.theme-btn:hover {
+    transform: rotate(180deg);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#user-email {
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+/* Main Content */
+.main-content {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.balance-section {
+    text-align: center;
+}
+
+.balance-section h2 {
+    font-size: clamp(28px, 5vw, 40px);
+    color: #2e7d32;
+    margin-bottom: 40px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body.light-mode .balance-section h2 {
+    color: #4caf50;
+}
+
+.balance-container {
+    background: #2a2a3d;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+body.light-mode .balance-container {
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.balance-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.balance-info {
+    margin-bottom: 30px;
+}
+
+.balance-amount {
+    font-size: 48px;
+    font-weight: bold;
+    color: #66bb6a;
+    text-shadow: 0 0 10px rgba(102, 187, 106, 0.5);
+}
+
+body.light-mode .balance-amount {
+    color: #388e3c;
+    text-shadow: none;
+}
+
+.cashout-options h3 {
+    font-size: 24px;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+
+body.light-mode .cashout-options h3 {
+    color: #333;
+}
+
+.cashout-step {
+    padding: 20px;
+}
+
+#cashout-amount {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #66bb6a;
+    border-radius: 8px;
+    background: #1e1e2f;
+    color: #e0e0e0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+body.light-mode #cashout-amount {
+    background: #fff;
+    border-color: #4caf50;
+    color: #333;
+}
+
+#cashout-amount:focus {
+    border-color: #1b5e20;
+    outline: none;
+    box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+}
+
+.net-amount {
+    font-size: 16px;
+    color: #b0b0b5;
+    margin-bottom: 20px;
+}
+
+body.light-mode .net-amount {
+    color: #777;
+}
+
+.cashout-btn, #pay-button {
+    background: #2e7d32;
+    color: #e0e0e0;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode .cashout-btn, body.light-mode #pay-button {
+    background: #4caf50;
+    color: #fff;
+}
+
+.cashout-btn:hover, #pay-button:hover {
+    background: #1b5e20;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+#card-element {
+    background: #1e1e2f;
+    padding: 12px;
+    border: 2px solid #66bb6a;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+body.light-mode #card-element {
+    background: #fff;
+    border-color: #4caf50;
+}
+
+#card-errors {
+    color: #ef5350;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+#fee-info, #confirmation-message {
+    font-size: 14px;
+    color: #b0b0b5;
+}
+
+body.light-mode #fee-info, body.light-mode #confirmation-message {
+    color: #777;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+.footer {
+    background: #2e7d32;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+body.light-mode .footer {
+    background: #4caf50;
+    color: #fff;
+}
+
+.footer a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+body.light-mode .footer a {
+    color: #fff;
+}
+
+.footer a:hover {
+    color: #66bb6a;
+}
+
+.stripe-logo {
+    width: 100px;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* Animations */
+@keyframes glow {
+    0% { filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4)); }
+    100% { filter: drop-shadow(0 5px 25px rgba(46, 125, 50, 0.7)); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .parallax-header { height: 80vh; }
+    .nav-container { flex-direction: column; gap: 10px; }
+    .balance-container { padding: 20px; }
+    .balance-amount { font-size: 36px; }
+    .user-info { flex-direction: column; text-align: center; }
+}

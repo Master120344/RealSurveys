@@ -1,0 +1,195 @@
+/* --- CSS Variables (Starbucks Theme) --- */
+:root {
+    --starbucks-green: #00704A;    /* Primary Starbucks Green */
+    --starbucks-accent-green: #006241;/* Darker Green */
+    --starbucks-white: #FFFFFF;
+    --starbucks-black: #212121;    /* Near Black for text */
+    --starbucks-grey-light: #F9F9F9; /* Background */
+    --starbucks-grey-medium: #EAEAEA; /* Borders/Dividers */
+    --starbucks-cream: #F2F0EB;     /* Creamy accent */
+    --starbucks-error: #D50032;     /* A contrasting error red */
+
+    /* Using Lato as a fallback, replace with SoDo Sans if available */
+    --font-primary: 'Lato', sans-serif;
+    --font-secondary: 'Arial', sans-serif;
+    --border-radius-standard: 4px;
+    --border-radius-buttons: 50px; /* Pill shaped buttons */
+    --transition-speed: 0.2s;
+    --max-width: 660px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; height: 100%; }
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--starbucks-grey-light);
+    color: var(--starbucks-black);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Elements */
+.background-element {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--starbucks-cream), var(--starbucks-grey-light));
+    opacity: 0.7;
+    z-index: -1;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--starbucks-green); text-decoration: none; transition: color var(--transition-speed) ease; font-weight: 700; }
+a:hover { color: var(--starbucks-accent-green); text-decoration: underline; }
+
+/* --- Survey Container --- */
+.survey-container {
+    background: var(--starbucks-white);
+    border-radius: var(--border-radius-standard);
+    padding: 0;
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 6px 22px rgba(0, 112, 74, 0.15); /* Greenish shadow */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--starbucks-grey-medium);
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+.survey-header {
+    background-color: var(--starbucks-green);
+    padding: 18px 25px; /* More vertical padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-header .logo {
+    height: 45px; /* Adjust */
+    width: auto;
+    /* Assuming standard green/white logo, no filter needed */
+}
+
+.survey-header h1 { display: none; }
+
+.survey-content-wrapper { padding: 35px 40px; } /* More padding */
+.survey-step { width: 100%; animation: stepFadeIn 0.3s ease-out; }
+@keyframes stepFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Welcome Screen --- */
+#welcome-screen h2 { font-family: var(--font-primary); font-size: 1.9rem; font-weight: 700; color: var(--starbucks-green); margin-bottom: 15px; }
+#welcome-screen p { color: var(--starbucks-black); margin-bottom: 12px; font-size: 1.1rem; }
+#welcome-screen .estimated-time { font-size: 0.9rem; margin-bottom: 35px; color: #555; }
+
+/* --- Timer & Progress --- */
+#timer-progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; gap: 15px; background-color: var(--starbucks-cream); padding: 10px 15px; border-radius: var(--border-radius-buttons); border: 1px solid var(--starbucks-grey-medium); }
+#timer { font-size: 0.9rem; font-weight: 700; color: var(--starbucks-black); white-space: nowrap; }
+#timer span { font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 5px; }
+#timer.low-time span { color: var(--starbucks-green); animation: pulse 0.8s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.progress-bar-container { flex-grow: 1; height: 8px; background-color: rgba(0, 112, 74, 0.15); border-radius: 4px; overflow: hidden; }
+#progressBar { height: 100%; background: var(--starbucks-green); width: 0%; transition: width var(--transition-speed) ease-out; border-radius: 4px; }
+
+/* --- Question Area --- */
+.question-container { margin-bottom: 35px; min-height: 150px; text-align: left; }
+.question-card { margin-bottom: 25px; }
+.question-card legend { font-family: var(--font-primary); font-size: 1.25rem; font-weight: 700; color: var(--starbucks-black); margin-bottom: 25px; line-height: 1.5; }
+
+.options-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.options-list li label { display: flex; align-items: center; padding: 14px 22px; border-radius: var(--border-radius-buttons); border: 1px solid var(--starbucks-grey-medium); cursor: pointer; transition: all var(--transition-speed) ease; color: var(--starbucks-black); font-size: 1rem; font-weight: 400; background-color: var(--starbucks-white); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.options-list li label:hover { background-color: var(--starbucks-cream); border-color: var(--starbucks-green); transform: translateY(-1px); }
+
+/* Custom Radio/Checkbox */
+.options-list li input[type="radio"], .options-list li input[type="checkbox"] { appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 20px; height: 20px; border: 2px solid var(--starbucks-accent-green); border-radius: 50%; margin-right: 14px; position: relative; cursor: pointer; transition: all var(--transition-speed) ease; flex-shrink: 0; background-color: var(--starbucks-white); vertical-align: middle; top: -1px; }
+.options-list li input[type="checkbox"] { border-radius: 4px; } /* Slightly rounded square */
+.options-list li input[type="radio"]:checked, .options-list li input[type="checkbox"]:checked { border-color: var(--starbucks-green); background-color: var(--starbucks-green); }
+/* White Dot/Checkmark */
+.options-list li input[type="radio"]:checked::after { content: ''; display: block; width: 8px; height: 8px; background: var(--starbucks-white); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.options-list li input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--starbucks-white); font-size: 11px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* Style label when checked */
+.options-list li label:has(input:checked) { border-color: var(--starbucks-green); background-color: #e6f9f3; /* Very light green */ box-shadow: 0 0 0 1px var(--starbucks-green); }
+.checkbox-help-text { font-size: 0.85em; color: #555; margin-top: 10px; font-weight: 400;}
+
+/* --- Navigation & Buttons --- */
+.survey-navigation, .feedback-actions { display: flex; justify-content: space-between; margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--starbucks-grey-medium); gap: 15px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 32px; border: 1px solid transparent; border-radius: var(--border-radius-buttons); font-size: 1rem; font-weight: 700; font-family: var(--font-primary); cursor: pointer; transition: all var(--transition-speed) ease; white-space: nowrap; text-transform: none; /* Normal case */ letter-spacing: 0.3px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+
+/* Primary Button (Starbucks Green) */
+.btn-primary { background-color: var(--starbucks-green); color: var(--starbucks-white); border-color: var(--starbucks-green); }
+.btn-primary:hover:not(:disabled) { background-color: var(--starbucks-accent-green); border-color: var(--starbucks-accent-green); transform: translateY(-1px); box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15); }
+.btn-primary:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
+
+/* Secondary Button (Cream / Green Border) */
+.btn-secondary { background-color: var(--starbucks-cream); color: var(--starbucks-green); border-color: var(--starbucks-green); box-shadow: none; }
+.btn-secondary:hover:not(:disabled) { background-color: #e5e2d8; /* Darker cream */ border-color: var(--starbucks-accent-green); color: var(--starbucks-accent-green); } /* Added color change on hover */
+.btn-secondary:active:not(:disabled) { background-color: #d8d5ce; } /* Even darker cream */
+
+.btn-start { font-size: 1.1rem; padding: 14px 40px; }
+
+.btn:disabled { opacity: 0.6; cursor: not-allowed; background-color: #cccccc; color: #777777; border-color: #cccccc; box-shadow: none; transform: none; }
+.btn i { font-size: 0.9em; }
+#backButton { visibility: hidden; opacity: 0; transition: visibility 0s var(--transition-speed), opacity var(--transition-speed) ease; }
+#backButton.visible { visibility: visible; opacity: 1; transition-delay: 0s; }
+
+/* --- Final Feedback Section --- */
+.feedback-section h2 { font-family: var(--font-primary); font-size: 1.6rem; font-weight: 700; margin-bottom: 15px; color: var(--starbucks-green); text-align: left; }
+.feedback-section p { color: var(--starbucks-black); margin-bottom: 25px; text-align: left; font-size: 1.05rem; }
+.textarea-wrapper { position: relative; margin-bottom: 20px; }
+.feedback-section textarea { width: 100%; padding: 12px 15px; border-radius: var(--border-radius-standard); border: 1px solid var(--starbucks-grey-medium); resize: vertical; min-height: 100px; background: var(--starbucks-cream); color: var(--starbucks-black); font-family: var(--font-secondary); font-size: 1rem; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
+.feedback-section textarea:focus { outline: none; border-color: var(--starbucks-green); box-shadow: 0 0 0 2px rgba(0, 112, 74, 0.2); } /* Green focus */
+.char-count { text-align: right; font-size: 0.8rem; color: #555; margin-top: 5px; font-weight: 400; }
+.char-count.limit-exceeded { color: var(--starbucks-error); }
+
+/* --- Completion Screen --- */
+.completion-screen { padding: 45px 25px; }
+.completion-icon { font-size: 3.8rem; color: var(--starbucks-green); margin-bottom: 25px; animation: bounce 1s infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+.completion-screen h2 { font-family: var(--font-primary); font-size: 1.9rem; font-weight: 700; color: var(--starbucks-black); margin-bottom: 15px; }
+.completion-screen p { color: var(--starbucks-black); margin-bottom: 12px; font-size: 1.1rem; }
+.completion-screen .redirect-notice { font-size: 0.9em; margin-top: 30px; color: #555; }
+
+/* Spinner */
+.spinner { border: 3px solid rgba(0, 112, 74, 0.2); width: 30px; height: 30px; border-radius: 50%; border-left-color: var(--starbucks-green); animation: spin 1s linear infinite; margin: 30px auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* --- Footer --- */
+.survey-footer { background-color: var(--starbucks-accent-green); text-align: center; padding: 18px 30px; }
+.survey-footer p { font-size: 0.85rem; color: var(--starbucks-white); opacity: 0.9; }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .survey-content-wrapper { padding: 30px 25px; }
+    .survey-header { padding: 15px 20px; }
+    .survey-header .logo { height: 40px; }
+    #welcome-screen h2, .completion-screen h2 { font-size: 1.7rem; }
+    #welcome-screen p, .completion-screen p { font-size: 1rem; }
+    #timer-progress-container { padding: 8px 12px; gap: 10px; }
+    .question-card legend { font-size: 1.15rem; }
+    .options-list li label { font-size: 0.95rem; padding: 12px 20px; }
+    .btn { font-size: 0.95rem; padding: 11px 28px; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 0; align-items: flex-start; }
+    .survey-container { border-radius: 0; border: none; box-shadow: none; min-height: 100vh; }
+    .survey-content-wrapper { padding: 25px 15px; flex-grow: 1; }
+    .survey-header { padding: 12px 15px; }
+    .survey-header .logo { height: 35px; }
+    /* Stack nav buttons */
+    .survey-navigation, .feedback-actions { flex-direction: column-reverse; align-items: stretch; }
+    .btn { width: 100%; }
+    .feedback-section textarea { min-height: 80px; }
+    .survey-footer { padding: 12px 15px; }
+}

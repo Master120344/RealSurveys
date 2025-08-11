@@ -1,0 +1,191 @@
+/* --- CSS Variables (Wendy's Theme) --- */
+:root {
+    --wendys-red: #BF0D3E;
+    --wendys-yellow: #F4B400;
+    --wendys-white: #FFFFFF;
+    --wendys-black: #212529;
+    --wendys-grey: #e9ecef;
+    --wendys-border: #ced4da;
+    --wendys-error: #d93025;
+
+    --font-primary: 'Roboto Slab', serif; /* Stronger, slightly vintage */
+    --font-secondary: 'Arial', sans-serif;
+    --border-radius-standard: 8px;
+    --border-radius-buttons: 25px; /* More rounded buttons */
+    --transition-speed: 0.2s;
+    --max-width: 680px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; height: 100%; }
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--wendys-white);
+    color: var(--wendys-black);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fun Background Elements (Optional) */
+.background-element {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, var(--wendys-yellow), var(--wendys-red));
+    opacity: 0.1;
+    z-index: -1;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--wendys-red); text-decoration: none; transition: color var(--transition-speed) ease; font-weight: 700; }
+a:hover { color: var(--wendys-yellow); text-decoration: underline; }
+
+/* --- Survey Container --- */
+.survey-container {
+    background: var(--wendys-white);
+    border-radius: var(--border-radius-standard);
+    padding: 0;
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 5px 20px rgba(191, 13, 62, 0.2); /* Red shadow */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--wendys-border);
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+.survey-header {
+    background-color: var(--wendys-red);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-header .logo {
+    height: 50px; /* Adjust size */
+    width: auto;
+}
+
+.survey-header h1 { display: none; /* Hide H1 if logo is clear */ }
+
+.survey-content-wrapper { padding: 30px 35px; }
+.survey-step { width: 100%; animation: stepFadeIn 0.3s ease-out; }
+@keyframes stepFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Welcome Screen --- */
+#welcome-screen h2 { font-family: var(--font-primary); font-size: 1.8rem; font-weight: 700; color: var(--wendys-red); margin-bottom: 15px; }
+#welcome-screen p { color: var(--wendys-black); margin-bottom: 10px; font-size: 1.05rem; }
+#welcome-screen .estimated-time { font-size: 0.9rem; margin-bottom: 30px; color: rgba(0,0,0,0.6); }
+
+/* --- Timer & Progress --- */
+#timer-progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; gap: 15px; background-color: var(--wendys-grey); padding: 8px 12px; border-radius: var(--border-radius-standard); border: 1px solid #ddd; }
+#timer { font-size: 0.9rem; font-weight: 700; color: var(--wendys-black); white-space: nowrap; }
+#timer span { font-weight: 800; font-variant-numeric: tabular-nums; margin-left: 4px; }
+#timer.low-time span { color: var(--wendys-red); animation: pulse 0.8s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.progress-bar-container { flex-grow: 1; height: 8px; background-color: rgba(191, 13, 62, 0.2); border-radius: 4px; overflow: hidden; }
+#progressBar { height: 100%; background: linear-gradient(to right, var(--wendys-yellow), var(--wendys-red)); width: 0%; transition: width var(--transition-speed) ease-out; border-radius: 4px; }
+
+/* --- Question Area --- */
+.question-container { margin-bottom: 30px; min-height: 150px; text-align: left; }
+.question-card { margin-bottom: 20px; }
+.question-card legend { font-family: var(--font-primary); font-size: 1.2rem; font-weight: 700; color: var(--wendys-black); margin-bottom: 20px; line-height: 1.5; }
+
+.options-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.options-list li label { display: flex; align-items: center; padding: 12px 18px; border-radius: var(--border-radius-buttons); border: 1px solid var(--wendys-border); cursor: pointer; transition: all var(--transition-speed) ease; color: var(--wendys-black); font-size: 1rem; font-weight: 600; background-color: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.options-list li label:hover { background-color: var(--wendys-grey); border-color: var(--wendys-red); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+
+/* Custom Radio/Checkbox */
+.options-list li input[type="radio"], .options-list li input[type="checkbox"] { appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 20px; height: 20px; border: 2px solid var(--wendys-red); border-radius: 50%; margin-right: 12px; position: relative; cursor: pointer; transition: all var(--transition-speed) ease; flex-shrink: 0; background-color: #fff; vertical-align: middle; top: -1px; }
+.options-list li input[type="checkbox"] { border-radius: 5px; }
+.options-list li input[type="radio"]:checked, .options-list li input[type="checkbox"]:checked { border-color: var(--wendys-yellow); background-color: var(--wendys-yellow); }
+/* Black Dot/Checkmark */
+.options-list li input[type="radio"]:checked::after { content: ''; display: block; width: 8px; height: 8px; background: var(--wendys-black); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.options-list li input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--wendys-black); font-size: 12px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* Style label when checked */
+.options-list li label:has(input:checked) { border-color: var(--wendys-yellow); background-color: #fffbe6; /* Light yellow */ box-shadow: 0 0 0 2px var(--wendys-yellow); transform: scale(1.01); }
+.checkbox-help-text { font-size: 0.85em; color: var(--wendys-black); margin-top: 10px; font-weight: 600;}
+
+/* --- Navigation & Buttons --- */
+.survey-navigation, .feedback-actions { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--wendys-border); gap: 15px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 28px; border: none; border-radius: var(--border-radius-buttons); font-size: 1rem; font-weight: 700; font-family: var(--font-primary); cursor: pointer; transition: all var(--transition-speed) ease; white-space: nowrap; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 3px 5px rgba(191, 13, 62, 0.2); }
+
+/* Primary Button (Wendy's Red) */
+.btn-primary { background-color: var(--wendys-red); color: var(--wendys-white); }
+.btn-primary:hover:not(:disabled) { background-color: #a60b36; transform: translateY(-2px); box-shadow: 0 5px 8px rgba(191, 13, 62, 0.4); }
+.btn-primary:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 2px rgba(191, 13, 62, 0.4); }
+
+/* Secondary Button (Wendy's Yellow) */
+.btn-secondary { background-color: var(--wendys-yellow); color: var(--wendys-black); }
+.btn-secondary:hover:not(:disabled) { background-color: #e0a500; transform: translateY(-2px); box-shadow: 0 5px 8px rgba(244, 180, 0, 0.4); }
+.btn-secondary:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 2px rgba(244, 180, 0, 0.4); }
+
+.btn-start { font-size: 1.1rem; padding: 12px 35px; }
+
+.btn:disabled { opacity: 0.6; cursor: not-allowed; background-color: #ddd; color: #888; box-shadow: none; transform: none; }
+.btn i { font-size: 0.9em; }
+#backButton { visibility: hidden; opacity: 0; transition: visibility 0s var(--transition-speed), opacity var(--transition-speed) ease; }
+#backButton.visible { visibility: visible; opacity: 1; transition-delay: 0s; }
+
+/* --- Final Feedback Section --- */
+.feedback-section h2 { font-family: var(--font-primary); font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; color: var(--wendys-red); text-align: left; }
+.feedback-section p { color: var(--wendys-black); margin-bottom: 20px; text-align: left; font-size: 1rem; }
+.textarea-wrapper { position: relative; margin-bottom: 15px; }
+.feedback-section textarea { width: 100%; padding: 10px 12px; border-radius: var(--border-radius-standard); border: 1px solid var(--wendys-border); resize: vertical; min-height: 90px; background: var(--wendys-grey); color: var(--wendys-black); font-family: var(--font-secondary); font-size: 1rem; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
+.feedback-section textarea:focus { outline: none; border-color: var(--wendys-yellow); box-shadow: 0 0 0 3px rgba(244, 180, 0, 0.2); }
+.char-count { text-align: right; font-size: 0.8rem; color: rgba(0,0,0,0.6); margin-top: 5px; font-weight: 600; }
+.char-count.limit-exceeded { color: var(--wendys-error); }
+
+/* --- Completion Screen --- */
+.completion-screen { padding: 40px 20px; }
+.completion-icon { font-size: 3.5rem; color: var(--wendys-yellow); margin-bottom: 20px; animation: bounce 1s infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+.completion-screen h2 { font-family: var(--font-primary); font-size: 1.8rem; font-weight: 700; color: var(--wendys-red); margin-bottom: 15px; }
+.completion-screen p { color: var(--wendys-black); margin-bottom: 10px; font-size: 1.05rem; }
+.completion-screen .redirect-notice { font-size: 0.9em; margin-top: 25px; color: rgba(0,0,0,0.6); }
+
+/* Spinner */
+.spinner { border: 3px solid rgba(191, 13, 62, 0.2); width: 28px; height: 28px; border-radius: 50%; border-left-color: var(--wendys-yellow); animation: spin 1s linear infinite; margin: 25px auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* --- Footer --- */
+.survey-footer { background-color: var(--wendys-black); text-align: center; padding: 15px 30px; }
+.survey-footer p { font-size: 0.85rem; color: var(--wendys-white); }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .survey-content-wrapper { padding: 25px; }
+    .survey-header { padding: 12px 20px; }
+    .survey-header .logo { height: 40px; }
+    #welcome-screen h2 { font-size: 1.6rem; }
+    #timer-progress-container { padding: 6px 10px; gap: 10px; }
+    .question-card legend { font-size: 1.1rem; }
+    .options-list li label { font-size: 0.95rem; padding: 10px 15px; }
+    .btn { font-size: 0.9rem; padding: 8px 22px; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 0; align-items: flex-start; }
+    .survey-container { border-radius: 0; border: none; box-shadow: none; min-height: 100vh; }
+    .survey-content-wrapper { padding: 20px 15px; flex-grow: 1; }
+    .survey-header { padding: 10px 15px; }
+    .survey-header .logo { height: 30px; }
+    /* Stack nav buttons */
+    .survey-navigation, .feedback-actions { flex-direction: column-reverse; align-items: stretch; }
+    .btn { width: 100%; }
+    .feedback-section textarea { min-height: 80px; }
+    .survey-footer { padding: 10px 15px; }
+}

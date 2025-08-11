@@ -1,0 +1,701 @@
+/* --- CSS Variables --- */
+:root {
+    --mcd-red: #DA291C;        /* Official McDonald's Red */
+    --mcd-yellow: #FFC72C;     /* Official McDonald's Yellow */
+    --mcd-dark-text: #2a2a2a;
+    --mcd-light-text: #ffffff;
+    --mcd-grey-bg: #f5f5f5;
+    --mcd-light-grey: #e0e0e0;
+    --mcd-border-radius: 8px;
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: 'Montserrat', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--mcd-grey-bg);
+    color: var(--mcd-dark-text);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--mcd-red);
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: #a81f13; /* Darker red */
+}
+
+/* --- Utility Classes --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* --- Header --- */
+.site-header {
+    background-color: var(--mcd-yellow);
+    padding: 10px 0; /* Reduced padding slightly for logo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    /* justify-content: space-between; -- Adjusted for logo */
+    align-items: center;
+    gap: 20px; /* Add gap between logo and title */
+}
+
+/* Logo Styling Added */
+.logo {
+    height: 40px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+    flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+
+.site-header h1 {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: 0; /* Reset margin */
+    flex-grow: 1; /* Allow title to take remaining space if needed */
+}
+
+.site-header h1 a {
+   color: var(--mcd-red);
+   text-decoration: none;
+}
+
+.header-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #a81f13; /* Darker red */
+    margin-left: 5px;
+    display: inline; /* Keep subtitle next to title */
+}
+
+/* --- Hero Section --- */
+.hero {
+    background-color: var(--mcd-red);
+    color: var(--mcd-light-text);
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Optional background styling
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+    z-index: 0;
+} */
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h2 {
+    font-family: var(--font-secondary);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.1rem;
+}
+
+/* --- Survey Section --- */
+.survey-section {
+    padding: 40px 0;
+}
+
+/* Added grid layout for survey + sidebar */
+.survey-section .container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 for survey, 1/3 for sidebar */
+    gap: 40px;
+    align-items: start; /* Align items to the top */
+}
+
+/* Responsive grid */
+@media (max-width: 992px) {
+    .survey-section .container {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+    .sidebar-image {
+        margin-top: 30px; /* Add space when stacked */
+        /* display: none; -- Re-enabled to show image when stacked */
+    }
+}
+
+@media (max-width: 768px) {
+     .sidebar-image {
+         /* You might want to hide it entirely on very small screens */
+         /* display: none; */
+     }
+}
+
+.survey-wrapper {
+    background-color: var(--mcd-light-text);
+    padding: 30px 40px;
+    border-radius: var(--mcd-border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--mcd-light-grey);
+    transition: all var(--transition-speed) ease;
+}
+
+/* Welcome message styling */
+.welcome-message {
+    text-align: center;
+}
+.welcome-message h2 {
+    color: var(--mcd-red);
+    font-family: var(--font-secondary);
+    margin-bottom: 15px;
+}
+.welcome-message p {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* Progress indicator */
+.question-progress {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--mcd-light-grey);
+}
+
+/* Sidebar image placeholder */
+.sidebar-image img {
+    border-radius: var(--mcd-border-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Make image fill its container */
+}
+
+
+/* --- Question Styling --- */
+.question-card {
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 1px solid var(--mcd-light-grey);
+    border-radius: var(--mcd-border-radius);
+    background-color: #fff;
+    animation: fadeIn 0.5s ease; /* Animation for new questions */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question-card legend { /* Using legend for semantic question text */
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--mcd-dark-text);
+    margin-bottom: 20px;
+    font-family: var(--font-secondary);
+    padding: 0 5px; /* Prevent border overlap */
+    width: auto; /* Override browser defaults */
+    border-bottom: none; /* Override browser defaults */
+}
+
+.question-card fieldset {
+    border: none; /* Remove default fieldset border */
+    padding: 0;
+    margin: 0;
+}
+
+/* Options styling */
+.options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options-list li {
+    margin-bottom: 15px;
+}
+
+.options-list label {
+    display: flex; /* Use flex for better alignment */
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    padding: 12px 18px;
+    border: 2px solid var(--mcd-light-grey);
+    border-radius: var(--mcd-border-radius);
+    transition: all var(--transition-speed) ease;
+    width: 100%; /* Make label take full width */
+    background-color: #fff;
+}
+
+.options-list input[type="radio"],
+.options-list input[type="checkbox"] {
+    appearance: none; /* Hide default radio/checkbox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--mcd-light-grey);
+    border-radius: 50%; /* Make it round */
+    margin-right: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.options-list input[type="checkbox"] {
+    border-radius: 4px; /* Slightly square for checkbox */
+}
+
+/* Custom radio/checkbox appearance */
+.options-list input[type="radio"]:checked,
+.options-list input[type="checkbox"]:checked {
+    border-color: var(--mcd-red);
+    background-color: var(--mcd-red);
+}
+
+.options-list input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.options-list input[type="checkbox"]:checked::after {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    font-size: 14px; /* Adjust size */
+}
+
+
+.options-list label:hover {
+    border-color: var(--mcd-yellow);
+    background-color: #fffcf2;
+}
+
+.options-list input[type="radio"]:checked + label,
+.options-list input[type="checkbox"]:checked + label {
+    border-color: var(--mcd-red);
+    background-color: #fff5f5;
+    font-weight: 600;
+    color: var(--mcd-red);
+}
+
+/* Text input styling */
+.text-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--mcd-light-grey);
+    border-radius: var(--mcd-border-radius);
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: border-color var(--transition-speed) ease;
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--mcd-yellow);
+    box-shadow: 0 0 0 2px rgba(255, 199, 44, 0.3);
+}
+
+/* --- Navigation & Buttons --- */
+.survey-navigation, .feedback-actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 15px; /* Space between buttons */
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--mcd-light-grey);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Center content */
+    gap: 8px; /* Space between text and icon */
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--mcd-border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-secondary);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+    white-space: nowrap; /* Prevent button text wrapping */
+}
+
+.btn-primary {
+    background-color: var(--mcd-red);
+    color: var(--mcd-light-text);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #a81f13; /* Darker red */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(218, 41, 28, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--mcd-light-grey);
+    color: var(--mcd-dark-text);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #c7c7c7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-start { /* Specific style for the start button */
+    background-color: var(--mcd-yellow);
+    color: var(--mcd-red);
+    border: 2px solid var(--mcd-red);
+    font-size: 1.1rem;
+    padding: 15px 30px;
+}
+
+.btn-start:hover:not(:disabled) {
+    background-color: var(--mcd-red);
+    color: var(--mcd-light-text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 199, 44, 0.3);
+}
+
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none; /* Prevent hover effects when disabled */
+    box-shadow: none;
+}
+
+.btn i { /* Icon styling */
+   font-size: 0.9em;
+}
+
+
+/* --- Final Feedback Section --- */
+.feedback-section {
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid var(--mcd-light-grey);
+    border-radius: var(--mcd-border-radius);
+    background-color: #fdfdfd;
+    animation: fadeIn 0.5s ease;
+}
+
+.feedback-section h2 {
+    color: var(--mcd-red);
+    font-family: var(--font-secondary);
+    margin-bottom: 10px;
+}
+
+.feedback-section p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.textarea-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.feedback-section textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--mcd-light-grey);
+    border-radius: var(--mcd-border-radius);
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 120px;
+    transition: border-color var(--transition-speed) ease;
+}
+
+.feedback-section textarea:focus {
+    outline: none;
+    border-color: var(--mcd-yellow);
+    box-shadow: 0 0 0 2px rgba(255, 199, 44, 0.3);
+}
+
+.char-count {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 5px;
+}
+
+.feedback-actions {
+    justify-content: space-between; /* Align Skip left, Submit right */
+}
+
+/* --- Completion Screen --- */
+.completion-screen {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.completion-icon {
+    font-size: 4rem;
+    color: #4CAF50; /* Green check */
+    margin-bottom: 20px;
+}
+
+.completion-screen h2 {
+    color: var(--mcd-red);
+    font-family: var(--font-secondary);
+    margin-bottom: 15px;
+}
+
+.completion-screen p {
+    margin-bottom: 25px;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* Simple spinner for redirection indication */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--mcd-red);
+    animation: spin 1s ease infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: var(--mcd-yellow);
+    color: var(--mcd-dark-text);
+    padding: 25px 0;
+    text-align: center;
+    margin-top: auto; /* Pushes footer to bottom */
+    border-top: 3px solid var(--mcd-red);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-footer p {
+    font-size: 0.9rem;
+    color: #555; /* Slightly muted text */
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--mcd-dark-text);
+    font-size: 1.3rem;
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.social-links a:hover {
+    color: var(--mcd-red);
+    transform: scale(1.1);
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+     /* Adjust header layout for logo on smaller screens */
+    .header-container {
+        gap: 10px; /* Reduce gap */
+    }
+     .logo {
+         height: 30px; /* Smaller logo */
+     }
+    .site-header h1 {
+        font-size: 1.3rem; /* Adjust font size */
+    }
+    .header-subtitle {
+        /* Optionally hide subtitle if too crowded */
+        /* display: none; */
+        font-size: 0.9rem;
+        margin-left: 3px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .survey-wrapper {
+        padding: 20px;
+    }
+
+    .question-card {
+        padding: 20px;
+    }
+
+    .question-card legend {
+        font-size: 1.1rem;
+    }
+
+    .options-list label {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+
+    .options-list input[type="radio"],
+    .options-list input[type="checkbox"] {
+       width: 18px;
+       height: 18px;
+       margin-right: 12px;
+    }
+     .options-list input[type="radio"]:checked::after {
+        width: 9px; height: 9px;
+    }
+    .options-list input[type="checkbox"]:checked::after {
+        font-size: 12px;
+    }
+
+    .survey-navigation { /* Only stack Next button */
+        flex-direction: column;
+        align-items: stretch; /* Make button full width */
+        gap: 10px;
+    }
+
+     /* Keep feedback buttons side-by-side longer */
+     .feedback-actions {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .btn {
+        padding: 12px 20px; /* Adjust padding */
+        font-size: 0.95rem;
+        justify-content: center; /* Center text/icon when stacked */
+    }
+
+     /* Ensure feedback buttons don't get too small on medium screens */
+     .feedback-actions .btn {
+         flex-basis: 48%; /* Allow buttons to shrink but aim for ~half width */
+         flex-grow: 0; /* Don't grow */
+     }
+
+    .completion-screen {
+        padding: 40px 15px;
+    }
+    .completion-icon {
+        font-size: 3rem;
+    }
+
+    .footer-container {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-header h1 {
+        font-size: 1.1rem; /* Further reduce */
+    }
+     .header-subtitle {
+         display: none; /* Hide subtitle on very small screens */
+     }
+     .hero h2 {
+        font-size: 1.8rem;
+    }
+
+     .question-card legend {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    /* Stack feedback buttons on smallest screens */
+    .feedback-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 10px;
+    }
+     .feedback-actions .btn {
+         flex-basis: auto; /* Reset basis */
+     }
+}

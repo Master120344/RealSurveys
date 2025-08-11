@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Customer Satisfaction Survey</title>
+    <link rel="stylesheet" href="css/walmart.css">
+</head>
+
+<body>
+    <!-- Main Survey Container -->
+    <div class="survey-container">
+        <header>
+            <h1>Walmart Customer Satisfaction Survey</h1>
+            <p>Your feedback helps us improve!</p>
+        </header>
+
+        <div class="survey-content">
+            <!-- Timer Section -->
+            <div class="survey-timer">
+                <p>Time Remaining: <span id="timer">10</span> seconds</p>
+            </div>
+
+            <!-- Survey Question Section -->
+            <div class="survey-question">
+                <h2 id="question">Loading question...</h2>
+                <div id="options"></div>
+
+                <!-- Manual Input Field (Only appears if the user selects 'Type in Manual Answer') -->
+                <div id="manual-answer-container" style="display: none;">
+                    <label for="manual-answer">Please provide your response:</label>
+                    <input type="text" id="manual-answer" name="manual-answer">
+                </div>
+            </div>
+
+            <!-- Survey Navigation -->
+            <div class="survey-navigation">
+                <button id="back" onclick="prevQuestion()">Back</button>
+                <button id="next" onclick="nextQuestion()" disabled>Next</button>
+            </div>
+
+            <!-- Completion Reward Section (Initially Hidden) -->
+            <div id="reward-section" class="survey-completion" style="display: none;">
+                <h3>Congratulations! You have completed the survey.</h3>
+                <p>Your reward: $8</p>
+                <button id="claim-reward" onclick="claimReward()" style="display: none;">Claim Your Reward</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Walmart Customer Survey</p>
+    </footer>
+
+    <script src="js/walmart.js"></script>
+</body>
+
+</html>

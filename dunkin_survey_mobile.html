@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Share your feedback about your Dunkin' experience on mobile.">
+    <title>Dunkin' Feedback - RealSurveys (Mobile)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700;6..12,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/dunkin_survey_mobile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1460.0.min.js"></script>
+</head>
+<body data-theme="dark">
+    <div class="background-element"></div>
+    <div class="theme-toggle">
+        <input type="checkbox" id="theme-switch" class="theme-switch-input">
+        <label for="theme-switch" class="theme-switch-label">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <span class="ball"></span>
+        </label>
+    </div>
+
+    <main class="survey-container">
+        <header class="survey-header">
+            <img src="assets/dunkin_logo.jpg" alt="Dunkin' Logo" class="logo">
+            <h1>How Was Your Dunkin' Run?</h1>
+            <video autoplay muted loop class="survey-video" poster="https://via.placeholder.com/320x100?text=Dunkin+Video+Placeholder">
+                <source src="path/to/dunkin_video.mp4" type="video/mp4">
+            </video>
+        </header>
+
+        <div id="survey-content-wrapper" class="survey-content-wrapper">
+            <div id="welcome-screen" class="survey-step">
+                <h2>Your Feedback Fuels Us!</h2>
+                <p>Tell us about your recent visit. Your opinions help Dunkin' keep running smoothly.</p>
+                <p class="estimated-time">Takes about 3-5 minutes.</p>
+                <button id="startButton" class="btn btn-primary btn-start">Start Survey <i class="fas fa-mug-hot"></i></button>
+            </div>
+
+            <form id="dunkinSurveyForm" class="survey-step" style="display: none;">
+                <div id="timer-progress-container">
+                    <div id="timer" class="timer">Time Left: <span id="timeLeft">00:12</span></div>
+                    <div class="progress-bar-container">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+                </div>
+                <div id="question-container" class="question-container"></div>
+                <div id="survey-navigation" class="survey-navigation">
+                    <button type="button" id="backButton" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" id="nextButton" class="btn btn-primary">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </form>
+
+            <div id="feedback-section" class="survey-step feedback-section" style="display: none;">
+                <h2>Spill the Beans! (Optional)</h2>
+                <p>Got more to say? Share suggestions or thoughts!</p>
+                <div class="textarea-wrapper">
+                    <textarea id="finalFeedback" name="finalFeedback" rows="4" maxlength="500" placeholder="Your thoughts..."></textarea>
+                    <div id="char-count" class="char-count">0 / 500 characters</div>
+                </div>
+                <div class="feedback-actions">
+                    <button type="button" id="skipFeedbackButton" class="btn btn-secondary">Skip</button>
+                    <button type="button" id="submitSurveyButton" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+            <div id="completion-screen" class="survey-step completion-screen" style="display: none;">
+                <i class="fas fa-donut completion-icon"></i>
+                <h2>Thanks For Your Feedback!</h2>
+                <p>Reward of $1 processed. Enjoy your next Dunkin' run!</p>
+                <p id="completion-message">Redirecting...</p>
+                <div class="spinner"></div>
+                <p class="redirect-notice">Back to surveys soon.</p>
+            </div>
+        </div>
+
+        <footer class="survey-footer">
+            <p>© 2024 RealSurveys. Not affiliated with Dunkin' Brands, Inc.</p>
+        </footer>
+    </main>
+
+    <script type="module" src="js/dunkin_survey_mobile.js"></script>
+</body>
+</html>

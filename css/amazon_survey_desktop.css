@@ -1,0 +1,609 @@
+/* --- CSS Variables --- */
+:root {
+    --amazon-orange: #FF9900;
+    --amazon-blue-dark: #131921; /* Header/Footer dark blue */
+    --amazon-blue-medium: #232F3E; /* Slightly lighter blue */
+    --amazon-link-blue: #0066c0;
+    --amazon-grey-bg: #F0F2F2;   /* Background grey */
+    --amazon-grey-border: #DDD;
+    --amazon-text-dark: #0F1111;
+    --amazon-text-medium: #555;
+    --amazon-text-light: #FFFFFF;
+    --amazon-green: #007D00; /* Success green */
+    --amazon-red: #C00;    /* Error red */
+
+    --font-primary: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --border-radius-standard: 4px; /* Amazon tends to use less rounded corners */
+    --border-radius-buttons: 3px;
+    --transition-speed: 0.2s;
+    --max-width: 750px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--amazon-grey-bg);
+    color: var(--amazon-text-dark);
+    line-height: 1.5; /* Standard line height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}
+
+/* Optional subtle background pattern/gradient */
+.background-element {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Example: subtle gradient */
+    background: linear-gradient(to bottom, var(--amazon-grey-bg), #e8eaed);
+    z-index: -1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--amazon-link-blue);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--amazon-orange);
+}
+
+/* --- Survey Container --- */
+.survey-container {
+    background: var(--amazon-text-light); /* White background */
+    border-radius: var(--border-radius-standard);
+    padding: 0; /* Remove padding, handle internally */
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0,0,0,0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Contain children */
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--amazon-grey-border);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.survey-header {
+    background-color: var(--amazon-blue-dark);
+    padding: 15px 30px;
+    text-align: left; /* Align logo/title left */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.survey-header .logo {
+    height: 30px; /* Adjust size */
+    width: auto;
+    filter: brightness(0) invert(1); /* Make logo white if source is black/dark */
+}
+
+.survey-header h1 {
+    font-size: 1.25rem; /* Amazon-style title size */
+    font-weight: 500;
+    color: var(--amazon-text-light);
+    margin: 0;
+}
+
+.survey-content-wrapper {
+    padding: 30px 40px; /* Padding inside the main content area */
+}
+
+.survey-step {
+    width: 100%;
+    animation: stepFadeIn 0.3s ease-out;
+}
+
+@keyframes stepFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Welcome Screen --- */
+#welcome-screen h2 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--amazon-text-dark);
+    margin-bottom: 15px;
+}
+
+#welcome-screen p {
+    color: var(--amazon-text-medium);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+#welcome-screen .estimated-time {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* --- Timer & Progress --- */
+#timer-progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 20px;
+    background-color: #f8f8f8; /* Slight bg for this section */
+    padding: 10px 15px;
+    border-radius: var(--border-radius-standard);
+    border: 1px solid var(--amazon-grey-border);
+}
+
+#timer {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--amazon-text-medium);
+    white-space: nowrap;
+}
+#timer span {
+    color: var(--amazon-text-dark);
+    font-weight: 700; /* Bold time */
+    font-variant-numeric: tabular-nums;
+    margin-left: 5px;
+}
+#timer.low-time span {
+    color: var(--amazon-red);
+    /* Optional: Add subtle animation */
+}
+
+
+.progress-bar-container {
+    flex-grow: 1;
+    height: 8px; /* Slightly thicker bar */
+    background-color: var(--amazon-grey-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#progressBar {
+    height: 100%;
+    background-color: var(--amazon-orange); /* Amazon orange progress */
+    width: 0%;
+    transition: width var(--transition-speed) ease-out;
+    border-radius: 4px;
+}
+
+/* --- Question Area --- */
+.question-container {
+    margin-bottom: 30px;
+    min-height: 150px;
+    text-align: left;
+}
+
+.question-card { /* Container for question text + options */
+    /* No extra background needed if main area is white */
+    margin-bottom: 20px;
+}
+
+.question-card legend { /* The question text */
+    font-size: 1.1rem; /* Amazon-like question size */
+    font-weight: 700;
+    color: var(--amazon-text-dark);
+    margin-bottom: 20px;
+    line-height: 1.4;
+    display: block;
+    text-align: left;
+}
+
+.options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between options */
+}
+
+/* Styling for Radio/Checkbox Options */
+.options-list li label {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: var(--border-radius-standard);
+    border: 1px solid var(--amazon-grey-border);
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    color: var(--amazon-text-dark);
+    font-size: 0.95rem;
+    background-color: #fff; /* Ensure options have white bg */
+}
+
+.options-list li label:hover {
+    background-color: #f8f8f8; /* Slight hover effect */
+}
+
+/* Custom Radio/Checkbox Appearance (Amazon style) */
+.options-list li input[type="radio"],
+.options-list li input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #888; /* Grey border */
+    border-radius: 50%; /* Round for radio */
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    flex-shrink: 0;
+    background-color: #fff;
+    vertical-align: middle; /* Align with text */
+}
+.options-list li input[type="radio"] {
+    top: -1px; /* Fine-tune alignment */
+}
+.options-list li input[type="checkbox"] {
+    border-radius: 3px; /* Square for checkbox */
+     top: -1px; /* Fine-tune alignment */
+}
+
+.options-list li input[type="radio"]:checked,
+.options-list li input[type="checkbox"]:checked {
+    border-color: var(--amazon-orange);
+    background-color: #fff; /* Keep background white */
+}
+
+/* Orange Dot/Checkmark */
+.options-list li input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 8px; /* Smaller dot */
+    height: 8px;
+    background: var(--amazon-orange); /* Orange dot */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.options-list li input[type="checkbox"]:checked::after {
+    /* Amazon uses a custom checkmark SVG usually, simulate with FA */
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--amazon-orange); /* Orange check */
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Style the whole label container when checked */
+.options-list li label:has(input:checked) {
+     border-color: var(--amazon-orange);
+     background-color: #fff8f0; /* Very light orange tint */
+}
+
+/* Help text for checkboxes */
+.checkbox-help-text {
+    font-size: 0.85em;
+    color: var(--amazon-text-medium);
+    margin-top: 10px;
+    text-align: left;
+}
+
+
+/* --- Navigation --- */
+.survey-navigation, .feedback-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--amazon-grey-border);
+    gap: 10px;
+}
+
+/* --- Buttons (Amazon Style) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 18px; /* Standard padding */
+    border: 1px solid; /* Border needed */
+    border-radius: var(--border-radius-buttons);
+    font-size: 0.9rem; /* Standard Amazon font size */
+    font-weight: 400; /* Normal weight */
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    white-space: nowrap;
+    line-height: 1.4; /* Ensure text fits well */
+}
+
+/* Primary Button (Amazon Yellow/Orange) */
+.btn-primary {
+    background: linear-gradient(to bottom, #f8e3ad, #EEBA37);
+    border-color: #c89411 #b0820f #99710d;
+    color: var(--amazon-text-dark);
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+}
+.btn-primary:hover:not(:disabled) {
+     background: linear-gradient(to bottom, #f5d78e, #eeb933);
+     border-color: #af800e #a1750d #8d660c;
+}
+.btn-primary:active:not(:disabled) {
+    background: #f0c14b; /* Flat color on active */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
+    border-color: #a88734 #9c7e31 #846a29;
+}
+
+/* Secondary Button (Grey) */
+.btn-secondary {
+    background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
+    border-color: #adb1b8 #a2a6ac #8d9096;
+    color: var(--amazon-text-dark);
+     box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
+}
+.btn-secondary:hover:not(:disabled) {
+    background: linear-gradient(to bottom, #f5f6f8, #e0e3e6);
+    border-color: #a2a6ac #979aa1 #82858a;
+}
+.btn-secondary:active:not(:disabled) {
+    background: #e7e9ec;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
+    border-color: #979aa1 #8f9399 #82858a;
+}
+
+
+/* Start button might use primary style */
+.btn-start {
+    font-size: 1rem; /* Slightly larger */
+    padding: 10px 25px;
+}
+
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f0f2f2; /* Flat grey when disabled */
+    border-color: #d1d1d1;
+    box-shadow: none;
+    color: #888;
+}
+
+.btn i { /* Icon styling */
+   font-size: 0.9em;
+   margin-right: 3px; /* Space before text */
+   margin-left: -3px; /* Adjust spacing */
+   color: #555; /* Icons often grey */
+}
+.btn-primary i {
+     color: var(--amazon-text-dark); /* Match text */
+}
+
+/* Back button visibility */
+#backButton {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s var(--transition-speed), opacity var(--transition-speed) ease;
+}
+#backButton.visible {
+    visibility: visible;
+    opacity: 1;
+     transition-delay: 0s;
+}
+
+
+/* --- Final Feedback Section --- */
+.feedback-section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--amazon-text-dark);
+    text-align: left;
+}
+
+.feedback-section p {
+    color: var(--amazon-text-medium);
+    margin-bottom: 20px;
+    text-align: left;
+     font-size: 0.95rem;
+}
+
+.textarea-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.feedback-section textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-standard);
+    border: 1px solid var(--amazon-grey-border);
+    resize: vertical;
+    min-height: 90px;
+    background: #fff;
+    color: var(--amazon-text-dark);
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.feedback-section textarea:focus {
+    outline: none;
+    border-color: var(--amazon-orange);
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.3); /* Orange glow */
+}
+
+.char-count {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--amazon-text-medium);
+    margin-top: 5px;
+}
+.char-count.limit-exceeded {
+    color: var(--amazon-red);
+    font-weight: 700;
+}
+
+/* --- Completion Screen --- */
+.completion-screen {
+    padding: 40px 20px;
+}
+
+.completion-icon {
+    font-size: 3rem;
+    color: var(--amazon-green); /* Amazon success green */
+    margin-bottom: 20px;
+}
+/* Replace Font Awesome icon with specific class */
+.fa-box-check:before {
+    content: "\f46c"; /* Correct unicode for box-check */
+}
+
+.completion-screen h2 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--amazon-text-dark);
+    margin-bottom: 15px;
+}
+
+.completion-screen p {
+    color: var(--amazon-text-medium);
+    margin-bottom: 10px;
+     font-size: 1rem;
+}
+.completion-screen .redirect-notice {
+     font-size: 0.9em;
+     margin-top: 25px;
+}
+
+/* Spinner */
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border-left-color: var(--amazon-orange); /* Orange spinner */
+    animation: spin 1s linear infinite;
+    margin: 25px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Footer --- */
+.survey-footer {
+    background-color: #f8f8f8; /* Light grey footer */
+    text-align: center;
+    padding: 15px 30px;
+    border-top: 1px solid var(--amazon-grey-border);
+}
+.survey-footer p {
+    font-size: 0.8rem;
+    color: var(--amazon-text-medium);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+     .survey-content-wrapper {
+         padding: 20px 25px;
+     }
+     .survey-header h1 {
+        font-size: 1.1rem;
+    }
+    .survey-header .logo {
+        height: 25px;
+    }
+    #welcome-screen h2 {
+         font-size: 1.5rem;
+    }
+     #timer-progress-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 8px 10px;
+    }
+    #timer {
+         text-align: center;
+    }
+     .question-card legend {
+         font-size: 1rem; /* Smaller question text */
+         margin-bottom: 15px;
+     }
+     .options-list li label {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+     .btn {
+         font-size: 0.85rem;
+         padding: 7px 15px;
+     }
+}
+
+@media (max-width: 480px) {
+    body {
+         padding: 0; /* Remove body padding on smallest screens */
+         align-items: stretch; /* Allow container to fill height */
+    }
+     .survey-container {
+         border-radius: 0; /* Full width */
+         border: none;
+         box-shadow: none;
+         min-height: 100vh; /* Ensure it fills height */
+     }
+     .survey-content-wrapper {
+         padding: 15px; /* Reduce padding */
+         flex-grow: 1; /* Allow content to take available space */
+     }
+     .survey-header {
+         padding: 10px 15px;
+     }
+      .survey-header h1 {
+        font-size: 1rem;
+    }
+     .survey-footer {
+         padding: 10px 15px;
+     }
+     /* Stack nav buttons */
+     .survey-navigation, .feedback-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+    .btn {
+        width: 100%; /* Make buttons full width */
+    }
+
+     .feedback-section textarea {
+         min-height: 70px;
+     }
+}

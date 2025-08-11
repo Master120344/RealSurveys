@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MyRealSurveys Giveaways - Win amazing prizes with your survey tickets!">
+    <meta name="keywords" content="giveaways, survey rewards, win prizes, ticket redemption">
+    <meta name="author" content="MyRealSurveys Team">
+    <title>MyRealSurveys Giveaways - Win Big!</title>
+    <link rel="stylesheet" href="css/giveaways_desktop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="js/giveaways_desktop.js" defer></script>
+    <script type="module" src="js/ticker.js" defer></script>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="parallax-header">
+        <div class="header-overlay">
+            <div class="ticker-container">
+                <div id="survey-ticker" class="survey-ticker">Loading survey platform insights... <a href="survey-news.html" class="ticker-link">Learn More</a></div>
+            </div>
+            <div class="header-content">
+                <img src="assets/logo.png" alt="MyRealSurveys Logo" class="logo" id="logo">
+                <h1 class="header-title">Giveaways Extravaganza</h1>
+                <p class="header-subtitle">Turn Your Survey Tickets into Epic Rewards!</p>
+            </div>
+            <div id="particles-js" class="particles-bg"></div>
+        </div>
+    </header>
+
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu">
+                <button class="nav-btn" data-href="index_desktop.html">Home</button>
+                <button class="nav-btn" data-href="contact_desktop.html">Contact</button>
+                <button class="nav-btn" data-href="giveaways_desktop.html">Giveaways</button>
+                <button class="nav-btn" data-href="register_desktop.html">Register</button>
+                <button class="nav-btn" data-href="login_desktop.html">Login</button>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="intro-section" data-aos="fade-up">
+            <h2>Unleash the Rewards!</h2>
+            <p>Earn tickets with every survey and referral, then win incredible prizes!</p>
+        </section>
+
+        <section class="live-video-section" data-aos="fade-up">
+            <h2>Live Monthly Draw</h2>
+            <div class="live-video-container">
+                <div class="live-video-placeholder">
+                    <i class="fas fa-video"></i>
+                    <p>Next Live Draw: April 26, 2025 at 8:00 PM EST</p>
+                    <p id="monthly-countdown">Time Remaining: Loading...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="top-prizes-section" data-aos="fade-up">
+            <h2>Top Monthly Prizes</h2>
+            <div class="prize-container">
+                <div class="prize-box" data-aos="zoom-in">
+                    <div class="prize-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>$10,000 Cash</h3>
+                    <p>Grand Prize of the Month!</p>
+                </div>
+                <div class="prize-box" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="prize-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>PS5 Console</h3>
+                    <p>Gaming Glory Awaits!</p>
+                </div>
+                <div class="prize-box" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="prize-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Tesla Cybertruck</h3>
+                    <p>Drive the Future!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="next-prizes-section" data-aos="fade-up">
+            <h2>Next Weekly Prizes</h2>
+            <div class="prize-container">
+                <div class="prize-box" data-aos="zoom-in">
+                    <div class="prize-icon"><i class="fas fa-headphones"></i></div>
+                    <h3>Wireless Headphones</h3>
+                    <p>Next Draw: April 11, 2025</p>
+                    <p id="weekly-countdown">Time Remaining: Loading...</p>
+                </div>
+                <div class="prize-box" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="prize-icon"><i class="fas fa-gift"></i></div>
+                    <h3>$500 Gift Card</h3>
+                    <p>Next Draw: April 18, 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="poll-section" data-aos="fade-up">
+            <h2>What Prize Do You Want Next?</h2>
+            <div class="poll-container">
+                <div class="poll-option" data-aos="fade-right">
+                    <input type="radio" id="poll-option1" name="poll" value="$10,000 Cash">
+                    <label for="poll-option1">$10,000 Cash</label>
+                    <div class="poll-bar" id="bar-option1" style="width: 0%;">0%</div>
+                </div>
+                <div class="poll-option" data-aos="fade-right" data-aos-delay="200">
+                    <input type="radio" id="poll-option2" name="poll" value="PS5 Console">
+                    <label for="poll-option2">PS5 Console</label>
+                    <div class="poll-bar" id="bar-option2" style="width: 0%;">0%</div>
+                </div>
+                <div class="poll-option" data-aos="fade-right" data-aos-delay="400">
+                    <input type="radio" id="poll-option3" name="poll" value="Tesla Cybertruck">
+                    <label for="poll-option3">Tesla Cybertruck</label>
+                    <div class="poll-bar" id="bar-option3" style="width: 0%;">0%</div>
+                </div>
+                <button id="poll-submit" class="poll-button">Vote Now</button>
+            </div>
+        </section>
+
+        <section class="tickets-section" data-aos="fade-up">
+            <h2>Your Ticket Balance</h2>
+            <div class="tickets-container">
+                <div class="user-info">
+                    <p>Logged in as: <span>fakeaccount@gmail.com</span></p>
+                </div>
+                <div class="ticket-balance">
+                    <div class="ticket-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <span id="ticket-count">250</span>
+                    <p>Tickets</p>
+                </div>
+                <div class="referral-info">
+                    <h3>Earn More Tickets!</h3>
+                    <p>Take surveys: <span>Earn 10 tickets per survey</span></p>
+                    <p>Refer friends: <span>Earn 50 tickets per referral</span></p>
+                    <button class="refer-button">Refer a Friend</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About Giveaways</h3>
+                <p>Rewarding our users with epic prizes during our beta phase!</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index_desktop.html">Home</a>
+                <a href="contact_desktop.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+        <p class="footer-copy">© 2025 MyRealSurveys, All Rights Reserved</p>
+    </footer>
+
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">×</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+</body>
+</html>
