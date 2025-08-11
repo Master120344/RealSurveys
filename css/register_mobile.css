@@ -232,6 +232,7 @@ body.light-mode .toggle-password {
     border-radius: 3px;
     overflow: hidden;
     margin-top: -10px;
+    display: none; /* Hide by default */
 }
 
 body.light-mode .strength-bar {
