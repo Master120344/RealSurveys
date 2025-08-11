@@ -1,12 +1,18 @@
 // js/register_mobile.js
+
+// --- Firebase imports are temporarily disabled to fix the visibility issue. ---
+// We will re-enable these in the next step.
+/*
 import {
     auth,
     createUserWithEmailAndPassword,
     writeUserData
 } from './firebase-config.js';
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // This initialization is critical for making the form visible.
     AOS.init({
         duration: 800,
         once: true
@@ -155,38 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.disabled = true;
             submitButton.textContent = 'Signing Up...';
 
-            // --- Real Firebase Registration Logic ---
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // This creates the user in Firebase Authentication.
-                    // Now, let's create their record in the Firestore database.
-                    const user = userCredential.user;
-                    // Using email as a placeholder for the username field.
-                    return writeUserData(user.uid, email, user.email);
-                })
-                .then(() => {
-                    // This runs after the user data is written to Firestore.
-                    showMessage(registerMessage, 'Registration successful! Redirecting to login...', false);
-                    setTimeout(() => {
-                        window.location.href = 'login_mobile.html';
-                    }, 2000);
-                })
-                .catch((error) => {
-                    let friendlyMessage = "An unexpected error occurred. Please try again.";
-                    if (error.code === 'auth/email-already-in-use') {
-                        friendlyMessage = 'This email address is already in use.';
-                    } else if (error.code === 'auth/invalid-email') {
-                        friendlyMessage = 'Please enter a valid email address.';
-                    } else if (error.code === 'auth/weak-password') {
-                        friendlyMessage = 'Password is too weak. Please choose a stronger one.';
-                    }
-                    showMessage(registerMessage, friendlyMessage, true);
-                })
-                .finally(() => {
-                    // This runs whether the registration succeeded or failed.
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Sign Up';
-                });
+            // --- Real Firebase logic is temporarily disabled for this test ---
+            console.log("Submit button clicked. Firebase is disabled for this test.");
+            showMessage(registerMessage, 'Registration is currently in test mode.', true);
+
+            // Re-enable button after a short delay
+            setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Sign Up';
+            }, 1500);
         });
     }
 });
