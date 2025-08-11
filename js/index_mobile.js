@@ -1,143 +1,52 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import { firebaseConfig } from './firebase-config.js'; // CORRECT: Import shared config
-
-// The hardcoded firebaseConfig object has been removed from here.
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// js/index_mobile.js
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Preloader ---
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => preloader.style.display = 'none', 500);
-            }, 500);
+    // --- Initialize Animate On Scroll (AOS) Library ---
+    // This is what makes the content fade in as you scroll.
+    AOS.init({
+        duration: 800, // Animation duration in milliseconds
+        easing: 'ease-in-out', // Animation timing function
+        once: true, // Whether animation should happen only once
+        disable: 'phone' // Optionally disable on smaller screens if needed
+    });
+
+    // --- Navigation Menu Toggle ---
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // --- Navigation and Call to Action Buttons ---
+    // This handles all buttons with a 'data-href' attribute.
+    document.querySelectorAll('[data-href]').forEach(button => {
+        const targetHref = button.dataset.href;
+        if (targetHref) {
+            button.addEventListener('click', () => {
+                window.location.href = targetHref;
+            });
         }
     });
 
-    // --- Form Elements ---
-    const loginSection = document.getElementById('loginSection');
-    const forgotPasswordSection = document.getElementById('forgotPasswordSection');
-    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
-    const backToLoginLink = document.getElementById('backToLoginLink');
-
-    const loginForm = document.getElementById('loginForm');
-    const resetPasswordBtn = document.getElementById('resetPasswordBtn');
-
-    const loginMessage = document.getElementById('loginMessage');
-    const resetMessage = document.getElementById('resetMessage');
-
-    // --- Function to display messages ---
-    function showMessage(element, text, isError = false) {
-        if (!element) return;
-        element.textContent = text;
-        element.className = isError ? 'message error' : 'message success';
-    }
-
-    // --- Check Auth State ---
-    onAuthStateChanged(auth, user => {
-        if (user) {
-            // User is signed in.
-            console.log('User is signed in:', user.uid);
-            // Example: Redirect if a logged-in user lands here
-            // if(window.location.pathname.includes('login_mobile.html')) {
-            //     window.location.href = 'index_mobile.html';
-            // }
-        } else {
-            console.log('User is signed out.');
-        }
-    });
-
-    // --- Toggle between Login and Forgot Password views ---
-    if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginSection.style.display = 'none';
-            forgotPasswordSection.style.display = 'block';
-        });
-    }
-
-    if (backToLoginLink) {
-        backToLoginLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            forgotPasswordSection.style.display = 'none';
-            loginSection.style.display = 'block';
-        });
-    }
-
-    // --- Email & Password Login ---
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const submitButton = loginForm.querySelector('.submit-btn');
-
-            showMessage(loginMessage, ''); // Clear previous messages
-
-            if (!email || !password) {
-                showMessage(loginMessage, 'Please fill in all fields.', true);
-                return;
+    // --- Theme Toggle ---
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const icon = themeToggle.querySelector('i');
+            
+            // Check if the body has the 'light-mode' class and update the icon
+            if (document.body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
             }
-
-            submitButton.disabled = true;
-            submitButton.textContent = 'Logging In...';
-
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    showMessage(loginMessage, 'Login successful! Redirecting...');
-                    setTimeout(() => {
-                        window.location.href = 'index_mobile.html';
-                    }, 1500);
-                })
-                .catch((error) => {
-                    let friendlyMessage = "An error occurred. Please try again.";
-                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                        friendlyMessage = 'Invalid email or password. Please try again.';
-                    }
-                    showMessage(loginMessage, friendlyMessage, true);
-                })
-                .finally(() => {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Login';
-                });
         });
     }
 
-    // --- Password Reset ---
-    if (resetPasswordBtn) {
-        resetPasswordBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const resetEmail = document.getElementById('resetEmail').value.trim();
-            showMessage(resetMessage, ''); // Clear previous messages
-
-            if (!resetEmail) {
-                showMessage(resetMessage, 'Please enter your email address.', true);
-                return;
-            }
-
-            sendPasswordResetEmail(auth, resetEmail)
-                .then(() => {
-                    showMessage(resetMessage, 'Password reset link sent! Please check your email inbox (and spam folder).');
-                })
-                .catch((error) => {
-                     let friendlyMessage = `Error: ${error.message}`;
-                     if(error.code === 'auth/user-not-found'){
-                         friendlyMessage = "No account found with that email address."
-                     }
-                     showMessage(resetMessage, friendlyMessage, true);
-                });
-        });
-    }
 });
