@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login - MyRealSurveys (Mobile)</title>
+    <title>Login - MyRealSurveys</title>
     <link rel="stylesheet" href="css/login_mobile.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <!-- This script tag is correct. 'type="module"' is essential. -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="module" src="js/login_mobile.js" defer></script>
 </head>
 <body>
@@ -16,35 +17,56 @@
         <div class="spinner"></div>
     </div>
 
-    <main class="main-content">
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <div class="nav-toggle-container">
+                <button class="nav-toggle"><i class="fas fa-ellipsis-v"></i> Menu</button>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-btn" data-href="index_mobile.html">Home</button>
+                <button class="nav-btn" data-href="contact_mobile.html">Contact</button>
+                <button class="nav-btn" data-href="giveaways_mobile.html">Giveaways</button>
+                <button class="nav-btn" data-href="register_mobile.html">Register</button>
+                <button class="nav-btn" data-href="login_mobile.html">Login</button>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content" data-aos="fade-up">
         <div class="form-container">
             <div id="loginSection">
                 <h2>Login</h2>
                 <p>Sign in to start earning.</p>
-                <!-- Added novalidate to prevent browser default validation popups -->
                 <form id="loginForm" novalidate>
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email">
 
-                    <label for="password" class="sr-only">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required aria-label="Password">
+                    <div class="password-container">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" required aria-label="Password">
+                        <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
 
                     <button type="submit" class="submit-btn">Login</button>
-                    <a href="#" id="forgotPasswordLink" class="form-link">Forgot Password?</a>
-                    <div id="loginMessage" class="message" aria-live="polite"></div>
+                    <div id="loginMessage" class="message" style="display: none;" aria-live="polite"></div>
                 </form>
+                <a href="#" id="forgotPasswordLink" class="form-link">Forgot Password?</a>
             </div>
 
-            <div id="forgotPasswordSection" class="forgot-password-section" style="display: none;">
+            <div id="forgotPasswordSection" style="display: none;">
                 <h2>Reset Password</h2>
                 <p>Enter your email to receive a reset link.</p>
-                <div class="reset-form-container">
+                <form id="resetPasswordForm" class="reset-form-container" novalidate>
                     <label for="resetEmail" class="sr-only">Email for password reset</label>
                     <input type="email" id="resetEmail" name="resetEmail" placeholder="Your Email" required aria-label="Email for password reset">
-                    <button type="button" id="resetPasswordBtn" class="submit-btn">Send Reset Link</button>
-                    <a href="#" id="backToLoginLink" class="form-link back-to-login">Back to Login</a>
-                    <div id="resetMessage" class="message" aria-live="polite"></div>
-                </div>
+                    
+                    <button type="submit" id="resetPasswordBtn" class="submit-btn">Send Reset Link</button>
+                    <div id="resetMessage" class="message" style="display: none;" aria-live="polite"></div>
+                </form>
+                <a href="#" id="backToLoginLink" class="form-link">Back to Login</a>
             </div>
         </div>
     </main>
