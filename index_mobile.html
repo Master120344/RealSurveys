@@ -3,51 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login - MyRealSurveys (Mobile)</title>
-    <link rel="stylesheet" href="css/login_mobile.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>MyRealSurveys - Your Opinion, Your Dollar. Guaranteed.</title>
+    <link rel="stylesheet" href="css/index_mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <script type="module" src="js/login_mobile.js" defer></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="js/index_mobile.js" defer></script>
 </head>
 <body>
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
 
-    <main class="main-content">
-        <div class="form-container">
-            <div id="loginSection">
-                <h2>Login</h2>
-                <p>Sign in to start earning.</p>
-                <form id="loginForm">
-                    <label for="email" class="sr-only">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email">
-
-                    <label for="password" class="sr-only">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required aria-label="Password">
-
-                    <button type="submit" class="submit-btn">Login</button>
-                    <a href="#" id="forgotPasswordLink" class="form-link">Forgot Password?</a>
-                    <div id="loginMessage" class="message" aria-live="polite"></div>
-                </form>
+    <nav id="nav" class="sticky-nav">
+        <div class="nav-container">
+            <div class="nav-toggle-container">
+                <button class="nav-toggle"><i class="fas fa-ellipsis-v"></i> Menu</button>
             </div>
-
-            <div id="forgotPasswordSection" class="forgot-password-section" style="display: none;">
-                <h2>Reset Password</h2>
-                <p>Enter your email to receive a reset link.</p>
-                <div class="reset-form-container">
-                    <label for="resetEmail" class="sr-only">Email for password reset</label>
-                    <input type="email" id="resetEmail" name="resetEmail" placeholder="Your Email" required aria-label="Email for password reset">
-                    <button type="button" id="resetPasswordBtn" class="submit-btn">Send Reset Link</button>
-                    <a href="#" id="backToLoginLink" class="form-link back-to-login">Back to Login</a>
-                    <div id="resetMessage" class="message" aria-live="polite"></div>
-                </div>
+            <div class="nav-menu">
+                <button class="nav-btn" data-href="index_mobile.html">Home</button>
+                <button class="nav-btn" data-href="contact_mobile.html">Contact</button>
+                <button class="nav-btn" data-href="giveaways_mobile.html">Giveaways</button>
+                <button class="nav-btn" data-href="register_mobile.html">Register</button>
+                <button class="nav-btn" data-href="login_mobile.html">Login</button>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
             </div>
         </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" data-aos="fade-in">
+        <div class="hero-content">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">Your Opinion, Your Dollar.</h1>
+            <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Guaranteed.</h2>
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
+                An innovative online survey platform designed to connect real people with real opportunities. Simple, engaging, and rewarding.
+            </p>
+            <button class="cta-button" data-aos="fade-up" data-aos-delay="400" data-href="register_mobile.html">
+                Start Earning Now <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="section-title" data-aos="fade-up">
+                <h3>The MyRealSurveys Difference</h3>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-ban"></i>
+                    <h4>Zero Disqualifications</h4>
+                    <p>If you start a survey, you finish it. We respect your time. No more getting kicked out halfway through.</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>$1 Per Survey</h4>
+                    <p>Every survey you complete adds a dollar to your balance. Simple, transparent, and fair compensation.</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Your Data is Not for Sale</h4>
+                    <p>We only require your email and password. Your personal information is never sold to data brokers. Period.</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-flag-usa"></i>
+                    <h4>U.S. Based Surveys</h4>
+                    <p>Engage with relevant surveys from companies and researchers focused on the United States market.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works" data-aos="fade-up">
+            <div class="section-title">
+                <h3>Get Started in Seconds</h3>
+            </div>
+            <div class="steps-container">
+                <div class="step" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                    <div class="step-content">
+                        <h4>1. Create Your Account</h4>
+                        <p>A quick, simple, and secure sign-up gets you immediate access to available surveys.</p>
+                    </div>
+                </div>
+                <div class="step" data-aos="fade-right" data-aos-delay="200">
+                    <div class="step-icon"><i class="fas fa-list-check"></i></div>
+                    <div class="step-content">
+                        <h4>2. Take Quick Surveys</h4>
+                        <p>All surveys are just 10 questions long. Share your valuable opinion without the long commitment.</p>
+                    </div>
+                </div>
+                <div class="step" data-aos="fade-right" data-aos-delay="300">
+                    <div class="step-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="step-content">
+                        <h4>3. Earn Real Money</h4>
+                        <p>Watch your balance grow with every survey you complete. Withdraw your earnings with ease.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Trustpilot Section -->
+        <section class="trustpilot-section" data-aos="zoom-in-up">
+            <div class="trustpilot-content">
+                <h4>Trusted by Survey Takers Like You</h4>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>Help us spread the word about fair and reliable surveys.</p>
+                <a href="#" class="trustpilot-button">Review us on Trustpilot</a>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta" data-aos="fade-up">
+            <h2>Ready to Make Your Opinion Count?</h2>
+            <p>Never take surveys for free again.</p>
+            <button class="cta-button" data-href="register_mobile.html">
+                Sign Up and Earn Your First Dollar
+            </button>
+        </section>
+
     </main>
 
     <footer class="footer">
+        <div class="footer-links">
+            <a href="terms_mobile.html">Terms and Conditions</a>
+            <a href="privacy_mobile.html">Privacy Policy</a>
+        </div>
         <p>© 2025 MyRealSurveys. All Rights Reserved.</p>
     </footer>
 </body>
