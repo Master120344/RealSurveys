@@ -1,143 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MyRealSurveys - Your Opinion, Your Dollar. Guaranteed.</title>
-    <link rel="stylesheet" href="css/index_mobile.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="module" src="js/index_mobile.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>MyRealSurveys — Your Opinion, Your Dollar.</title>
+  <meta name="description" content="MyRealSurveys — quick, fair surveys that pay. Zero disqualifications. $1 per completed survey. US-based studies." />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+  <!-- Fonts: preload then use -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate on Scroll) CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome (only for icons) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/index_mobile.css">
+
+  <!-- Basic social meta -->
+  <meta property="og:title" content="MyRealSurveys — Your Opinion, Your Dollar." />
+  <meta property="og:description" content="Quick, fair online surveys that pay $1 each. No disqualifications and US-focused studies." />
+  <meta property="og:type" content="website" />
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#2e7d32">
+
 </head>
 <body>
 
-    <nav id="nav" class="sticky-nav">
-        <div class="nav-container">
-            <div class="nav-toggle-container">
-                <button class="nav-toggle"><i class="fas fa-ellipsis-v"></i> Menu</button>
-            </div>
-            <div class="nav-menu">
-                <button class="nav-btn" data-href="index_mobile.html">Home</button>
-                <button class="nav-btn" data-href="contact_mobile.html">Contact</button>
-                <button class="nav-btn" data-href="giveaways_mobile.html">Giveaways</button>
-                <button class="nav-btn" data-href="register_mobile.html">Register</button>
-                <button class="nav-btn" data-href="login_mobile.html">Login</button>
-                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
-            </div>
+  <!-- Accessible Skip Link -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <header class="site-header" role="banner">
+    <nav class="nav" role="navigation" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="brand" href="index_mobile.html" aria-label="MyRealSurveys home">
+          <!-- simple svg logo for crispness -->
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="2" y="2" width="20" height="20" rx="5" fill="#2e7d32"/>
+            <path d="M6 12h6l2-3 3 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="brand-text">MyRealSurveys</span>
+        </a>
+
+        <div class="nav-actions">
+          <button id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          </button>
+
+          <button id="menu-toggle" class="menu-btn" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
         </div>
+      </div>
+
+      <div id="primary-menu" class="nav-menu" hidden>
+        <ul>
+          <li><a href="index_mobile.html">Home</a></li>
+          <li><a href="giveaways_mobile.html">Giveaways</a></li>
+          <li><a href="contact_mobile.html">Contact</a></li>
+          <li><a href="terms_mobile.html">Terms</a></li>
+          <li><a href="privacy_mobile.html">Privacy</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a class="btn btn-primary full-width" href="register_mobile.html">Sign Up — $1/Survey</a>
+          <a class="btn btn-outline full-width" href="login_mobile.html">Log In</a>
+        </div>
+      </div>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <header class="hero" data-aos="fade-in">
-        <div class="hero-content">
-            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">Your Opinion, Your Dollar.</h1>
-            <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Guaranteed.</h2>
-            <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
-                An innovative online survey platform designed to connect real people with real opportunities. Simple, engaging, and rewarding.
-            </p>
-            <button class="cta-button" data-aos="fade-up" data-aos-delay="400" data-href="register_mobile.html">
-                Start Earning Now <i class="fas fa-arrow-right"></i>
-            </button>
+  <!-- HERO -->
+  <main id="main" class="main" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner" data-aos="fade-up" data-aos-duration="700">
+        <h1 id="hero-title" class="title">Your Opinion, Your Dollar.</h1>
+        <p class="subtitle">Short, fair surveys — $1 for each completed survey. No disqualifications. Honest, US-focused studies.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-cta" href="register_mobile.html" aria-label="Start earning now">Start Earning Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a class="hero-link" href="#how-it-works">How it works</a>
         </div>
-    </header>
 
-    <main class="main-content">
+        <!-- quick stats -->
+        <ul class="hero-stats" aria-hidden="true">
+          <li><strong>10</strong> questions avg</li>
+          <li><strong>$1</strong> per survey</li>
+          <li><strong>0</strong> disqualifications</li>
+        </ul>
+      </div>
+    </section>
 
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="section-title" data-aos="fade-up">
-                <h3>The MyRealSurveys Difference</h3>
-            </div>
-            <div class="features-grid">
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-ban"></i>
-                    <h4>Zero Disqualifications</h4>
-                    <p>If you start a survey, you finish it. We respect your time. No more getting kicked out halfway through.</p>
-                </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h4>$1 Per Survey</h4>
-                    <p>Every survey you complete adds a dollar to your balance. Simple, transparent, and fair compensation.</p>
-                </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Your Data is Not for Sale</h4>
-                    <p>We only require your email and password. Your personal information is never sold to data brokers. Period.</p>
-                </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-flag-usa"></i>
-                    <h4>U.S. Based Surveys</h4>
-                    <p>Engage with relevant surveys from companies and researchers focused on the United States market.</p>
-                </div>
-            </div>
-        </section>
+    <!-- FEATURES -->
+    <section class="features" id="features" aria-labelledby="features-title">
+      <h2 id="features-title" class="section-heading" data-aos="fade-right">Why MyRealSurveys</h2>
 
-        <!-- How It Works Section -->
-        <section class="how-it-works" data-aos="fade-up">
-            <div class="section-title">
-                <h3>Get Started in Seconds</h3>
-            </div>
-            <div class="steps-container">
-                <div class="step" data-aos="fade-right" data-aos-delay="100">
-                    <div class="step-icon"><i class="fas fa-user-plus"></i></div>
-                    <div class="step-content">
-                        <h4>1. Create Your Account</h4>
-                        <p>A quick, simple, and secure sign-up gets you immediate access to available surveys.</p>
-                    </div>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="200">
-                    <div class="step-icon"><i class="fas fa-list-check"></i></div>
-                    <div class="step-content">
-                        <h4>2. Take Quick Surveys</h4>
-                        <p>All surveys are just 10 questions long. Share your valuable opinion without the long commitment.</p>
-                    </div>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="300">
-                    <div class="step-icon"><i class="fas fa-wallet"></i></div>
-                    <div class="step-content">
-                        <h4>3. Earn Real Money</h4>
-                        <p>Watch your balance grow with every survey you complete. Withdraw your earnings with ease.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Trustpilot Section -->
-        <section class="trustpilot-section" data-aos="zoom-in-up">
-            <div class="trustpilot-content">
-                <h4>Trusted by Survey Takers Like You</h4>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p>Help us spread the word about fair and reliable surveys.</p>
-                <a href="#" class="trustpilot-button">Review us on Trustpilot</a>
-            </div>
-        </section>
+      <div class="features-grid">
+        <article class="feature-card" data-aos="fade-up" data-aos-delay="80" aria-label="Zero Disqualifications">
+          <div class="icon-wrap" aria-hidden="true"><i class="fa-solid fa-ban"></i></div>
+          <h3>Zero Disqualifications</h3>
+          <p>If you start, you finish — we respect your time and pay fairly for the surveys you complete.</p>
+        </article>
 
-        <!-- Final CTA Section -->
-        <section class="final-cta" data-aos="fade-up">
-            <h2>Ready to Make Your Opinion Count?</h2>
-            <p>Never take surveys for free again.</p>
-            <button class="cta-button" data-href="register_mobile.html">
-                Sign Up and Earn Your First Dollar
-            </button>
-        </section>
+        <article class="feature-card" data-aos="fade-up" data-aos-delay="160" aria-label="$1 Per Survey">
+          <div class="icon-wrap" aria-hidden="true"><i class="fa-solid fa-dollar-sign"></i></div>
+          <h3>$1 Per Survey</h3>
+          <p>Transparent, predictable pay. Every completed survey adds $1 to your balance.</p>
+        </article>
 
-    </main>
+        <article class="feature-card" data-aos="fade-up" data-aos-delay="240" aria-label="Data privacy">
+          <div class="icon-wrap" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Your Data Is Private</h3>
+          <p>We collect only what's necessary. No selling to data brokers — ever.</p>
+        </article>
 
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="terms_mobile.html">Terms and Conditions</a>
-            <a href="privacy_mobile.html">Privacy Policy</a>
+        <article class="feature-card" data-aos="fade-up" data-aos-delay="320" aria-label="US based">
+          <div class="icon-wrap" aria-hidden="true"><i class="fa-solid fa-flag-usa"></i></div>
+          <h3>U.S. Surveys</h3>
+          <p>Surveys designed for U.S. participants — more relevant and higher quality opportunities.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="how-it-works" aria-labelledby="how-title">
+      <h2 id="how-title" class="section-heading" data-aos="fade-right">Get started in seconds</h2>
+
+      <ol class="steps" aria-live="polite">
+        <li class="step" data-aos="fade-up" data-aos-delay="80">
+          <div class="step-number">1</div>
+          <div>
+            <h4>Create your account</h4>
+            <p>Quick sign-up with email — immediate access to surveys.</p>
+          </div>
+        </li>
+
+        <li class="step" data-aos="fade-up" data-aos-delay="160">
+          <div class="step-number">2</div>
+          <div>
+            <h4>Take short surveys</h4>
+            <p>Average of 10 questions per survey. Honest, simple, and respectful of your time.</p>
+          </div>
+        </li>
+
+        <li class="step" data-aos="fade-up" data-aos-delay="240">
+          <div class="step-number">3</div>
+          <div>
+            <h4>Withdraw your earnings</h4>
+            <p>Withdraw anytime via supported payout methods. No hidden fees from us.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SOCIAL PROOF / REVIEWS -->
+    <section class="reviews" aria-labelledby="reviews-title" data-aos="zoom-in">
+      <h2 id="reviews-title" class="section-heading">Trusted by real people</h2>
+
+      <div class="reviews-inner">
+        <div class="stars" aria-hidden="true">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
         </div>
-        <p>© 2025 MyRealSurveys. All Rights Reserved.</p>
-    </footer>
+        <p class="muted">Join thousands of users who earned while sharing honest feedback.</p>
+
+        <a class="btn btn-outline" href="#" aria-label="Read reviews on Trustpilot">Review us on Trustpilot</a>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" data-aos="fade-up">
+      <h2>Ready to make your opinion count?</h2>
+      <p>Sign up, take your first survey, and earn your first dollar in minutes.</p>
+      <a class="btn btn-cta large" href="register_mobile.html">Sign Up and Earn $1</a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <nav aria-label="Footer links">
+        <a href="terms_mobile.html">Terms &amp; Conditions</a>
+        <a href="privacy_mobile.html">Privacy Policy</a>
+        <a href="contact_mobile.html">Contact</a>
+      </nav>
+      <small>© 2025 MyRealSurveys. All Rights Reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Scripts: AOS + main JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script type="module" src="js/index_mobile.js" defer></script>
+
 </body>
 </html>
