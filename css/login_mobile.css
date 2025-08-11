@@ -16,6 +16,9 @@ body {
     color: #d0d0d5;
     line-height: 1.6;
     transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body.light-mode {
@@ -46,7 +49,7 @@ body.light-mode {
     animation: spin 1s linear infinite;
 }
 
-/* Navigation (Hamburger Menu from index_mobile.css) */
+/* Navigation */
 .sticky-nav {
     background: rgba(16, 128, 61, 0.95);
     padding: 10px 0;
@@ -144,6 +147,7 @@ body.light-mode {
     position: relative;
     z-index: 10;
     overflow-x: hidden;
+    flex-grow: 1;
 }
 
 .form-container {
@@ -248,48 +252,6 @@ body.light-mode .toggle-password {
     color: #66bb6a;
 }
 
-.strength-bar {
-    width: 100%;
-    height: 6px;
-    background: #33334d;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: -10px;
-}
-
-body.light-mode .strength-bar {
-    background: #ddd;
-}
-
-.strength-level {
-    height: 100%;
-    width: 0;
-    background: #ef5350;
-    transition: width 0.3s ease, background 0.3s ease;
-}
-
-.strength-level.weak { background: #ef5350; width: 33%; }
-.strength-level.medium { background: #ffb300; width: 66%; }
-.strength-level.strong { background: #2e7d32; width: 100%; }
-body.light-mode .strength-level.strong { background: #4caf50; }
-
-.feedback-message {
-    font-size: 14px;
-    color: #ef5350;
-    margin-top: 5px;
-    text-align: left;
-    display: none;
-    width: 100%;
-}
-
-.feedback-message.success {
-    color: #2e7d32;
-}
-
-body.light-mode .feedback-message.success {
-    color: #4caf50;
-}
-
 .submit-btn {
     background: #2e7d32;
     color: #e0e0e0;
@@ -319,30 +281,31 @@ body.light-mode .submit-btn:hover {
     background: #388e3c;
 }
 
-.login-link {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #b0b0b5;
-}
-
-body.light-mode .login-link {
-    color: #777;
-}
-
-.login-link a {
+.form-link {
     color: #66bb6a;
     text-decoration: none;
     font-weight: 600;
     padding: 2px 4px;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 14px;
 }
 
-body.light-mode .login-link a {
+body.light-mode .form-link {
     color: #4caf50;
 }
 
-.login-link a:hover {
+.form-link:hover {
     color: #1b5e20;
     text-decoration: underline;
+}
+
+.reset-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px; /* Added gap for spacing */
+    width: 100%;
 }
 
 .message {
@@ -372,7 +335,6 @@ body.light-mode .login-link a {
     text-align: center;
     padding: 30px 15px;
     font-size: 14px;
-    margin-top: 40px;
     position: relative;
     z-index: 10;
     overflow-x: hidden;
