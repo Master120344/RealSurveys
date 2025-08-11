@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     switch (error.code) {
                         case 'auth/user-not-found':
                         case 'auth/wrong-password':
-                        case 'auth/invalid-credential': // More recent Firebase versions use this
+                        case 'auth/invalid-credential':
                             friendlyMessage = 'Invalid email or password.';
                             break;
                         case 'auth/invalid-email':
@@ -167,11 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             sendPasswordResetEmail(auth, email)
                 .then(() => {
-                    // Always show a generic success message to prevent email enumeration
                     showMessage(resetMessage, 'If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.', false);
                 })
                 .catch(error => {
-                    // Also show the same generic message on error for security
                      showMessage(resetMessage, 'If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.', false);
                 })
                 .finally(() => {
