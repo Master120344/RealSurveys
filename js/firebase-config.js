@@ -3,7 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebas
 import {
     getAuth,
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword, // Import the function for creating users
+    createUserWithEmailAndPassword, // Ensure this is imported
     onAuthStateChanged as onAuthStateChangedFn,
     signOut,
     sendPasswordResetEmail
@@ -15,7 +15,7 @@ import {
     getDoc
 } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
 
-// Import the configuration from the new env.js file
+// Import the configuration from your env.js file
 import { firebaseConfig } from './env.js';
 
 let app, auth, db;
@@ -91,17 +91,17 @@ async function readUserData(userId) {
     }
 }
 
-// Export everything needed by other scripts
+// Export all the functions needed by other parts of your application
 export {
     auth,
     db,
     signIn,
     signOutUser,
     onAuthStateChanged,
-    writeUserData,
+    writeUserData, // Ensure this is exported
     readUserData,
     sendPasswordResetEmail,
-    createUserWithEmailAndPassword, // Export the new function
+    createUserWithEmailAndPassword, // Ensure this is exported
     doc,
     getDoc,
     setDoc
