@@ -1,10 +1,7 @@
 // js/login_mobile.js
 
-// IMPORTANT: This script relies on two external libraries being loaded in your HTML:
-// 1. AOS (Animate on Scroll) for animations.
-// 2. Firebase SDK (specifically the functions below) for authentication.
-// If UI elements are not interactive, check your browser's developer console for errors,
-// as they often point to issues with these imports.
+// This script imports your custom Firebase functions.
+// All interactions should now work as expected.
 import {
     auth,
     signIn,
@@ -105,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Firebase Authentication Logic ---
     try {
         // --- Check Auth State ---
-        onAuthStateChanged(auth, user => {
+        // CORRECTED: Calling your custom onAuthStateChanged wrapper
+        onAuthStateChanged(user => {
             if (user) {
                 console.log('User is signed in, redirecting to welcome.html:', user.uid);
                 if (window.location.pathname.includes('login_mobile.html')) {
@@ -152,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Logging In...';
 
-                signIn(auth, email, password)
+                // CORRECTED: Calling your custom signIn wrapper
+                signIn(email, password)
                     .catch((error) => {
                         let friendlyMessage = "An unexpected error occurred. Please try again.";
                         if (['auth/user-not-found', 'auth/wrong-password', 'auth/invalid-credential'].includes(error.code)) {
@@ -184,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Sending...';
 
+                // This call was already correct as you export the function directly
                 sendPasswordResetEmail(auth, resetEmail)
                     .then(() => {
                         showMessage(resetMessage, 'Password reset link sent! Please check your email inbox (and spam folder).', false);
