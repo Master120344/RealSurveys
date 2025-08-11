@@ -1,31 +1,19 @@
-// js/register_mobile.js
-
-// Assuming you have a similar firebase-config.js for registration
-/*
+// js/login_mobile.js
 import {
     auth,
-    createUserWithEmailAndPassword
+    signIn,
+    sendPasswordResetEmail
 } from './firebase-config.js';
-*/
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- AOS Initialization ---
+    // --- Initialize Animations ---
     AOS.init({
         duration: 800,
         once: true
     });
 
-    // --- Preloader ---
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
-        }
-    });
-
-    // --- Navigation ---
+    // --- Common Navigation and Theme ---
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     if (navToggle && navMenu) {
@@ -34,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Navigation Buttons ---
     document.querySelectorAll('.nav-btn').forEach(button => {
         const targetHref = button.dataset.href;
         if (targetHref) {
@@ -44,30 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Theme Toggle ---
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('light-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
         });
     }
 
     // --- Form Elements ---
-    const registerForm = document.getElementById('registerForm');
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    const strengthLevel = document.querySelector('.strength-level');
-    const passwordFeedback = document.getElementById('password-feedback');
-    const confirmPasswordFeedback = document.getElementById('confirm-password-feedback');
-    const registerMessage = document.getElementById('registerMessage');
+    const loginSection = document.getElementById('loginSection');
+    const forgotPasswordSection = document.getElementById('forgotPasswordSection');
+
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+    const backToLoginLink = document.getElementById('backToLoginLink');
+
+    const loginForm = document.getElementById('loginForm');
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
+    
+    const loginMessage = document.getElementById('loginMessage');
+    const resetMessage = document.getElementById('resetMessage');
 
     // --- Function to display messages ---
     function showMessage(element, text, isError = false) {
@@ -76,13 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
         element.className = `message ${isError ? 'error' : 'success'}`;
         element.style.display = 'block';
     }
-    
+
     function hideMessage(element) {
         if (!element) return;
         element.style.display = 'none';
         element.textContent = '';
     }
-    
+
+    // --- Toggle between Login and Forgot Password views ---
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginSection.style.display = 'none';
+            forgotPasswordSection.style.display = 'block';
+        });
+    }
+
+    if (backToLoginLink) {
+        backToLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            forgotPasswordSection.style.display = 'none';
+            loginSection.style.display = 'block';
+        });
+    }
+
     // --- Toggle Password Visibility ---
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', () => {
@@ -100,117 +102,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Password Strength Checker ---
-    if (passwordInput && strengthLevel && passwordFeedback) {
-        passwordInput.addEventListener('input', () => {
-            const password = passwordInput.value;
-            let strength = 0;
-            if (password.length >= 8) strength++;
-            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
-            if (password.match(/[0-9]/)) strength++;
-            if (password.match(/[^a-zA-Z0-9]/)) strength++;
-
-            strengthLevel.className = 'strength-level'; // Reset classes
-            passwordFeedback.style.display = 'block';
-
-            if (password.length === 0) {
-                 strengthLevel.style.width = '0%';
-                 passwordFeedback.style.display = 'none';
-            } else if (strength < 2) {
-                strengthLevel.classList.add('weak');
-                passwordFeedback.textContent = 'Weak: Use a mix of characters and numbers.';
-                passwordFeedback.className = 'feedback-message';
-            } else if (strength < 4) {
-                strengthLevel.classList.add('medium');
-                passwordFeedback.textContent = 'Medium: Good strength.';
-                passwordFeedback.className = 'feedback-message success';
-            } else {
-                strengthLevel.classList.add('strong');
-                passwordFeedback.textContent = 'Strong: Excellent!';
-                passwordFeedback.className = 'feedback-message success';
-            }
-        });
-    }
-
-    // --- Confirm Password Checker ---
-     if (confirmPasswordInput && confirmPasswordFeedback) {
-        confirmPasswordInput.addEventListener('input', () => {
-            if (confirmPasswordInput.value.length > 0 && confirmPasswordInput.value !== passwordInput.value) {
-                confirmPasswordFeedback.textContent = 'Passwords do not match.';
-                confirmPasswordFeedback.className = 'feedback-message';
-                confirmPasswordFeedback.style.display = 'block';
-            } else {
-                confirmPasswordFeedback.style.display = 'none';
-            }
-        });
-    }
-
-    // --- Registration Form Submission ---
-    if (registerForm) {
-        registerForm.addEventListener('submit', (e) => {
+    // --- Login Form Submission ---
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const password = passwordInput.value;
-            const confirmPassword = confirmPasswordInput.value;
-            const submitButton = registerForm.querySelector('.submit-btn');
+            const email = loginForm.email.value.trim();
+            const password = loginForm.password.value;
+            const submitButton = loginForm.querySelector('.submit-btn');
 
-            hideMessage(registerMessage);
-            confirmPasswordFeedback.style.display = 'none';
+            hideMessage(loginMessage);
 
-            // Validation
-            if (!email || !password || !confirmPassword) {
-                showMessage(registerMessage, 'Please fill in all fields.', true);
-                return;
-            }
-            if (password !== confirmPassword) {
-                confirmPasswordFeedback.textContent = 'Passwords do not match.';
-                confirmPasswordFeedback.className = 'feedback-message';
-                confirmPasswordFeedback.style.display = 'block';
-                showMessage(registerMessage, 'Passwords do not match.', true);
-                return;
-            }
-            if (password.length < 8) {
-                showMessage(registerMessage, 'Password must be at least 8 characters long.', true);
+            if (!email || !password) {
+                showMessage(loginMessage, 'Please enter both email and password.', true);
                 return;
             }
 
             submitButton.disabled = true;
-            submitButton.textContent = 'Signing Up...';
+            submitButton.textContent = 'Logging In...';
 
-            // --- Firebase Registration Logic (Placeholder) ---
-            // Replace this with your actual Firebase call
-            /*
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    showMessage(registerMessage, 'Registration successful! Redirecting to login...', false);
+            signIn(email, password)
+                .then(userCredential => {
+                    showMessage(loginMessage, 'Login successful! Redirecting...', false);
                     setTimeout(() => {
-                        window.location.href = 'login_mobile.html';
-                    }, 2000);
+                        window.location.href = 'surveys_mobile.html'; // Redirect to the main surveys page
+                    }, 1500);
                 })
-                .catch((error) => {
-                    let friendlyMessage = "An unexpected error occurred. Please try again.";
-                    if (error.code === 'auth/email-already-in-use') {
-                        friendlyMessage = 'This email address is already in use.';
-                    } else if (error.code === 'auth/invalid-email') {
-                        friendlyMessage = 'Please enter a valid email address.';
+                .catch(error => {
+                    let friendlyMessage = 'An error occurred. Please try again.';
+                    switch (error.code) {
+                        case 'auth/user-not-found':
+                        case 'auth/wrong-password':
+                            friendlyMessage = 'Invalid email or password.';
+                            break;
+                        case 'auth/invalid-email':
+                            friendlyMessage = 'Please enter a valid email address.';
+                            break;
                     }
-                    showMessage(registerMessage, friendlyMessage, true);
+                    showMessage(loginMessage, friendlyMessage, true);
                 })
                 .finally(() => {
                     submitButton.disabled = false;
-                    submitButton.textContent = 'Sign Up';
+                    submitButton.textContent = 'Login';
                 });
-            */
-            
-            // --- Simulated success for demonstration ---
-            setTimeout(() => {
-                showMessage(registerMessage, 'Registration successful! Redirecting to login...', false);
-                submitButton.disabled = false;
-                submitButton.textContent = 'Sign Up';
-                setTimeout(() => {
-                   window.location.href = 'login_mobile.html';
-                }, 2000);
-            }, 1500);
+        });
+    }
+
+    // --- Reset Password Form Submission ---
+    if (resetPasswordForm) {
+        resetPasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = resetPasswordForm.resetEmail.value.trim();
+            const submitButton = resetPasswordForm.querySelector('.submit-btn');
+
+            hideMessage(resetMessage);
+
+            if (!email) {
+                showMessage(resetMessage, 'Please enter your email address.', true);
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    // Always show a generic success message to prevent email enumeration
+                    showMessage(resetMessage, 'If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.', false);
+                })
+                .catch(error => {
+                    // Also show the same generic message on error for security
+                     showMessage(resetMessage, 'If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.', false);
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Reset Link';
+                });
         });
     }
 });
