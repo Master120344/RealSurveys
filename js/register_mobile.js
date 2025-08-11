@@ -1,31 +1,17 @@
 // js/register_mobile.js
-
-// Assuming you have a similar firebase-config.js for registration
-/*
 import {
     auth,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    writeUserData
 } from './firebase-config.js';
-*/
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- AOS Initialization ---
     AOS.init({
         duration: 800,
         once: true
     });
 
-    // --- Preloader ---
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
-        }
-    });
-
-    // --- Navigation ---
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     if (navToggle && navMenu) {
@@ -34,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Navigation Buttons ---
     document.querySelectorAll('.nav-btn').forEach(button => {
         const targetHref = button.dataset.href;
         if (targetHref) {
@@ -44,46 +29,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Theme Toggle ---
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('light-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
         });
     }
 
-    // --- Form Elements ---
     const registerForm = document.getElementById('registerForm');
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirmPassword');
+    const strengthBar = document.querySelector('.strength-bar');
     const strengthLevel = document.querySelector('.strength-level');
     const passwordFeedback = document.getElementById('password-feedback');
     const confirmPasswordFeedback = document.getElementById('confirm-password-feedback');
     const registerMessage = document.getElementById('registerMessage');
 
-    // --- Function to display messages ---
     function showMessage(element, text, isError = false) {
         if (!element) return;
         element.textContent = text;
         element.className = `message ${isError ? 'error' : 'success'}`;
         element.style.display = 'block';
     }
-    
+
     function hideMessage(element) {
         if (!element) return;
         element.style.display = 'none';
         element.textContent = '';
     }
-    
-    // --- Toggle Password Visibility ---
+
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', () => {
             const input = button.previousElementSibling;
@@ -100,23 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Password Strength Checker ---
-    if (passwordInput && strengthLevel && passwordFeedback) {
+    if (passwordInput && strengthBar && strengthLevel && passwordFeedback) {
         passwordInput.addEventListener('input', () => {
             const password = passwordInput.value;
+
+            if (password.length === 0) {
+                strengthBar.style.display = 'none';
+                passwordFeedback.style.display = 'none';
+                return;
+            }
+
+            strengthBar.style.display = 'block';
+            passwordFeedback.style.display = 'block';
+
             let strength = 0;
             if (password.length >= 8) strength++;
             if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
             if (password.match(/[0-9]/)) strength++;
             if (password.match(/[^a-zA-Z0-9]/)) strength++;
 
-            strengthLevel.className = 'strength-level'; // Reset classes
-            passwordFeedback.style.display = 'block';
+            strengthLevel.className = 'strength-level';
 
-            if (password.length === 0) {
-                 strengthLevel.style.width = '0%';
-                 passwordFeedback.style.display = 'none';
-            } else if (strength < 2) {
+            if (strength < 2) {
                 strengthLevel.classList.add('weak');
                 passwordFeedback.textContent = 'Weak: Use a mix of characters and numbers.';
                 passwordFeedback.className = 'feedback-message';
@@ -132,8 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Confirm Password Checker ---
-     if (confirmPasswordInput && confirmPasswordFeedback) {
+    if (confirmPasswordInput && confirmPasswordFeedback) {
         confirmPasswordInput.addEventListener('input', () => {
             if (confirmPasswordInput.value.length > 0 && confirmPasswordInput.value !== passwordInput.value) {
                 confirmPasswordFeedback.textContent = 'Passwords do not match.';
@@ -145,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Registration Form Submission ---
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -157,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hideMessage(registerMessage);
             confirmPasswordFeedback.style.display = 'none';
 
-            // Validation
             if (!email || !password || !confirmPassword) {
                 showMessage(registerMessage, 'Please fill in all fields.', true);
                 return;
@@ -166,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmPasswordFeedback.textContent = 'Passwords do not match.';
                 confirmPasswordFeedback.className = 'feedback-message';
                 confirmPasswordFeedback.style.display = 'block';
-                showMessage(registerMessage, 'Passwords do not match.', true);
                 return;
             }
             if (password.length < 8) {
@@ -177,11 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.disabled = true;
             submitButton.textContent = 'Signing Up...';
 
-            // --- Firebase Registration Logic (Placeholder) ---
-            // Replace this with your actual Firebase call
-            /*
+            // --- Real Firebase Registration Logic ---
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
+                    // This creates the user in Firebase Authentication.
+                    // Now, let's create their record in the Firestore database.
+                    const user = userCredential.user;
+                    // Using email as a placeholder for the username field.
+                    return writeUserData(user.uid, email, user.email);
+                })
+                .then(() => {
+                    // This runs after the user data is written to Firestore.
                     showMessage(registerMessage, 'Registration successful! Redirecting to login...', false);
                     setTimeout(() => {
                         window.location.href = 'login_mobile.html';
@@ -193,24 +177,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         friendlyMessage = 'This email address is already in use.';
                     } else if (error.code === 'auth/invalid-email') {
                         friendlyMessage = 'Please enter a valid email address.';
+                    } else if (error.code === 'auth/weak-password') {
+                        friendlyMessage = 'Password is too weak. Please choose a stronger one.';
                     }
                     showMessage(registerMessage, friendlyMessage, true);
                 })
                 .finally(() => {
+                    // This runs whether the registration succeeded or failed.
                     submitButton.disabled = false;
                     submitButton.textContent = 'Sign Up';
                 });
-            */
-            
-            // --- Simulated success for demonstration ---
-            setTimeout(() => {
-                showMessage(registerMessage, 'Registration successful! Redirecting to login...', false);
-                submitButton.disabled = false;
-                submitButton.textContent = 'Sign Up';
-                setTimeout(() => {
-                   window.location.href = 'login_mobile.html';
-                }, 2000);
-            }, 1500);
         });
     }
 });
