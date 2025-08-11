@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     switch (error.code) {
                         case 'auth/user-not-found':
                         case 'auth/wrong-password':
+                        case 'auth/invalid-credential': // More recent Firebase versions use this
                             friendlyMessage = 'Invalid email or password.';
                             break;
                         case 'auth/invalid-email':
