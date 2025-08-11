@@ -3,7 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebas
 import {
     getAuth,
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword, // Ensure this is imported
+    createUserWithEmailAndPassword,
     onAuthStateChanged as onAuthStateChangedFn,
     signOut,
     sendPasswordResetEmail
@@ -41,6 +41,7 @@ try {
     db = null;
 }
 
+// This function is renamed to signInWithEmailAndPassword to avoid conflicts with the import
 function signIn(email, password) {
     if (!auth) return Promise.reject(new Error('Authentication service not available.'));
     return signInWithEmailAndPassword(auth, email, password);
@@ -95,13 +96,13 @@ async function readUserData(userId) {
 export {
     auth,
     db,
-    signIn,
+    signIn, // Export our custom signIn function
     signOutUser,
     onAuthStateChanged,
-    writeUserData, // Ensure this is exported
+    writeUserData,
     readUserData,
     sendPasswordResetEmail,
-    createUserWithEmailAndPassword, // Ensure this is exported
+    createUserWithEmailAndPassword,
     doc,
     getDoc,
     setDoc
