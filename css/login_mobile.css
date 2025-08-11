@@ -51,13 +51,17 @@ body.light-mode {
 
 /* Navigation */
 .sticky-nav {
-    background: rgba(16, 128, 61, 0.95);
+    background: #16a34a; /* Matched to footer color */
     padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     overflow-x: hidden;
+}
+
+body.light-mode .sticky-nav {
+    background: #4caf50;
 }
 
 .nav-container {
@@ -91,12 +95,16 @@ body.light-mode {
     align-items: center;
     gap: 15px;
     padding: 20px;
-    background: rgba(16, 128, 61, 0.95);
+    background: #16a34a; /* Matched to footer color */
     width: 100%;
     max-width: 100%;
     transition: opacity 0.3s ease;
     opacity: 0;
     overflow-x: hidden;
+}
+
+body.light-mode .nav-menu {
+    background: #4caf50;
 }
 
 .nav-menu.active {
@@ -304,7 +312,7 @@ body.light-mode .form-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px; /* Added gap for spacing */
+    gap: 18px;
     width: 100%;
 }
 
@@ -333,7 +341,7 @@ body.light-mode .form-link {
     background: #16a34a;
     color: #e0e0e0;
     text-align: center;
-    padding: 30px 15px;
+    padding: 20px 15px; /* Adjusted padding */
     font-size: 14px;
     position: relative;
     z-index: 10;
@@ -342,6 +350,33 @@ body.light-mode .form-link {
 
 body.light-mode .footer {
     background: #4caf50;
+    color: #fff;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: text-decoration 0.3s ease;
+}
+
+body.light-mode .footer-links a {
+    color: #fff;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-links span {
+    color: #e0e0e0;
+}
+
+body.light-mode .footer-links span {
     color: #fff;
 }
 
