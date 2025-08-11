@@ -1,6 +1,10 @@
 // js/login_mobile.js
 
-// Import the necessary functions from your central firebase-config.js
+// IMPORTANT: This script relies on two external libraries being loaded in your HTML:
+// 1. AOS (Animate on Scroll) for animations.
+// 2. Firebase SDK (specifically the functions below) for authentication.
+// If UI elements are not interactive, check your browser's developer console for errors,
+// as they often point to issues with these imports.
 import {
     auth,
     signIn,
@@ -10,10 +14,15 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    AOS.init({
-        duration: 800,
-        once: true
-    });
+    // --- Initialize Libraries ---
+    try {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    } catch (e) {
+        console.error("AOS initialization failed. Is the library loaded?", e);
+    }
 
     // --- Preloader ---
     window.addEventListener('load', () => {
@@ -49,29 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('light-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
+            icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
         });
     }
     
     // --- Password Visibility Toggle ---
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', () => {
-            const input = button.previousElementSibling;
+            const container = button.parentElement;
+            const input = container.querySelector('input');
             const icon = button.querySelector('i');
             if (input.type === 'password') {
                 input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
+                icon.className = 'fas fa-eye-slash';
             } else {
                 input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
+                icon.className = 'fas fa-eye';
             }
         });
     });
@@ -81,10 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const forgotPasswordSection = document.getElementById('forgotPasswordSection');
     const forgotPasswordLink = document.getElementById('forgotPasswordLink');
     const backToLoginLink = document.getElementById('backToLoginLink');
-
     const loginForm = document.getElementById('loginForm');
-    const resetPasswordForm = document.getElementById('resetPasswordForm'); // Corrected to target the form
-
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
     const loginMessage = document.getElementById('loginMessage');
     const resetMessage = document.getElementById('resetMessage');
 
@@ -102,107 +102,108 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.display = 'none';
     }
 
-    // --- Check Auth State ---
-    onAuthStateChanged(auth, user => {
-        if (user) {
-            console.log('User is signed in, redirecting to welcome.html:', user.uid);
-            // Ensure we only redirect from the login page
-            if (window.location.pathname.includes('login_mobile.html')) {
-                window.location.href = 'welcome.html';
+    // --- Firebase Authentication Logic ---
+    try {
+        // --- Check Auth State ---
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                console.log('User is signed in, redirecting to welcome.html:', user.uid);
+                if (window.location.pathname.includes('login_mobile.html')) {
+                    window.location.href = 'welcome.html';
+                }
+            } else {
+                console.log('User is signed out. Login page is ready.');
             }
-        } else {
-            console.log('User is signed out. Login page is ready.');
+        });
+
+        // --- Toggle between Login and Forgot Password views ---
+        if (forgotPasswordLink) {
+            forgotPasswordLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideMessage(loginMessage);
+                loginSection.style.display = 'none';
+                forgotPasswordSection.style.display = 'block';
+            });
         }
-    });
 
-    // --- Toggle between Login and Forgot Password views ---
-    if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            hideMessage(loginMessage);
-            loginSection.style.display = 'none';
-            forgotPasswordSection.style.display = 'block';
-        });
-    }
+        if (backToLoginLink) {
+            backToLoginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideMessage(resetMessage);
+                forgotPasswordSection.style.display = 'none';
+                loginSection.style.display = 'block';
+            });
+        }
 
-    if (backToLoginLink) {
-        backToLoginLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            hideMessage(resetMessage);
-            forgotPasswordSection.style.display = 'none';
-            loginSection.style.display = 'block';
-        });
-    }
+        // --- Email & Password Login ---
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const submitButton = loginForm.querySelector('.submit-btn');
 
-    // --- Email & Password Login ---
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const submitButton = loginForm.querySelector('.submit-btn');
+                hideMessage(loginMessage);
+                if (!email || !password) {
+                    showMessage(loginMessage, 'Please fill in both email and password.', true);
+                    return;
+                }
 
-            hideMessage(loginMessage);
+                submitButton.disabled = true;
+                submitButton.textContent = 'Logging In...';
 
-            if (!email || !password) {
-                showMessage(loginMessage, 'Please fill in both email and password.', true);
-                return;
-            }
+                signIn(auth, email, password)
+                    .catch((error) => {
+                        let friendlyMessage = "An unexpected error occurred. Please try again.";
+                        if (['auth/user-not-found', 'auth/wrong-password', 'auth/invalid-credential'].includes(error.code)) {
+                            friendlyMessage = 'Invalid email or password. Please try again.';
+                        }
+                        showMessage(loginMessage, friendlyMessage, true);
+                        console.error("Login Error:", error.code, error.message);
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Login';
+                    });
+            });
+        }
 
-            submitButton.disabled = true;
-            submitButton.textContent = 'Logging In...';
+        // --- Password Reset ---
+        if (resetPasswordForm) {
+            resetPasswordForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const resetEmail = document.getElementById('resetEmail').value.trim();
+                const submitButton = resetPasswordForm.querySelector('.submit-btn');
+                hideMessage(resetMessage);
 
-            signIn(auth, email, password)
-                .then((userCredential) => {
-                    showMessage(loginMessage, 'Login successful! Redirecting...', false);
-                    // The onAuthStateChanged listener will handle the redirect.
-                })
-                .catch((error) => {
-                    let friendlyMessage = "An unexpected error occurred. Please try again.";
-                    console.error("Login Error:", error.code, error.message);
-                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                        friendlyMessage = 'Invalid email or password. Please try again.';
-                    }
-                    showMessage(loginMessage, friendlyMessage, true);
-                })
-                .finally(() => {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Login';
-                });
-        });
-    }
+                if (!resetEmail) {
+                    showMessage(resetMessage, 'Please enter your email address.', true);
+                    return;
+                }
+                
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
 
-    // --- Password Reset ---
-    if (resetPasswordForm) {
-        resetPasswordForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const resetEmail = document.getElementById('resetEmail').value.trim();
-            const submitButton = resetPasswordForm.querySelector('.submit-btn');
-            hideMessage(resetMessage);
-
-            if (!resetEmail) {
-                showMessage(resetMessage, 'Please enter your email address.', true);
-                return;
-            }
-            
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-
-            sendPasswordResetEmail(auth, resetEmail)
-                .then(() => {
-                    showMessage(resetMessage, 'Password reset link sent! Please check your email inbox (and spam folder).', false);
-                })
-                .catch((error) => {
-                     let friendlyMessage = `Error: ${error.message}`;
-                     if(error.code === 'auth/user-not-found'){
-                         friendlyMessage = "No account found with that email address."
-                     }
-                     showMessage(resetMessage, friendlyMessage, true);
-                })
-                .finally(() => {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Send Reset Link';
-                });
-        });
+                sendPasswordResetEmail(auth, resetEmail)
+                    .then(() => {
+                        showMessage(resetMessage, 'Password reset link sent! Please check your email inbox (and spam folder).', false);
+                    })
+                    .catch((error) => {
+                         let friendlyMessage = `Error: ${error.message}`;
+                         if(error.code === 'auth/user-not-found'){
+                             friendlyMessage = "No account found with that email address."
+                         }
+                         showMessage(resetMessage, friendlyMessage, true);
+                         console.error("Password Reset Error:", error.code, error.message);
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send Reset Link';
+                    });
+            });
+        }
+    } catch (e) {
+        console.error("Firebase authentication setup failed. Is firebase-config.js correct and loaded?", e);
+        showMessage(loginMessage, "Could not connect to authentication service.", true);
     }
 });
