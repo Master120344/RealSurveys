@@ -23,7 +23,7 @@ body.light-mode {
     color: #333;
 }
 
-/* Navigation (Hamburger Menu from index_mobile.css) */
+/* Navigation */
 .sticky-nav {
     background: rgba(16, 128, 61, 0.95);
     padding: 10px 0;
@@ -46,7 +46,6 @@ body.light-mode {
     text-align: center;
     width: 100%;
     margin-bottom: 10px;
-    max-width: 100%;
 }
 
 .nav-toggle {
@@ -67,10 +66,8 @@ body.light-mode {
     padding: 20px;
     background: rgba(16, 128, 61, 0.95);
     width: 100%;
-    max-width: 100%;
     transition: opacity 0.3s ease;
     opacity: 0;
-    overflow-x: hidden;
 }
 
 .nav-menu.active {
@@ -118,9 +115,6 @@ body.light-mode {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    position: relative;
-    z-index: 10;
-    overflow-x: hidden;
 }
 
 .form-container {
@@ -129,11 +123,10 @@ body.light-mode {
     padding: 30px 25px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    position: relative;
-    z-index: 20;
     width: 100%;
     max-width: 400px;
     border: 1px solid rgba(46, 125, 50, 0.3);
+    overflow: hidden; /* Helps contain the sections during transition */
 }
 
 body.light-mode .form-container {
@@ -225,48 +218,6 @@ body.light-mode .toggle-password {
     color: #66bb6a;
 }
 
-.strength-bar {
-    width: 100%;
-    height: 6px;
-    background: #33334d;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: -10px;
-}
-
-body.light-mode .strength-bar {
-    background: #ddd;
-}
-
-.strength-level {
-    height: 100%;
-    width: 0;
-    background: #ef5350;
-    transition: width 0.3s ease, background 0.3s ease;
-}
-
-.strength-level.weak { background: #ef5350; width: 33%; }
-.strength-level.medium { background: #ffb300; width: 66%; }
-.strength-level.strong { background: #2e7d32; width: 100%; }
-body.light-mode .strength-level.strong { background: #4caf50; }
-
-.feedback-message {
-    font-size: 14px;
-    color: #ef5350;
-    margin-top: 5px;
-    text-align: left;
-    display: none;
-    width: 100%;
-}
-
-.feedback-message.success {
-    color: #2e7d32;
-}
-
-body.light-mode .feedback-message.success {
-    color: #4caf50;
-}
-
 .submit-btn {
     background: #2e7d32;
     color: #e0e0e0;
@@ -296,31 +247,44 @@ body.light-mode .submit-btn:hover {
     background: #388e3c;
 }
 
-.login-link {
-    margin-top: 20px;
+/* --- NEW / UPDATED STYLES START HERE --- */
+
+/* Style for the "Forgot Password" and "Back to Login" links to look like buttons */
+.form-link {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 25px; /* Slightly less padding than the main button */
+    margin-top: 15px; /* Space between login button and this link */
     font-size: 14px;
-    color: #b0b0b5;
-}
-
-body.light-mode .login-link {
-    color: #777;
-}
-
-.login-link a {
-    color: #66bb6a;
-    text-decoration: none;
     font-weight: 600;
-    padding: 2px 4px;
+    text-transform: uppercase;
+    color: #e0e0e0;
+    background-color: #4a4a61; /* A secondary, neutral color */
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-body.light-mode .login-link a {
-    color: #4caf50;
+body.light-mode .form-link {
+    background-color: #d0d0d5;
+    color: #333;
 }
 
-.login-link a:hover {
-    color: #1b5e20;
-    text-decoration: underline;
+.form-link:hover {
+    background-color: #2e7d32; /* Turn green on hover */
+    color: #fff;
+    transform: translateY(-1px);
 }
+
+body.light-mode .form-link:hover {
+    background-color: #4caf50;
+}
+
+/* --- NEW / UPDATED STYLES END HERE --- */
 
 .message {
     margin-top: 15px;
@@ -350,9 +314,6 @@ body.light-mode .login-link a {
     padding: 20px 15px;
     font-size: 14px;
     margin-top: 40px;
-    position: relative;
-    z-index: 10;
-    overflow-x: hidden;
 }
 
 body.light-mode .footer {
@@ -379,12 +340,6 @@ body.light-mode .footer {
     text-decoration: underline;
 }
 
-/* Animations */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 /* Utility */
 .sr-only {
     position: absolute;
@@ -396,11 +351,4 @@ body.light-mode .footer {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 480px) {
-    .form-container {
-        padding: 25px 20px;
-    }
 }
