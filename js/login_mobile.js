@@ -1,7 +1,6 @@
 // js/login_mobile.js
 
 // Import the necessary functions from your central firebase-config.js
-// This ensures Firebase is initialized only ONCE.
 import {
     auth,
     signIn,
@@ -11,15 +10,70 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
     // --- Preloader ---
-    // This listener should be on 'window.load' to ensure all assets are loaded
     window.addEventListener('load', () => {
         const preloader = document.getElementById('preloader');
         if (preloader) {
             preloader.style.opacity = '0';
-            // Use a transition-end listener for smoother removal
             preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
         }
+    });
+
+    // --- Navigation ---
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // --- Navigation Buttons ---
+    document.querySelectorAll('.nav-btn').forEach(button => {
+        const targetHref = button.dataset.href;
+        if (targetHref) {
+            button.addEventListener('click', () => {
+                window.location.href = targetHref;
+            });
+        }
+    });
+
+    // --- Theme Toggle ---
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    }
+    
+    // --- Password Visibility Toggle ---
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', () => {
+            const input = button.previousElementSibling;
+            const icon = button.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
     });
 
     // --- Form Elements ---
@@ -29,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToLoginLink = document.getElementById('backToLoginLink');
 
     const loginForm = document.getElementById('loginForm');
-    const resetPasswordBtn = document.getElementById('resetPasswordBtn');
+    const resetPasswordForm = document.getElementById('resetPasswordForm'); // Corrected to target the form
 
     const loginMessage = document.getElementById('loginMessage');
     const resetMessage = document.getElementById('resetMessage');
@@ -39,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!element) return;
         element.textContent = text;
         element.className = `message ${isError ? 'error' : 'success'}`;
-        // Ensure message is visible
         element.style.display = 'block';
     }
     
@@ -50,12 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Check Auth State ---
-    onAuthStateChanged(user => {
+    onAuthStateChanged(auth, user => {
         if (user) {
-            // User is signed in. Redirect from login page to the welcome page.
             console.log('User is signed in, redirecting to welcome.html:', user.uid);
+            // Ensure we only redirect from the login page
             if (window.location.pathname.includes('login_mobile.html')) {
-                // *** THIS IS THE UPDATED REDIRECT LINE ***
                 window.location.href = 'welcome.html';
             }
         } else {
@@ -100,12 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.disabled = true;
             submitButton.textContent = 'Logging In...';
 
-            // Use the signIn function imported from firebase-config.js
-            signIn(email, password)
+            signIn(auth, email, password)
                 .then((userCredential) => {
-                    // The onAuthStateChanged listener above will handle the redirect automatically.
-                    // This message will be visible for a brief moment before the redirect occurs.
                     showMessage(loginMessage, 'Login successful! Redirecting...', false);
+                    // The onAuthStateChanged listener will handle the redirect.
                 })
                 .catch((error) => {
                     let friendlyMessage = "An unexpected error occurred. Please try again.";
@@ -123,18 +173,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Password Reset ---
-    if (resetPasswordBtn) {
-        resetPasswordBtn.addEventListener('click', (e) => {
+    if (resetPasswordForm) {
+        resetPasswordForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const resetEmail = document.getElementById('resetEmail').value.trim();
+            const submitButton = resetPasswordForm.querySelector('.submit-btn');
             hideMessage(resetMessage);
 
             if (!resetEmail) {
                 showMessage(resetMessage, 'Please enter your email address.', true);
                 return;
             }
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
 
-            // Use the sendPasswordResetEmail function imported from firebase-config.js
             sendPasswordResetEmail(auth, resetEmail)
                 .then(() => {
                     showMessage(resetMessage, 'Password reset link sent! Please check your email inbox (and spam folder).', false);
@@ -145,6 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
                          friendlyMessage = "No account found with that email address."
                      }
                      showMessage(resetMessage, friendlyMessage, true);
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Reset Link';
                 });
         });
     }
