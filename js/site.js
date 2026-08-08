@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear())});
