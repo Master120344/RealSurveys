@@ -12,6 +12,10 @@ Final feedback starts anonymous. Optional identifying information requires a sep
 
 The existing Firebase email sign-in, registration, password reset, and balance integration is retained and loaded only when needed for account actions. Its live configuration, authorized domains, provider settings, and Firestore rules still need owner verification. There is no new Google OAuth or Turnstile integration. Client-side guest state is not an authentication or payment security boundary.
 
+## Publishing
+
+The main branch is the source of the existing GitHub Pages site at https://master120344.github.io/RealSurveys/. This repository is not bound to ChatGPT Sites. The requested myrealsurveys.com custom domain did not resolve in DNS when checked on October 5, 2026; domain DNS and GitHub Pages domain settings need to be restored separately. No CNAME redirect is added while the domain is unavailable.
+
 ## Build
 
 Run `node scripts/build-static.mjs`. This stages the public application into `dist/` for static hosting. The staging allowlist excludes environment files and the unused legacy scripts. The original desktop/mobile source pages remain in the repository; supported top-level aliases redirect to the responsive pages.
@@ -24,4 +28,4 @@ The current catalog contains samples, not sponsored or funded campaigns. Product
 
 ## Assets
 
-Company art was recovered from the existing `surveycards/` directory. Featured logos identify sample-survey subjects and imply no affiliation. The hero illustration was created for this redesign. DM Sans is self-hosted; its license is in `assets/DM-Sans-LICENSE.txt`. The refreshed guest experience loads no third-party fonts, analytics, advertising, or tracking scripts.
+Original company art remains in `surveycards/`. The bright design uses six local Simple Icons SVG marks (version 16.34.0, license in `assets/Simple-Icons-LICENSE.md`) and the supplied Amazon artwork. Featured logos identify sample-survey subjects and imply no affiliation. The hero illustration was created for this redesign. Two additional illustrated people use locally hosted two-pose sprite animations with aligned baselines; they do not bob or float. Contextual hints can be dismissed and reopened; animation can be paused and respects reduced-motion preferences. DM Sans is self-hosted; its license is in `assets/DM-Sans-LICENSE.txt`. The refreshed guest experience loads no third-party fonts, analytics, advertising, or tracking scripts.

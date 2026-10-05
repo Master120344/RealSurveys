@@ -20,6 +20,7 @@ copyFileSync("css/site.css", "dist/css/site.css");
 mkdirSync("dist/js");
 for (const f of [
   "site",
+  "characters",
   "demo-session",
   "catalog",
   "questions",

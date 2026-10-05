@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#173e30" />
+    <meta name="theme-color" content="#2675ea" />
     <meta
       name="description"
       content="A little of your time. A lot of honest feedback. Explore the MyRealSurveys preview: ten thoughtful questions and a planned one-dollar reward."
@@ -19,12 +19,10 @@
     <header class="top">
       <div class="shell nav">
         <a class="brand" href="index.html" aria-label="MyRealSurveys home"
-          ><img
-            src="assets/favicon.svg"
-            width="35"
-            height="35"
-            alt=""
-          />myrealsurveys<span aria-hidden="true">.</span></a
+          ><img src="assets/favicon.svg" width="35" height="35" alt="" /><span
+            class="brand-word"
+            >myrealsurveys.</span
+          ></a
         >
         <nav class="nav-links" id="navigation" aria-label="Main navigation">
           <a href="surveys.html">Find a survey</a
@@ -54,13 +52,41 @@
           You can explore all sample surveys as a guest. An account doesn’t
           unlock paid surveys yet.
         </p>
-        <img
-          class="auth-art"
-          src="assets/hero.webp"
-          width="1122"
-          height="1402"
-          alt="A person ready to share their opinion."
-        />
+        <div class="character-guide auth-guide">
+          <div
+            class="character-sprite catalog-person"
+            data-animated
+            role="img"
+            aria-label="A friendly illustrated survey guide"
+          ></div>
+          <div class="tip-container">
+            <aside
+              class="tip-bubble"
+              id="register-hint"
+              aria-label="Helpful hint"
+            >
+              <button
+                class="tip-close"
+                data-tip-close="register-hint"
+                aria-label="Dismiss hint"
+              >
+                ×</button
+              ><strong>Just exploring?</strong>
+              <p>
+                Use guest / password to try every sample. No registration
+                needed.
+              </p>
+            </aside>
+            <button
+              class="tip-reopen"
+              data-tip-open="register-hint"
+              aria-controls="register-hint"
+              hidden
+            >
+              Show tip
+            </button>
+          </div>
+        </div>
       </section>
       <section class="auth-panel">
         <div class="auth-box">
