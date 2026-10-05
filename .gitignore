@@ -1,0 +1,8 @@
+.env
+.env.*
+js/.env
+node_modules/
+.sites-runtime/
+.sites-checkout*/
+*.zip
+dist/

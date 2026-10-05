@@ -1,1 +1,129 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Balance — MyRealSurveys</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/site.css"><script type="module" src="js/balance.js"></script></head><body><header class="top"><div class="shell nav"><a class="brand" href="index.html"><span class="mark">MRS</span>MyRealSurveys</a><nav class="links"><a href="surveys.html">Surveys</a><a class="active" href="balance.html">Balance</a><a href="contact.html">Support</a></nav><div class="actions"><span id="accountEmail" class="pill">Account</span><button id="logoutButton" class="btn secondary">Log out</button></div></div></header><main><section class="pagehero"><div class="shell"><span class="eyebrow">Your account</span><h1>Balance</h1><p>See the balance currently recorded on your account.</p></div></section><section class="section alt"><div class="shell split"><div class="manifesto"><span class="eyebrow">Current balance</span><h2 id="balanceValue">$0.00</h2><p>Your account balance updates from your saved account record.</p></div><div class="card"><h3 style="margin-top:0">Withdrawals</h3><p>Cashout is not available yet. When secure payout methods are ready, they’ll appear here with the requirements shown before you submit anything.</p><a class="btn secondary" href="surveys.html">Back to surveys</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#173e30" />
+    <meta
+      name="description"
+      content="A little of your time. A lot of honest feedback. Explore the MyRealSurveys preview: ten thoughtful questions and a planned one-dollar reward."
+    />
+    <title>Your preview — MyRealSurveys</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="css/site.css" />
+    <script type="module" src="js/site.js"></script>
+    <script type="module" src="js/balance.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="top">
+      <div class="shell nav">
+        <a class="brand" href="index.html" aria-label="MyRealSurveys home"
+          ><img
+            src="assets/favicon.svg"
+            width="35"
+            height="35"
+            alt=""
+          />myrealsurveys<span aria-hidden="true">.</span></a
+        >
+        <nav class="nav-links" id="navigation" aria-label="Main navigation">
+          <a href="surveys.html">Find a survey</a
+          ><a href="index.html#how">How it works</a
+          ><a href="index.html#why">Our promise</a
+          ><a class="nav-login" data-account-link href="login.html">Log in</a>
+        </nav>
+        <div class="nav-actions">
+          <a data-account-link href="login.html">Log in</a
+          ><a class="button small" href="surveys.html">Explore surveys</a>
+        </div>
+        <button
+          class="menu-toggle"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          Menu
+        </button>
+      </div>
+    </header>
+    <main id="main" class="shell">
+      <section class="page-head">
+        <span class="eyebrow">A little time, well spent</span>
+        <h1>Your preview.</h1>
+        <p id="accountStatus">See what you’ve explored so far.</p>
+      </section>
+      <div class="balance-grid">
+        <section>
+          <span class="balance-label">DEMO CREDITS · NO CASH VALUE</span>
+          <div class="balance-amount" id="balanceValue">$0.00</div>
+          <p>
+            A sample $1 credit for each completed survey. These credits stay in
+            this tab and cannot be withdrawn.
+          </p>
+          <div style="margin-top: 25px">
+            <a class="button" href="surveys.html">Find another survey</a>
+          </div>
+          <div class="balance-detail" style="margin-top: 35px">
+            <h3>Your completed samples</h3>
+            <ul class="activity-list" id="activityList"></ul>
+          </div>
+        </section>
+        <section>
+          <div class="balance-detail">
+            <h3>Real rewards come next.</h3>
+            <p>
+              Paid campaigns and withdrawals aren’t live. Before they are,
+              you’ll see the payment method, amount, timing, and any fees before
+              starting a survey.
+            </p>
+          </div>
+          <div class="balance-detail">
+            <h3>About a future RealSurveys coin.</h3>
+            <p>
+              A coin is an early idea, not a launched payment method. There’s no
+              token to buy, wallet to connect, or promised price or liquidity in
+              this preview.
+            </p>
+          </div>
+          <div class="balance-detail" id="realBalanceSection" hidden>
+            <h3>Your account record</h3>
+            <p id="realBalanceValue"></p>
+          </div>
+          <div class="balance-detail">
+            <button data-logout class="quiet-button">Log out</button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="shell">
+        <div class="footer-top">
+          <a class="brand" href="index.html" aria-label="MyRealSurveys home"
+            ><img
+              src="assets/favicon.svg"
+              width="35"
+              height="35"
+              alt=""
+            />myrealsurveys<span aria-hidden="true">.</span></a
+          >
+          <nav class="footer-links" aria-label="Footer">
+            <a href="surveys.html">Surveys</a><a href="privacy.html">Privacy</a
+            ><a href="contact.html">Contact</a
+            ><a href="giveaways.html">Giveaways</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >© <span data-year>2026</span> MyRealSurveys. Real people. Real
+            opinions.</span
+          ><span>Independent preview. No brand affiliations implied.</span>
+        </div>
+      </div>
+    </footer>
+    <noscript
+      ><p class="shell status error">
+        Please enable JavaScript to try the interactive survey preview.
+      </p></noscript
+    >
+  </body>
+</html>

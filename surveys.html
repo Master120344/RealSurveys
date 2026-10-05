@@ -1,1 +1,152 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Surveys — MyRealSurveys</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/site.css"><script type="module" src="js/surveys.js"></script></head><body><header class="top"><div class="shell nav"><a class="brand" href="index.html"><span class="mark">MRS</span>MyRealSurveys</a><nav class="links"><a class="active" href="surveys.html">Surveys</a><a href="balance.html">Balance</a><a href="giveaways.html">Giveaways</a><a href="contact.html">Support</a></nav><div class="actions"><span class="pill"><span id="accountEmail">Account</span> · <b id="balanceValue">$0.00</b></span><button id="logoutButton" class="btn secondary">Log out</button></div></div></header><main><section class="pagehero"><div class="shell"><span class="eyebrow">Available now</span><h1>Pick a survey.</h1><p>Browse current surveys, check the listed reward, and start the ones that fit you.</p></div></section><section class="section alt"><div class="shell"><div class="toolbar"><div class="search"><input id="surveySearch" type="search" placeholder="Search surveys"></div></div><div id="catalogStatus" class="status">Loading available surveys…</div><div id="surveyGrid" class="surveygrid" style="margin-top:18px"><div class="notice">Loading survey catalog…</div></div></div></section></main><footer class="footer"><div class="shell footerrow"><span>MyRealSurveys</span><a href="contact.html">Need help?</a></div></footer></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#173e30" />
+    <meta
+      name="description"
+      content="A little of your time. A lot of honest feedback. Explore the MyRealSurveys preview: ten thoughtful questions and a planned one-dollar reward."
+    />
+    <title>Find your next survey — MyRealSurveys</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="css/site.css" />
+    <script type="module" src="js/site.js"></script>
+    <script type="module" src="js/surveys.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="top">
+      <div class="shell nav">
+        <a class="brand" href="index.html" aria-label="MyRealSurveys home"
+          ><img
+            src="assets/favicon.svg"
+            width="35"
+            height="35"
+            alt=""
+          />myrealsurveys<span aria-hidden="true">.</span></a
+        >
+        <nav class="nav-links" id="navigation" aria-label="Main navigation">
+          <a href="surveys.html" aria-current="page">Find a survey</a
+          ><a href="index.html#how">How it works</a
+          ><a href="index.html#why">Our promise</a
+          ><a class="nav-login" data-account-link href="login.html">Log in</a>
+        </nav>
+        <div class="nav-actions">
+          <a data-account-link href="login.html">Log in</a
+          ><a class="button small" href="surveys.html">Explore surveys</a>
+        </div>
+        <button
+          class="menu-toggle"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          Menu
+        </button>
+      </div>
+    </header>
+    <div class="preview-ribbon">
+      <strong>PREVIEW EDITION</strong> Sample surveys. No payouts or company
+      submissions yet.
+    </div>
+    <main id="main">
+      <div class="shell">
+        <section class="page-head flex">
+          <div>
+            <span class="eyebrow">Make your everyday heard</span>
+            <h1>What’s on your mind?</h1>
+            <p>
+              Pick a brand. Share your perspective. Every sample is ten
+              questions, with room for a little more at the end.
+            </p>
+          </div>
+          <a class="demo-balance" href="balance.html"
+            ><small>Preview credits</small
+            ><strong id="demoBalance">$0.00</strong></a
+          >
+        </section>
+        <section class="catalog-section" aria-label="Survey catalog">
+          <div class="catalog-toolbar">
+            <div class="filters" role="group" aria-label="Filter surveys">
+              <button class="filter" data-filter="All" aria-pressed="true">
+                All surveys</button
+              ><button
+                class="filter"
+                data-filter="Food & drink"
+                aria-pressed="false"
+              >
+                Food & drink</button
+              ><button
+                class="filter"
+                data-filter="Shopping"
+                aria-pressed="false"
+              >
+                Shopping</button
+              ><button
+                class="filter"
+                data-filter="Technology"
+                aria-pressed="false"
+              >
+                Technology</button
+              ><button
+                class="filter"
+                data-filter="Entertainment"
+                aria-pressed="false"
+              >
+                Entertainment
+              </button>
+            </div>
+            <div class="search">
+              <label class="field-label" for="surveySearch" hidden
+                >Search brands or topics</label
+              ><input
+                type="search"
+                id="surveySearch"
+                aria-label="Search brands or topics"
+                placeholder="Search brands or topics"
+              />
+            </div>
+          </div>
+          <p class="catalog-count" id="catalogCount" aria-live="polite"></p>
+          <div class="survey-grid" id="surveyGrid"></div>
+          <p class="catalog-disclaimer">
+            Independent sample surveys, not paid brand campaigns. $1 is the
+            planned reward. Preview credits are not money and cannot be
+            withdrawn. Completion is remembered only in this browser tab.
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="shell">
+        <div class="footer-top">
+          <a class="brand" href="index.html" aria-label="MyRealSurveys home"
+            ><img
+              src="assets/favicon.svg"
+              width="35"
+              height="35"
+              alt=""
+            />myrealsurveys<span aria-hidden="true">.</span></a
+          >
+          <nav class="footer-links" aria-label="Footer">
+            <a href="surveys.html">Surveys</a><a href="privacy.html">Privacy</a
+            ><a href="contact.html">Contact</a
+            ><a href="giveaways.html">Giveaways</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >© <span data-year>2026</span> MyRealSurveys. Real people. Real
+            opinions.</span
+          ><span>Independent preview. No brand affiliations implied.</span>
+        </div>
+      </div>
+    </footer>
+    <noscript
+      ><p class="shell status error">
+        Please enable JavaScript to try the interactive survey preview.
+      </p></noscript
+    >
+  </body>
+</html>

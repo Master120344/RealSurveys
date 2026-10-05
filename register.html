@@ -1,1 +1,126 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create account — MyRealSurveys</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/site.css"><script type="module" src="js/register.js"></script></head><body><main class="auth"><section class="authbrand"><a class="brand" href="index.html"><span class="mark">MRS</span>MyRealSurveys</a><div><span class="eyebrow">Join MyRealSurveys</span><h1>Create your<br><span>free account.</span></h1><p>Get access to available surveys, your balance, and your account from one simple place.</p></div><p>Quick signup · secure login · straightforward surveys</p></section><section class="authpanel"><div class="authbox"><h2>Create account</h2><p class="sub">It only takes a minute to get started.</p><form id="registerForm"><div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div><div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" required><div id="passwordHint" class="note">Use 12+ characters with uppercase, lowercase, a number, and a symbol.</div></div><div class="field"><label for="confirmPassword">Confirm password</label><input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Enter it again" required></div><button class="btn primary" type="submit" style="width:100%">Create account</button><div id="registerMessage" class="status" hidden></div></form><p class="authswitch">Already registered? <a class="textlink" href="login.html">Sign in</a></p></div></section></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#173e30" />
+    <meta
+      name="description"
+      content="A little of your time. A lot of honest feedback. Explore the MyRealSurveys preview: ten thoughtful questions and a planned one-dollar reward."
+    />
+    <title>Create an account — MyRealSurveys</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="css/site.css" />
+    <script type="module" src="js/site.js"></script>
+    <script type="module" src="js/register.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="top">
+      <div class="shell nav">
+        <a class="brand" href="index.html" aria-label="MyRealSurveys home"
+          ><img
+            src="assets/favicon.svg"
+            width="35"
+            height="35"
+            alt=""
+          />myrealsurveys<span aria-hidden="true">.</span></a
+        >
+        <nav class="nav-links" id="navigation" aria-label="Main navigation">
+          <a href="surveys.html">Find a survey</a
+          ><a href="index.html#how">How it works</a
+          ><a href="index.html#why">Our promise</a
+          ><a class="nav-login" data-account-link href="login.html">Log in</a>
+        </nav>
+        <div class="nav-actions">
+          <a data-account-link href="login.html">Log in</a
+          ><a class="button small" href="surveys.html">Explore surveys</a>
+        </div>
+        <button
+          class="menu-toggle"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          Menu
+        </button>
+      </div>
+    </header>
+    <main class="auth-layout" id="main">
+      <section class="auth-story">
+        <span class="eyebrow">Your perspective belongs here</span>
+        <h1>Make room for<br /><em>real opinions.</em></h1>
+        <p>
+          You can explore all sample surveys as a guest. An account doesn’t
+          unlock paid surveys yet.
+        </p>
+        <img
+          class="auth-art"
+          src="assets/hero.webp"
+          width="1122"
+          height="1402"
+          alt="A person ready to share their opinion."
+        />
+      </section>
+      <section class="auth-panel">
+        <div class="auth-box">
+          <h2>Create an account.</h2>
+          <p>Use email to register with our existing account service.</p>
+          <form id="registerForm">
+            <div class="field">
+              <label for="email">Email address</label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="password">Password</label
+              ><input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                minlength="12"
+                required
+                aria-describedby="passwordHint"
+              /><small id="passwordHint"
+                >12+ characters, with uppercase, lowercase, a number, and a
+                symbol.</small
+              >
+            </div>
+            <div class="field">
+              <label for="confirmPassword">Confirm password</label
+              ><input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <button class="button full" type="submit">Create account</button>
+            <div id="registerMessage" class="status" role="status" hidden></div>
+          </form>
+          <p class="form-note">
+            Account creation uses Firebase and stores your email and account
+            record.
+            <a class="text-link" href="privacy.html">Read about privacy</a>.
+          </p>
+          <p class="auth-secondary">
+            Just looking around?
+            <a class="text-link" href="login.html">Try guest mode</a>
+          </p>
+        </div>
+      </section>
+    </main>
+    <noscript
+      ><p class="shell status error">
+        Please enable JavaScript to try the interactive survey preview.
+      </p></noscript
+    >
+  </body>
+</html>

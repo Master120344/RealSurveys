@@ -1,1 +1,59 @@
-import{auth,db,onAuthStateChanged,logOut}from'./firebase-config.js';import{doc,getDoc}from'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';const C='https://myrealsurveysstorage.blob.core.windows.net/surveys/survey-catalog.json',g=document.getElementById('surveyGrid'),s=document.getElementById('surveySearch'),st=document.getElementById('catalogStatus'),bv=document.getElementById('balanceValue'),em=document.getElementById('accountEmail');let all=[];const clean=v=>String(v??'').replace(/[<>]/g,''),money=v=>Number.isFinite(Number(v))?Number(v).toFixed(2):'0.00';function render(list){g.innerHTML=list.length?list.map((x,i)=>`<article class="surveycard"><div class="media">${x.image?`<img src="${clean(x.image)}" alt="" loading="lazy">`:`<span class="mark">${i+1}</span>`}</div><div class="surveybody"><div class="meta"><span>${clean(x.category||'Survey')}</span><span class="reward">$${money(x.reward)}</span></div><h3>${clean(x.title||'Available survey')}</h3><button class="btn primary" data-i="${i}">Start survey</button></div></article>`).join(''):'<div class="notice">No surveys match that search.</div>'}async function start(x){try{sessionStorage.setItem('currentSurveyReward',money(x.reward));sessionStorage.setItem('currentSurveyTitle',x.title||'Survey');if(x.file&&String(x.file).toLowerCase().endsWith('.html'))return location.assign(x.file);if(!x.file)throw Error('missing file');const r=await fetch(`https://myrealsurveysstorage.blob.core.windows.net/surveys/${encodeURIComponent(x.file)}`,{cache:'no-store'});if(!r.ok)throw Error(r.status);sessionStorage.setItem('currentSurveyData',JSON.stringify(await r.json()));location.assign('survey.html')}catch(e){st.textContent='That survey could not be opened. Please try another one.';st.className='status error';st.hidden=false}}g?.addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b)start(all[Number(b.dataset.i)])});s?.addEventListener('input',()=>{const q=s.value.toLowerCase();render(all.filter(x=>`${x.title||''} ${x.category||''}`.toLowerCase().includes(q)))});document.getElementById('logoutButton')?.addEventListener('click',async()=>{await logOut();location.assign('index.html')});onAuthStateChanged(auth,async u=>{if(!u)return location.replace('login.html');em.textContent=u.email||'Account';try{const d=await getDoc(doc(db,'users',u.uid));bv.textContent=`$${Number(d.exists()?d.data().balance||0:0).toFixed(2)}`}catch{bv.textContent='$0.00'}try{const r=await fetch(C,{cache:'no-store'});if(!r.ok)throw Error(r.status);const data=await r.json();all=Array.isArray(data)?data:Array.isArray(data.surveys)?data.surveys:[];render(all);st.hidden=true}catch(e){g.innerHTML='<div class="notice">The survey catalog is temporarily unavailable.</div>';st.textContent='Could not load the survey catalog.';st.className='status error';st.hidden=false}});
+import { activeSurveys } from "./catalog.js";
+import { readDemo, escapeHTML as esc } from "./demo-session.js";
+let completed = new Set(readDemo().completed.map((s) => s.id));
+function card(s) {
+  const done = completed.has(s.id);
+  return `<article class="survey-card" style="--card-color:${s.color}"><a href="survey.html?brand=${s.id}" aria-label="${done ? "View completed" : "Try"} ${esc(s.name)} sample survey"><div class="card-visual"><span class="card-category">${esc(s.category)}</span><span class="card-price">${done ? "Completed" : "$1"}</span><img class="brand-art" src="surveycards/${s.image}" alt="${esc(s.name)} logo" width="132" height="88" loading="lazy"></div><div class="card-content"><span class="brand-name">${esc(s.name)}</span><h3>${esc(s.title)}</h3><div class="card-bottom"><span class="card-meta">10 questions · Sample survey</span><span class="card-cta">${done ? "View completion" : "Try this survey"}</span></div></div></a></article>`;
+}
+const featured = document.getElementById("featuredGrid");
+if (featured) featured.innerHTML = activeSurveys.slice(0, 3).map(card).join("");
+const grid = document.getElementById("surveyGrid"),
+  search = document.getElementById("surveySearch");
+let category = "All";
+function render() {
+  if (!grid) return;
+  const query = (search?.value || "").trim().toLowerCase();
+  const list = activeSurveys.filter(
+    (s) =>
+      (category === "All" || s.category === category) &&
+      `${s.name} ${s.title} ${s.category}`.toLowerCase().includes(query),
+  );
+  grid.innerHTML = list.length
+    ? list.map(card).join("")
+    : '<div class="empty"><h3>No surveys found.</h3><p>Try another brand or browse all the samples.</p><button class="button outline" id="resetFilters">Clear filters</button></div>';
+  document.getElementById("catalogCount").textContent =
+    `${list.length} sample survey${list.length === 1 ? "" : "s"} · 10 questions each · $1 planned reward`;
+  document.getElementById("resetFilters")?.addEventListener("click", () => {
+    category = "All";
+    search.value = "";
+    document
+      .querySelectorAll("[data-filter]")
+      .forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.filter === "All")),
+      );
+    render();
+    search.focus();
+  });
+}
+search?.addEventListener("input", render);
+document.querySelectorAll("[data-filter]").forEach((b) =>
+  b.addEventListener("click", () => {
+    category = b.dataset.filter;
+    document
+      .querySelectorAll("[data-filter]")
+      .forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    render();
+  }),
+);
+const amount = document.getElementById("demoBalance");
+if (amount) amount.textContent = `$${completed.size.toFixed(2)}`;
+render();
+
+window.addEventListener("pageshow", (event) => {
+  if (!event.persisted) return;
+  completed = new Set(readDemo().completed.map((s) => s.id));
+  if (featured)
+    featured.innerHTML = activeSurveys.slice(0, 3).map(card).join("");
+  if (amount) amount.textContent = `$${completed.size.toFixed(2)}`;
+  render();
+});
